@@ -15,7 +15,8 @@ public class App extends Application {
 
 	@Override
 	public void start(Stage primaryStage) throws Exception{
-		
+		fileManager = new FileManager("");
+		fileManager.test();
 		try {
 			BorderPane root = new BorderPane();
 			Scene scene = new Scene(root,400,400);			

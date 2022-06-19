@@ -8,13 +8,14 @@ public class Plan {
 
     private String name;
     private String curriculumName;
-    private float averageGrade = 0;
+    private float averageGrade;
     private List <Module> moduleList;
     private List <Validator> validatorList;
     private int numberSemester;
 
     
     public Plan(String name, String curriculumName,List<Module> moduleList,List<Validator> validatorList, int numberSemester) {
+        this.averageGrade = 0;
         this.name = name;
         this.curriculumName = curriculumName;
         this.moduleList = moduleList;
@@ -48,7 +49,9 @@ public class Plan {
                 grade += module.getGrade()*module.getCp();
             }
         }
-        this.averageGrade = grade/cp;
+        if(cp != 0){
+            this.averageGrade = grade/cp;
+        }
     }
 
     public String getName() {
@@ -63,10 +66,10 @@ public class Plan {
     public void setCurriculumName(String curriculumName) {
         this.curriculumName = curriculumName;
     }
-    public float getCpAverage() {
+    public float getAverageGrade() {
         return averageGrade;
     }
-    public void setCpAverage(float cpAverage) {
+    public void setAverageGrade(float cpAverage) {
         this.averageGrade = cpAverage;
     }
     public List<Module> getModuleList() {
