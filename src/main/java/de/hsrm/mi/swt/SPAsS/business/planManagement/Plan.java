@@ -8,31 +8,47 @@ public class Plan {
 
     private String name;
     private String curriculumName;
-    private float cpAverage;
+    private float averageGrade = 0;
     private List <Module> moduleList;
     private List <Validator> validatorList;
+    private int numberSemester;
 
     
-    
-    
-    public Plan(String name, String curriculumName, float cpAverage, List<Module> moduleList,List<Validator> validators) {
+    public Plan(String name, String curriculumName,List<Module> moduleList,List<Validator> validatorList, int numberSemester) {
         this.name = name;
         this.curriculumName = curriculumName;
-        this.cpAverage = cpAverage;
         this.moduleList = moduleList;
-        this.validatorList = validators;
+        this.validatorList = validatorList;
+        this.numberSemester = numberSemester;
+        calculateAverage();
     }
 
     public void resetPlan(){
 
+        for (Module module : moduleList) {
+            module.semesterReset();
+        }
+    }
+
+    public void removeSemester(){
+        this.numberSemester--;
     }
     
     public void addSemester(){
-
+        this.numberSemester++;
     }
 
     public void calculateAverage(){
-
+        int cp = 0;
+        float grade = 0;
+        for (Module module : moduleList) {
+           
+            if (module.isPassed()){
+                cp += module.getCp();
+                grade += module.getGrade()*module.getCp();
+            }
+        }
+        this.averageGrade = grade/cp;
     }
 
     public String getName() {
@@ -48,10 +64,10 @@ public class Plan {
         this.curriculumName = curriculumName;
     }
     public float getCpAverage() {
-        return cpAverage;
+        return averageGrade;
     }
     public void setCpAverage(float cpAverage) {
-        this.cpAverage = cpAverage;
+        this.averageGrade = cpAverage;
     }
     public List<Module> getModuleList() {
         return moduleList;
