@@ -1,0 +1,28 @@
+// Wir bauen eine JavaFX (Java-)Application mit der Hauptklasse (mit main()) „FxAmpel“
+plugins {
+    id 'application'
+    id 'org.openjfx.javafxplugin' version '0.0.12'
+}
+mainClassName = "de.hsrm.mi.swt.SPAsS"
+
+// Konfiguration des JavaFX-Plugins: Version und benötigte Module
+javafx {
+    version = "17"
+    modules = [ 'javafx.controls', 'javafx.fxml' ]
+}
+
+// Abzufragendes Internet-Repository für Bibliotheken (z.B. JavaFX)
+repositories { 
+    mavenCentral() 
+}
+
+// Abhängigkeiten (benötigte und einzubindende Bibliotheken)
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.2'
+    testRuntimeOnly    'org.junit.jupiter:junit-jupiter-engine:5.8.2'
+}
+
+// Initialisierung für JUnit-Testing
+test {
+    useJUnitPlatform()
+}
