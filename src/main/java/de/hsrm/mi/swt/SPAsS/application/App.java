@@ -1,4 +1,4 @@
-package de.hsrm.mi.swt.SPAsS;
+package de.hsrm.mi.swt.SPAsS.application;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
