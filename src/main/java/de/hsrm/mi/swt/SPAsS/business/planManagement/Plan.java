@@ -83,12 +83,7 @@ public class Plan {
     public void setCurriculumName(String curriculumName) {
         this.curriculumName = curriculumName;
     }
-    public float getAverageGrade() {
-        return averageGrade;
-    }
-    public void setAverageGrade(float cpAverage) {
-        this.averageGrade = cpAverage;
-    }
+
     public List<Module> getModuleList() {
         return moduleList;
     }

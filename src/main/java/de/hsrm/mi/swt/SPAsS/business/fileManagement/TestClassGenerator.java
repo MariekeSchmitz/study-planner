@@ -22,12 +22,12 @@ public class TestClassGenerator {
         List<Course> courses = new ArrayList<>();
         List<Competence> neededCompetences = new ArrayList<>();
         List <Category> categories = new ArrayList<>();
-		Module x = new Module("Prog 1", "Programmieren undso", 1, 1, OfferedTime.YEARLY, 6, courses, neededCompetences, categories);
-        Module y = new Module("Prog 2", "Advanced Programmieren undso", 2, 2, OfferedTime.YEARLY, 6, courses, neededCompetences, categories);
-        Module z = new Module("Prog 3", "Mega Advanced Programmieren undso", 2, 2, OfferedTime.YEARLY, 6, courses, neededCompetences, categories);
+		Module x = new Module("Prog 1", "Programmieren undso", 1, 1, OfferedTime.YEARLY, 6, courses, neededCompetences, categories, true, "");
+        Module y = new Module("Prog 2", "Advanced Programmieren undso", 2, 2, OfferedTime.YEARLY, 6, courses, neededCompetences, categories, true, "");
+        Module z = new Module("Prog 3", "Mega Advanced Programmieren undso", 2, 2, OfferedTime.YEARLY, 6, courses, neededCompetences, categories, true, "");
         CompetenceValidator v1 = new CompetenceValidator();
-        CpLimitValidator v2 = new CpLimitValidator();
-        ProgressValidator v3 = new ProgressValidator();
+        CpLimitValidator v2 = new CpLimitValidator(30);
+        ProgressValidator v3 = new ProgressValidator(3);
 		List<Module> modules = new ArrayList<>();
 		List<Validator> valids = new ArrayList<>();
 		modules.add(x);
