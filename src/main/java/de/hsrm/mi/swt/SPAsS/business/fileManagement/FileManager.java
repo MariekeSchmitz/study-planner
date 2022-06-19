@@ -11,8 +11,7 @@ public class FileManager {
     public String jsonTestString;
 
     public FileManager(String path){
-        this.path = path;
-        
+        this.path = path;   
     }
 
     public void curriculumScan(){
@@ -27,7 +26,17 @@ public class FileManager {
             .create();
         return gson.fromJson(jsonTestString, Plan.class);
     }
-    public void fileSave(){
-        this.jsonTestString = new Gson().toJson(new TestClassGenerator().plan);
+    public void fileSave(Plan p){
+        this.jsonTestString = new Gson().toJson(p);
+    }
+
+    public void test(){
+		this.fileSave(new TestClassGenerator().plan);
+		System.out.println(this.jsonTestString);
+        String s = jsonTestString;
+		Plan p = this.fileRead();
+        fileSave(p);
+        if(s.equals(jsonTestString)) System.out.println("Parser still workinng");
+        else System.out.println("you killed the parser");
     }
 }
