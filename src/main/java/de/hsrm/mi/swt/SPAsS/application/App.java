@@ -1,10 +1,10 @@
 package de.hsrm.mi.swt.SPAsS.application;
 
 import de.hsrm.mi.swt.SPAsS.business.fileManagement.FileManager;
+import de.hsrm.mi.swt.SPAsS.presentation.views.ViewManager;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.scene.Scene;
-import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 public class App extends Application {
@@ -12,13 +12,15 @@ public class App extends Application {
 	private String filepath;
 	private FileManager fileManager;
 
+	private ViewManager viewManager;
+	
 
 	@Override
 	public void start(Stage primaryStage) throws Exception{
 		
 		try {
-			BorderPane root = new BorderPane();
-			Scene scene = new Scene(root,400,400);			
+			viewManager = new ViewManager();
+			Scene scene = new Scene(viewManager.getRootView(),1440,1024);			
 			primaryStage.setScene(scene);
 			primaryStage.show();
 			
