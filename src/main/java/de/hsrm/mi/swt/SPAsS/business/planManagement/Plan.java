@@ -45,7 +45,6 @@ public class Plan {
     	for (Module module : moduleList) {   		
     		moduleMap.get(module.getSemesterCurrent()).add(module);   		
     	}
-    	
     }
 
     public void removeSemester(){

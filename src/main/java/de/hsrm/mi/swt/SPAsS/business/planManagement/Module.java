@@ -34,7 +34,9 @@ public class Module {
 	}
 
 
-	public void move() {
+	public void move(int newSemester) {
+		
+		semesterCurrent = newSemester;
 		
 	};
 	
