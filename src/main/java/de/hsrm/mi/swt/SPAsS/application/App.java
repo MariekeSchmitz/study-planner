@@ -16,7 +16,12 @@ public class App extends Application {
 	@Override
 	public void start(Stage primaryStage) throws Exception{
 		fileManager = new FileManager("");
-		fileManager.test();
+		try {
+			fileManager.test();
+		} catch (Exception e) {
+			System.out.println("you killed the parser");
+		}
+
 		try {
 			BorderPane root = new BorderPane();
 			Scene scene = new Scene(root,400,400);			
