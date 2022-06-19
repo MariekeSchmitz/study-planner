@@ -14,7 +14,7 @@ public class Plan {
     private float averageGrade;
     private List <Module> moduleList;
     private List <Validator> validatorList;
-    private Map<Integer,List<Module>> moduleMap;
+    private transient Map<Integer,List<Module>> moduleMap;
     private int numberSemester;
     
     public Plan(String name, String curriculumName,List<Module> moduleList,List<Validator> validatorList, int numberSemester) {
