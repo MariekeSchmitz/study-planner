@@ -1,11 +1,16 @@
 package de.hsrm.mi.swt.SPAsS.application;
 
+import de.hsrm.mi.swt.SPAsS.business.fileManagement.FileManager;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 public class App extends Application {
+
+	private String filepath;
+	private FileManager fileManager;
 
 
 	@Override
@@ -21,6 +26,26 @@ public class App extends Application {
 			e.printStackTrace();
 		}
 	}
+
+	public void init(){
+
+	}
 	
+	public void stop(){
+		Platform.exit();
+		System.exit(1);
+	}
+
+	public void savePlan(){
+
+	}
 	
+	public void readPlan(){
+
+	}
+
+	public void swapView(){
+
+	}
+
 }
