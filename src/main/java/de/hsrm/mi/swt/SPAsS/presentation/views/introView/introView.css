@@ -1,0 +1,27 @@
+/* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
+
+.addbutton {
+    -fx-background-color: lightgrey;
+    -fx-border-color: white;
+    -fx-border-width: 0;
+    -fx-font-size: 50px;
+}
+
+.ownButton {
+    -fx-background-color: transparent;
+    -fx-font-size: 15px;
+}
+
+.header {
+    -fx-font-size: 50px;
+}
+
+.headerOne {
+    -fx-font-size: 50px;
+    -fx-font-weight: bold;
+}
+
+.secondHeader {
+    -fx-font-size: 30px;
+    -fx-font-weight: bold;
+}
