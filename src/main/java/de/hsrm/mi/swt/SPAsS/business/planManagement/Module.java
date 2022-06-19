@@ -15,10 +15,12 @@ public class Module {
 	private boolean passed = false;
 	private List<Competence> neededCompetences;
 	private List <Category> categories;
+	private boolean valid = true;
+	private String note = "";
 		
 	
 	public Module(String name, String description, int semesterDefault, int semesterCurrent, OfferedTime offeredIn,
-			int cp, List<Course> courses, List<Competence> neededCompetences,List <Category> categories) {
+			int cp, List<Course> courses, List<Competence> neededCompetences,List <Category> categories, boolean valid, String note) {
 		this.name = name;
 		this.description = description;
 		this.semesterDefault = semesterDefault;
@@ -27,6 +29,8 @@ public class Module {
 		this.cp = cp;
 		this.courses = courses;
 		this.neededCompetences = neededCompetences;
+		this.valid = valid;
+		this.note = note;
 	}
 
 
@@ -62,6 +66,12 @@ public class Module {
 		}
 
 	}
+	
+	public void resetNote() {
+		this.note = "";
+	}
+	
+	
 
 	public List<Course> getCourses() {
 		return courses;
@@ -144,6 +154,30 @@ public class Module {
 	public void setCategories(List<Category> categories) {
 		this.categories = categories;
 	}
+
+
+	public boolean isValid() {
+		return valid;
+	}
+
+
+	public void setValid(boolean valid) {
+		this.valid = valid;
+	}
+
+
+	public String getNote() {
+		return note;
+	}
+
+
+	public void setNote(String note) {
+		this.note += note;
+	}
+	
+	
+	
+	
 	
 	
 	

@@ -39,5 +39,15 @@ public class Course {
         this.exam = exam;
     }
 
+	public List<Competence> getTaughtCompetences() {
+		return taughtCompetences;
+	}
+
+	public void setTaughtCompetences(List<Competence> taughtCompetences) {
+		this.taughtCompetences = taughtCompetences;
+	}
+    
+    
+
     
 }

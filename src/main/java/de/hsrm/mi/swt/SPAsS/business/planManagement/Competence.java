@@ -1,5 +1,7 @@
 package de.hsrm.mi.swt.SPAsS.business.planManagement;
 
+import java.util.Objects;
+
 public class Competence {
 
     private String name;
@@ -15,5 +17,24 @@ public class Competence {
     public void setName(String name) {
         this.name = name;
     }
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(name);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Competence other = (Competence) obj;
+		return Objects.equals(name, other.name);
+	}
+    
+    
     
 }
