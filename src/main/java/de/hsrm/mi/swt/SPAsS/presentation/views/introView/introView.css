@@ -1,5 +1,47 @@
 /* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
 
+.test {
+    -fx-font-size: 50px;
+}
+
+.scroll-pane {
+    -fx-background-color: transparent;
+}
+
+.scroll-bar:horizontal,
+.scroll-bar:vertical {
+    -fx-background-color: transparent;
+    -fx-background: transparent;
+}
+
+.increment-button,
+.decrement-button {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
+.scroll-pane:vertical .corner {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
+.scroll-bar:horizontal .track,
+.scroll-bar:vertical .track {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-background-radius: 0em;
+}
+
+.scroll-bar:horizontal .thumb,
+.scroll-bar:vertical .thumb {
+    -fx-background-radius: 0em;
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
+
+/* HauptCSS*/
+
 .addbutton {
     -fx-background-color: lightgrey;
     -fx-border-color: white;
@@ -12,8 +54,31 @@
     -fx-font-size: 15px;
 }
 
+.dragdropField {
+    -fx-background-color: transparent;
+    -fx-border-color: grey;
+    -fx-border-style: segments(10, 15, 15, 15) line-cap round;
+}
+
+.fileOpenButton {
+    -fx-background-color: transparent;
+    -fx-border-color: grey;
+    -fx-border-width: 2;
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+}
+
+.drapdropLabel1 {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+}
+
 .header {
     -fx-font-size: 50px;
+}
+
+.header_2 {
+    -fx-font-size: 30px;
 }
 
 .headerOne {
@@ -24,4 +89,21 @@
 .secondHeader {
     -fx-font-size: 30px;
     -fx-font-weight: bold;
+}
+
+.studyLabel {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+}
+
+.campusLabel {
+    -fx-font-size: 20px;
+}
+
+.studyViewButton {
+    -fx-background-color: transparent;
+}
+
+.studyViewButton:hover {
+    -fx-background-color: rgba(0, 255, 0, 0.1);
 }

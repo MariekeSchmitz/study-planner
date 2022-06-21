@@ -1,5 +1,6 @@
 package de.hsrm.mi.swt.SPAsS.presentation.views;
 
+import de.hsrm.mi.swt.SPAsS.presentation.views.introView.SelectViewController;
 import de.hsrm.mi.swt.SPAsS.presentation.views.introView.StartViewController;
 import de.hsrm.mi.swt.SPAsS.presentation.views.introView.UploadViewController;
 import de.hsrm.mi.swt.SPAsS.presentation.views.mainView.MainViewController;
@@ -27,12 +28,15 @@ public class ViewManager extends ViewController {
         } else if (toScene.equals(ScenesEmun.UPLOAD_VIEW_CONTROLLER)) {
             root.getChildren().clear();
             root.getChildren().add(new UploadViewController(this).getRootView()); 
+        }else if (toScene.equals(ScenesEmun.SELECT_VIEW)) {
+        root.getChildren().clear();
+        root.getChildren().add(new SelectViewController().getRootView()); 
         }
     }    
 
     @Override
     public void initialise() {
-        switchScene(ScenesEmun.MAIN_VIEW_CONTROLLER);
+        switchScene(ScenesEmun.SELECT_VIEW);
     }
 
 }

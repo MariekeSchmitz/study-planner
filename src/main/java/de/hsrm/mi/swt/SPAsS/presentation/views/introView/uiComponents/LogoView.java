@@ -2,7 +2,6 @@ package de.hsrm.mi.swt.SPAsS.presentation.views.introView.uiComponents;
 
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BorderPane;
