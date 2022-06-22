@@ -17,10 +17,11 @@ public class App extends Application {
 
 	@Override
 	public void start(Stage primaryStage) throws Exception{
-		fileManager = new FileManager("");
+		fileManager = new FileManager("FileManagerTestFolder");
 		try {
-			fileManager.test();
+			fileManager.test(false);
 		} catch (Exception e) {
+			e.printStackTrace();
 			System.out.println("you killed the parser");
 		}
 
