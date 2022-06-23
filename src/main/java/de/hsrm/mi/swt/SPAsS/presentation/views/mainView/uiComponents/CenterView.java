@@ -12,7 +12,7 @@ public class CenterView extends AnchorPane{
     
     private VBox vboxNumber;
     private HBox hBoxAdd;
-    private StackPane plan;
+    private VBox planPane;
     private Button addSemester;
     private Button addKlausur;
 
@@ -24,9 +24,9 @@ public class CenterView extends AnchorPane{
         vboxNumber.setSpacing(15);
         vboxNumber.setAlignment(Pos.BOTTOM_CENTER);
 
-        plan = new StackPane();
+        planPane = new VBox();
         this.getStyleClass().add("test-border-red");
-        plan.setAlignment(Pos.BOTTOM_LEFT);
+        planPane.setAlignment(Pos.BOTTOM_LEFT);
 
         hBoxAdd = new HBox();
         hBoxAdd.setPrefHeight(40);
@@ -52,16 +52,59 @@ public class CenterView extends AnchorPane{
         AnchorPane.setTopAnchor(addSemester, 50.0);
         AnchorPane.setRightAnchor(addSemester, 50.0);
         
-        AnchorPane.setLeftAnchor(plan, 125.0);
-        AnchorPane.setTopAnchor(plan, 100.0);
-        AnchorPane.setBottomAnchor(plan, 50.0);
-        AnchorPane.setRightAnchor(plan, 50.0);
+        AnchorPane.setLeftAnchor(planPane, 125.0);
+        AnchorPane.setTopAnchor(planPane, 100.0);
+        AnchorPane.setBottomAnchor(planPane, 50.0);
+        AnchorPane.setRightAnchor(planPane, 50.0);
 
         AnchorPane.setLeftAnchor(vboxNumber, 50.0);
         AnchorPane.setTopAnchor(vboxNumber, 100.0);
         AnchorPane.setBottomAnchor(vboxNumber, 50.0);
 
-        this.getChildren().addAll(vboxNumber, plan, hBoxAdd);
+        this.getChildren().addAll(vboxNumber, planPane, hBoxAdd);
     }
 
+	public VBox getVboxNumber() {
+		return vboxNumber;
+	}
+
+	public void setVboxNumber(VBox vboxNumber) {
+		this.vboxNumber = vboxNumber;
+	}
+
+	public HBox gethBoxAdd() {
+		return hBoxAdd;
+	}
+
+	public void sethBoxAdd(HBox hBoxAdd) {
+		this.hBoxAdd = hBoxAdd;
+	}
+
+	public VBox getPlanBox() {
+		return planPane;
+	}
+
+	public void setPlanPane(StackPane plan) {
+		this.planPane = planPane;
+	}
+
+	public Button getAddSemester() {
+		return addSemester;
+	}
+
+	public void setAddSemester(Button addSemester) {
+		this.addSemester = addSemester;
+	}
+
+	public Button getAddKlausur() {
+		return addKlausur;
+	}
+
+	public void setAddKlausur(Button addKlausur) {
+		this.addKlausur = addKlausur;
+	}
+	
+	
+    
+   
 }

@@ -21,18 +21,17 @@ public class MainView extends AnchorPane{
 
     private BorderPane rightSide;
 
-    public MainView() {
+    public MainView(AnchorPane leftSideMenu, AnchorPane topCenter, AnchorPane center) {
 
+    	
+    	this.leftSideMenu = leftSideMenu;
+    	this.topCenter = topCenter;
+    	this.center = center;
+    	
         //leftside
-        leftSideMenu = (AnchorPane) new LeftSideViewController().getRootView();
-
         AnchorPane.setTopAnchor(leftSideMenu, 0.0);
         AnchorPane.setLeftAnchor(leftSideMenu,  0.0);
         AnchorPane.setBottomAnchor(leftSideMenu, 0.0);
-
-        center = (AnchorPane) new CenterViewController().getRootView();
-
-        topCenter = (AnchorPane) new TopCenterViewController().getRootView();
 
         testButton = new Button("Switch");
 

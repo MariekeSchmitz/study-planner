@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import de.hsrm.mi.swt.SPAsS.business.planManagement.Category;
+import de.hsrm.mi.swt.SPAsS.business.planManagement.CategoryEnum;
 import de.hsrm.mi.swt.SPAsS.business.planManagement.Competence;
 import de.hsrm.mi.swt.SPAsS.business.planManagement.Course;
 import de.hsrm.mi.swt.SPAsS.business.planManagement.Exam;
@@ -17,10 +17,11 @@ import de.hsrm.mi.swt.SPAsS.business.restrictionManagement.CompetenceValidator;
 import de.hsrm.mi.swt.SPAsS.business.restrictionManagement.CpLimitValidator;
 import de.hsrm.mi.swt.SPAsS.business.restrictionManagement.ProgressValidator;
 import de.hsrm.mi.swt.SPAsS.business.restrictionManagement.Validator;
+import de.hsrm.mi.swt.SPAsS.presentation.views.mainView.uiComponents.CenterViewController;
 
 public class TestClassGenerator {
     
-    Plan plan;
+    public Plan plan;
 
     public TestClassGenerator(){
 		List<Validator> valids = new ArrayList<>();
@@ -34,6 +35,8 @@ public class TestClassGenerator {
 		Plan p = new Plan("Medieninformatik", "RandomCurriculumName", this.getModules(), valids, 5);
         p.updateModuleMap();
         this.plan = p;
+        
+        
     }
 
     private List<Module> getModules(){
@@ -47,22 +50,11 @@ public class TestClassGenerator {
         courses.add(course);
         
 
-        List <Category> infl = new ArrayList<>();
-        List <Category> gestl = new ArrayList<>();
-        List <Category> infgestl = new ArrayList<>();
-        List <Category> fql = new ArrayList<>();
-        List <Category> mathl = new ArrayList<>();
-        Category inf = new Category("Informatik");
-        Category gest = new Category("Gestaltung");
-        Category math = new Category("Mathe");
-        Category fq = new Category("fachuebergreifende Qualifikationen");
-        infl.add(inf);
-        gestl.add(gest);
-        infgestl.add(inf);
-        infgestl.add(gest);
-        fql.add(fq);
-        mathl.add(math);
-
+        CategoryEnum infl = CategoryEnum.GESTALTUNG;
+        CategoryEnum gestl = CategoryEnum.INFORMATIK;
+        CategoryEnum infgestl = CategoryEnum.SONSTIGES;
+        CategoryEnum fql = CategoryEnum.INFORMATIK;
+        CategoryEnum mathl = CategoryEnum.MATHE;
 
         List<Module> modules = new ArrayList<>();
         Module prog1 = new Module("Programmieren 1", "Programmieren undso", 1, 1, OfferedTime.YEARLY, 7, courses, neededCompetences, infl, true, "");
@@ -95,4 +87,6 @@ public class TestClassGenerator {
 
         return modules;
     }
+    
+    
 }

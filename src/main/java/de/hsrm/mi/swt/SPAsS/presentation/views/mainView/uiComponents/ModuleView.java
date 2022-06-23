@@ -1,45 +1,64 @@
-package de.hsrm.mi.swt.projekt.uicomponents;
+package de.hsrm.mi.swt.SPAsS.presentation.views.mainView.uiComponents;
 
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListCell;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import de.hsrm.mi.swt.SPAsS.business.planManagement.Module;
 
-public class ModuleView extends AnchorPane{
+public class ModuleView extends ListCell<Module>{
 
     private Label moduleLabel;
-    private Label cpLabel;
+	private Label cpLabel;
+	private VBox labels;
+	private Color color;
 
     private double startX;
     private double startY;
 
-    public ModuleView(String module, String cp, Color color) {
+    public ModuleView() {
 
-        moduleLabel = new Label(module);
+        moduleLabel = new Label("");
         moduleLabel.getStyleClass().add("module");
 
-        cpLabel = new Label(cp);
+        cpLabel = new Label("");
         cpLabel.getStyleClass().add("module");
+        
+        labels = new VBox();
+        labels.getChildren().addAll(moduleLabel,cpLabel);
+        
+        this.setGraphic(labels);
 
-        AnchorPane.setLeftAnchor(moduleLabel, 10.0);
-        AnchorPane.setTopAnchor(moduleLabel, 10.0);
-
-        AnchorPane.setLeftAnchor(cpLabel, 10.0);
-        AnchorPane.setTopAnchor(cpLabel, 30.0);
-
-        this.setTranslateX(50);
-        this.setTranslateY(50);
-
-        // this.getStyleClass().add("test-border-yellow");
-        this.getChildren().addAll(moduleLabel, cpLabel);
-        this.setPrefSize(1000, 300);
         this.setMaxHeight(50);
         this.setMaxWidth(150);
-        this.setBackground(new Background(new BackgroundFill(color, new CornerRadii(0), new Insets(0))));
+   
     }
+    
+    
+    @Override
+    protected void updateItem(Module item, boolean empty) {
+    	super.updateItem(item, empty);
+    	
+    	if (!empty) {
+    		
+    		moduleLabel.setText(item.getName());
+    		cpLabel.setText(Integer.toString(item.getCp()));
+    		
+    		this.setBackground(new Background(new BackgroundFill(item.getCategories().getColor(),new CornerRadii(0),new Insets(0))));
+    		
+    		this.setGraphic(labels);
+    		
+    	} else{
+    		this.setGraphic(null);
+    	}
+    }
+    
+    
     public double getStartX() {
         return startX;
     }
@@ -55,6 +74,22 @@ public class ModuleView extends AnchorPane{
     public void setStartY(double startY) {
         this.startY = startY;
     }
+    
+    public Label getModuleLabel() {
+		return moduleLabel;
+	}
+    
+	public void setModuleLabel(Label moduleLabel) {
+		this.moduleLabel = moduleLabel;
+	}
+	
+	public Label getCpLabel() {
+		return cpLabel;
+	}
+	
+	public void setCpLabel(Label cpLabel) {
+		this.cpLabel = cpLabel;
+	}
 
     
 }

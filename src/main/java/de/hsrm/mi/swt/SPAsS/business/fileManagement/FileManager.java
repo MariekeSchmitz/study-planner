@@ -19,7 +19,7 @@ import de.hsrm.mi.swt.SPAsS.business.restrictionManagement.Validator;
 public class FileManager {
     private String path;
     public String jsonTestString;
-    Plan testPlan;
+    private Plan testPlan;
 
     public FileManager(String path) {
         this.path = path;

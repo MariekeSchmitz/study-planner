@@ -2,9 +2,13 @@ package de.hsrm.mi.swt.SPAsS.business.planManagement;
 
 import java.util.List;
 
+import javafx.beans.InvalidationListener;
+import javafx.beans.Observable;
+import javafx.beans.property.SimpleStringProperty;
+
 public class Module {
 
-	private String name; 
+	private SimpleStringProperty name; 
 	private String description;
 	private int semesterDefault;
 	private int semesterCurrent; 
@@ -14,14 +18,15 @@ public class Module {
 	private float grade;
 	private boolean passed = false;
 	private List<Competence> neededCompetences;
-	private List <Category> categories;
+	private CategoryEnum category;
 	private boolean valid = true;
 	private String note = "";
 		
 	
 	public Module(String name, String description, int semesterDefault, int semesterCurrent, OfferedTime offeredIn,
-			int cp, List<Course> courses, List<Competence> neededCompetences,List <Category> categories, boolean valid, String note) {
-		this.name = name;
+			int cp, List<Course> courses, List<Competence> neededCompetences, CategoryEnum category, boolean valid, String note) {
+		this.name = new SimpleStringProperty(name);
+		
 		this.description = description;
 		this.semesterDefault = semesterDefault;
 		this.semesterCurrent = semesterCurrent;
@@ -31,6 +36,7 @@ public class Module {
 		this.neededCompetences = neededCompetences;
 		this.valid = valid;
 		this.note = note;
+		this.category = category;
 	}
 
 
@@ -86,10 +92,10 @@ public class Module {
 
 
 	public String getName() {
-		return name;
+		return name.get();
 	}
 	public void setName(String name) {
-		this.name = name;
+		this.name.set(name);
 	}
 	public String getDescription() {
 		return description;
@@ -148,13 +154,13 @@ public class Module {
 	}
 
 
-	public List<Category> getCategories() {
-		return categories;
+	public CategoryEnum getCategories() {
+		return category;
 	}
 
 
-	public void setCategories(List<Category> categories) {
-		this.categories = categories;
+	public void setCategories(CategoryEnum category) {
+		this.category = category;
 	}
 
 
@@ -176,6 +182,14 @@ public class Module {
 	public void setNote(String note) {
 		this.note += note;
 	}
+
+
+	@Override
+	public String toString() {
+		return "Module [name=" + name + ", semesterCurrent=" + semesterCurrent + ", cp=" + cp + "]";
+	}
+
+
 	
 	
 	
