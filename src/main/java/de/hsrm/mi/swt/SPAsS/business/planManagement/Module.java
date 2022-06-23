@@ -2,6 +2,9 @@ package de.hsrm.mi.swt.SPAsS.business.planManagement;
 
 import java.util.List;
 
+import de.hsrm.mi.swt.SPAsS.business.commands.CommandManager;
+import de.hsrm.mi.swt.SPAsS.business.commands.MoveSemesterCommand;
+
 public class Module {
 
 	private String name; 
@@ -35,16 +38,12 @@ public class Module {
 
 
 	public void move(int newSemester) {
-		
-		semesterCurrent = newSemester;
-		
+		CommandManager.getInstance().execAndPush(new MoveSemesterCommand(this, newSemester));
 	};
 	
 	
 	public void semesterReset() {
-		
-		this.semesterCurrent = this.semesterDefault;
-		
+		CommandManager.getInstance().execAndPush(new MoveSemesterCommand(this, this.semesterDefault));
 	}
 	
 	public void coursesPassed(){
