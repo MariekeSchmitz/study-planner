@@ -15,7 +15,7 @@ public class SelectViewController extends ViewController{
 
         hbox = sv.getHbox();
         
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 5 ; i++) {
             Pane test1 = new StudyViewController("Medieninformatik (B.Sc.)", "Hochschule RheinMain").getRootView();
             hbox.getChildren().add(test1);
         }

@@ -27,7 +27,7 @@ public class App extends Application {
 
 		try {
 			viewManager = new ViewManager();
-			Scene scene = new Scene(viewManager.getRootView(),1440,1024);			
+			Scene scene = new Scene(viewManager.getRootView(),1440,1024);	
 			primaryStage.setScene(scene);
 			primaryStage.show();
 			

@@ -40,6 +40,10 @@ public class SelectView extends AnchorPane{
 		scrollPane.fitToHeightProperty().set(true);
         scrollPane.fitToWidthProperty().set(false);
 		scrollPane.setPannable(true);
+        scrollPane.setPrefSize(10000, 1000);
+        scrollPane.setMaxHeight(150);
+
+        scrollPane.getStyleClass().add("test-border-red");
         
         drag_drop_field = new DragDropViewController().getRootView();
 
@@ -47,15 +51,18 @@ public class SelectView extends AnchorPane{
         header2.getStyleClass().add("header_2");
 
         backgroundPane = new Pane();
+        backgroundPane.setPrefSize(10000, 1000);
+        backgroundPane.setMaxHeight(700);
         backgroundPane.setBackground(new Background(new BackgroundFill(new Color(0.9,0.9,0.9, 0.5), new CornerRadii(0), new Insets(0))));
+        backgroundPane.getStyleClass().add("test-border-red");
 
         AnchorPane.setTopAnchor(header, 100.0); 
         AnchorPane.setLeftAnchor(header, 150.0);
 
-        AnchorPane.setTopAnchor(header2, 600.0);
+        AnchorPane.setTopAnchor(header2, 500.0);
         AnchorPane.setLeftAnchor(header2, 200.0);
 
-        AnchorPane.setTopAnchor(drag_drop_field, 700.0);
+        AnchorPane.setTopAnchor(drag_drop_field, 600.0);
         AnchorPane.setLeftAnchor(drag_drop_field, 200.0);
         AnchorPane.setBottomAnchor(drag_drop_field, 50.0);
         AnchorPane.setRightAnchor(drag_drop_field, 200.0);
@@ -63,9 +70,8 @@ public class SelectView extends AnchorPane{
         AnchorPane.setTopAnchor(scrollPane, 300.0); 
 		AnchorPane.setLeftAnchor(scrollPane, 0.0);
 		AnchorPane.setRightAnchor(scrollPane, 0.0);
-		AnchorPane.setBottomAnchor(scrollPane, 550.0);
 
-        AnchorPane.setTopAnchor(backgroundPane, 525.0);
+        AnchorPane.setTopAnchor(backgroundPane, 400.0);
         AnchorPane.setLeftAnchor(backgroundPane, 0.0);
         AnchorPane.setBottomAnchor(backgroundPane, 0.0);
         AnchorPane.setRightAnchor(backgroundPane, 0.0);
