@@ -1,4 +1,4 @@
-package de.hsrm.mi.swt.projekt.uicomponents;
+package de.hsrm.mi.swt.SPAsS.presentation.views.mainView.uiComponents;
 
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;

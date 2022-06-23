@@ -19,6 +19,8 @@ public class SelectViewController extends ViewController{
             Pane test1 = new StudyViewController("Medieninformatik (B.Sc.)", "Hochschule RheinMain").getRootView();
             hbox.getChildren().add(test1);
         }
+
+
 		
        
     }
