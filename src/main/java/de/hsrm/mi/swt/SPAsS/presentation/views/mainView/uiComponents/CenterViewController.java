@@ -7,6 +7,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+import de.hsrm.mi.swt.SPAsS.business.commands.CommandManager;
+import de.hsrm.mi.swt.SPAsS.business.commands.ResetPlanCommand;
 import de.hsrm.mi.swt.SPAsS.business.planManagement.CategoryEnum;
 import de.hsrm.mi.swt.SPAsS.business.planManagement.Competence;
 import de.hsrm.mi.swt.SPAsS.business.planManagement.Course;
@@ -94,7 +96,8 @@ public class CenterViewController extends ViewController{
         
     	resetButton.addEventHandler(ActionEvent.ACTION, e -> {
     		
-    		plan.resetPlan();
+    		//plan.resetPlan();
+			CommandManager.getInstance().execAndPush(new ResetPlanCommand(plan));
 
     	});
     	
