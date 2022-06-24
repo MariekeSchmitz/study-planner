@@ -1,6 +1,8 @@
 package de.hsrm.mi.swt.SPAsS.business.planManagement;
 
-public class Exam {
+import java.io.Serializable;
+
+public class Exam implements Serializable {
 
     private float grade;
     private ExamType examType;
@@ -9,6 +11,10 @@ public class Exam {
     private boolean passed;
 
 
+    public Exam() {
+    	
+    }
+    
     public Exam(float grade, ExamType examType, OfferedTime offeredIn, int numberAttempt, boolean passed) {
         this.grade = grade;
         this.examType = examType;
@@ -47,6 +53,8 @@ public class Exam {
     public void setPassed(boolean passed) {
         this.passed = passed;
     }
+    
+    
 
     
 }

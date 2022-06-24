@@ -34,9 +34,19 @@ public class Plan {
 
     public void resetPlan() {
 
-        for (Module module : moduleList) {
-            module.semesterReset();
+    	
+        for(Integer semester : moduleMap.keySet()) {
+        	
+        	List<Module> moduleList = moduleMap.get(semester);
+        	
+        	for (Module module :moduleList) {      		
+        		module.semesterReset();
+        		
+        	}
+        	
         }
+        
+        
 
     }
 
@@ -58,6 +68,8 @@ public class Plan {
 
     public void addSemester() {
         CommandManager.getInstance().execAndPush(new AddSemesterCommand(this));
+        
+        
     }
 
     private boolean checkLastSemesterEmpty() {
@@ -81,6 +93,23 @@ public class Plan {
         if (cp != 0) {
             this.averageGrade = grade / cp;
         }
+    }
+    
+    public Module getModuleByName(String name) {
+    	
+    	for(List<Module> moduleList : moduleMap.values()) {
+    		
+    		for (Module module : moduleList) {
+    			
+    			if (module.getName().equals(name)) {
+    				return module;
+    			}
+    			
+    		}
+    	}
+    	
+    	return null;
+    	
     }
 
     public String getName() {

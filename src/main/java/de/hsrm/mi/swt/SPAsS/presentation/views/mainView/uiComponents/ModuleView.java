@@ -49,7 +49,24 @@ public class ModuleView extends ListCell<Module>{
     		moduleLabel.setText(item.getName());
     		cpLabel.setText(Integer.toString(item.getCp()));
     		
-    		this.setBackground(new Background(new BackgroundFill(item.getCategories().getColor(),new CornerRadii(0),new Insets(0))));
+    		Color color = item.getCategories().getColor();
+    		double red = color.getRed();
+    		double blue = color.getBlue();
+    		double green = color.getGreen();
+    		
+    		
+    		// TO DO 
+    		String s = "-fx-background-color:rgba("+red+","+blue+","+green+", 0.5)";
+    		
+    		
+    		
+    		if (item.isPassed()) {
+    			this.setStyle(s);
+        		
+    		} else {
+        		this.setBackground(new Background(new BackgroundFill(item.getCategories().getColor(),new CornerRadii(0),new Insets(0))));
+    		}
+    		
     		
     		this.setGraphic(labels);
     		

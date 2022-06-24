@@ -1,10 +1,15 @@
 package de.hsrm.mi.swt.SPAsS.business.planManagement;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Competence {
+public class Competence implements Serializable{
 
     private String name;
+    
+    public Competence() {
+    	
+    }
 
     public Competence(String name) {
         this.name = name;

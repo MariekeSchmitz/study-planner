@@ -1,37 +1,46 @@
 package de.hsrm.mi.swt.SPAsS.business.planManagement;
 
+import java.beans.Transient;
+import java.io.Serializable;
 import java.util.List;
 
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
+import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import de.hsrm.mi.swt.SPAsS.business.commands.CommandManager;
 import de.hsrm.mi.swt.SPAsS.business.commands.MoveSemesterCommand;
 
-public class Module {
+public class Module implements Serializable{
 
-	private SimpleStringProperty name; 
+	private String name; 
 	private String description;
+	private SimpleIntegerProperty semesterCurrent;
 	private int semesterDefault;
-	private int semesterCurrent; 
 	private OfferedTime offeredIn;
 	private int cp;
 	private List <Course> courses;
 	private float grade;
-	private boolean passed = false;
+	private SimpleBooleanProperty passed;
+	private SimpleBooleanProperty hallo;
 	private List<Competence> neededCompetences;
 	private CategoryEnum category;
 	private boolean valid = true;
 	private String note = "";
 		
 	
+	
+	public Module() {
+		
+	}
+	
 	public Module(String name, String description, int semesterDefault, int semesterCurrent, OfferedTime offeredIn,
-			int cp, List<Course> courses, List<Competence> neededCompetences, CategoryEnum category, boolean valid, String note) {
-		this.name = new SimpleStringProperty(name);
+			int cp, List<Course> courses, List<Competence> neededCompetences, CategoryEnum category, boolean valid, String note)  {
+		this.name = name;
 		
 		this.description = description;
 		this.semesterDefault = semesterDefault;
-		this.semesterCurrent = semesterCurrent;
 		this.offeredIn = offeredIn;
 		this.cp = cp;
 		this.courses = courses;
@@ -39,6 +48,12 @@ public class Module {
 		this.valid = valid;
 		this.note = note;
 		this.category = category;
+		
+		this.semesterCurrent = new SimpleIntegerProperty(semesterCurrent);
+		this.passed = new SimpleBooleanProperty(false);
+		this.hallo = new SimpleBooleanProperty();
+		
+		
 	}
 
 
@@ -59,12 +74,12 @@ public class Module {
 				break;
 			}
 		}
-		this.passed = tempPassed;
+		this.passed.set(tempPassed);
 	}
 
 	public void calcGrade(){
 		float grade = 0;
-		if (passed){
+		if (passed.get()){
 			for (Course course:courses){
 				grade += course.getCp() * course.getExam().getGrade();
 			}
@@ -90,10 +105,10 @@ public class Module {
 
 
 	public String getName() {
-		return name.get();
+		return name;
 	}
 	public void setName(String name) {
-		this.name.set(name);
+		this.name = name;
 	}
 	public String getDescription() {
 		return description;
@@ -108,11 +123,16 @@ public class Module {
 		this.semesterDefault = semesterDefault;
 	}
 	public int getSemesterCurrent() {
-		return semesterCurrent;
+		return semesterCurrent.get();
 	}
 	public void setSemesterCurrent(int semesterCurrent) {
-		this.semesterCurrent = semesterCurrent;
+		this.semesterCurrent.set(semesterCurrent);
 	}
+	
+	public SimpleIntegerProperty getSemesterCurrentProperty () {
+		return this.semesterCurrent;
+	}
+	
 	public OfferedTime getOfferedIn() {
 		return offeredIn;
 	}
@@ -138,8 +158,9 @@ public class Module {
 
 
 	public boolean isPassed() {
-		return passed;
+		return passed.get();
 	}
+	
 
 
 	public List<Competence> getNeededCompetences() {
@@ -181,11 +202,40 @@ public class Module {
 		this.note += note;
 	}
 
-
 	@Override
 	public String toString() {
 		return "Module [name=" + name + ", semesterCurrent=" + semesterCurrent + ", cp=" + cp + "]";
 	}
+
+	public CategoryEnum getCategory() {
+		return category;
+	}
+
+	public void setCategory(CategoryEnum category) {
+		this.category = category;
+	}
+
+
+
+	public SimpleBooleanProperty getHallo() {
+		return hallo;
+	}
+
+	public void setHallo(SimpleBooleanProperty hallo) {
+		this.hallo = hallo;
+	}
+
+	public SimpleBooleanProperty getPassed() {
+		return passed;
+	}
+
+	public void setPassed(boolean passed) {
+		this.passed.set(passed);
+	}
+	
+	
+	
+	
 
 
 	

@@ -2,6 +2,8 @@ package de.hsrm.mi.swt.SPAsS.presentation.views.mainView.uiComponents;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -14,9 +16,14 @@ import de.hsrm.mi.swt.SPAsS.business.planManagement.Module;
 import de.hsrm.mi.swt.SPAsS.business.planManagement.OfferedTime;
 import de.hsrm.mi.swt.SPAsS.business.planManagement.Plan;
 import de.hsrm.mi.swt.SPAsS.presentation.views.ViewController;
+import javafx.beans.InvalidationListener;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.event.EventType;
 import javafx.geometry.Orientation;
 import javafx.scene.control.Button;
@@ -24,6 +31,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.input.ClipboardContent;
+import javafx.scene.input.DataFormat;
+import javafx.scene.input.DragEvent;
 import javafx.scene.input.Dragboard;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.TransferMode;
@@ -40,7 +49,15 @@ public class CenterViewController extends ViewController{
     private Map<Integer,List<Module>> moduleMap;
     private int numSemester;
     private VBox planBox;
-    private Button testButton;
+    private Button resetButton;
+    private Button addSemesterButton;
+
+    private DataFormat dataFormat =  new DataFormat("moduleCell");
+    private List<SemesterList> semesterListViews;
+	private Map<Integer,ObservableList<Module>> moduleMapWithObservables;
+
+
+
 
     public CenterViewController(Plan plan) {
         
@@ -50,11 +67,12 @@ public class CenterViewController extends ViewController{
     	this.plan = plan;
     	this.moduleMap = plan.getModuleMap();
     	
-    	this.numSemester = plan.getNumberSemester();
+    	this.semesterListViews = new LinkedList<>();
     	
     	planBox = centerView.getPlanBox();
     	
-    	testButton = centerView.getAddKlausur();
+    	resetButton = centerView.getAddKlausur();
+    	addSemesterButton = centerView.getAddSemester();
     
     	
     	generateListView();
@@ -72,30 +90,82 @@ public class CenterViewController extends ViewController{
     @Override
     public void initialise() {
     	
-    	 List<Competence> neededCompetences = new ArrayList<>();
-         Competence c = new Competence("KernKompetenz1");
-         neededCompetences.add(c);
-
-         List<Course> courses = new ArrayList<>();
-         Exam a = new Exam(1, ExamType.EXAM, OfferedTime.BI_YEARLY, 2, true);
-         Course course = new Course("", 3, a, neededCompetences);
-         courses.add(course);
-         
-
-         CategoryEnum infl = CategoryEnum.GESTALTUNG;
-         CategoryEnum gestl = CategoryEnum.INFORMATIK;
-         CategoryEnum infgestl = CategoryEnum.SONSTIGES;
-         CategoryEnum fql = CategoryEnum.INFORMATIK;
-         CategoryEnum mathl = CategoryEnum.MATHE;
-    	
-    	testButton.addEventHandler(ActionEvent.ACTION, e -> {
+    
+        
+    	resetButton.addEventHandler(ActionEvent.ACTION, e -> {
     		
-    		List<Module> testList = moduleMap.get(1);
-    		testList.add(new Module("Programmieren 1", "Programmieren undso", 1, 1, OfferedTime.YEARLY, 7, courses, neededCompetences, infl, true, ""));
-    		testList.get(2).setName("TOMW");
-    		generateListView();    		
+    		plan.resetPlan();
+
+    	});
+    	
+//    	addSemesterButton.addEventHandler(ActionEvent.ACTION, e -> {
+//    		
+//    		moduleMap.get(1).get(2).setPassed(true);
+//    		moduleMap.get(2).get(2).setPassed(true);
+//    		
+//    	});
+    	
+
+    	addSemesterButton.addEventHandler(ActionEvent.ACTION, e -> {
+    		
+    		plan.addSemester();
+    		generateListView();
+    		
+    		System.out.println(moduleMap);
+    		
+    		System.out.println("addSemester");
+    		
+    		
+    		
     		
     	});
+
+    	
+    	
+    	
+    	for(List<Module> moduleList : moduleMap.values()) {
+    		
+    		for (Module module : moduleList) {
+    			
+    			module.getSemesterCurrentProperty().addListener(new ChangeListener<Number>() {
+
+					@Override
+					public void changed(ObservableValue<? extends Number> observable, Number oldValue,
+							Number newValue) {
+						
+						moduleMapWithObservables.get(oldValue).remove(module);
+						moduleMapWithObservables.get(newValue).add(module);
+
+						System.out.println("ChangeListener Semesterzahl done");
+						
+					}
+				});
+    			
+    			module.getPassed().addListener(new ChangeListener<Boolean>() {
+
+					@Override
+					public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue,
+							Boolean newValue) {
+						
+						
+						for (SemesterList list : semesterListViews) {
+							
+							list.refresh();
+							
+						}
+						
+					}
+				});
+    			
+    			
+    			
+    		}
+    	}
+    	
+    	
+    	
+    	
+    		
     	
     	
     }   
@@ -103,20 +173,39 @@ public class CenterViewController extends ViewController{
     
     private void generateListView() {
     	
-    	ObservableList<Module> moduleListObservable;
     	SemesterList semesterListView;
+
+    	ObservableList<Module> moduleListObservable;
+    	moduleMapWithObservables = new HashMap<>();
     	HBox semesterRow;
     	
 		planBox.getChildren().clear();
 
-    
+    	this.numSemester = plan.getNumberSemester();
+
+		
     	for (int i = numSemester; i > 0; i--) {
     		
+    		
     		moduleListObservable = FXCollections.observableList(moduleMap.get(i));
-    		moduleMap.put(i, moduleListObservable);
-    		semesterListView = new SemesterList(moduleListObservable);
+    		moduleMapWithObservables.put(i, moduleListObservable);
+
+    		semesterListView = new SemesterList(moduleListObservable, i, dataFormat, plan);
     		semesterListView.setItems(moduleListObservable);
     		semesterListView.setOrientation(Orientation.HORIZONTAL);
+    		
+    		moduleListObservable.addListener(new ListChangeListener<Module> (){
+
+				@Override
+				public void onChanged(Change<? extends Module> c) {
+					
+					
+					
+				}
+
+	
+			});
+
     		
     		semesterListView.setCellFactory(new Callback<ListView<Module>, ListCell<Module>>() {
 
@@ -125,26 +214,42 @@ public class CenterViewController extends ViewController{
 					
 					ModuleView moduleView = new ModuleView();
 					
+			
+					
+					
 					moduleView.setOnDragDetected(( MouseEvent event ) ->
 		            {
 		                System.out.println( "listcell setOnDragDetected" );
-		                Dragboard db = moduleView.startDragAndDrop( TransferMode.MOVE);
+		                Dragboard db = moduleView.startDragAndDrop(TransferMode.MOVE);
 		                ClipboardContent content = new ClipboardContent();
-		                //content.put(null, semesterRow)
+//		                moduleView.setTranslateX(moduleView.getTranslateX() + event.getX());
+//		                moduleView.setTranslateY(moduleView.getTranslateY() + event.getY());
+		                
+		                Module module = moduleView.getItem();
+		             
+		                content.putString(module.getName());
+		                
+		                System.out.println(content);
+	
 		                db.setContent( content );
 		                event.consume();
 		            });
+					
+				
 					
 					return moduleView;
 				}
     			
     		});
+    	    			
     		
     		semesterRow = new HBox(new Label(Integer.toString(i)),semesterListView);
     		semesterListView.getStyleClass().add("test-border-red");
     		semesterRow.getStyleClass().add("test-border-red");
     		
     		HBox.setHgrow(semesterListView, Priority.ALWAYS);
+    		
+    		semesterListViews.add(semesterListView);
     		
     		planBox.getChildren().add(semesterRow);
     		
