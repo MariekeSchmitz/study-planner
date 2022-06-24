@@ -1,38 +1,74 @@
 package de.hsrm.mi.swt.SPAsS.presentation.views.mainView;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
+import de.hsrm.mi.swt.SPAsS.business.planManagement.Module;
+import de.hsrm.mi.swt.SPAsS.application.App;
+import de.hsrm.mi.swt.SPAsS.business.planManagement.Plan;
 import de.hsrm.mi.swt.SPAsS.presentation.views.ViewController;
+import de.hsrm.mi.swt.SPAsS.presentation.views.ViewManager;
+import de.hsrm.mi.swt.SPAsS.presentation.views.mainView.uiComponents.ExamListCell;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.util.Callback;
 
 public class ExamViewController extends ViewController{
 
+
+    private ViewManager viewManager;
+    private App app;
     private ExamView aev;
-    private ListView<String> listView;
+    
+    private int numSemester;
+    private Plan plan;
+    private ListView<Module> listView;
+    private Map<Integer, List<Module>> moduleMap;
+    private List<Module> allModuleList;
+    private ObservableList<Module> list;
 
-    public ExamViewController() {
-
+    public ExamViewController(ViewManager viewManager, App app) {
+        
         aev = new ExamView();
         rootView = aev;
-        
-        listView = aev.getListView();
 
-        ObservableList<String> list = FXCollections.observableArrayList (
-            "Klausur 1",
-            "Klausur 2",
-            "Klausur 3",
-            "Klausur 4",
-            "Klausur 5",
-            "Klausur 6",
-            "Klausur 7");
+        this.viewManager = viewManager;
+        this.app = app;
+        this.plan = app.getPlan();
+        this.moduleMap = plan.getModuleMap();
+        this.numSemester = plan.getNumberSemester();
+        this.listView = aev.getListView();
 
+        allModuleList = new ArrayList<Module>();
+
+        generateListView();
+        initialise();
+
+        list = FXCollections.observableList(allModuleList);
         listView.setItems(list);
+
     }
 
     @Override
     public void initialise() {
-        // TODO Auto-generated method stub
+        listView.setCellFactory(new Callback<ListView<Module>, ListCell<Module>>() {
+
+            @Override
+            public ListCell<Module> call(ListView<Module> param) {
+                return new ExamListCell();
+            }
+                
+        });
         
     }
-    
+    private void generateListView(){
+
+        for (int i = numSemester; i > 0; i--) {
+            allModuleList.addAll(moduleMap.get(i));
+    	};
+        
+    }
 }
