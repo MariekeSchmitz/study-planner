@@ -8,6 +8,7 @@ import javafx.scene.layout.HBox;
 import de.hsrm.mi.swt.SPAsS.presentation.views.introView.uiComponents.DragDropViewController;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
@@ -23,6 +24,8 @@ public class SelectView extends AnchorPane{
 
     private ScrollPane scrollPane;
 	private HBox hbox;
+
+    private ListView<Pane> listView;
 
     public SelectView() {
         header = new Label("Eigenen Plan \nhochladen");
@@ -42,8 +45,6 @@ public class SelectView extends AnchorPane{
 		scrollPane.setPannable(true);
         scrollPane.setPrefSize(10000, 1000);
         scrollPane.setMaxHeight(150);
-
-        scrollPane.getStyleClass().add("test-border-red");
         
         drag_drop_field = new DragDropViewController().getRootView();
 
@@ -51,10 +52,7 @@ public class SelectView extends AnchorPane{
         header2.getStyleClass().add("header_2");
 
         backgroundPane = new Pane();
-        backgroundPane.setPrefSize(10000, 1000);
-        backgroundPane.setMaxHeight(700);
         backgroundPane.setBackground(new Background(new BackgroundFill(new Color(0.9,0.9,0.9, 0.5), new CornerRadii(0), new Insets(0))));
-        backgroundPane.getStyleClass().add("test-border-red");
 
         AnchorPane.setTopAnchor(header, 100.0); 
         AnchorPane.setLeftAnchor(header, 150.0);
@@ -71,10 +69,10 @@ public class SelectView extends AnchorPane{
 		AnchorPane.setLeftAnchor(scrollPane, 0.0);
 		AnchorPane.setRightAnchor(scrollPane, 0.0);
 
-        AnchorPane.setTopAnchor(backgroundPane, 400.0);
+        AnchorPane.setTopAnchor(backgroundPane, 450.0);
         AnchorPane.setLeftAnchor(backgroundPane, 0.0);
-        AnchorPane.setBottomAnchor(backgroundPane, 0.0);
         AnchorPane.setRightAnchor(backgroundPane, 0.0);
+        AnchorPane.setBottomAnchor(backgroundPane, 0.0);
 
         this.getStylesheets().add(getClass().getResource("introView.css").toExternalForm());
         this.getChildren().addAll(backgroundPane, header, header2, drag_drop_field, scrollPane);
@@ -83,4 +81,29 @@ public class SelectView extends AnchorPane{
     public HBox getHbox() {
 		return hbox;
 	}
+
+    public Pane getBackgroundPane() {
+        return backgroundPane;
+    }
+
+    public Label getHeader() {
+        return header;
+    }
+
+    public Label getHeader2() {
+        return header2;
+    }
+
+    public Pane getDrag_drop_field() {
+        return drag_drop_field;
+    }
+
+    public ScrollPane getScrollPane() {
+        return scrollPane;
+    }
+
+    public ListView<Pane> getListView() {
+        return listView;
+    }
+    
 }

@@ -5,6 +5,9 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+import de.hsrm.mi.swt.SPAsS.business.commands.AddSemesterCommand;
+import de.hsrm.mi.swt.SPAsS.business.commands.CommandManager;
+import de.hsrm.mi.swt.SPAsS.business.commands.RemoveSemesterCommand;
 import de.hsrm.mi.swt.SPAsS.business.restrictionManagement.Validator;
 
 public class Plan {
@@ -12,12 +15,13 @@ public class Plan {
     private String name;
     private String curriculumName;
     private float averageGrade;
-    private List <Module> moduleList;
-    private List <Validator> validatorList;
-    private transient Map<Integer,List<Module>> moduleMap;
+    private List<Module> moduleList;
+    private List<Validator> validatorList;
+    private transient Map<Integer, List<Module>> moduleMap;
     private int numberSemester;
-    
-    public Plan(String name, String curriculumName,List<Module> moduleList,List<Validator> validatorList, int numberSemester) {
+
+    public Plan(String name, String curriculumName, List<Module> moduleList, List<Validator> validatorList,
+            int numberSemester) {
         this.averageGrade = 0;
         this.name = name;
         this.curriculumName = curriculumName;
@@ -25,60 +29,72 @@ public class Plan {
         this.validatorList = validatorList;
         this.numberSemester = numberSemester;
         this.moduleMap = new HashMap<>();
-        calculateAverage();  
+        calculateAverage();
     }
 
-    public void resetPlan(){
+    public void resetPlan() {
 
         for (Module module : moduleList) {
             module.semesterReset();
         }
-     
-        
+
     }
-    
+
     public void updateModuleMap() {
-    	for (int i = 1; i <= this.numberSemester; i++) {	
-    		moduleMap.put(i, new LinkedList<>());    		
-    	}
-    	
-    	for (Module module : moduleList) {   		
-    		moduleMap.get(module.getSemesterCurrent()).add(module);   		
-    	}
+        for (int i = 1; i <= this.numberSemester; i++) {
+            moduleMap.put(i, new LinkedList<>());
+        }
+
+        for (Module module : moduleList) {
+            moduleMap.get(module.getSemesterCurrent()).add(module);
+        }
     }
 
-    public void removeSemester(){
-        this.numberSemester--;
-    }
-    
-    public void addSemester(){
-        this.numberSemester++;
+    public void removeSemester() {
+        if (checkLastSemesterEmpty()) {
+            CommandManager.getInstance().execAndPush(new RemoveSemesterCommand(this));
+        } //TODO else Throw 
     }
 
-    public void calculateAverage(){
+    public void addSemester() {
+        CommandManager.getInstance().execAndPush(new AddSemesterCommand(this));
+    }
+
+    private boolean checkLastSemesterEmpty() {
+        for (Module module : moduleList) {
+            if (module.getSemesterCurrent() == this.numberSemester)
+                return false;
+        }
+        return true;
+    }
+
+    public void calculateAverage() {
         int cp = 0;
         float grade = 0;
         for (Module module : moduleList) {
-           
-            if (module.isPassed()){
+
+            if (module.isPassed()) {
                 cp += module.getCp();
                 grade += module.getGrade() * module.getCp();
             }
         }
-        if(cp != 0){
-            this.averageGrade = grade/cp;
+        if (cp != 0) {
+            this.averageGrade = grade / cp;
         }
     }
 
     public String getName() {
         return name;
     }
+
     public void setName(String name) {
         this.name = name;
     }
+
     public String getCurriculumName() {
         return curriculumName;
     }
+
     public void setCurriculumName(String curriculumName) {
         this.curriculumName = curriculumName;
     }
@@ -86,55 +102,49 @@ public class Plan {
     public List<Module> getModuleList() {
         return moduleList;
     }
+
     public void setModuleList(List<Module> moduleList) {
         this.moduleList = moduleList;
     }
+
     public List<Validator> getValidators() {
         return validatorList;
     }
+
     public void setValidators(List<Validator> validators) {
         this.validatorList = validators;
     }
 
-	public float getAverageGrade() {
-		return averageGrade;
-	}
+    public float getAverageGrade() {
+        return averageGrade;
+    }
 
-	public void setAverageGrade(float averageGrade) {
-		this.averageGrade = averageGrade;
-	}
+    public void setAverageGrade(float averageGrade) {
+        this.averageGrade = averageGrade;
+    }
 
-	public List<Validator> getValidatorList() {
-		return validatorList;
-	}
+    public List<Validator> getValidatorList() {
+        return validatorList;
+    }
 
-	public void setValidatorList(List<Validator> validatorList) {
-		this.validatorList = validatorList;
-	}
+    public void setValidatorList(List<Validator> validatorList) {
+        this.validatorList = validatorList;
+    }
 
-	public int getNumberSemester() {
-		return numberSemester;
-	}
+    public int getNumberSemester() {
+        return numberSemester;
+    }
 
-	public void setNumberSemester(int numberSemester) {
-		this.numberSemester = numberSemester;
-	}
+    public void setNumberSemester(int numberSemester) {
+        this.numberSemester = numberSemester;
+    }
 
-	public Map<Integer, List<Module>> getModuleMap() {
-		return moduleMap;
-	}
+    public Map<Integer, List<Module>> getModuleMap() {
+        return moduleMap;
+    }
 
-	public void setModuleMap(Map<Integer, List<Module>> moduleMap) {
-		this.moduleMap = moduleMap;
-	}
-	
-	
-    
-	
-    
-
-
-    
-
+    public void setModuleMap(Map<Integer, List<Module>> moduleMap) {
+        this.moduleMap = moduleMap;
+    }
 
 }

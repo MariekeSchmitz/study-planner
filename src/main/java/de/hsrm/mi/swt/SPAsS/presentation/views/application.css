@@ -50,6 +50,12 @@
     -fx-border-width: 1;
 }
 
+.backbutton {
+    -fx-background-color: transparent;
+    -fx-border-color: grey;
+    -fx-border-width: 1;
+}
+
 .addSemester {
     -fx-background-color: transparent;
     -fx-border-color: grey;
