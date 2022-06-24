@@ -9,9 +9,9 @@ public class ModuleViewController extends ViewController{
 
 
     public ModuleViewController(String module, String zeile, Color color, double maxWidth) {
-        mv = new ModuleView(module, zeile, color);
+        mv = new ModuleView();
         mv.setMaxWidth(maxWidth);
-        rootView = mv;
+
     }
 
     @Override
