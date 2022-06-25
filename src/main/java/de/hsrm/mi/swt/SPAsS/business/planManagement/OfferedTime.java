@@ -1,8 +1,6 @@
 package de.hsrm.mi.swt.SPAsS.business.planManagement;
 
-import java.io.Serializable;
-
-public enum OfferedTime implements Serializable{
+public enum OfferedTime{
 
 	YEARLY, BI_YEARLY; 
 	

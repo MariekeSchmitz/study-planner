@@ -8,6 +8,7 @@ import java.util.Map;
 import de.hsrm.mi.swt.SPAsS.business.commands.AddSemesterCommand;
 import de.hsrm.mi.swt.SPAsS.business.commands.CommandManager;
 import de.hsrm.mi.swt.SPAsS.business.commands.RemoveSemesterCommand;
+import de.hsrm.mi.swt.SPAsS.business.commands.ResetPlanCommand;
 import de.hsrm.mi.swt.SPAsS.business.restrictionManagement.Validator;
 
 public class Plan {
@@ -35,19 +36,16 @@ public class Plan {
     public void resetPlan() {
 
     	
-        for(Integer semester : moduleMap.keySet()) {
+        // for(Integer semester : moduleMap.keySet()) {
         	
-        	List<Module> moduleList = moduleMap.get(semester);
+        // 	List<Module> moduleList = moduleMap.get(semester);
         	
-        	for (Module module :moduleList) {      		
-        		module.semesterReset();
-        		
-        	}
+        // 	for (Module module :moduleList) {      		
+        // 		module.semesterReset();      		
+        // 	}
         	
-        }
-        
-        
-
+        // }
+        CommandManager.getInstance().execAndPush(new ResetPlanCommand(this));
     }
 
     public void updateModuleMap() {
@@ -63,7 +61,10 @@ public class Plan {
     public void removeSemester() {
         if (checkLastSemesterEmpty()) {
             CommandManager.getInstance().execAndPush(new RemoveSemesterCommand(this));
-        } //TODO else Throw 
+            
+        } 
+        
+        //TODO else Throw 
     }
 
     public void addSemester() {
@@ -72,12 +73,10 @@ public class Plan {
         
     }
 
-    private boolean checkLastSemesterEmpty() {
-        for (Module module : moduleList) {
-            if (module.getSemesterCurrent() == this.numberSemester)
-                return false;
-        }
-        return true;
+    public boolean checkLastSemesterEmpty() {
+        
+        return moduleMap.get(numberSemester).isEmpty();
+
     }
 
     public void calculateAverage() {

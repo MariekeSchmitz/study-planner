@@ -1,4 +1,4 @@
-package de.hsrm.mi.swt.SPAsS.presentation.views.mainView.uiComponents;
+package de.hsrm.mi.swt.SPAsS.presentation.views.mainView.planView.uiComponents;
 
 import de.hsrm.mi.swt.SPAsS.presentation.views.ViewController;
 

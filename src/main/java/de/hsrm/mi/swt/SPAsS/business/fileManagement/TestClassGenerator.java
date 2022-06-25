@@ -17,7 +17,7 @@ import de.hsrm.mi.swt.SPAsS.business.restrictionManagement.CompetenceValidator;
 import de.hsrm.mi.swt.SPAsS.business.restrictionManagement.CpLimitValidator;
 import de.hsrm.mi.swt.SPAsS.business.restrictionManagement.ProgressValidator;
 import de.hsrm.mi.swt.SPAsS.business.restrictionManagement.Validator;
-import de.hsrm.mi.swt.SPAsS.presentation.views.mainView.uiComponents.CenterViewController;
+import de.hsrm.mi.swt.SPAsS.presentation.views.mainView.planView.uiComponents.CenterViewController;
 
 public class TestClassGenerator {
     

@@ -1,4 +1,4 @@
-package de.hsrm.mi.swt.SPAsS.presentation.views.mainView;
+package de.hsrm.mi.swt.SPAsS.presentation.views.mainView.moduleInformationView;
 
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -22,7 +22,11 @@ public class ModuleInformationView extends AnchorPane{
 
     public ModuleInformationView() {
         testLabel = new Label("ModuleInformationView");
-        this.getChildren().add(testLabel);
+        
+        backButton = new Button("back");
+        this.getChildren().addAll(testLabel, backButton);
+
+        
     }
 
 }

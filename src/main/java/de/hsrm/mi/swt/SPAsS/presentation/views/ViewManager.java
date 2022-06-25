@@ -5,23 +5,26 @@ import de.hsrm.mi.swt.SPAsS.presentation.views.introView.SelectViewController;
 import de.hsrm.mi.swt.SPAsS.presentation.views.introView.StartViewController;
 import de.hsrm.mi.swt.SPAsS.presentation.views.introView.UploadViewController;
 import de.hsrm.mi.swt.SPAsS.presentation.views.mainView.MainViewController;
+import de.hsrm.mi.swt.SPAsS.presentation.views.mainView.moduleInformationView.ModuleInformationView;
+import de.hsrm.mi.swt.SPAsS.presentation.views.mainView.moduleInformationView.ModuleInformationViewController;
+import de.hsrm.mi.swt.SPAsS.presentation.views.mainView.planView.PlanViewController;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 
-public class ViewManager extends ViewController {
+public class ViewManager {
 
-    private StackPane root;
+    private Pane root;
     private App app;
 
     public ViewManager(App app) {
     	this.app = app;
-        root = new StackPane();
+        root = new Pane();
         root.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-        rootView = root;
         initialise();
     }
 
-    @Override
     public void initialise() {
+       
     	switchScene(ScenesEmun.MAIN_VIEW_CONTROLLER);
     } 
     
@@ -40,5 +43,8 @@ public class ViewManager extends ViewController {
 	        root.getChildren().add(new SelectViewController().getRootView()); 
         } 
     } 
-
+    	
+    public Pane getRoot(){
+        return root;
+    }
 }

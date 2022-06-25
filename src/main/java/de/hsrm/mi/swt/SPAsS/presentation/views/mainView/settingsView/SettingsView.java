@@ -1,4 +1,4 @@
-package de.hsrm.mi.swt.SPAsS.presentation.views.mainView;
+package de.hsrm.mi.swt.SPAsS.presentation.views.mainView.settingsView;
 
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;

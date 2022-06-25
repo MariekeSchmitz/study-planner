@@ -1,4 +1,4 @@
-package de.hsrm.mi.swt.SPAsS.presentation.views.mainView.uiComponents;
+package de.hsrm.mi.swt.SPAsS.presentation.views.mainView.planView.uiComponents;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -53,6 +53,7 @@ public class CenterViewController extends ViewController{
     private VBox planBox;
     private Button resetButton;
     private Button addSemesterButton;
+	private Button removeSemesterButton;
 
     private DataFormat dataFormat =  new DataFormat("moduleCell");
     private List<SemesterList> semesterListViews;
@@ -75,7 +76,7 @@ public class CenterViewController extends ViewController{
     	
     	resetButton = centerView.getAddKlausur();
     	addSemesterButton = centerView.getAddSemester();
-    
+		removeSemesterButton = centerView.getRemoveSemester();
     	
     	generateListView();
     	
@@ -96,8 +97,9 @@ public class CenterViewController extends ViewController{
         
     	resetButton.addEventHandler(ActionEvent.ACTION, e -> {
     		
-    		//plan.resetPlan();
-			CommandManager.getInstance().execAndPush(new ResetPlanCommand(plan));
+    		plan.resetPlan();
+			generateListView();
+			
 
     	});
     	
@@ -123,7 +125,19 @@ public class CenterViewController extends ViewController{
     		
     	});
 
-    	
+    	removeSemesterButton.addEventHandler(ActionEvent.ACTION, e -> {
+    		
+    		plan.removeSemester();
+    		generateListView();
+    		
+    		System.out.println(moduleMap);
+    		
+    		System.out.println("removeSemester");
+    		
+    		
+    		
+    		
+    	});
     	
     	
     	for(List<Module> moduleList : moduleMap.values()) {
@@ -241,8 +255,7 @@ public class CenterViewController extends ViewController{
 				
 					
 					return moduleView;
-				}
-    			
+				}   			
     		});
     	    			
     		

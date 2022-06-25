@@ -1,4 +1,4 @@
-package de.hsrm.mi.swt.SPAsS.presentation.views.mainView;
+package de.hsrm.mi.swt.SPAsS.presentation.views.mainView.examView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,7 +9,7 @@ import de.hsrm.mi.swt.SPAsS.application.App;
 import de.hsrm.mi.swt.SPAsS.business.planManagement.Plan;
 import de.hsrm.mi.swt.SPAsS.presentation.views.ViewController;
 import de.hsrm.mi.swt.SPAsS.presentation.views.ViewManager;
-import de.hsrm.mi.swt.SPAsS.presentation.views.mainView.uiComponents.ExamListCell;
+import de.hsrm.mi.swt.SPAsS.presentation.views.mainView.planView.uiComponents.ExamListCell;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.ListCell;

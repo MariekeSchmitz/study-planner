@@ -1,4 +1,4 @@
-package de.hsrm.mi.swt.SPAsS.presentation.views.mainView;
+package de.hsrm.mi.swt.SPAsS.presentation.views.mainView.examView;
 
 import de.hsrm.mi.swt.SPAsS.business.planManagement.Module;
 

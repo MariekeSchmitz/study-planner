@@ -1,51 +1,40 @@
 package de.hsrm.mi.swt.SPAsS.presentation.views.mainView;
 
 import de.hsrm.mi.swt.SPAsS.application.App;
-import de.hsrm.mi.swt.SPAsS.business.planManagement.Plan;
-import de.hsrm.mi.swt.SPAsS.presentation.views.ScenesEmun;
 import de.hsrm.mi.swt.SPAsS.presentation.views.ViewController;
 import de.hsrm.mi.swt.SPAsS.presentation.views.ViewManager;
-import de.hsrm.mi.swt.SPAsS.presentation.views.mainView.uiComponents.CenterViewController;
-import de.hsrm.mi.swt.SPAsS.presentation.views.mainView.uiComponents.LeftSideViewController;
-import de.hsrm.mi.swt.SPAsS.presentation.views.mainView.uiComponents.TopCenterViewController;
-import javafx.event.ActionEvent;
-import javafx.scene.control.Button;
-import javafx.scene.layout.AnchorPane;
+import de.hsrm.mi.swt.SPAsS.presentation.views.mainView.examView.ExamViewController;
+import de.hsrm.mi.swt.SPAsS.presentation.views.mainView.moduleInformationView.ModuleInformationViewController;
+import de.hsrm.mi.swt.SPAsS.presentation.views.mainView.planView.PlanViewController;
+import de.hsrm.mi.swt.SPAsS.presentation.views.mainView.settingsView.SettingsViewController;
+import javafx.scene.layout.StackPane;
 
 public class MainViewController extends ViewController{
-    private ViewManager viewManager;
-    private MainView mainView;
-    private Button testButton;
-    private App app;
-    private CenterViewController centerViewController;
-    private TopCenterViewController topCenterViewController;
-    private LeftSideViewController leftSideViewController;
-    private Plan plan;
 
-    public MainViewController(ViewManager viewManager, App app) {
-        this.viewManager = viewManager;
-        this.app = app;
-        this.plan = app.getPlan();
-        
+    private StackPane mainViewStack;
+    private SettingsViewController settingsViewController;
+    private ExamViewController examViewController;
+    private ModuleInformationViewController moduleInformationViewController;
+    private PlanViewController planViewController;
 
 
-        centerViewController = new CenterViewController(plan); 
-        topCenterViewController = new TopCenterViewController();
-        leftSideViewController = new LeftSideViewController();
+    public MainViewController(ViewManager viewManager, App app){
         
-        mainView = new MainView((AnchorPane)leftSideViewController.getRootView(), (AnchorPane)topCenterViewController.getRootView(), (AnchorPane)centerViewController.getRootView());
-        rootView = mainView;
+        mainViewStack = new StackPane();
+        settingsViewController = new SettingsViewController(viewManager, app);
+        examViewController = new ExamViewController(viewManager, app);
+        moduleInformationViewController = new ModuleInformationViewController(viewManager, app);
+        planViewController = new PlanViewController(viewManager, app);
+        mainViewStack.getChildren().add(planViewController.getRootView());
+        mainViewStack.getChildren().add(settingsViewController.getRootView());
+        mainViewStack.getChildren().add(examViewController.getRootView());
+        mainViewStack.getChildren().add(moduleInformationViewController.getRootView());
         
-        
-        testButton = mainView.getTestButton();        
-
-        initialise();
     }
     @Override
     public void initialise() {
-        testButton.addEventHandler(ActionEvent.ACTION, event -> { 
-			viewManager.switchScene(ScenesEmun.START_VIEW_CONTROLLER);
-		});
-    }   
-
+        
+        
+    }
+    
 }
