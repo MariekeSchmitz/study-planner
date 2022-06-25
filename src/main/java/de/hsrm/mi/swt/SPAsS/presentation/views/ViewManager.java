@@ -15,23 +15,26 @@ public class ViewManager {
 
     private StackPane root;
     private App app;
+    private MainViewController mainViewController;
 
     public ViewManager(App app) {
     	this.app = app;
         root = new StackPane();
         root.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+    	mainViewController = new MainViewController(this, app);
+
         initialise();
+       
     }
 
     public void initialise() {
-       
     	switchScene(ScenesEmun.MAIN_VIEW_CONTROLLER);
     } 
     
     public void switchScene(ScenesEmun toScene) {
         if (toScene.equals(ScenesEmun.MAIN_VIEW_CONTROLLER)) {
             root.getChildren().clear();
-            root.getChildren().add(new MainViewController(this, app).getRootView()); 
+            root.getChildren().add(mainViewController.getRootView()); 
         } else if (toScene.equals(ScenesEmun.START_VIEW_CONTROLLER)) {
             root.getChildren().clear();
             root.getChildren().add(new StartViewController(this).getRootView()); 
@@ -46,5 +49,9 @@ public class ViewManager {
     	
     public Pane getRoot(){
         return root;
+    }
+    
+    public MainViewController getMainViewController() {
+    	return mainViewController;
     }
 }

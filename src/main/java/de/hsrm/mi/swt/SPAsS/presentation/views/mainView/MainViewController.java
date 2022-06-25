@@ -39,6 +39,10 @@ public class MainViewController extends ViewController{
         
     }
     
+    public void putModuleViewOnStack() {
+    	 mainViewStack.getChildren().add(moduleInformationViewController.getRootView());
+    }
+    
     
     
 }

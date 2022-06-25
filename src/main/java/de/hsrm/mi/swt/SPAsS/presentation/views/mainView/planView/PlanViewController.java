@@ -29,7 +29,7 @@ public class PlanViewController extends ViewController{
         
 
 
-        centerViewController = new CenterViewController(plan); 
+        centerViewController = new CenterViewController(plan, viewManager); 
         topCenterViewController = new TopCenterViewController();
         leftSideViewController = new LeftSideViewController();
         

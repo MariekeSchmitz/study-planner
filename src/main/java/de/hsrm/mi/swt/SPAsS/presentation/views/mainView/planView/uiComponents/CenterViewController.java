@@ -18,6 +18,7 @@ import de.hsrm.mi.swt.SPAsS.business.planManagement.Module;
 import de.hsrm.mi.swt.SPAsS.business.planManagement.OfferedTime;
 import de.hsrm.mi.swt.SPAsS.business.planManagement.Plan;
 import de.hsrm.mi.swt.SPAsS.presentation.views.ViewController;
+import de.hsrm.mi.swt.SPAsS.presentation.views.ViewManager;
 import javafx.beans.InvalidationListener;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -58,11 +59,17 @@ public class CenterViewController extends ViewController{
     private DataFormat dataFormat =  new DataFormat("moduleCell");
     private List<SemesterList> semesterListViews;
 	private Map<Integer,ObservableList<Module>> moduleMapWithObservables;
+	
+	private double mouseX;
+	private double mouseY;
+	private ViewManager viewManager;
+	
+	
 
 
 
 
-    public CenterViewController(Plan plan) {
+    public CenterViewController(Plan plan, ViewManager viewManager) {
         
     	centerView = new CenterView();
     	rootView = centerView;
@@ -71,6 +78,7 @@ public class CenterViewController extends ViewController{
     	this.moduleMap = plan.getModuleMap();
     	
     	this.semesterListViews = new LinkedList<>();
+    	this.viewManager = viewManager;
     	
     	planBox = centerView.getPlanBox();
     	
@@ -251,6 +259,44 @@ public class CenterViewController extends ViewController{
 		                db.setContent( content );
 		                event.consume();
 		            });
+					
+					moduleView.setOnMousePressed(new EventHandler<MouseEvent>() {
+				        @Override
+				        public void handle(MouseEvent event) {
+				          
+				        	mouseX = event.getX();
+				        	mouseY = event.getY();
+				        	System.out.println("Maus geklicjt");
+				        	
+				        }
+				    });
+					
+					moduleView.setOnMouseReleased(new EventHandler<MouseEvent>() {
+				        @Override
+				        public void handle(MouseEvent event) {
+				          
+				        	if (event.getX() == mouseX && event.getY() == mouseY) {
+					        	
+				        		viewManager.getMainViewController().putModuleViewOnStack();
+				        		
+				        		System.out.println("Maus losgelassen");
+
+				        	}
+				        	
+				        }
+				    });
+					
+//					moduleView.onMouseRe
+//					
+//					moduleView.onMouseReleased(new EventHandler<MouseEvent>() {
+//				        @Override
+//				        public void handle(MouseEvent event) {
+//				          
+//				        	mouseX = event.getX();
+//				        	mouseY = event.getY();
+//				        	
+//				        }
+//				    });
 					
 				
 					
