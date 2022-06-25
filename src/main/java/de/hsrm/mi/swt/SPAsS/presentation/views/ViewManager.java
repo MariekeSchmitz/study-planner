@@ -13,12 +13,12 @@ import javafx.scene.layout.StackPane;
 
 public class ViewManager {
 
-    private Pane root;
+    private StackPane root;
     private App app;
 
     public ViewManager(App app) {
     	this.app = app;
-        root = new Pane();
+        root = new StackPane();
         root.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
         initialise();
     }

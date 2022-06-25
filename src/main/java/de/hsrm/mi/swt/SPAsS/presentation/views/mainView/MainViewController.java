@@ -18,7 +18,7 @@ public class MainViewController extends ViewController{
     private PlanViewController planViewController;
 
 
-    public MainViewController(ViewManager viewManager, App app){
+    public MainViewController(ViewManager viewManager, App app) {
         
         mainViewStack = new StackPane();
         settingsViewController = new SettingsViewController(viewManager, app);
@@ -26,9 +26,11 @@ public class MainViewController extends ViewController{
         moduleInformationViewController = new ModuleInformationViewController(viewManager, app);
         planViewController = new PlanViewController(viewManager, app);
         mainViewStack.getChildren().add(planViewController.getRootView());
-        mainViewStack.getChildren().add(settingsViewController.getRootView());
-        mainViewStack.getChildren().add(examViewController.getRootView());
-        mainViewStack.getChildren().add(moduleInformationViewController.getRootView());
+//        mainViewStack.getChildren().add(settingsViewController.getRootView());
+//        mainViewStack.getChildren().add(examViewController.getRootView());
+//        mainViewStack.getChildren().add(moduleInformationViewController.getRootView());
+     
+        rootView = mainViewStack;
         
     }
     @Override
@@ -36,5 +38,7 @@ public class MainViewController extends ViewController{
         
         
     }
+    
+    
     
 }
