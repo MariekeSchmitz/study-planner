@@ -28,20 +28,20 @@ public class ViewManager {
     }
 
     public void initialise() {
-    	switchScene(ScenesEmun.MAIN_VIEW_CONTROLLER);
+    	switchScene(Scenes.MAIN_VIEW_CONTROLLER);
     } 
     
-    public void switchScene(ScenesEmun toScene) {
-        if (toScene.equals(ScenesEmun.MAIN_VIEW_CONTROLLER)) {
+    public void switchScene(Scenes toScene) {
+        if (toScene.equals(Scenes.MAIN_VIEW_CONTROLLER)) {
             root.getChildren().clear();
             root.getChildren().add(mainViewController.getRootView()); 
-        } else if (toScene.equals(ScenesEmun.START_VIEW_CONTROLLER)) {
+        } else if (toScene.equals(Scenes.START_VIEW_CONTROLLER)) {
             root.getChildren().clear();
             root.getChildren().add(new StartViewController(this).getRootView()); 
-        } else if (toScene.equals(ScenesEmun.UPLOAD_VIEW_CONTROLLER)) {
+        } else if (toScene.equals(Scenes.UPLOAD_VIEW_CONTROLLER)) {
             root.getChildren().clear();
             root.getChildren().add(new UploadViewController(this).getRootView()); 
-        } else if (toScene.equals(ScenesEmun.SELECT_VIEW)) {
+        } else if (toScene.equals(Scenes.SELECT_VIEW)) {
 	        root.getChildren().clear();
 	        root.getChildren().add(new SelectViewController().getRootView()); 
         } 

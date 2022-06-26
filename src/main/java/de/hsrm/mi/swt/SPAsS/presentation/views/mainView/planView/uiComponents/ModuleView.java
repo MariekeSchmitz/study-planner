@@ -59,7 +59,6 @@ public class ModuleView extends ListCell<Module>{
     		String s = "-fx-background-color:rgba("+red+","+blue+","+green+", 0.5)";
     		
     		
-    		
     		if (item.isPassed()) {
     			this.setStyle(s);
         		

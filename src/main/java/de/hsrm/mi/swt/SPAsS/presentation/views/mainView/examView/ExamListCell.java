@@ -1,4 +1,4 @@
-package de.hsrm.mi.swt.SPAsS.presentation.views.mainView.planView.uiComponents;
+package de.hsrm.mi.swt.SPAsS.presentation.views.mainView.examView;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;

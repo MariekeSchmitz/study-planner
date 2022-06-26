@@ -12,17 +12,17 @@ import javafx.beans.property.SimpleStringProperty;
 import de.hsrm.mi.swt.SPAsS.business.commands.CommandManager;
 import de.hsrm.mi.swt.SPAsS.business.commands.MoveSemesterCommand;
 
-public class Module implements Serializable{
+public class Module {
 
 	private String name; 
 	private String description;
 	private SimpleIntegerProperty semesterCurrent;
 	private int semesterDefault;
 	private OfferedTime offeredIn;
-	private int cp;
+	private int cp = 0;
 	private List <Course> courses;
 	private float grade;
-	private SimpleBooleanProperty passed;
+	private boolean passed;
 	private SimpleBooleanProperty hallo;
 	private List<Competence> neededCompetences;
 	private CategoryEnum category;
@@ -36,23 +36,28 @@ public class Module implements Serializable{
 	}
 	
 	public Module(String name, String description, int semesterDefault, int semesterCurrent, OfferedTime offeredIn,
-			int cp, List<Course> courses, List<Competence> neededCompetences, CategoryEnum category, boolean valid, String note)  {
+			List<Course> courses, List<Competence> neededCompetences, CategoryEnum category, boolean valid, String note)  {
 		this.name = name;
 		
 		this.description = description;
 		this.semesterDefault = semesterDefault;
 		this.offeredIn = offeredIn;
-		this.cp = cp;
+		
 		this.courses = courses;
 		this.neededCompetences = neededCompetences;
 		this.valid = valid;
 		this.note = note;
 		this.category = category;
 		
+		
 		this.semesterCurrent = new SimpleIntegerProperty(semesterCurrent);
-		this.passed = new SimpleBooleanProperty(false);
+		this.passed = false;
+		this.coursesPassed();
 		this.hallo = new SimpleBooleanProperty();
 		
+		for (Course course : this.courses) {
+			this.cp += course.getCp();
+		}
 		
 	}
 
@@ -69,21 +74,30 @@ public class Module implements Serializable{
 	public void coursesPassed(){
 		boolean tempPassed = true;
 		for (Course course:courses){
-			if (!course.getExam().isPassed()){
+			if (!course.getExam().getPassed().get()){
 				tempPassed = false;
 				break;
 			}
 		}
-		this.passed.set(tempPassed);
+		this.passed = tempPassed;
 	}
 
 	public void calcGrade(){
 		float grade = 0;
-		if (passed.get()){
+		int cp = 0;
+		if (passed){
 			for (Course course:courses){
-				grade += course.getCp() * course.getExam().getGrade();
+				if (course.getExam().isGradeAvailable()) {
+					grade += course.getCp() * course.getExam().getGrade();
+					cp += course.getCp();
+				}
 			}
-			this.grade = grade/this.cp;
+			if (cp != 0) {
+				this.grade = grade/cp;
+			} else {
+				this.grade = 0;
+			}
+			
 		}
 
 	}
@@ -157,9 +171,7 @@ public class Module implements Serializable{
 	}
 
 
-	public boolean isPassed() {
-		return passed.get();
-	}
+	
 	
 
 
@@ -217,21 +229,23 @@ public class Module implements Serializable{
 
 
 
-	public SimpleBooleanProperty getHallo() {
-		return hallo;
-	}
+	
 
-	public void setHallo(SimpleBooleanProperty hallo) {
-		this.hallo = hallo;
-	}
-
-	public SimpleBooleanProperty getPassed() {
-		return passed;
+	public void setSemesterCurrent(SimpleIntegerProperty semesterCurrent) {
+		this.semesterCurrent = semesterCurrent;
 	}
 
 	public void setPassed(boolean passed) {
-		this.passed.set(passed);
+		this.passed = passed;
 	}
+
+	public boolean isPassed() {
+		this.coursesPassed();
+		return passed;
+	}
+	
+	
+
 	
 	
 	

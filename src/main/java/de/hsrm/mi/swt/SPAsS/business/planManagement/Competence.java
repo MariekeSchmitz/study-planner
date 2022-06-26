@@ -39,6 +39,13 @@ public class Competence implements Serializable{
 		Competence other = (Competence) obj;
 		return Objects.equals(name, other.name);
 	}
+
+	@Override
+	public String toString() {
+		return name;
+	}
+	
+	
     
     
     

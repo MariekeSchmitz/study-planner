@@ -16,17 +16,16 @@ public class ResetPlanCommand implements ICommand{
         myPlan = p;
         moduleMap = myPlan.getModuleMap();
         
-        int size;
-        for (List <Module> semester : moduleMap.values()){
-            size = semester.size();
-            for (Module module: semester){
+        int maxSemester = myPlan.getNumberSemesterDefault();
+        for (Integer semester : moduleMap.keySet()){
+            
+            for (Module module: moduleMap.get(semester)){
                 if (module.getSemesterCurrent() != module.getSemesterDefault()){
                     commands.add(new MoveSemesterCommand(module, module.getSemesterDefault()));
-                    size--;
                 }             
             }
 
-            if (size == 0){
+            if (semester > maxSemester){
                 commands.add(new RemoveSemesterCommand(myPlan));
             }
         }

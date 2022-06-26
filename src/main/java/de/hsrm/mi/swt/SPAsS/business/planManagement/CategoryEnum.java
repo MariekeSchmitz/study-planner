@@ -5,16 +5,24 @@ import javafx.scene.paint.Color;
 
 public enum CategoryEnum{
 
-	INFORMATIK(Color.AZURE), GESTALTUNG(Color.CHOCOLATE), WIRTSCHAFT (Color.YELLOW), KLAUSUR(Color.MOCCASIN), SONSTIGES(Color.LIGHTCORAL), MATHE(Color.DARKBLUE), INFORMATIK_UND_GESTALTUNG(Color.INDIANRED);
+	INFORMATIK(Color.AZURE, "Informatik"), GESTALTUNG(Color.CHOCOLATE, "Gestaltung"), WIRTSCHAFT (Color.YELLOW, "Wirtschaft"), KLAUSUR(Color.MOCCASIN, "Klausur"), SONSTIGES(Color.LIGHTCORAL, "Sonstiges"), MATHE(Color.DARKBLUE, "Mathematik"), INFORMATIK_UND_GESTALTUNG(Color.INDIANRED, "Informatik und Gestaltung");
 	
 	Color color;
+	String name;
 	
-	private CategoryEnum(Color color) {
+	private CategoryEnum(Color color, String name) {
 		this.color = color;
+		this.name = name;
 	}
 	
 	public Color getColor() {
 		return color;
 	}
+	
+	public String getName() {
+		return name;
+	}
+	
+	
 	
 }

@@ -1,6 +1,7 @@
 package de.hsrm.mi.swt.SPAsS.presentation.views.mainView;
 
 import de.hsrm.mi.swt.SPAsS.application.App;
+import de.hsrm.mi.swt.SPAsS.presentation.views.Scenes;
 import de.hsrm.mi.swt.SPAsS.presentation.views.ViewController;
 import de.hsrm.mi.swt.SPAsS.presentation.views.ViewManager;
 import de.hsrm.mi.swt.SPAsS.presentation.views.mainView.examView.ExamViewController;
@@ -8,6 +9,7 @@ import de.hsrm.mi.swt.SPAsS.presentation.views.mainView.moduleInformationView.Mo
 import de.hsrm.mi.swt.SPAsS.presentation.views.mainView.planView.PlanViewController;
 import de.hsrm.mi.swt.SPAsS.presentation.views.mainView.settingsView.SettingsViewController;
 import javafx.scene.layout.StackPane;
+import de.hsrm.mi.swt.SPAsS.business.planManagement.Module;
 
 public class MainViewController extends ViewController{
 
@@ -23,7 +25,7 @@ public class MainViewController extends ViewController{
         mainViewStack = new StackPane();
         settingsViewController = new SettingsViewController(viewManager, app);
         examViewController = new ExamViewController(viewManager, app);
-        moduleInformationViewController = new ModuleInformationViewController(viewManager, app);
+        moduleInformationViewController = new ModuleInformationViewController(this, app);
         planViewController = new PlanViewController(viewManager, app);
         mainViewStack.getChildren().add(planViewController.getRootView());
 //        mainViewStack.getChildren().add(settingsViewController.getRootView());
@@ -32,6 +34,8 @@ public class MainViewController extends ViewController{
      
         rootView = mainViewStack;
         
+        
+        
     }
     @Override
     public void initialise() {
@@ -39,8 +43,40 @@ public class MainViewController extends ViewController{
         
     }
     
-    public void putModuleViewOnStack() {
-    	 mainViewStack.getChildren().add(moduleInformationViewController.getRootView());
+   
+    
+    public void addView(Scenes scene) {
+    	
+    	if (scene == Scenes.MODULE_INFORMATION_VIEW) {
+       	 	mainViewStack.getChildren().add(moduleInformationViewController.getRootView());
+
+    	} else if (scene == Scenes.EXAM_VIEW) {
+       	 	mainViewStack.getChildren().add(examViewController.getRootView());
+       	 	
+    	} else if (scene == Scenes.SETTINGS_VIEW) {
+       	 	mainViewStack.getChildren().add(settingsViewController.getRootView());
+    	}
+    	
+    }
+    
+    public void removeView(Scenes scene) {
+    	if (scene == Scenes.MODULE_INFORMATION_VIEW) {
+       	 	mainViewStack.getChildren().remove(moduleInformationViewController.getRootView());
+
+    	} else if (scene == Scenes.EXAM_VIEW) {
+       	 	mainViewStack.getChildren().add(examViewController.getRootView());
+       	 	
+    	} else if (scene == Scenes.SETTINGS_VIEW) {
+       	 	mainViewStack.getChildren().add(settingsViewController.getRootView());
+    	}
+    }
+    
+    
+    public void putModuleViewOnStack(Module module) {
+    	
+    	moduleInformationViewController.setModuleInformation(module);
+   	 	mainViewStack.getChildren().add(moduleInformationViewController.getRootView());
+
     }
     
     

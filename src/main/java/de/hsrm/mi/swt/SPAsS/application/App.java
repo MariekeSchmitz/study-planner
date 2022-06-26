@@ -16,12 +16,13 @@ public class App extends Application {
 
 	private ViewManager viewManager;
 	private Plan plan;
-	private TestClassGenerator testClass = new TestClassGenerator();
+	private TestClassGenerator testClass;
 
 	
 
 	@Override
 	public void start(Stage primaryStage) throws Exception{
+		testClass = new TestClassGenerator();
 		plan = testClass.plan;
 
 		fileManager = new FileManager("FileManagerTestFolder");

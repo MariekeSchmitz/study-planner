@@ -10,46 +10,63 @@ import de.hsrm.mi.swt.SPAsS.business.commands.CommandManager;
 import de.hsrm.mi.swt.SPAsS.business.commands.RemoveSemesterCommand;
 import de.hsrm.mi.swt.SPAsS.business.commands.ResetPlanCommand;
 import de.hsrm.mi.swt.SPAsS.business.restrictionManagement.Validator;
+import javafx.beans.property.SimpleFloatProperty;
 
 public class Plan {
 
     private String name;
     private String curriculumName;
-    private float averageGrade;
+    private SimpleFloatProperty averageGrade;
     private List<Module> moduleList;
     private List<Validator> validatorList;
     private transient Map<Integer, List<Module>> moduleMap;
-    private int numberSemester;
+    private int numberSemesterCurrent;
+    private int numberSemesterDefault;
 
     public Plan(String name, String curriculumName, List<Module> moduleList, List<Validator> validatorList,
             int numberSemester) {
-        this.averageGrade = 0;
         this.name = name;
         this.curriculumName = curriculumName;
         this.moduleList = moduleList;
         this.validatorList = validatorList;
-        this.numberSemester = numberSemester;
+        this.numberSemesterCurrent = numberSemester;
         this.moduleMap = new HashMap<>();
+        updateModuleMap();
+        this.numberSemesterDefault = calculateNumberSemesterDefault();
+        this.averageGrade = new SimpleFloatProperty();
+        
         calculateAverage();
+        
     }
 
+    private int calculateNumberSemesterDefault() {
+    	
+    	int max = 0;
+    	
+    	for(List<Module> moduleList : moduleMap.values()) {
+    		
+    		for (Module module : moduleList) {
+    			
+    			if (module.getSemesterDefault() > max) {
+    				max = module.getSemesterDefault();
+    			}
+    			
+    		}
+    	} 
+    	
+    	return max;
+    }
+    
+    
+    
     public void resetPlan() {
 
-    	
-        // for(Integer semester : moduleMap.keySet()) {
-        	
-        // 	List<Module> moduleList = moduleMap.get(semester);
-        	
-        // 	for (Module module :moduleList) {      		
-        // 		module.semesterReset();      		
-        // 	}
-        	
-        // }
         CommandManager.getInstance().execAndPush(new ResetPlanCommand(this));
+        this.numberSemesterCurrent = numberSemesterDefault;
     }
 
     public void updateModuleMap() {
-        for (int i = 1; i <= this.numberSemester; i++) {
+        for (int i = 1; i <= this.numberSemesterCurrent; i++) {
             moduleMap.put(i, new LinkedList<>());
         }
 
@@ -75,7 +92,7 @@ public class Plan {
 
     public boolean checkLastSemesterEmpty() {
         
-        return moduleMap.get(numberSemester).isEmpty();
+        return moduleMap.get(numberSemesterCurrent).isEmpty();
 
     }
 
@@ -86,11 +103,14 @@ public class Plan {
 
             if (module.isPassed()) {
                 cp += module.getCp();
+                module.calcGrade();
                 grade += module.getGrade() * module.getCp();
             }
         }
         if (cp != 0) {
-            this.averageGrade = grade / cp;
+            this.averageGrade.set(grade/cp);
+        } else {
+            this.averageGrade.set(0);
         }
     }
     
@@ -143,13 +163,7 @@ public class Plan {
         this.validatorList = validators;
     }
 
-    public float getAverageGrade() {
-        return averageGrade;
-    }
 
-    public void setAverageGrade(float averageGrade) {
-        this.averageGrade = averageGrade;
-    }
 
     public List<Validator> getValidatorList() {
         return validatorList;
@@ -160,11 +174,11 @@ public class Plan {
     }
 
     public int getNumberSemester() {
-        return numberSemester;
+        return numberSemesterCurrent;
     }
 
     public void setNumberSemester(int numberSemester) {
-        this.numberSemester = numberSemester;
+        this.numberSemesterCurrent = numberSemester;
     }
 
     public Map<Integer, List<Module>> getModuleMap() {
@@ -174,5 +188,35 @@ public class Plan {
     public void setModuleMap(Map<Integer, List<Module>> moduleMap) {
         this.moduleMap = moduleMap;
     }
+
+	public SimpleFloatProperty getAverageGrade() {
+		this.calculateAverage();
+		return averageGrade;
+	}
+
+	public void setAverageGrade(SimpleFloatProperty averageGrade) {
+		this.averageGrade = averageGrade;
+	}
+
+	public int getNumberSemesterCurrent() {
+		return numberSemesterCurrent;
+	}
+
+	public void setNumberSemesterCurrent(int numberSemesterCurrent) {
+		this.numberSemesterCurrent = numberSemesterCurrent;
+	}
+
+	public int getNumberSemesterDefault() {
+		return numberSemesterDefault;
+	}
+
+	public void setNumberSemesterDefault(int numberSemesterDefault) {
+		this.numberSemesterDefault = numberSemesterDefault;
+	}
+	
+	
+	
+    
+    
 
 }

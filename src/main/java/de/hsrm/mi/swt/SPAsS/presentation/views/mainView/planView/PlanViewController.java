@@ -2,7 +2,7 @@ package de.hsrm.mi.swt.SPAsS.presentation.views.mainView.planView;
 
 import de.hsrm.mi.swt.SPAsS.application.App;
 import de.hsrm.mi.swt.SPAsS.business.planManagement.Plan;
-import de.hsrm.mi.swt.SPAsS.presentation.views.ScenesEmun;
+import de.hsrm.mi.swt.SPAsS.presentation.views.Scenes;
 import de.hsrm.mi.swt.SPAsS.presentation.views.ViewController;
 import de.hsrm.mi.swt.SPAsS.presentation.views.ViewManager;
 import de.hsrm.mi.swt.SPAsS.presentation.views.mainView.planView.uiComponents.CenterViewController;
@@ -30,7 +30,7 @@ public class PlanViewController extends ViewController{
 
 
         centerViewController = new CenterViewController(plan, viewManager); 
-        topCenterViewController = new TopCenterViewController();
+        topCenterViewController = new TopCenterViewController(plan);
         leftSideViewController = new LeftSideViewController();
         
         mainView = new PlanView((AnchorPane)leftSideViewController.getRootView(), (AnchorPane)topCenterViewController.getRootView(), (AnchorPane)centerViewController.getRootView());
@@ -44,7 +44,7 @@ public class PlanViewController extends ViewController{
     @Override
     public void initialise() {
         testButton.addEventHandler(ActionEvent.ACTION, event -> { 
-			viewManager.switchScene(ScenesEmun.START_VIEW_CONTROLLER);
+			viewManager.switchScene(Scenes.START_VIEW_CONTROLLER);
 		});
     }   
 

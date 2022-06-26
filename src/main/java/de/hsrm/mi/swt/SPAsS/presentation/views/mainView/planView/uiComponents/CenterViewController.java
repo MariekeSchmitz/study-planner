@@ -17,6 +17,7 @@ import de.hsrm.mi.swt.SPAsS.business.planManagement.ExamType;
 import de.hsrm.mi.swt.SPAsS.business.planManagement.Module;
 import de.hsrm.mi.swt.SPAsS.business.planManagement.OfferedTime;
 import de.hsrm.mi.swt.SPAsS.business.planManagement.Plan;
+import de.hsrm.mi.swt.SPAsS.presentation.views.Scenes;
 import de.hsrm.mi.swt.SPAsS.presentation.views.ViewController;
 import de.hsrm.mi.swt.SPAsS.presentation.views.ViewManager;
 import javafx.beans.InvalidationListener;
@@ -106,6 +107,7 @@ public class CenterViewController extends ViewController{
     	resetButton.addEventHandler(ActionEvent.ACTION, e -> {
     		
     		plan.resetPlan();
+    		plan.updateModuleMap();
 			generateListView();
 			
 
@@ -166,21 +168,22 @@ public class CenterViewController extends ViewController{
 					}
 				});
     			
-    			module.getPassed().addListener(new ChangeListener<Boolean>() {
+    			for (Course course : module.getCourses()) {
+    				
+    				course.getExam().getPassed().addListener(new ChangeListener<Boolean>() {
 
-					@Override
-					public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue,
-							Boolean newValue) {
-						
-						
-						for (SemesterList list : semesterListViews) {
-							
-							list.refresh();
-							
-						}
-						
-					}
-				});
+    					@Override
+    					public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue,
+    							Boolean newValue) {
+    						
+    						plan.calculateAverage();
+    						generateListView();
+    						
+    					}
+    				});
+    			}
+    			
+    			
     			
     			
     			
@@ -266,7 +269,6 @@ public class CenterViewController extends ViewController{
 				          
 				        	mouseX = event.getX();
 				        	mouseY = event.getY();
-				        	System.out.println("Maus geklicjt");
 				        	
 				        }
 				    });
@@ -277,29 +279,13 @@ public class CenterViewController extends ViewController{
 				          
 				        	if (event.getX() == mouseX && event.getY() == mouseY) {
 					        	
-				        		viewManager.getMainViewController().putModuleViewOnStack();
+				        		viewManager.getMainViewController().putModuleViewOnStack(moduleView.getItem());
 				        		
-				        		System.out.println("Maus losgelassen");
-
 				        	}
 				        	
 				        }
 				    });
-					
-//					moduleView.onMouseRe
-//					
-//					moduleView.onMouseReleased(new EventHandler<MouseEvent>() {
-//				        @Override
-//				        public void handle(MouseEvent event) {
-//				          
-//				        	mouseX = event.getX();
-//				        	mouseY = event.getY();
-//				        	
-//				        }
-//				    });
-					
-				
-					
+			
 					return moduleView;
 				}   			
     		});
