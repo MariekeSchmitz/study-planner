@@ -23,8 +23,8 @@ public class Module {
 	private List <Course> courses;
 	private float grade;
 	private boolean passed;
-	private SimpleBooleanProperty hallo;
 	private List<Competence> neededCompetences;
+	private List <Competence> taughtCompetences;
 	private CategoryEnum category;
 	private boolean valid = true;
 	private String note = "";
@@ -36,7 +36,7 @@ public class Module {
 	}
 	
 	public Module(String name, String description, int semesterDefault, int semesterCurrent, OfferedTime offeredIn,
-			List<Course> courses, List<Competence> neededCompetences, CategoryEnum category, boolean valid, String note)  {
+			List<Course> courses, List<Competence> neededCompetences, List <Competence> taughtCompetences, CategoryEnum category, boolean valid, String note)  {
 		this.name = name;
 		
 		this.description = description;
@@ -45,6 +45,7 @@ public class Module {
 		
 		this.courses = courses;
 		this.neededCompetences = neededCompetences;
+		this.taughtCompetences = taughtCompetences;
 		this.valid = valid;
 		this.note = note;
 		this.category = category;
@@ -53,7 +54,6 @@ public class Module {
 		this.semesterCurrent = new SimpleIntegerProperty(semesterCurrent);
 		this.passed = false;
 		this.coursesPassed();
-		this.hallo = new SimpleBooleanProperty();
 		
 		for (Course course : this.courses) {
 			this.cp += course.getCp();
@@ -242,6 +242,14 @@ public class Module {
 	public boolean isPassed() {
 		this.coursesPassed();
 		return passed;
+	}
+
+	public List<Competence> getTaughtCompetences() {
+		return taughtCompetences;
+	}
+
+	public void setTaughtCompetences(List<Competence> taughtCompetences) {
+		this.taughtCompetences = taughtCompetences;
 	}
 	
 	

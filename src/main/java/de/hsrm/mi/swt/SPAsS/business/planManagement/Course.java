@@ -7,19 +7,16 @@ public class Course implements Serializable{
     private String name;
     private int cp;
     private Exam exam;
-    private List <Competence> taughtCompetences;
 
-    
     public Course() {
     	
     }
     
     
-    public Course(String name, int cp, Exam exam, List <Competence> taughtCompetences) {
+    public Course(String name, int cp, Exam exam) {
         this.name = name;
         this.cp = cp;
         this.exam = exam;
-        this.taughtCompetences = taughtCompetences;
     }
 
     public String getName() {
@@ -44,18 +41,5 @@ public class Course implements Serializable{
 
     public void setExam(Exam exam) {
         this.exam = exam;
-    }
-
-	public List<Competence> getTaughtCompetences() {
-		return taughtCompetences;
-	}
-
-	public void setTaughtCompetences(List<Competence> taughtCompetences) {
-		this.taughtCompetences = taughtCompetences;
-	}
-    
-	
-    
-
-    
+    }    
 }

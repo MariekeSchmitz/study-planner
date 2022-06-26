@@ -82,12 +82,12 @@ public class ModuleInformationViewController extends ViewController{
     		courseHBox = (HBox)new CoursesRowController(course, app.getPlan()).getRootView();
     		
     		coursesBox.getChildren().add(courseHBox);
-    		
-    		String s = course.getTaughtCompetences().toString().replace("[", "").replace("]", "");
-    		
-    		moduleInformationView.getTaughtCompetencesText().setText(s);
    
     	} 
+
+		String s = module.getTaughtCompetences().toString().replace("[", "").replace("]", "");
+    		
+    	moduleInformationView.getTaughtCompetencesText().setText(s);
     	
     	moduleInformationView.getModuleDescriptionText().setText(module.getDescription());
     	
