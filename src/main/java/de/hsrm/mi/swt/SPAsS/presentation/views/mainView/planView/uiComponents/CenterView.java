@@ -1,4 +1,4 @@
-package de.hsrm.mi.swt.SPAsS.presentation.views.mainView.uiComponents;
+package de.hsrm.mi.swt.SPAsS.presentation.views.mainView.planView.uiComponents;
 
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -15,6 +15,7 @@ public class CenterView extends AnchorPane{
     private VBox planPane;
     private Button addSemester;
     private Button addKlausur;
+    private Button removeSemester;
 
     public CenterView(){
         this.getStyleClass().add("center");
@@ -34,7 +35,11 @@ public class CenterView extends AnchorPane{
 
         addSemester = new Button("Semester hinzufügen");
         addSemester.getStyleClass().add("addSemester");
-        addSemester.setMaxSize(2000, 40);
+        addSemester.setMaxSize(1000, 40);
+
+        removeSemester = new Button("Semester löschen");
+        removeSemester.getStyleClass().add("removeSemester");
+        removeSemester.setMaxSize(1000, 40);
 
         addKlausur = new Button("Zurücksetzen");
         addKlausur.setPrefSize(200,40);
@@ -42,7 +47,8 @@ public class CenterView extends AnchorPane{
 
         HBox.setHgrow(addSemester, Priority.ALWAYS);
         HBox.setHgrow(addKlausur, Priority.ALWAYS);
-        hBoxAdd.getChildren().addAll(addSemester, addKlausur);
+        HBox.setHgrow(removeSemester, Priority.ALWAYS);
+        hBoxAdd.getChildren().addAll(addSemester,removeSemester, addKlausur);
 
         AnchorPane.setLeftAnchor(hBoxAdd, 125.0);
         AnchorPane.setTopAnchor(hBoxAdd, 50.0);
@@ -95,6 +101,10 @@ public class CenterView extends AnchorPane{
 	public void setAddSemester(Button addSemester) {
 		this.addSemester = addSemester;
 	}
+
+    public Button getRemoveSemester(){
+        return removeSemester;
+    }
 
 	public Button getAddKlausur() {
 		return addKlausur;

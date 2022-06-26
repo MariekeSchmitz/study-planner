@@ -1,4 +1,6 @@
-package de.hsrm.mi.swt.SPAsS.presentation.views.mainView;
+package de.hsrm.mi.swt.SPAsS.presentation.views.mainView.examView;
+
+import de.hsrm.mi.swt.SPAsS.business.planManagement.Module;
 
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -8,7 +10,7 @@ import javafx.scene.layout.AnchorPane;
 public class ExamView extends AnchorPane{
 
     private Label header;
-    private ListView<String> listView;
+    private ListView<Module> listView;
 
     private Button backbutton; 
 
@@ -33,10 +35,11 @@ public class ExamView extends AnchorPane{
         AnchorPane.setTopAnchor(listView, 200.0);
         AnchorPane.setLeftAnchor(listView, 50.0);
         AnchorPane.setRightAnchor(listView, 50.0);
-        AnchorPane.setBottomAnchor(listView, 50.0);
+        AnchorPane.setBottomAnchor(listView, 0.0);
 
         this.getStylesheets().add(getClass().getResource("MainView.css").toExternalForm());
         this.getChildren().addAll(header, backbutton, listView);
+        listView.getStyleClass().add("test-border-red");
         this.getStyleClass().add("test-border-red");
         this.setMaxWidth(500);
     }
@@ -45,7 +48,7 @@ public class ExamView extends AnchorPane{
         return header;
     }
 
-    public ListView<String> getListView() {
+    public ListView<Module> getListView() {
         return listView;
     }
 

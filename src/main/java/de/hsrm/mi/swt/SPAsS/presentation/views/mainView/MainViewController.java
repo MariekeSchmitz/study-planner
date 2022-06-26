@@ -1,51 +1,84 @@
 package de.hsrm.mi.swt.SPAsS.presentation.views.mainView;
 
 import de.hsrm.mi.swt.SPAsS.application.App;
-import de.hsrm.mi.swt.SPAsS.business.planManagement.Plan;
-import de.hsrm.mi.swt.SPAsS.presentation.views.ScenesEmun;
+import de.hsrm.mi.swt.SPAsS.presentation.views.Scenes;
 import de.hsrm.mi.swt.SPAsS.presentation.views.ViewController;
 import de.hsrm.mi.swt.SPAsS.presentation.views.ViewManager;
-import de.hsrm.mi.swt.SPAsS.presentation.views.mainView.uiComponents.CenterViewController;
-import de.hsrm.mi.swt.SPAsS.presentation.views.mainView.uiComponents.LeftSideViewController;
-import de.hsrm.mi.swt.SPAsS.presentation.views.mainView.uiComponents.TopCenterViewController;
-import javafx.event.ActionEvent;
-import javafx.scene.control.Button;
-import javafx.scene.layout.AnchorPane;
+import de.hsrm.mi.swt.SPAsS.presentation.views.mainView.examView.ExamViewController;
+import de.hsrm.mi.swt.SPAsS.presentation.views.mainView.moduleInformationView.ModuleInformationViewController;
+import de.hsrm.mi.swt.SPAsS.presentation.views.mainView.planView.PlanViewController;
+import de.hsrm.mi.swt.SPAsS.presentation.views.mainView.settingsView.SettingsViewController;
+import javafx.scene.layout.StackPane;
+import de.hsrm.mi.swt.SPAsS.business.planManagement.Module;
 
 public class MainViewController extends ViewController{
-    private ViewManager viewManager;
-    private MainView mainView;
-    private Button testButton;
-    private App app;
-    private CenterViewController centerViewController;
-    private TopCenterViewController topCenterViewController;
-    private LeftSideViewController leftSideViewController;
-    private Plan plan;
+
+    private StackPane mainViewStack;
+    private SettingsViewController settingsViewController;
+    private ExamViewController examViewController;
+    private ModuleInformationViewController moduleInformationViewController;
+    private PlanViewController planViewController;
+
 
     public MainViewController(ViewManager viewManager, App app) {
-        this.viewManager = viewManager;
-        this.app = app;
-        this.plan = app.getPlan();
         
-
-
-        centerViewController = new CenterViewController(plan); 
-        topCenterViewController = new TopCenterViewController();
-        leftSideViewController = new LeftSideViewController();
+        mainViewStack = new StackPane();
+        settingsViewController = new SettingsViewController(viewManager, app);
+        examViewController = new ExamViewController(viewManager, app);
+        moduleInformationViewController = new ModuleInformationViewController(this, app);
+        planViewController = new PlanViewController(viewManager, app);
+        mainViewStack.getChildren().add(planViewController.getRootView());
+//        mainViewStack.getChildren().add(settingsViewController.getRootView());
+//        mainViewStack.getChildren().add(examViewController.getRootView());
+//        mainViewStack.getChildren().add(moduleInformationViewController.getRootView());
+     
+        rootView = mainViewStack;
         
-        mainView = new MainView((AnchorPane)leftSideViewController.getRootView(), (AnchorPane)topCenterViewController.getRootView(), (AnchorPane)centerViewController.getRootView());
-        rootView = mainView;
         
         
-        testButton = mainView.getTestButton();        
-
-        initialise();
     }
     @Override
     public void initialise() {
-        testButton.addEventHandler(ActionEvent.ACTION, event -> { 
-			viewManager.switchScene(ScenesEmun.START_VIEW_CONTROLLER);
-		});
-    }   
+        
+        
+    }
+    
+   
+    
+    public void addView(Scenes scene) {
+    	
+    	if (scene == Scenes.MODULE_INFORMATION_VIEW) {
+       	 	mainViewStack.getChildren().add(moduleInformationViewController.getRootView());
 
+    	} else if (scene == Scenes.EXAM_VIEW) {
+       	 	mainViewStack.getChildren().add(examViewController.getRootView());
+       	 	
+    	} else if (scene == Scenes.SETTINGS_VIEW) {
+       	 	mainViewStack.getChildren().add(settingsViewController.getRootView());
+    	}
+    	
+    }
+    
+    public void removeView(Scenes scene) {
+    	if (scene == Scenes.MODULE_INFORMATION_VIEW) {
+       	 	mainViewStack.getChildren().remove(moduleInformationViewController.getRootView());
+
+    	} else if (scene == Scenes.EXAM_VIEW) {
+       	 	mainViewStack.getChildren().add(examViewController.getRootView());
+       	 	
+    	} else if (scene == Scenes.SETTINGS_VIEW) {
+       	 	mainViewStack.getChildren().add(settingsViewController.getRootView());
+    	}
+    }
+    
+    
+    public void putModuleViewOnStack(Module module) {
+    	
+    	moduleInformationViewController.setModuleInformation(module);
+   	 	mainViewStack.getChildren().add(moduleInformationViewController.getRootView());
+
+    }
+    
+    
+    
 }

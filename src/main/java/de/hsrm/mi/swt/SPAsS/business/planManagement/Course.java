@@ -1,13 +1,20 @@
 package de.hsrm.mi.swt.SPAsS.business.planManagement;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Course {
+public class Course implements Serializable{
     private String name;
     private int cp;
     private Exam exam;
     private List <Competence> taughtCompetences;
 
+    
+    public Course() {
+    	
+    }
+    
+    
     public Course(String name, int cp, Exam exam, List <Competence> taughtCompetences) {
         this.name = name;
         this.cp = cp;
@@ -47,6 +54,7 @@ public class Course {
 		this.taughtCompetences = taughtCompetences;
 	}
     
+	
     
 
     

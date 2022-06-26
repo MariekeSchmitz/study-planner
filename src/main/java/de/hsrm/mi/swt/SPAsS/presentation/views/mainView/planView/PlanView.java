@@ -1,15 +1,15 @@
-package de.hsrm.mi.swt.SPAsS.presentation.views.mainView;
+package de.hsrm.mi.swt.SPAsS.presentation.views.mainView.planView;
 
-import de.hsrm.mi.swt.SPAsS.presentation.views.mainView.uiComponents.CenterViewController;
-import de.hsrm.mi.swt.SPAsS.presentation.views.mainView.uiComponents.LeftSideViewController;
-import de.hsrm.mi.swt.SPAsS.presentation.views.mainView.uiComponents.TopCenterViewController;
+import de.hsrm.mi.swt.SPAsS.presentation.views.mainView.planView.uiComponents.CenterViewController;
+import de.hsrm.mi.swt.SPAsS.presentation.views.mainView.planView.uiComponents.LeftSideViewController;
+import de.hsrm.mi.swt.SPAsS.presentation.views.mainView.planView.uiComponents.TopCenterViewController;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 
-public class MainView extends AnchorPane{
+public class PlanView extends AnchorPane{
     
     private Label testLabel;
     private Button testButton;
@@ -21,7 +21,7 @@ public class MainView extends AnchorPane{
 
     private BorderPane rightSide;
 
-    public MainView(AnchorPane leftSideMenu, AnchorPane topCenter, AnchorPane center) {
+    public PlanView(AnchorPane leftSideMenu, AnchorPane topCenter, AnchorPane center) {
 
     	
     	this.leftSideMenu = leftSideMenu;
