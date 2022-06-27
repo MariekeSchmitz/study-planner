@@ -1,15 +1,11 @@
 package de.hsrm.mi.swt.SPAsS.presentation.views.mainView.moduleInformationView;
 
-import java.awt.Color;
-
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.CornerRadii;
-import javafx.scene.layout.Pane;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
@@ -17,6 +13,7 @@ public class ModuleInformationView extends AnchorPane{
 
 	private VBox box;
 	
+	private VBox labelVBox;
     private Label moduleName;
     private Label category;
     private Label cp;
@@ -31,51 +28,92 @@ public class ModuleInformationView extends AnchorPane{
     private Text moduleDescriptionText;
     
     private Label taughtCompetencesHeadline;
-    private Text taughtCompetencesText;
+	private VBox taughtCompetencesVbox;
     
     private Label neededCompetencesHeadline;
-    private Text neededCompetencesText;
+	private VBox neededCompetencesVbox;
     
     private Label coursesHeadline;
-
 
     private Button backButton;
 
     public ModuleInformationView() {
         
-    	
-    	
     	moduleName = new Label("Modulname");
+		moduleName.getStyleClass().add("ModuleHeader");
+		moduleName.autosize();
+		moduleName.setMinWidth(Region.USE_PREF_SIZE);
+
     	category = new Label("category");
+		category.getStyleClass().add("categoryLabel");
     	cp = new Label("cp");
-    	
+		cp.getStyleClass().add("categoryLabel");
+
     	noteWarningHeadline = new Label("Warnhinweise");
     	noteWarningText = new Text("warnhinweiseText");
     	warningBox = new VBox(noteWarningHeadline,noteWarningText);
+		warningBox.setSpacing(10);
+		warningBox.setPrefHeight(75);
+		warningBox.setPadding(new Insets(5, 5, 5, 5));
+		warningBox.getStyleClass().add("border-red");
     	
     	coursesHeadline = new Label("Lehrveranstaltung");
-    	coursesBox = new VBox();
+		coursesHeadline.getStyleClass().add("coursesHeadline");
+    	coursesBox = new VBox(5);
     	
     	modulDescriptionHeadline = new Label("Modulbeschreibung");
+		modulDescriptionHeadline.getStyleClass().add("coursesHeadline");
     	moduleDescriptionText = new Text("moduldescriptionTest");
     	
     	taughtCompetencesHeadline = new Label("Vermittelte Kompetenzen");
-    	taughtCompetencesText = new Text("taughtCompetencesText");
+		taughtCompetencesHeadline.getStyleClass().add("coursesHeadline");
+		taughtCompetencesVbox = new VBox();
     	
     	neededCompetencesHeadline = new Label("Benötigte Kompetenzen");
-    	neededCompetencesText = new Text("neededCompetencesText");
+		neededCompetencesHeadline.getStyleClass().add("coursesHeadline");
+		neededCompetencesVbox = new VBox();
 
         backButton = new Button("back");
-        
-        
-        box = new VBox(moduleName, category, cp, warningBox, coursesHeadline,coursesBox, moduleDescriptionText, taughtCompetencesHeadline, taughtCompetencesText, neededCompetencesHeadline, neededCompetencesText, backButton);
+		backButton.getStyleClass().add("backbutton");
+		backButton.setPrefSize(100, 100);
+        backButton.setMaxSize(50, 50);
 
-        this.getChildren().add(box);
+		box = new VBox(coursesHeadline, coursesBox, modulDescriptionHeadline, moduleDescriptionText, taughtCompetencesHeadline, taughtCompetencesVbox, neededCompetencesHeadline, neededCompetencesVbox);
+		box.setMaxWidth(400);
+		box.setSpacing(10);
+		box.setAlignment(Pos.TOP_LEFT);
+		box.setPadding(new Insets(10, 10, 10, 10));
+
+		labelVBox = new VBox(category, cp);
+		labelVBox.setSpacing(5);
+
+		AnchorPane.setTopAnchor(moduleName, 75.0);
+        AnchorPane.setLeftAnchor(moduleName, 60.0);
+		AnchorPane.setRightAnchor(moduleName, 150.0);
+		moduleName.setMaxWidth(300);
+
+		AnchorPane.setTopAnchor(labelVBox, 130.0);
+        AnchorPane.setLeftAnchor(labelVBox, 60.0);
+		AnchorPane.setRightAnchor(labelVBox, 150.0);
+
+		AnchorPane.setTopAnchor(warningBox, 200.0);
+        AnchorPane.setLeftAnchor(warningBox, 60.0);
+		AnchorPane.setRightAnchor(warningBox, 50.0);
+
+		AnchorPane.setTopAnchor(backButton, 30.0);
+        AnchorPane.setRightAnchor(backButton, 50.0);
+    
+        AnchorPane.setTopAnchor(box, 300.0);
+		AnchorPane.setLeftAnchor(box, 50.0);
+		AnchorPane.setRightAnchor(box, 50.0);
+		AnchorPane.setBottomAnchor(box, 0.0);
+
+        this.getChildren().addAll(box, backButton, moduleName, labelVBox, warningBox);
         
-        
-        
+		this.getStylesheets().add(getClass().getResource("moduleInformationView.css").toExternalForm());
         this.setStyle( "-fx-background-color:rgb(255,255,255)");	
-        
+		this.getStyleClass().add("test-border-red");
+        this.setMaxWidth(500);
     }
 
 	public Label getModuleName() {
@@ -128,28 +166,12 @@ public class ModuleInformationView extends AnchorPane{
 		this.taughtCompetencesHeadline = taughtCompetencesHeadline;
 	}
 
-	public Text getTaughtCompetencesText() {
-		return taughtCompetencesText;
-	}
-
-	public void setTaughtCompetencesText(Text taughtCompetencesText) {
-		this.taughtCompetencesText = taughtCompetencesText;
-	}
-
 	public Label getNeededCompetencesHeadline() {
 		return neededCompetencesHeadline;
 	}
 
 	public void setNeededCompetencesHeadline(Label neededCompetencesHeadline) {
 		this.neededCompetencesHeadline = neededCompetencesHeadline;
-	}
-
-	public Text getNeededCompetencesText() {
-		return neededCompetencesText;
-	}
-
-	public void setNeededCompetencesText(Text neededCompetencesText) {
-		this.neededCompetencesText = neededCompetencesText;
 	}
 
 	public Button getBackButton() {
@@ -206,6 +228,30 @@ public class ModuleInformationView extends AnchorPane{
 
 	public void setCoursesHeadline(Label coursesHeadline) {
 		this.coursesHeadline = coursesHeadline;
+	}
+
+	public VBox getLabelVBox() {
+		return labelVBox;
+	}
+
+	public void setLabelVBox(VBox labelVBox) {
+		this.labelVBox = labelVBox;
+	}
+
+	public VBox getTaughtCompetencesVbox() {
+		return taughtCompetencesVbox;
+	}
+
+	public void setTaughtCompetencesVbox(VBox taughtCompetencesVbox) {
+		this.taughtCompetencesVbox = taughtCompetencesVbox;
+	}
+
+	public VBox getNeededCompetencesVbox() {
+		return neededCompetencesVbox;
+	}
+
+	public void setNeededCompetencesVbox(VBox neededCompetencesVbox) {
+		this.neededCompetencesVbox = neededCompetencesVbox;
 	}
 	
 	

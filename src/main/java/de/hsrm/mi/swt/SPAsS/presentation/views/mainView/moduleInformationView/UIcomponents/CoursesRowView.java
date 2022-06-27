@@ -1,5 +1,7 @@
 package de.hsrm.mi.swt.SPAsS.presentation.views.mainView.moduleInformationView.UIcomponents;
 
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -14,10 +16,22 @@ public class CoursesRowView extends HBox{
 	
 	public CoursesRowView() {
 		courseName = new Label();
-		passedCheck = new CheckBox();
-		gradeInput = new TextField();
+		courseName.setStyle("-fx-font-size: 15px;");
 		
+		courseName.setPrefWidth(3000);
+
+		passedCheck = new CheckBox();
+		
+		gradeInput = new TextField();
+		gradeInput.setStyle("-fx-font-size: 15px;");
+
+		
+		this.setAlignment(Pos.CENTER_LEFT);
+		this.setPadding(new Insets(10, 10, 10, 10));
+		this.setPrefHeight(25);
+		this.setSpacing(10);
 		this.getChildren().addAll(courseName,passedCheck,gradeInput);
+		this.setStyle("-fx-background-color: rgb(196, 196, 196);");
 	}
 
 

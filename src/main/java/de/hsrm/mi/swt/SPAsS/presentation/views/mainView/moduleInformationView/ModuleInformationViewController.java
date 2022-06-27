@@ -17,6 +17,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
@@ -29,6 +30,8 @@ public class ModuleInformationViewController extends ViewController{
 	private MainViewController mainViewController;
 	private VBox coursesBox;
 	private HBox courseHBox;
+	private VBox taughtCompetencesVbox;
+	private VBox neededCompetencesVbox;
 
 	
 	
@@ -66,9 +69,12 @@ public class ModuleInformationViewController extends ViewController{
     	
     	if (module.isValid()) {
     		moduleInformationView.getWarningBox().setVisible(false);
+			AnchorPane.setTopAnchor(moduleInformationView.getBox(), 200.0);
     	} else {
     		moduleInformationView.getWarningBox().setVisible(true);
     		moduleInformationView.getNoteWarningText().setText(module.getNote());
+			AnchorPane.setTopAnchor(moduleInformationView.getBox(), 300.0);
+
     	}
     	
     	coursesBox = moduleInformationView.getCoursesBox();
@@ -85,16 +91,23 @@ public class ModuleInformationViewController extends ViewController{
    
     	} 
 
-		String s = module.getTaughtCompetences().toString().replace("[", "").replace("]", "");
-    		
-    	moduleInformationView.getTaughtCompetencesText().setText(s);
-    	
-    	moduleInformationView.getModuleDescriptionText().setText(module.getDescription());
-    	
-		String x = module.getNeededCompetences().toString().replace("[", "").replace("]", "");
+		List<Competence> taughtCompetences = module.getTaughtCompetences();
+		taughtCompetencesVbox = moduleInformationView.getTaughtCompetencesVbox();
+		taughtCompetencesVbox.getChildren().clear();
 
-    	moduleInformationView.getNeededCompetencesText().setText(x);
-    	
+		for (Competence competence : taughtCompetences) {
+			taughtCompetencesVbox.getChildren().add(new Label("- " + competence.getName()));
+		}
+
+		List<Competence> neededCompetences = module.getNeededCompetences();
+		neededCompetencesVbox = moduleInformationView.getNeededCompetencesVbox();
+		neededCompetencesVbox.getChildren().clear();
+
+		for (Competence competence : neededCompetences) {
+			neededCompetencesVbox.getChildren().add(new Label("- " + competence.getName()));
+		}
+    		    	
+    	moduleInformationView.getModuleDescriptionText().setText(module.getDescription());
     	
     }
 
