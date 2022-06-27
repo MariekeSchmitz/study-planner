@@ -42,6 +42,8 @@ public class ExamView extends AnchorPane{
         listView.getStyleClass().add("test-border-red");
         this.getStyleClass().add("test-border-red");
         this.setMaxWidth(500);
+        
+        this.setStyle( "-fx-background-color:rgb(255,255,255)");	
     }
 
     public Label getHeader() {
@@ -51,6 +53,12 @@ public class ExamView extends AnchorPane{
     public ListView<Module> getListView() {
         return listView;
     }
+
+	public Button getBackbutton() {
+		return backbutton;
+	}
+    
+    
 
     
 }

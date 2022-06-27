@@ -23,7 +23,6 @@ public class PlanView extends AnchorPane{
 
     public PlanView(AnchorPane leftSideMenu, AnchorPane topCenter, AnchorPane center) {
 
-    	
     	this.leftSideMenu = leftSideMenu;
     	this.topCenter = topCenter;
     	this.center = center;

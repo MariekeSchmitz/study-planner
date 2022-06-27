@@ -36,7 +36,7 @@ public class ModuleView extends ListCell<Module>{
         this.setGraphic(labels);
         this.setMaxHeight(50);
         this.setMaxWidth(150);
-		this.setStyle("-fx-background-color: transparant;");
+		this.setStyle("-fx-background-color: transparent;");
     }
     
     

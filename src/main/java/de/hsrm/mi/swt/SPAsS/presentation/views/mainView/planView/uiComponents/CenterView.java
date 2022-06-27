@@ -14,8 +14,10 @@ public class CenterView extends AnchorPane{
     private HBox hBoxAdd;
     private VBox planPane;
     private Button addSemester;
-    private Button addKlausur;
+    private Button resetPlan;
     private Button removeSemester;
+    private Button addExam;
+
 
     public CenterView(){
         this.getStyleClass().add("center");
@@ -40,14 +42,20 @@ public class CenterView extends AnchorPane{
         removeSemester.getStyleClass().add("addSemester");
         removeSemester.setMaxSize(1000, 40);
 
-        addKlausur = new Button("Zurücksetzen");
-        addKlausur.setPrefSize(200,40);
-        addKlausur.getStyleClass().add("buttons");
+        resetPlan = new Button("Zurücksetzen");
+        resetPlan.setPrefSize(200,40);
+        resetPlan.getStyleClass().add("buttons");
+        
+        addExam = new Button("Klausur hinzufügen");
+        addExam.setPrefSize(200,40);
+        addExam.getStyleClass().add("buttons");
 
         HBox.setHgrow(addSemester, Priority.ALWAYS);
-        HBox.setHgrow(addKlausur, Priority.ALWAYS);
+        HBox.setHgrow(resetPlan, Priority.ALWAYS);
         HBox.setHgrow(removeSemester, Priority.ALWAYS);
-        hBoxAdd.getChildren().addAll(addSemester,removeSemester, addKlausur);
+        HBox.setHgrow(addExam, Priority.ALWAYS);
+
+        hBoxAdd.getChildren().addAll(addSemester,removeSemester, resetPlan, addExam);
 
         AnchorPane.setLeftAnchor(hBoxAdd, 125.0);
         AnchorPane.setTopAnchor(hBoxAdd, 50.0);
@@ -106,12 +114,26 @@ public class CenterView extends AnchorPane{
     }
 
 	public Button getAddKlausur() {
-		return addKlausur;
+		return resetPlan;
 	}
 
 	public void setAddKlausur(Button addKlausur) {
-		this.addKlausur = addKlausur;
+		this.resetPlan = addKlausur;
 	}
+
+	public VBox getPlanPane() {
+		return planPane;
+	}
+
+	public Button getResetPlan() {
+		return resetPlan;
+	}
+
+	public Button getAddExam() {
+		return addExam;
+	}
+	
+	
 	
 	
     

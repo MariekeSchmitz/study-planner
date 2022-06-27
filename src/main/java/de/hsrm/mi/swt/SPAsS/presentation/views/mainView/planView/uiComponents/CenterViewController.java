@@ -58,6 +58,8 @@ public class CenterViewController extends ViewController{
     private Button resetButton;
     private Button addSemesterButton;
 	private Button removeSemesterButton;
+	private Button addExamButton;
+
 
     private DataFormat dataFormat =  new DataFormat("moduleCell");
     private List<SemesterList> semesterListViews;
@@ -88,6 +90,7 @@ public class CenterViewController extends ViewController{
     	resetButton = centerView.getAddKlausur();
     	addSemesterButton = centerView.getAddSemester();
 		removeSemesterButton = centerView.getRemoveSemester();
+		addExamButton = centerView.getAddExam();
     	
     	generateListView();
     	
@@ -114,6 +117,14 @@ public class CenterViewController extends ViewController{
 			
 
     	});
+    	
+    	addExamButton.addEventHandler(ActionEvent.ACTION, e -> {
+    		
+    		viewManager.getMainViewController().putExamViewOnStack();
+
+    	});
+    	
+    	
     	
 //    	addSemesterButton.addEventHandler(ActionEvent.ACTION, e -> {
 //    		

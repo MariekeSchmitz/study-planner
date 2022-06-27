@@ -43,10 +43,16 @@ public class CoursesRowController extends ViewController{
 				gradeInput.setText(Float.toString(course.getExam().getGrade()));
 			} else {
 				gradeInput.setText("");
-			}
+			}		
+			passedCheckbox.setVisible(false);
+			gradeInput.setVisible(true);
+	
 		} else {
 			gradeInput.setVisible(false);
+			passedCheckbox.setVisible(true);
 		}
+		
+		
 				
 		passedCheckbox.selectedProperty().addListener(new ChangeListener<Boolean>() {
 

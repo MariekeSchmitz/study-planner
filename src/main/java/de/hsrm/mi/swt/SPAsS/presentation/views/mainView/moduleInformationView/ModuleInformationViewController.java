@@ -45,6 +45,7 @@ public class ModuleInformationViewController extends ViewController{
     	rootView = moduleInformationView;
     	backButton = moduleInformationView.getBackButton();
     	
+    	System.out.println(moduleInformationView.getWidth());
      
     	initialise();
     }
@@ -53,9 +54,8 @@ public class ModuleInformationViewController extends ViewController{
     public void initialise() {
        
     	backButton.addEventHandler(ActionEvent.ACTION, e -> {
-    		mainViewController.removeView(Scenes.MODULE_INFORMATION_VIEW);
-    		
-
+    		mainViewController.transitionOut(Scenes.MODULE_INFORMATION_VIEW);
+    		Scenes.MODULE_INFORMATION_VIEW.setIn(false);
     	});        
     }
     

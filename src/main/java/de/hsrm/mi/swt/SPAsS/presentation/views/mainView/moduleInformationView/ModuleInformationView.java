@@ -41,8 +41,8 @@ public class ModuleInformationView extends AnchorPane{
         
     	moduleName = new Label("Modulname");
 		moduleName.getStyleClass().add("ModuleHeader");
-		moduleName.autosize();
-		moduleName.setMinWidth(Region.USE_PREF_SIZE);
+//		moduleName.autosize();
+//		moduleName.setMinWidth(Region.USE_PREF_SIZE);
 
     	category = new Label("category");
 		category.getStyleClass().add("categoryLabel");
@@ -113,7 +113,7 @@ public class ModuleInformationView extends AnchorPane{
 		this.getStylesheets().add(getClass().getResource("moduleInformationView.css").toExternalForm());
         this.setStyle( "-fx-background-color:rgb(255,255,255)");	
 		this.getStyleClass().add("test-border-red");
-        this.setMaxWidth(500);
+        this.setMaxWidth(600);
     }
 
 	public Label getModuleName() {

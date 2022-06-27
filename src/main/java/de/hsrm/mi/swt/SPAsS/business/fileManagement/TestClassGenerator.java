@@ -45,6 +45,8 @@ public class TestClassGenerator {
                 CategoryEnum infgestl = CategoryEnum.SONSTIGES;
                 CategoryEnum fql = CategoryEnum.INFORMATIK;
                 CategoryEnum mathl = CategoryEnum.MATHE;
+                
+                
 
                 List<Module> modules = new ArrayList<>();
                 Module prog1 = new Module("Programmieren 1", "Programmieren undso", 1, 1, OfferedTime.YEARLY,
@@ -169,7 +171,7 @@ public class TestClassGenerator {
                                 Arrays.asList(new Competence("Portfolio Medieninformatik")), infgestl, true, "");
                 Module bach = new Module("Bachelor Thesis", "Bachelor Thesis", 7, 7, OfferedTime.YEARLY, getCourses(),
                                 neededCompetences, 
-                                Arrays.asList(new Competence("Bachelor Thesis")),fql, true, "");
+                                Arrays.asList(new Competence("Bachelor Thesis")),fql, false, "Hier steht eine Warnung");
                 modules.addAll(Arrays.asList(wp3, port, bach));
 
                 return modules;
@@ -178,7 +180,7 @@ public class TestClassGenerator {
         private List<Course> getCourses(){
                 List<Course> courses = new ArrayList<>();
                 Course course1 = new Course("Vorlesung", 3, new Exam(ExamType.EXAM, OfferedTime.YEARLY, 0, false));
-                Course course2 = new Course("Praktikum", 3, new Exam(ExamType.EXAM, OfferedTime.YEARLY, 0, false));
+                Course course2 = new Course("Praktikum", 3, new Exam(ExamType.EXAM, OfferedTime.YEARLY, 0, true));
                 courses.add(course1);
                 courses.add(course2);
                 return courses;

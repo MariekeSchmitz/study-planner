@@ -7,6 +7,7 @@ import de.hsrm.mi.swt.SPAsS.presentation.views.ViewManager;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.scene.Scene;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 public class App extends Application {
@@ -17,6 +18,8 @@ public class App extends Application {
 	private ViewManager viewManager;
 	private Plan plan;
 	private TestClassGenerator testClass;
+	
+	private Scene scene;
 
 	
 
@@ -34,8 +37,9 @@ public class App extends Application {
 		}
 
 		try {
+			scene = new Scene(new Pane(), 1440, 1024);
 			viewManager = new ViewManager(this);
-			Scene scene = new Scene(viewManager.getRoot(),1440,1024);	
+			scene = new Scene(viewManager.getRoot(),1440,1024);	
 			primaryStage.setScene(scene);
 			primaryStage.show();
 			
@@ -71,6 +75,15 @@ public class App extends Application {
 		return plan;
 	}
 
+	public Scene getScene() {
+		return scene;
+	}
+
+	public void setScene(Scene scene) {
+		this.scene = scene;
+	}
+
+	
 	
 	
 

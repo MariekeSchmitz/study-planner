@@ -4,11 +4,19 @@ import de.hsrm.mi.swt.SPAsS.application.App;
 import de.hsrm.mi.swt.SPAsS.presentation.views.Scenes;
 import de.hsrm.mi.swt.SPAsS.presentation.views.ViewController;
 import de.hsrm.mi.swt.SPAsS.presentation.views.ViewManager;
+import de.hsrm.mi.swt.SPAsS.presentation.views.mainView.examView.ExamView;
 import de.hsrm.mi.swt.SPAsS.presentation.views.mainView.examView.ExamViewController;
+import de.hsrm.mi.swt.SPAsS.presentation.views.mainView.moduleInformationView.ModuleInformationView;
 import de.hsrm.mi.swt.SPAsS.presentation.views.mainView.moduleInformationView.ModuleInformationViewController;
 import de.hsrm.mi.swt.SPAsS.presentation.views.mainView.planView.PlanViewController;
+import de.hsrm.mi.swt.SPAsS.presentation.views.mainView.settingsView.SettingsView;
 import de.hsrm.mi.swt.SPAsS.presentation.views.mainView.settingsView.SettingsViewController;
+import javafx.animation.Interpolator;
+import javafx.animation.TranslateTransition;
+import javafx.geometry.Pos;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
+import javafx.util.Duration;
 import de.hsrm.mi.swt.SPAsS.business.planManagement.Module;
 
 public class MainViewController extends ViewController{
@@ -18,10 +26,19 @@ public class MainViewController extends ViewController{
     private ExamViewController examViewController;
     private ModuleInformationViewController moduleInformationViewController;
     private PlanViewController planViewController;
+    
+    private ModuleInformationView moduleInformationView;
+    private ExamView examView;
+    private SettingsView settingsView;
+
+    
+    private App app;
 
 
     public MainViewController(ViewManager viewManager, App app) {
         
+    	this.app = app;
+    	
         mainViewStack = new StackPane();
         settingsViewController = new SettingsViewController(viewManager, app);
         examViewController = new ExamViewController(viewManager, app);
@@ -31,16 +48,30 @@ public class MainViewController extends ViewController{
 //        mainViewStack.getChildren().add(settingsViewController.getRootView());
 //        mainViewStack.getChildren().add(examViewController.getRootView());
 //        mainViewStack.getChildren().add(moduleInformationViewController.getRootView());
-     
+        
+        this.moduleInformationView= (ModuleInformationView)moduleInformationViewController.getRootView(); 
+        this.examView = (ExamView)examViewController.getRootView();
+        this.settingsView = (SettingsView)settingsViewController.getRootView();
+        
+        
         rootView = mainViewStack;
         
         
+        initialise();
         
     }
+    
     @Override
     public void initialise() {
-        
-        
+      
+    	StackPane.setAlignment(moduleInformationView, Pos.CENTER_RIGHT);
+    	StackPane.setAlignment(examView, Pos.CENTER_RIGHT);
+    	moduleInformationView.setVisible(false);
+    	examView.setVisible(false);
+    	mainViewStack.getChildren().add(moduleInformationView);
+        mainViewStack.getChildren().add(examView);
+
+
     }
     
    
@@ -48,13 +79,13 @@ public class MainViewController extends ViewController{
     public void addView(Scenes scene) {
     	
     	if (scene == Scenes.MODULE_INFORMATION_VIEW) {
-       	 	mainViewStack.getChildren().add(moduleInformationViewController.getRootView());
+       	 	mainViewStack.getChildren().add(moduleInformationView);
 
     	} else if (scene == Scenes.EXAM_VIEW) {
-       	 	mainViewStack.getChildren().add(examViewController.getRootView());
+       	 	mainViewStack.getChildren().add(examView);
        	 	
     	} else if (scene == Scenes.SETTINGS_VIEW) {
-       	 	mainViewStack.getChildren().add(settingsViewController.getRootView());
+       	 	mainViewStack.getChildren().add(settingsView);
     	}
     	
     }
@@ -75,9 +106,78 @@ public class MainViewController extends ViewController{
     public void putModuleViewOnStack(Module module) {
     	
     	moduleInformationViewController.setModuleInformation(module);
-   	 	mainViewStack.getChildren().add(moduleInformationViewController.getRootView());
-
+    	
+    	if (!Scenes.MODULE_INFORMATION_VIEW.isIn()) {
+        	this.transitionIn(moduleInformationViewController, false);
+        	Scenes.MODULE_INFORMATION_VIEW.setIn(true);
+    	} 
+    	
+    	
+    	
+//   	 	mainViewStack.getChildren().add(moduleInformationViewController.getRootView());
     }
+    
+    
+    public void putExamViewOnStack() {
+    	
+    	this.transitionIn(examViewController, false);
+    	Scenes.EXAM_VIEW.setIn(true);
+    	
+    }
+    
+    
+
+    
+    private void transitionIn(ViewController viewController, boolean toRight) {
+    	
+    	Pane rootView = viewController.getRootView();
+    	
+    	rootView.setVisible(false);
+    	
+    	if(toRight) {
+        	rootView.setTranslateX(-rootView.getMaxWidth());
+    	} else {
+        	rootView.setTranslateX(rootView.getMaxWidth());
+    	}
+    	rootView.setVisible(true);  
+    	
+		TranslateTransition transitionAnim = new TranslateTransition();
+		transitionAnim.setNode(rootView);
+		transitionAnim.setDuration(Duration.millis(400));
+		transitionAnim.setInterpolator(Interpolator.EASE_OUT);
+		transitionAnim.setToX(0);
+		transitionAnim.playFromStart();
+	}
+    
+    public void transitionOut(Scenes scene) {
+		TranslateTransition transitionAnim = new TranslateTransition();
+		
+	
+		
+		switch (scene) {
+		case MODULE_INFORMATION_VIEW:
+			transitionAnim.setNode(moduleInformationView);
+			transitionAnim.setToX(moduleInformationView.getMaxWidth());
+			break;
+//		case SETTINGS_VIEW:
+//			transitionAnim.setNode(playView);
+//			transitionAnim.setToY(playView.getPrefHeight());
+//			break;
+		case EXAM_VIEW:
+			transitionAnim.setNode(examView);
+			transitionAnim.setToX(examView.getMaxWidth());
+			break;
+		}
+		
+		transitionAnim.setDuration(Duration.millis(200));
+		transitionAnim.setInterpolator(Interpolator.EASE_OUT);
+		transitionAnim.playFromStart();
+
+
+	}
+    
+    
+    
     
     
     
