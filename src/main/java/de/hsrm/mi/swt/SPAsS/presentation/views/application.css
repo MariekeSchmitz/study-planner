@@ -62,3 +62,27 @@
     -fx-border-width: 1;
     -fx-border-style: segments(10, 15, 15, 15) line-cap round;
 }
+
+.numberSemester {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+}
+
+.list-view {
+    -fx-background-color: transparent;
+}
+
+.list-view .scroll-bar .increment-arrow,
+.list-view .scroll-bar .decrement-arrow,
+.list-view .scroll-bar .increment-button,
+.list-view .scroll-bar .decrement-button {
+    -fx-padding: 0px;
+}
+
+.list-view .scroll-bar {
+    -fx-padding: 0px;
+}
+
+.list-cell:empty {
+    -fx-background-color: transparent;
+}

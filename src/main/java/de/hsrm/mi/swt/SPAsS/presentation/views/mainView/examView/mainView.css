@@ -4,26 +4,6 @@
     -fx-font-size: 50px;
 }
 
-
-/* .list-view {
-    -fx-background-color: transparent;
-}
-
-.list-view .scroll-bar .increment-arrow,
-.list-view .scroll-bar .decrement-arrow,
-.list-view .scroll-bar .increment-button,
-.list-view .scroll-bar .decrement-button {
-    -fx-padding: 0px;
-}
-
-.list-view .scroll-bar {
-    -fx-padding: 0px;
-}
-
-.list-cell {
-    -fx-background-color: transparent;
-} */
-
 .examListHeader {
     -fx-font-size: 15px;
     -fx-font-weight: bold;

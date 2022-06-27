@@ -31,12 +31,12 @@ public class ModuleView extends ListCell<Module>{
         
         labels = new VBox();
         labels.getChildren().addAll(moduleLabel,cpLabel);
+		labels.setPadding(new Insets(0, 10, 0,10));
         
         this.setGraphic(labels);
-
         this.setMaxHeight(50);
         this.setMaxWidth(150);
-   
+		this.setStyle("-fx-background-color: transparant;");
     }
     
     
@@ -56,14 +56,14 @@ public class ModuleView extends ListCell<Module>{
     		
     		
     		// TO DO 
-    		String s = "-fx-background-color:rgba("+red+","+blue+","+green+", 0.5)";
+    		String s = "-fx-background-color:rgba("+red+","+blue+","+green+", 0.5);";
     		
     		
     		if (item.isPassed()) {
-    			this.setStyle(s);
+    			labels.setStyle(s);
         		
     		} else {
-        		this.setBackground(new Background(new BackgroundFill(item.getCategories().getColor(),new CornerRadii(0),new Insets(0))));
+        		labels.setBackground(new Background(new BackgroundFill(item.getCategories().getColor(),new CornerRadii(0),new Insets(0))));
     		}
     		
     		

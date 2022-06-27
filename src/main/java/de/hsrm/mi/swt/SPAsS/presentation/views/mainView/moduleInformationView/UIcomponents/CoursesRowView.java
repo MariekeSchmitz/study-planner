@@ -23,14 +23,14 @@ public class CoursesRowView extends HBox{
 		passedCheck = new CheckBox();
 		
 		gradeInput = new TextField();
-		gradeInput.setStyle("-fx-font-size: 15px;");
-
+		gradeInput.setPrefWidth(50);
+		gradeInput.setMinWidth(50);
 		
 		this.setAlignment(Pos.CENTER_LEFT);
 		this.setPadding(new Insets(10, 10, 10, 10));
 		this.setPrefHeight(25);
 		this.setSpacing(10);
-		this.getChildren().addAll(courseName,passedCheck,gradeInput);
+		this.getChildren().addAll(courseName, passedCheck, gradeInput);
 		this.setStyle("-fx-background-color: rgb(196, 196, 196);");
 	}
 

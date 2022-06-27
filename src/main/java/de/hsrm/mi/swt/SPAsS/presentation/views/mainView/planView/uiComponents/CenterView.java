@@ -26,7 +26,6 @@ public class CenterView extends AnchorPane{
         vboxNumber.setAlignment(Pos.BOTTOM_CENTER);
 
         planPane = new VBox();
-        this.getStyleClass().add("test-border-red");
         planPane.setAlignment(Pos.BOTTOM_LEFT);
 
         hBoxAdd = new HBox();
@@ -38,7 +37,7 @@ public class CenterView extends AnchorPane{
         addSemester.setMaxSize(1000, 40);
 
         removeSemester = new Button("Semester löschen");
-        removeSemester.getStyleClass().add("removeSemester");
+        removeSemester.getStyleClass().add("addSemester");
         removeSemester.setMaxSize(1000, 40);
 
         addKlausur = new Button("Zurücksetzen");
@@ -58,7 +57,7 @@ public class CenterView extends AnchorPane{
         AnchorPane.setTopAnchor(addSemester, 50.0);
         AnchorPane.setRightAnchor(addSemester, 50.0);
         
-        AnchorPane.setLeftAnchor(planPane, 125.0);
+        AnchorPane.setLeftAnchor(planPane, 75.0);
         AnchorPane.setTopAnchor(planPane, 100.0);
         AnchorPane.setBottomAnchor(planPane, 50.0);
         AnchorPane.setRightAnchor(planPane, 50.0);
