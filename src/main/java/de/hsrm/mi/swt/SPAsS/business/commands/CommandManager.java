@@ -26,7 +26,7 @@ public class CommandManager {
 		index++;
 	}
 	
-	public void undo() {
+	public void undo() throws UndoRedoException{
 		if (index > 0) {
 			index--;
 			ICommand cmd = commands.get(index);
@@ -36,7 +36,7 @@ public class CommandManager {
 		}
 	}
 	
-	public void redo() {
+	public void redo() throws UndoRedoException{
 		if (index < commands.size()) {
 			ICommand cmd = commands.get(index);
 			cmd.execute();
