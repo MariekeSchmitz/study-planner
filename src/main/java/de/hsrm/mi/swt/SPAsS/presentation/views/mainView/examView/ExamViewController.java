@@ -84,9 +84,9 @@ public class ExamViewController extends ViewController{
 					public void handle(MouseEvent event) {
 
 						Module module = examListCell.getItem();
-    					module.setHasExtraExam(true);
+    					module.getAssociatedModule().getCourse(module.getCourses().get(0)).setHasExtraExam(true);
     					int semester = module.getSemesterDefault();
-    					relevantModules.remove(module);
+    					list.remove(module);
     					plan.addModule(semester, module);
     					viewManager.getMainViewController().getPlanViewController().getCenterViewController().generateListView();
     		        	viewManager.getMainViewController().transitionOut(Scenes.EXAM_VIEW);
