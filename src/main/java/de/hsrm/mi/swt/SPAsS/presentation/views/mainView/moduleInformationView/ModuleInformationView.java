@@ -35,7 +35,10 @@ public class ModuleInformationView extends AnchorPane{
     
     private Label coursesHeadline;
 
+    private Button deleteExam;
+    
     private Button backButton;
+   
 
     public ModuleInformationView() {
         
@@ -78,7 +81,12 @@ public class ModuleInformationView extends AnchorPane{
 		backButton.setPrefSize(100, 100);
         backButton.setMaxSize(50, 50);
 
-		box = new VBox(coursesHeadline, coursesBox, modulDescriptionHeadline, moduleDescriptionText, taughtCompetencesHeadline, taughtCompetencesVbox, neededCompetencesHeadline, neededCompetencesVbox);
+        deleteExam = new Button("Klausur entfernen");
+     
+        deleteExam.setPrefSize(300, 100);
+        deleteExam.setMaxSize(50, 50);
+        
+		box = new VBox(coursesHeadline, coursesBox, modulDescriptionHeadline, moduleDescriptionText, taughtCompetencesHeadline, taughtCompetencesVbox, neededCompetencesHeadline, neededCompetencesVbox, deleteExam);
 		box.setMaxWidth(400);
 		box.setSpacing(10);
 		box.setAlignment(Pos.TOP_LEFT);
@@ -253,6 +261,16 @@ public class ModuleInformationView extends AnchorPane{
 	public void setNeededCompetencesVbox(VBox neededCompetencesVbox) {
 		this.neededCompetencesVbox = neededCompetencesVbox;
 	}
+
+	public Button getDeleteExam() {
+		return deleteExam;
+	}
+
+	public void setDeleteExam(Button deleteExam) {
+		this.deleteExam = deleteExam;
+	}
+	
+	
 	
 	
 	

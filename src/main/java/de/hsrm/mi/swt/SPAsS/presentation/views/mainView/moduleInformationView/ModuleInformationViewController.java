@@ -26,6 +26,7 @@ public class ModuleInformationViewController extends ViewController{
 	private App app;
 	private Module module;
 	private Button backButton;
+	private Button deleteButton;
 	private ModuleInformationView moduleInformationView;
 	private MainViewController mainViewController;
 	private VBox coursesBox;
@@ -44,6 +45,7 @@ public class ModuleInformationViewController extends ViewController{
     	moduleInformationView = new ModuleInformationView();
     	rootView = moduleInformationView;
     	backButton = moduleInformationView.getBackButton();
+    	deleteButton = moduleInformationView.getDeleteExam();
     	
     	System.out.println(moduleInformationView.getWidth());
      
@@ -63,7 +65,7 @@ public class ModuleInformationViewController extends ViewController{
     	
     	this.module = module;
     	
-    	moduleInformationView.getModuleName().setText(Boolean.toString(module.isValid()));
+    	moduleInformationView.getModuleName().setText(module.getName());
     	moduleInformationView.getCategory().setText(module.getCategory().getName());
     	moduleInformationView.getCp().setText(Integer.toString(module.getCp()) + " CP");
     	
@@ -74,7 +76,6 @@ public class ModuleInformationViewController extends ViewController{
     		moduleInformationView.getWarningBox().setVisible(true);
     		moduleInformationView.getNoteWarningText().setText(module.getNote());
 			AnchorPane.setTopAnchor(moduleInformationView.getBox(), 300.0);
-
     	}
     	
     	coursesBox = moduleInformationView.getCoursesBox();
@@ -85,7 +86,7 @@ public class ModuleInformationViewController extends ViewController{
     	
     	for (Course course : courses) {
    
-    		courseHBox = (HBox)new CoursesRowController(course, app.getPlan()).getRootView();
+    		courseHBox = (HBox)new CoursesRowController(course, app.getPlan(), module.isHasExtraExam()).getRootView();
     		
     		coursesBox.getChildren().add(courseHBox);
    
@@ -108,6 +109,12 @@ public class ModuleInformationViewController extends ViewController{
 		}
     		    	
     	moduleInformationView.getModuleDescriptionText().setText(module.getDescription());
+    	
+    	if (module.getAssociatedModule() == null) {
+    		deleteButton.setVisible(false);
+    	} else {
+    		deleteButton.setVisible(true);
+    	}
     	
     }
 
