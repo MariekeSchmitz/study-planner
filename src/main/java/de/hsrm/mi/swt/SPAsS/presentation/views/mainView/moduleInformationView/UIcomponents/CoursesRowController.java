@@ -15,12 +15,14 @@ public class CoursesRowController extends ViewController{
 	private TextField gradeInput;
 	private Course course;
 	private Plan plan;
+	private boolean hasExtraExam;
 	
 	
-	public CoursesRowController (Course course, Plan plan) {
+	public CoursesRowController (Course course, Plan plan, boolean hasExtraExam) {
 		
 		this.course = course;
 		this.plan = plan;
+		this.hasExtraExam = hasExtraExam;
 		
 		coursesRowView = new CoursesRowView();
 		rootView = coursesRowView;
@@ -37,6 +39,12 @@ public class CoursesRowController extends ViewController{
 		
 		coursesRowView.getCourseName().setText(course.getName());
 		passedCheckbox.setSelected(course.getExam().getPassed());
+		
+		if (hasExtraExam) {
+			gradeInput.setVisible(false);
+			passedCheckbox.setVisible(false);
+		}
+		
 		
 		if (course.getExam().isGradeAvailable()) {
 			if (course.getExam().getGrade() != 0) {
