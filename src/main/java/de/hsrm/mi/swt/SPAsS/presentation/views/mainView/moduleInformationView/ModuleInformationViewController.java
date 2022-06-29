@@ -58,7 +58,21 @@ public class ModuleInformationViewController extends ViewController{
     	backButton.addEventHandler(ActionEvent.ACTION, e -> {
     		mainViewController.transitionOut(Scenes.MODULE_INFORMATION_VIEW);
     		Scenes.MODULE_INFORMATION_VIEW.setIn(false);
-    	});        
+    	});  
+    	
+    	deleteButton.addEventHandler(ActionEvent.ACTION, e -> {
+    		
+    		app.getPlan().removeModule(module.getSemesterCurrent(), module);
+    		// noch zu ExamView wieder hinzufügen
+    		Module associatedModule = module.getAssociatedModule();
+    		Course examCourse = module.getCourses().get(0);
+    		associatedModule.getCourses().add(examCourse);
+    		associatedModule.setHasExtraExam(false);
+    		mainViewController.getPlanViewController().getCenterViewController().generateListView();
+    		mainViewController.transitionOut(Scenes.MODULE_INFORMATION_VIEW);
+
+    	}); 
+    	
     }
     
     public void setModuleInformation(Module module) {

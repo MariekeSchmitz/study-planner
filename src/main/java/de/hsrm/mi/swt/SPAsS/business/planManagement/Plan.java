@@ -252,9 +252,15 @@ public class Plan {
 		this.numberSemesterDefault = numberSemesterDefault;
 	}
 	
+	public void addModule (int semester, Module module){
+		this.moduleMap.get(semester).add(module);
+		this.moduleList.add(module);
+	}
 	
+	public void removeModule (int semester, Module module){
+		this.moduleMap.get(semester).remove(module);
+		this.moduleList.remove(module);
+	}
 	
-    
-    
 
 }

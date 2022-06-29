@@ -175,6 +175,40 @@ public class MainViewController extends ViewController{
 
 
 	}
+
+	public SettingsViewController getSettingsViewController() {
+		return settingsViewController;
+	}
+
+	public void setSettingsViewController(SettingsViewController settingsViewController) {
+		this.settingsViewController = settingsViewController;
+	}
+
+	public ExamViewController getExamViewController() {
+		return examViewController;
+	}
+
+	public void setExamViewController(ExamViewController examViewController) {
+		this.examViewController = examViewController;
+	}
+
+	public ModuleInformationViewController getModuleInformationViewController() {
+		return moduleInformationViewController;
+	}
+
+	public void setModuleInformationViewController(ModuleInformationViewController moduleInformationViewController) {
+		this.moduleInformationViewController = moduleInformationViewController;
+	}
+
+	public PlanViewController getPlanViewController() {
+		return planViewController;
+	}
+
+	public void setPlanViewController(PlanViewController planViewController) {
+		this.planViewController = planViewController;
+	}
+    
+    
     
     
     

@@ -18,9 +18,11 @@ import de.hsrm.mi.swt.SPAsS.presentation.views.ViewManager;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.input.MouseEvent;
 import javafx.util.Callback;
 
 public class ExamViewController extends ViewController{
@@ -74,7 +76,27 @@ public class ExamViewController extends ViewController{
 
             @Override
             public ListCell<Module> call(ListView<Module> param) {
-                return new ExamListCell();
+                
+            	ExamListCell examListCell = new ExamListCell();
+            	
+            	examListCell.setOnMouseClicked(new EventHandler<MouseEvent>() {
+					@Override
+					public void handle(MouseEvent event) {
+
+						Module module = examListCell.getItem();
+    					module.setHasExtraExam(true);
+    					int semester = module.getSemesterDefault();
+    					relevantModules.remove(module);
+    					plan.addModule(semester, module);
+    					viewManager.getMainViewController().getPlanViewController().getCenterViewController().generateListView();
+    		        	viewManager.getMainViewController().transitionOut(Scenes.EXAM_VIEW);
+
+    					System.out.println("on click");
+
+					}
+				});   
+            	
+            	return examListCell;
             }
                 
         });
@@ -101,8 +123,7 @@ public class ExamViewController extends ViewController{
         				
         				if (course.getExam().getExamType() == ExamType.EXAM) {
         					
-        					module.setHasExtraExam(true);
-        					tempModule = new Module(module.getName(), module.getDescription(), module.getSemesterDefault(), module.getSemesterCurrent(), OfferedTime.BI_YEARLY, Arrays.asList(course), module.getNeededCompetences(), module.getTaughtCompetences(), module.getCategory(), true, "", module);
+        					tempModule = new Module("Klausur - "+module.getName(), module.getDescription(), module.getSemesterDefault(), module.getSemesterCurrent(), OfferedTime.BI_YEARLY, Arrays.asList(course), module.getNeededCompetences(), module.getTaughtCompetences(), module.getCategory(), true, "", module);
         					relevantModules.add(tempModule);
         					
         				}

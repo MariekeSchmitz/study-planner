@@ -161,7 +161,7 @@ public class CenterViewController extends ViewController implements PropertyChan
 
 	}
 
-	private void generateListView() {
+	public void generateListView() {
 
 		SemesterList semesterListView;
 

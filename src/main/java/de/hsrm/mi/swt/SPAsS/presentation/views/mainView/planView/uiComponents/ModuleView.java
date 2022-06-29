@@ -64,12 +64,14 @@ public class ModuleView extends ListCell<Module>{
     		
     		
     		// TO DO 
-    		String s = "-fx-background-color:rgba("+red+","+blue+","+green+", 0.5);";
+    		String colorPassed = "-fx-background-color:rgba("+red+","+blue+","+green+", 0.5);";
+    		String onlyExam = "-fx-background-color:rgb(200,200,200)";
     		
     		
-    		if (item.isPassed()) {
-    			labels.setStyle(s);
-        		
+    		if (item.getAssociatedModule() != null) {
+    			labels.setStyle(onlyExam);
+    		} else if (item.isPassed()) {
+    			labels.setStyle(colorPassed);
     		} else {
         		labels.setBackground(new Background(new BackgroundFill(item.getCategories().getColor(),new CornerRadii(0),new Insets(0))));
     		}
