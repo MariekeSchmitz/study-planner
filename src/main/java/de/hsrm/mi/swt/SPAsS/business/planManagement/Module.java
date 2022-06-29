@@ -1,5 +1,7 @@
 package de.hsrm.mi.swt.SPAsS.business.planManagement;
 
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 import java.beans.Transient;
 import java.io.Serializable;
 import java.util.List;
@@ -16,7 +18,7 @@ public class Module {
 
 	private String name; 
 	private String description;
-	private SimpleIntegerProperty semesterCurrent;
+	private int semesterCurrent;
 	private int semesterDefault;
 	private OfferedTime offeredIn;
 	private int cp = 0;
@@ -29,7 +31,8 @@ public class Module {
 	private boolean valid = true;
 	private String note = "";
 		
-	
+    private transient final PropertyChangeSupport pcs = new PropertyChangeSupport(this);
+
 	
 	public Module() {
 		
@@ -51,7 +54,7 @@ public class Module {
 		this.category = category;
 		
 		
-		this.semesterCurrent = new SimpleIntegerProperty(semesterCurrent);
+		this.semesterCurrent = semesterCurrent;
 		this.passed = false;
 		this.coursesPassed();
 		
@@ -61,6 +64,14 @@ public class Module {
 		
 	}
 
+	public void addPropertyChangeListener(PropertyChangeListener listener) {
+        this.pcs.addPropertyChangeListener(listener);
+    }
+
+    public void removePropertyChangeListener(PropertyChangeListener listener) {
+        this.pcs.removePropertyChangeListener(listener);
+    }
+   
 
 	public void move(int newSemester) {
 		CommandManager.getInstance().execAndPush(new MoveSemesterCommand(this, newSemester));
@@ -74,7 +85,7 @@ public class Module {
 	public void coursesPassed(){
 		boolean tempPassed = true;
 		for (Course course:courses){
-			if (!course.getExam().getPassed().get()){
+			if (!course.getExam().getPassed()){
 				tempPassed = false;
 				break;
 			}
@@ -137,13 +148,19 @@ public class Module {
 		this.semesterDefault = semesterDefault;
 	}
 	public int getSemesterCurrent() {
-		return semesterCurrent.get();
+		return semesterCurrent;
 	}
 	public void setSemesterCurrent(int semesterCurrent) {
-		this.semesterCurrent.set(semesterCurrent);
+		
+		var pre = this.semesterCurrent;
+		this.semesterCurrent = semesterCurrent;
+		this.pcs.firePropertyChange("semesterCurrent", pre, this.semesterCurrent);
+		System.out.println("semesterCurrent - set "+this.semesterCurrent);
+		
+		
 	}
 	
-	public SimpleIntegerProperty getSemesterCurrentProperty () {
+	public int getSemesterCurrentProperty () {
 		return this.semesterCurrent;
 	}
 	
@@ -227,13 +244,6 @@ public class Module {
 		this.category = category;
 	}
 
-
-
-	
-
-	public void setSemesterCurrent(SimpleIntegerProperty semesterCurrent) {
-		this.semesterCurrent = semesterCurrent;
-	}
 
 	public void setPassed(boolean passed) {
 		this.passed = passed;

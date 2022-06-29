@@ -1,12 +1,15 @@
 package de.hsrm.mi.swt.SPAsS.presentation.views.mainView.planView.uiComponents;
 
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+
 import de.hsrm.mi.swt.SPAsS.business.planManagement.Plan;
 import de.hsrm.mi.swt.SPAsS.presentation.views.ViewController;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.control.Label;
 
-public class TopCenterViewController extends ViewController{
+public class TopCenterViewController extends ViewController  implements PropertyChangeListener{
 
 	private TopCenterView topCenterView;
 	private Plan plan;
@@ -15,6 +18,8 @@ public class TopCenterViewController extends ViewController{
     public TopCenterViewController(Plan plan) {
     	
         this.plan = plan;
+        plan.addPropertyChangeListener(this);
+
     	
         topCenterView = new TopCenterView();
         rootView = topCenterView;
@@ -27,31 +32,38 @@ public class TopCenterViewController extends ViewController{
     @Override
     public void initialise() {
         
-    	if (plan.getAverageGrade().get() == 0.0f) {
+    	if (plan.getAverageGrade() == 0.0f) {
     		gradeAverage.setText("Sobald du eine Prüfung bestanden hast, findest du hier deinen Notendurchschnitt.");
     	} else {
-        	gradeAverage.setText("Aktueller Notendurchschnitt: " + Float.toString(plan.getAverageGrade().get()));
+        	gradeAverage.setText("Aktueller Notendurchschnitt: " + Float.toString(plan.getAverageGrade()));
     	}
     	
     	
-    	plan.getAverageGrade().addListener(new ChangeListener<Number>() {
-
-			@Override
-			public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-				
-				System.out.println("Average Grade changed");
-				
-				if (plan.getAverageGrade().get() == 0.0f) {
-		    		gradeAverage.setText("Sobald du eine Prüfung bestanden hast, findest du hier deinen Notendurchschnitt.");
-		    	} else {
-		        	gradeAverage.setText("Aktueller Notendurchschnitt: " + Float.toString(plan.getAverageGrade().get()));
-		    	}
-				
-			}
-				
-			
-		});
+    	
+    	
+    
         
     }
+
+	@Override
+	public void propertyChange(PropertyChangeEvent event) {
+		
+		// UI bei Änderung des zugehörigen Domänenobjekts (Kringel) aktualisieren
+		System.out.println("AverageGrade Update " + event);
+		
+		switch (event.getPropertyName()) {
+			case "average":
+				if (plan.getAverageGrade() == 0.0f) {
+		    		gradeAverage.setText("Sobald du eine Prüfung bestanden hast, findest du hier deinen Notendurchschnitt.");
+		    	} else {
+		        	gradeAverage.setText("Aktueller Notendurchschnitt: " + Float.toString(plan.getAverageGrade()));
+		    	}
+			break;
+			
+			default:
+				throw new IllegalArgumentException("UnbehandeltesEvent " + event);
+		}
+		
+	}
     
 }

@@ -1,5 +1,7 @@
 package de.hsrm.mi.swt.SPAsS.presentation.views.mainView.planView.uiComponents;
 
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -48,7 +50,7 @@ import javafx.scene.layout.VBox;
 import javafx.util.Callback;
 
 
-public class CenterViewController extends ViewController{
+public class CenterViewController extends ViewController implements PropertyChangeListener{
 
     private CenterView centerView;
     private Plan plan;
@@ -84,6 +86,10 @@ public class CenterViewController extends ViewController{
     	
     	this.semesterListViews = new LinkedList<>();
     	this.viewManager = viewManager;
+    	
+        
+
+    	
     	
     	planBox = centerView.getPlanBox();
     	
@@ -167,33 +173,16 @@ public class CenterViewController extends ViewController{
     		
     		for (Module module : moduleList) {
     			
-    			module.getSemesterCurrentProperty().addListener(new ChangeListener<Number>() {
-
-					@Override
-					public void changed(ObservableValue<? extends Number> observable, Number oldValue,
-							Number newValue) {
-						
-						moduleMapWithObservables.get(oldValue).remove(module);
-						moduleMapWithObservables.get(newValue).add(module);
-
-						System.out.println("ChangeListener Semesterzahl done");
-						
-					}
-				});
+    			module.addPropertyChangeListener(this);
+    			
     			
     			for (Course course : module.getCourses()) {
     				
-    				course.getExam().getPassed().addListener(new ChangeListener<Boolean>() {
-
-    					@Override
-    					public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue,
-    							Boolean newValue) {
-    						
-    						plan.calculateAverage();
-    						generateListView();
-    						
-    					}
-    				});
+    				
+    				
+    				course.getExam().addPropertyChangeListener(this);
+    				
+    				
     			}
     			
     			
@@ -322,6 +311,35 @@ public class CenterViewController extends ViewController{
     	}
     	
     }
+
+	@Override
+	public void propertyChange(PropertyChangeEvent event) {
+		
+		
+		switch (event.getPropertyName()) {
+			case "semesterCurrent":
+				
+				Module module = (Module)event.getSource();
+
+				System.out.println("currentSemester Update " + event);
+				moduleMapWithObservables.get(event.getOldValue()).remove(module);
+				moduleMapWithObservables.get(event.getNewValue()).add(module);	
+			break;
+			
+			case "bestanden": 
+				plan.calculateAverage();
+				generateListView();
+				
+			break;
+			
+			default:
+				throw new IllegalArgumentException("UnbehandeltesEvent " + event);
+		}
+		
+		
+	
+		
+	}
 
 }
  

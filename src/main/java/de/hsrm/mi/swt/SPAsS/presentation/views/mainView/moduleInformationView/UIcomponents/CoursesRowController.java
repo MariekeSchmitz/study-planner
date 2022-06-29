@@ -36,7 +36,7 @@ public class CoursesRowController extends ViewController{
 	public void initialise() {
 		
 		coursesRowView.getCourseName().setText(course.getName());
-		passedCheckbox.setSelected(course.getExam().getPassed().get());
+		passedCheckbox.setSelected(course.getExam().getPassed());
 		
 		if (course.getExam().isGradeAvailable()) {
 			if (course.getExam().getGrade() != 0) {
