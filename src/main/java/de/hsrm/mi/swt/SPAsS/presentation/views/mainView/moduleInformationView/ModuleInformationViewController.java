@@ -67,7 +67,7 @@ public class ModuleInformationViewController extends ViewController{
     		Module associatedModule = module.getAssociatedModule();
     		Course examCourse = module.getCourses().get(0);
     		associatedModule.getCourses().add(examCourse);
-    		associatedModule.setHasExtraExam(false);
+    		examCourse.setHasExtraExam(false);
     		mainViewController.getPlanViewController().getCenterViewController().generateListView();
     		mainViewController.transitionOut(Scenes.MODULE_INFORMATION_VIEW);
 
@@ -100,7 +100,7 @@ public class ModuleInformationViewController extends ViewController{
     	
     	for (Course course : courses) {
    
-    		courseHBox = (HBox)new CoursesRowController(course, app.getPlan(), module.isHasExtraExam()).getRootView();
+    		courseHBox = (HBox)new CoursesRowController(course, app.getPlan(), course.isHasExtraExam(), module).getRootView();
     		
     		coursesBox.getChildren().add(courseHBox);
    

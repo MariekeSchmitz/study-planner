@@ -30,7 +30,7 @@ public class Module {
 	private CategoryEnum category;
 	private boolean valid = true;
 	private String note = "";
-	private boolean hasExtraExam;
+//	private boolean hasExtraExam;
 	private Module associatedModule = null;
 		
     private transient final PropertyChangeSupport pcs = new PropertyChangeSupport(this);
@@ -40,31 +40,31 @@ public class Module {
 		
 	}
 	
-	public Module(String name, String description, int semesterDefault, int semesterCurrent, OfferedTime offeredIn,
-			List<Course> courses, List<Competence> neededCompetences, List <Competence> taughtCompetences, CategoryEnum category, boolean valid, String note, boolean hasExtraExam)  {
-		this.name = name;
-		
-		this.description = description;
-		this.semesterDefault = semesterDefault;
-		this.offeredIn = offeredIn;
-		
-		this.courses = courses;
-		this.neededCompetences = neededCompetences;
-		this.taughtCompetences = taughtCompetences;
-		this.valid = valid;
-		this.note = note;
-		this.category = category;
-		this.hasExtraExam = hasExtraExam;
-		
-		this.semesterCurrent = semesterCurrent;
-		this.passed = false;
-		this.coursesPassed();
-		
-		for (Course course : this.courses) {
-			this.cp += course.getCp();
-		}
-		
-	}
+//	public Module(String name, String description, int semesterDefault, int semesterCurrent, OfferedTime offeredIn,
+//			List<Course> courses, List<Competence> neededCompetences, List <Competence> taughtCompetences, CategoryEnum category, boolean valid, String note, boolean hasExtraExam)  {
+//		this.name = name;
+//		
+//		this.description = description;
+//		this.semesterDefault = semesterDefault;
+//		this.offeredIn = offeredIn;
+//		
+//		this.courses = courses;
+//		this.neededCompetences = neededCompetences;
+//		this.taughtCompetences = taughtCompetences;
+//		this.valid = valid;
+//		this.note = note;
+//		this.category = category;
+////		this.hasExtraExam = hasExtraExam;
+//		
+//		this.semesterCurrent = semesterCurrent;
+//		this.passed = false;
+//		this.coursesPassed();
+//		
+//		for (Course course : this.courses) {
+//			this.cp += course.getCp();
+//		}
+//		
+//	}
 	
 	public Module(String name, String description, int semesterDefault, int semesterCurrent, OfferedTime offeredIn,
 			List<Course> courses, List<Competence> neededCompetences, List <Competence> taughtCompetences, CategoryEnum category, boolean valid, String note)  {
@@ -83,7 +83,7 @@ public class Module {
 		
 		this.semesterCurrent = semesterCurrent;
 		this.passed = false;
-		this.hasExtraExam = false;
+//		this.hasExtraExam = false;
 		this.coursesPassed();
 		
 		for (Course course : this.courses) {
@@ -109,7 +109,6 @@ public class Module {
 		
 		this.semesterCurrent = semesterCurrent;
 		this.passed = false;
-		this.hasExtraExam = false;
 		this.associatedModule = associatedModule;
 		this.coursesPassed();
 		
@@ -176,6 +175,16 @@ public class Module {
 
 	public List<Course> getCourses() {
 		return courses;
+	}
+	
+	public Course getCourse(Course c) {
+		
+		for(Course ci : this.courses) {
+			if(c.equals(ci)) {
+				return ci;
+			}
+		}
+		return null;
 	}
 
 
@@ -321,13 +330,13 @@ public class Module {
 		this.taughtCompetences = taughtCompetences;
 	}
 
-	public boolean isHasExtraExam() {
-		return hasExtraExam;
-	}
-
-	public void setHasExtraExam(boolean hasExtraExam) {
-		this.hasExtraExam = hasExtraExam;
-	}
+//	public boolean isHasExtraExam() {
+//		return hasExtraExam;
+//	}
+//
+//	public void setHasExtraExam(boolean hasExtraExam) {
+//		this.hasExtraExam = hasExtraExam;
+//	}
 
 	public Module getAssociatedModule() {
 		return associatedModule;

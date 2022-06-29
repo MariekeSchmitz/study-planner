@@ -1,6 +1,7 @@
 package de.hsrm.mi.swt.SPAsS.presentation.views.mainView.moduleInformationView.UIcomponents;
 
 import de.hsrm.mi.swt.SPAsS.business.planManagement.Course;
+import de.hsrm.mi.swt.SPAsS.business.planManagement.Module;
 import de.hsrm.mi.swt.SPAsS.business.planManagement.Plan;
 import de.hsrm.mi.swt.SPAsS.presentation.views.ViewController;
 import javafx.beans.value.ChangeListener;
@@ -16,10 +17,12 @@ public class CoursesRowController extends ViewController{
 	private Course course;
 	private Plan plan;
 	private boolean hasExtraExam;
+	private Module module;
 	
 	
-	public CoursesRowController (Course course, Plan plan, boolean hasExtraExam) {
+	public CoursesRowController (Course course, Plan plan, boolean hasExtraExam, Module module) {
 		
+		this.module = module;
 		this.course = course;
 		this.plan = plan;
 		this.hasExtraExam = hasExtraExam;
@@ -40,25 +43,37 @@ public class CoursesRowController extends ViewController{
 		coursesRowView.getCourseName().setText(course.getName());
 		passedCheckbox.setSelected(course.getExam().getPassed());
 		
-		if (hasExtraExam) {
-			gradeInput.setVisible(false);
-			passedCheckbox.setVisible(false);
-		}
 		
-		
-		if (course.getExam().isGradeAvailable()) {
-			if (course.getExam().getGrade() != 0) {
-				gradeInput.setText(Float.toString(course.getExam().getGrade()));
-			} else {
-				gradeInput.setText("");
-			}		
-			passedCheckbox.setVisible(false);
+		if (module.getAssociatedModule() != null) {
 			gradeInput.setVisible(true);
-	
+			passedCheckbox.setVisible(false);
 		} else {
-			gradeInput.setVisible(false);
-			passedCheckbox.setVisible(true);
+			if (hasExtraExam) {
+				gradeInput.setVisible(false);
+				passedCheckbox.setVisible(false);
+				
+			} else {
+				if (course.getExam().isGradeAvailable()) {
+					if (course.getExam().getGrade() != 0) {
+						gradeInput.setText(Float.toString(course.getExam().getGrade()));
+					} else {
+						gradeInput.setText("");
+					}		
+					passedCheckbox.setVisible(false);
+					gradeInput.setVisible(true);
+			
+				} else {
+					gradeInput.setVisible(false);
+					passedCheckbox.setVisible(true);
+				}
+			}
 		}
+		
+		
+		
+		
+		
+		
 		
 		
 				
