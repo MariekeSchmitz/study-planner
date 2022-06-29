@@ -43,6 +43,7 @@ public class Plan {
         this.numberSemesterDefault = calculateNumberSemesterDefault();
         
         calculateAverage();
+        validate();
         
     }
     
@@ -193,6 +194,7 @@ public class Plan {
     	
     	
     	for (Module module : moduleList) {
+    		module.setValid(true);
     		module.resetNote();
     	}
     	

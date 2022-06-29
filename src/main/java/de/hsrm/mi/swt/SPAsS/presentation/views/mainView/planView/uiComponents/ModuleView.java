@@ -37,6 +37,8 @@ public class ModuleView extends ListCell<Module>{
         this.setMaxHeight(50);
         this.setMaxWidth(150);
 		this.setStyle("-fx-background-color: transparent;");
+		
+		
     }
     
     
@@ -45,6 +47,12 @@ public class ModuleView extends ListCell<Module>{
     	super.updateItem(item, empty);
     	
     	if (!empty) {
+    		
+    		if (this.getItem().isValid()) {
+    			this.setId("valid");
+    		} else {
+    			this.setId("invalid");
+    		}
     		
     		moduleLabel.setText(item.getName());
     		cpLabel.setText(Integer.toString(item.getCp()));
@@ -70,6 +78,8 @@ public class ModuleView extends ListCell<Module>{
     		this.setGraphic(labels);
     		
     	} else{
+    		
+    		this.setId("valid");
     		this.setGraphic(null);
     	}
     }

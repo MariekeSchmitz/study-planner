@@ -70,8 +70,12 @@ public class ProgressValidator implements Validator{
 				module.setValid(false);
     			module.setNote(this.message);
     		} else {
-				module.setValid(true);
-    			module.resetNote();
+    			
+    			if (module.isValid()) {
+    				module.setValid(true);
+        			module.resetNote();
+    			}
+			
 			}
     		
     		progressValid = true;
