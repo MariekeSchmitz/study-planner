@@ -37,8 +37,6 @@ public class TestClassGenerator {
 
         private List<Module> getModules() {
                 List<Competence> neededCompetences = new ArrayList<>();
-                Competence c = new Competence("KernKompetenz1");
-                neededCompetences.add(c);
 
                 CategoryEnum infl = CategoryEnum.GESTALTUNG;
                 CategoryEnum gestl = CategoryEnum.INFORMATIK;
@@ -100,10 +98,10 @@ public class TestClassGenerator {
                 Module angeMath = new Module("Angewandte Mathematik", "Basically Stochastik", 3, 3, OfferedTime.YEARLY,
                                 getCourses(), Arrays.asList(new Competence("Analysis"), new Competence("Lineare Algebra")),
                                 Arrays.asList(new Competence("Angewandte Mathematik")),mathl, true, "");
-                Module data = new Module("Datenbanken", "Umgang mit DBs", 3, 3, OfferedTime.YEARLY, getCourses(),
+                Module data = new Module("Datenbanksysteme", "Umgang mit DBs", 3, 3, OfferedTime.YEARLY, getCourses(),
                                 Arrays.asList(new Competence("Lineare Algebra"), new Competence("Programmieren 2"),
                                                 new Competence("Algorithmen und Datenstrukturen")),
-                                                Arrays.asList(new Competence("Datenbanken")),infl, true, "");
+                                                Arrays.asList(new Competence("Datenbanksysteme")),infl, true, "");
                 Module auto = new Module("Automatentheorie und formale Sprachen", "Umgang mit DBs", 3, 3,
                                 OfferedTime.YEARLY,
                                 getCourses(), Arrays.asList(new Competence("Analysis"),
@@ -114,22 +112,22 @@ public class TestClassGenerator {
                 Module swt = new Module("Softwaretechnik", "Mega Advanced Programmiertheorie", 4, 4, OfferedTime.YEARLY,
                                 getCourses(),
                                 Arrays.asList(new Competence("Programmieren 2"), new Competence("Programmieren 3"),
-                                                new Competence("Entwicklung interaktiver Benutzeroberflaechen"),
+                                                new Competence("Entwicklung interaktiver Benutzungsoberflaechen"),
                                                 new Competence("Datenbanksysteme")),
                                                 Arrays.asList(new Competence("Softwaretechnik")),infl, true, "");
                 Module cg = new Module("Computergrafik", "Krasse Grafikgeschichten mit Schwani", 4, 4,
                                 OfferedTime.YEARLY, getCourses(),
                                 Arrays.asList(new Competence("Lineare Algebra"), new Competence("Programmieren 3"),
-                                                new Competence("Entwicklung interaktiver Benutzeroberflaechen")),
+                                                new Competence("Entwicklung interaktiver Benutzungsoberflaechen")),
                                                 Arrays.asList(new Competence("Computergrafik")),infl, true, "");
                 Module animus = new Module("Animation", "Leblose Sachen beleben", 4, 4, OfferedTime.YEARLY, getCourses(),
                                 Arrays.asList(new Competence("Gestaltung elektronischer Medien"),
-                                                new Competence("Entwicklung interaktiver Benutzeroberflaechen")),
+                                                new Competence("Entwicklung interaktiver Benutzungsoberflaechen")),
                                                 Arrays.asList(new Competence("Animation")),gestl, true, "");
                 Module web = new Module("Webbasierte Anwendungen", "Webseiten bauen mit Backendanbindung", 4, 4,
                                 OfferedTime.YEARLY, getCourses(),
                                 Arrays.asList(new Competence("Programmieren 3"), new Competence("Datenbanksysteme"),
-                                                new Competence("Entwicklung interaktiver Benutzeroberflaechen")),
+                                                new Competence("Entwicklung interaktiver Benutzungsoberflaechen")),
                                                 Arrays.asList(new Competence("Webbasierte Anwendungen")),infl, true, "");
                 Module netz = new Module("Rechnernetze und Betriebssysteme", "Eigentlich nur Protokolle", 4, 4,
                                 OfferedTime.YEARLY, getCourses(), Arrays.asList(new Competence("Programmieren 3")),
@@ -146,7 +144,7 @@ public class TestClassGenerator {
                                 OfferedTime.YEARLY, getCourses(),
                                 Arrays.asList(new Competence("Softwaretechnik"),
                                                 new Competence("Gestaltung elektronischer Medien"),
-                                                new Competence("Entwicklung interaktiver Benutzeroberflaechen")),
+                                                new Competence("Entwicklung interaktiver Benutzungsoberflaechen")),
                                                 Arrays.asList(new Competence("Mensch-Computer-Interaktion")),gestl, true, "");
                 Module wp1 = new Module("Wahlpflichtliste Gestaltung und Informatik", "Wahlpflicht", 5, 5,
                                 OfferedTime.YEARLY, getCourses(), neededCompetences, 
@@ -171,7 +169,7 @@ public class TestClassGenerator {
                                 Arrays.asList(new Competence("Portfolio Medieninformatik")), infgestl, true, "");
                 Module bach = new Module("Bachelor Thesis", "Bachelor Thesis", 7, 7, OfferedTime.YEARLY, getCourses(),
                                 neededCompetences, 
-                                Arrays.asList(new Competence("Bachelor Thesis")),fql, false, "Hier steht eine Warnung");
+                                Arrays.asList(new Competence("Bachelor Thesis")),fql, true, "Hier steht eine Warnung");
                 modules.addAll(Arrays.asList(wp3, port, bach));
 
                 return modules;
