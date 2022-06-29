@@ -188,6 +188,21 @@ public class Plan {
     public void setValidatorList(List<Validator> validatorList) {
         this.validatorList = validatorList;
     }
+    
+    public void validate () {
+    	
+    	
+    	for (Module module : moduleList) {
+    		module.resetNote();
+    	}
+    	
+    	for (Validator validator : this.validatorList) {
+    		validator.validate(this);
+    	}
+    	
+    	
+    	
+    }
 
     public int getNumberSemester() {
         return numberSemesterCurrent;
