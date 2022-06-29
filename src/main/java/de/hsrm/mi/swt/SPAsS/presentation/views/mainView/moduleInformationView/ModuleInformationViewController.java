@@ -63,7 +63,7 @@ public class ModuleInformationViewController extends ViewController{
     	
     	this.module = module;
     	
-    	moduleInformationView.getModuleName().setText(module.getName());
+    	moduleInformationView.getModuleName().setText(Boolean.toString(module.isValid()));
     	moduleInformationView.getCategory().setText(module.getCategory().getName());
     	moduleInformationView.getCp().setText(Integer.toString(module.getCp()) + " CP");
     	
