@@ -17,6 +17,7 @@ public class CompetenceValidatorTest {
 
     @Test
     public void testValidatorForValidPlan(){
+        resetModuleValidity();
         cv.validate(p);
         for (Module m : p.getModuleList()) {
             assertTrue(m.isValid());
@@ -25,17 +26,27 @@ public class CompetenceValidatorTest {
 
     @Test
     public void testValidatorForInvalidPlan(){
+        resetModuleValidity();
         p.getModuleByName("Analysis").move(5);
         p.getModuleByName("Lineare Algebra").move(5);
         cv.validate(p);
         assertFalse(p.getModuleByName("Angewandte Mathematik").isValid()); 
+        resetModuleValidity();
         p.getModuleByName("Lineare Algebra").move(2); 
         cv.validate(p);
         assertFalse(p.getModuleByName("Angewandte Mathematik").isValid()); 
+        resetModuleValidity();
         p.getModuleByName("Analysis").move(2);      
         cv.validate(p);  
         assertTrue(p.getModuleByName("Angewandte Mathematik").isValid());      
     }
+
+private void resetModuleValidity(){
+    for(Module m : p.getModuleList()){
+        m.setValid(true);
+    }
+    p.updateModuleMap();
+}
 
     
 }
