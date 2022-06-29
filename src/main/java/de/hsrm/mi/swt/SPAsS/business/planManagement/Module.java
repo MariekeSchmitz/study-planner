@@ -157,7 +157,6 @@ public class Module {
 		this.pcs.firePropertyChange("semesterCurrent", pre, this.semesterCurrent);
 		System.out.println("semesterCurrent - set "+this.semesterCurrent);
 		
-		
 	}
 	
 	public int getSemesterCurrentProperty () {
@@ -218,7 +217,12 @@ public class Module {
 
 
 	public void setValid(boolean valid) {
-		this.valid = valid;
+		
+		var pre = this.valid;
+		this.valid = valid;		
+		this.pcs.firePropertyChange("valid", pre, this.valid);
+		System.out.println("semesterCurrent - set "+this.valid);
+		
 	}
 
 

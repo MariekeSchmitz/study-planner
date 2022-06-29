@@ -323,7 +323,11 @@ public class CenterViewController extends ViewController implements PropertyChan
 
 				System.out.println("currentSemester Update " + event);
 				moduleMapWithObservables.get(event.getOldValue()).remove(module);
-				moduleMapWithObservables.get(event.getNewValue()).add(module);	
+				moduleMapWithObservables.get(event.getNewValue()).add(module);
+				
+				plan.validate();
+				
+				
 			break;
 			
 			case "bestanden": 
@@ -332,6 +336,10 @@ public class CenterViewController extends ViewController implements PropertyChan
 				
 			break;
 			
+			case "valid":
+//				Module module = (Module)event.getSource();
+				
+				
 			default:
 				throw new IllegalArgumentException("UnbehandeltesEvent " + event);
 		}
