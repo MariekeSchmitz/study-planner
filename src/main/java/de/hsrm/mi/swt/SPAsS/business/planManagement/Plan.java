@@ -24,6 +24,8 @@ public class Plan {
     private transient Map<Integer, List<Module>> moduleMap;
     private int numberSemesterCurrent;
     private int numberSemesterDefault;
+    private String studiengang;
+    private String hochschule;
 
     
     private transient final PropertyChangeSupport pcs = new PropertyChangeSupport(this);
@@ -32,8 +34,10 @@ public class Plan {
     
     
     public Plan(String name, String curriculumName, List<Module> moduleList, List<Validator> validatorList,
-            int numberSemester) {
+            int numberSemester, String studiengang, String hochschule) {
         this.name = name;
+        this.studiengang = studiengang;
+        this.hochschule = hochschule;
         this.curriculumName = curriculumName;
         this.moduleList = moduleList;
         this.validatorList = validatorList;
@@ -261,6 +265,24 @@ public class Plan {
 		this.moduleMap.get(semester).remove(module);
 		this.moduleList.remove(module);
 	}
+
+	public String getStudiengang() {
+		return studiengang;
+	}
+
+	public void setStudiengang(String studiengang) {
+		this.studiengang = studiengang;
+	}
+
+	public String getHochschule() {
+		return hochschule;
+	}
+
+	public void setHochschule(String hochschule) {
+		this.hochschule = hochschule;
+	}
+	
+	
 	
 
 }

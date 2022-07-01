@@ -15,23 +15,28 @@ public class TitelPlanView extends AnchorPane{
 
     private Pane platzhalterPane;
 
-    private Label studyLabel;
+    private Label degreeProgramLabel;
     private Label titelLabel;
+    private Label institutionLabel;
+
     private Label lastOpenLabel;
 
-    private Button studyViewButton;
+    private Button openPlanButton;
 
-    public TitelPlanView(String titel, String study) {
+    public TitelPlanView(String titel, String degreeProgram, String institution) {
         
-        studyViewButton = new Button();
-        studyViewButton.getStyleClass().add("studyViewButton");
-
-        studyLabel = new Label(study);
-        studyLabel.getStyleClass().add("studyLabel");
+    	openPlanButton = new Button();
+    	openPlanButton.getStyleClass().add("studyViewButton");
 
         titelLabel = new Label(titel);
         titelLabel.getStyleClass().add("campusLabel");
+        
+        degreeProgramLabel = new Label(degreeProgram);
+        degreeProgramLabel.getStyleClass().add("studyLabel");
 
+        institutionLabel = new Label(institution);
+        institutionLabel.getStyleClass().add("institution");
+        
         lastOpenLabel = new Label("zuletzt geöffnet am 12.12.2012");
         lastOpenLabel.getStyleClass().add("campusLabel");
 
@@ -47,19 +52,22 @@ public class TitelPlanView extends AnchorPane{
         AnchorPane.setLeftAnchor(titelLabel, 10.0);
         AnchorPane.setBottomAnchor(titelLabel, 90.0);
 
-        AnchorPane.setLeftAnchor(studyLabel, 10.0);
-        AnchorPane.setBottomAnchor(studyLabel, 50.0);
+        AnchorPane.setLeftAnchor(degreeProgramLabel, 10.0);
+        AnchorPane.setBottomAnchor(degreeProgramLabel, 50.0);
+        
+        AnchorPane.setLeftAnchor(institutionLabel, 10.0);
+        AnchorPane.setBottomAnchor(institutionLabel, 35.0);
 
         AnchorPane.setLeftAnchor(lastOpenLabel, 10.0);
         AnchorPane.setBottomAnchor(lastOpenLabel, 10.0);
 
-        AnchorPane.setBottomAnchor(studyViewButton, 0.0);
-        AnchorPane.setRightAnchor(studyViewButton, 0.0);
+        AnchorPane.setBottomAnchor(openPlanButton, 0.0);
+        AnchorPane.setRightAnchor(openPlanButton, 0.0);
 
-        AnchorPane.setLeftAnchor(studyViewButton, 0.0);
-        AnchorPane.setTopAnchor(studyViewButton, 0.0);
-        AnchorPane.setBottomAnchor(studyViewButton, 0.0);
-        AnchorPane.setRightAnchor(studyViewButton, 0.0);
+        AnchorPane.setLeftAnchor(openPlanButton, 0.0);
+        AnchorPane.setTopAnchor(openPlanButton, 0.0);
+        AnchorPane.setBottomAnchor(openPlanButton, 0.0);
+        AnchorPane.setRightAnchor(openPlanButton, 0.0);
 
         AnchorPane.setLeftAnchor(platzhalterPane, 0.0);
         AnchorPane.setBottomAnchor(platzhalterPane, 130.0);
@@ -67,10 +75,20 @@ public class TitelPlanView extends AnchorPane{
         AnchorPane.setTopAnchor(platzhalterPane, 0.0);
 
 
-        this.getChildren().addAll(platzhalterPane, studyLabel, titelLabel, lastOpenLabel, studyViewButton);
+        this.getChildren().addAll(platzhalterPane, degreeProgramLabel, titelLabel, institutionLabel, lastOpenLabel, openPlanButton);
         this.setPrefSize(1000, 300);
         this.setMaxHeight(350);
         this.setMaxWidth(350);
     }
+
+	public Button getChooseCurriculumButton() {
+		return openPlanButton;
+	}
+
+	public void setChooseCurriculumButton(Button chooseCurriculumButton) {
+		this.openPlanButton = chooseCurriculumButton;
+	}
+    
+    
     
 }

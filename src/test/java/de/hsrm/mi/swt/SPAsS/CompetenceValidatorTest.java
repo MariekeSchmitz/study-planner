@@ -38,7 +38,8 @@ public class CompetenceValidatorTest {
         resetModuleValidity();
         p.getModuleByName("Analysis").move(2);      
         cv.validate(p);  
-        assertTrue(p.getModuleByName("Angewandte Mathematik").isValid());      
+        assertTrue(p.getModuleByName("Angewandte Mathematik").isValid());
+        assertFalse(p.getModuleByName("Lineare Algebra").isValid());
     }
 
 private void resetModuleValidity(){

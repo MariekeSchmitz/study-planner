@@ -24,13 +24,13 @@ public class TestClassGenerator {
         public TestClassGenerator() {
                 List<Validator> valids = new ArrayList<>();
                 CompetenceValidator v1 = new CompetenceValidator();
-                CpLimitValidator v2 = new CpLimitValidator(30);
+                CpLimitValidator v2 = new CpLimitValidator(100);
                 ProgressValidator v3 = new ProgressValidator(3);
                 valids.add(v1);
                 valids.add(v2);
                 valids.add(v3);
 
-                Plan p = new Plan("Medieninformatik", "RandomCurriculumName", this.getModules(), valids, 7);
+                Plan p = new Plan("Medieninformatik", "RandomCurriculumName", this.getModules(), valids, 7, "Medieninformatik (B.Sc.)", "Hochschule RheinMain");
                 this.plan = p;
 
         }
