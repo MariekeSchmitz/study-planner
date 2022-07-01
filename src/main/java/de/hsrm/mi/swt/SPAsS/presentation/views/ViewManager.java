@@ -20,7 +20,8 @@ public class ViewManager {
     public ViewManager(App app) {
     	this.app = app;
         root = new StackPane();
-        root.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+        root.getStylesheets().add(getClass().getResource("/css/application.css").toExternalForm());
+
     	mainViewController = new MainViewController(this, app);
 
         initialise();
@@ -28,7 +29,7 @@ public class ViewManager {
     }
 
     public void initialise() {
-    	switchScene(Scenes.MAIN_VIEW_CONTROLLER);
+    	switchScene(Scenes.START_VIEW_CONTROLLER);
     } 
     
     public void switchScene(Scenes toScene) {
@@ -37,7 +38,7 @@ public class ViewManager {
             root.getChildren().add(mainViewController.getRootView()); 
         } else if (toScene.equals(Scenes.START_VIEW_CONTROLLER)) {
             root.getChildren().clear();
-            root.getChildren().add(new StartViewController(this).getRootView()); 
+            root.getChildren().add(new StartViewController(this, app).getRootView()); 
         } else if (toScene.equals(Scenes.UPLOAD_VIEW_CONTROLLER)) {
             root.getChildren().clear();
             root.getChildren().add(new UploadViewController(this).getRootView()); 

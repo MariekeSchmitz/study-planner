@@ -30,7 +30,7 @@ public class TestClassGenerator {
                 valids.add(v2);
                 valids.add(v3);
 
-                Plan p = new Plan("Medieninformatik", "RandomCurriculumName", this.getModules(), valids, 7);
+                Plan p = new Plan("Medieninformatik", "RandomCurriculumName", this.getModules(), valids, 7, "Medieninformatik (B.Sc.)", "Hochschule RheinMain");
                 this.plan = p;
 
         }

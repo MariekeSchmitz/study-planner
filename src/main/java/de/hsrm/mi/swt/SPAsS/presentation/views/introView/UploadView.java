@@ -25,7 +25,7 @@ public class UploadView extends AnchorPane {
         AnchorPane.setBottomAnchor(drag_drop_field, 100.0);
         AnchorPane.setRightAnchor(drag_drop_field, 200.0);
 
-        this.getStylesheets().add(getClass().getResource("introView.css").toExternalForm());
+        this.getStylesheets().add(getClass().getResource("/css/introView.css").toExternalForm());
         this.getChildren().addAll(header, drag_drop_field);
     }
 

@@ -118,7 +118,7 @@ public class ModuleInformationView extends AnchorPane{
 
         this.getChildren().addAll(box, backButton, moduleName, labelVBox, warningBox);
         
-		this.getStylesheets().add(getClass().getResource("moduleInformationView.css").toExternalForm());
+		//this.getStylesheets().add(getClass().getResource("moduleInformationView.css").toExternalForm());
         this.setStyle( "-fx-background-color:rgb(255,255,255)");	
 		this.getStyleClass().add("test-border-red");
         this.setMaxWidth(600);

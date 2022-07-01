@@ -83,6 +83,22 @@ public class App extends Application {
 		this.scene = scene;
 	}
 
+	public ViewManager getViewManager() {
+		return viewManager;
+	}
+
+	public void setViewManager(ViewManager viewManager) {
+		this.viewManager = viewManager;
+	}
+
+	public FileManager getFileManager() {
+		return fileManager;
+	}
+
+	public void setFileManager(FileManager fileManager) {
+		this.fileManager = fileManager;
+	}
+
 	
 	
 	

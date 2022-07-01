@@ -74,7 +74,7 @@ public class SelectView extends AnchorPane{
         AnchorPane.setRightAnchor(backgroundPane, 0.0);
         AnchorPane.setBottomAnchor(backgroundPane, 0.0);
 
-        this.getStylesheets().add(getClass().getResource("introView.css").toExternalForm());
+        this.getStylesheets().add(getClass().getResource("/css/introView.css").toExternalForm());
         this.getChildren().addAll(backgroundPane, header, header2, drag_drop_field, scrollPane);
     }
 
