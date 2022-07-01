@@ -20,7 +20,8 @@ public class ViewManager {
     public ViewManager(App app) {
     	this.app = app;
         root = new StackPane();
-        root.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+        root.getStylesheets().add(getClass().getResource("/css/application.css").toExternalForm());
+
     	mainViewController = new MainViewController(this, app);
 
         initialise();

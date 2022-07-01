@@ -37,7 +37,7 @@ public class ExamView extends AnchorPane{
         AnchorPane.setRightAnchor(listView, 50.0);
         AnchorPane.setBottomAnchor(listView, 0.0);
 
-        this.getStylesheets().add(getClass().getResource("MainView.css").toExternalForm());
+        this.getStylesheets().add(getClass().getResource("/css/MainView.css").toExternalForm());
         this.getChildren().addAll(header, backbutton, listView);
         listView.getStyleClass().add("test-border-red");
         this.getStyleClass().add("test-border-red");

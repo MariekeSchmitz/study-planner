@@ -3,7 +3,7 @@ plugins {
     id 'application'
     id 'org.openjfx.javafxplugin' version '0.0.12'
 }
-mainClassName = "de.hsrm.mi.swt.SPAsS"
+mainClassName = "de.hsrm.mi.swt.SPAsS.application.Main"
 
 // Konfiguration des JavaFX-Plugins: Version und benötigte Module
 javafx {

@@ -80,7 +80,7 @@ public class StartView extends AnchorPane {
 		AnchorPane.setRightAnchor(scrollPane, 0.0);
         AnchorPane.setBottomAnchor(scrollPane, 75.0);        
 
-        this.getStylesheets().add(getClass().getResource("introView.css").toExternalForm());
+        this.getStylesheets().add(getClass().getResource("/css/introView.css").toExternalForm());
         this.getChildren().addAll(headerVBox, logo, secondHeader, scrollPane, addButton, ownPlanButton);
     }
 
