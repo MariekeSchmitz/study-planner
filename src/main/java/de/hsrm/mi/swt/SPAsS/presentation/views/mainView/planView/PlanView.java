@@ -2,7 +2,6 @@ package de.hsrm.mi.swt.SPAsS.presentation.views.mainView.planView;
 
 import de.hsrm.mi.swt.SPAsS.presentation.views.mainView.planView.uiComponents.CenterViewController;
 import de.hsrm.mi.swt.SPAsS.presentation.views.mainView.planView.uiComponents.LeftSideViewController;
-import de.hsrm.mi.swt.SPAsS.presentation.views.mainView.planView.uiComponents.TopCenterViewController;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
@@ -19,12 +18,11 @@ public class PlanView extends AnchorPane{
     private AnchorPane topCenter;
     private AnchorPane center;
 
-    private BorderPane rightSide;
+    private AnchorPane rightSide;
 
-    public PlanView(AnchorPane leftSideMenu, AnchorPane topCenter, AnchorPane center) {
+    public PlanView(AnchorPane leftSideMenu, AnchorPane center) {
 
     	this.leftSideMenu = leftSideMenu;
-    	this.topCenter = topCenter;
     	this.center = center;
     	
         //leftside
@@ -34,16 +32,12 @@ public class PlanView extends AnchorPane{
 
         testButton = new Button("Switch");
 
-        rightSide = new BorderPane();
-        rightSide.setTop(topCenter);
-        rightSide.setCenter(center);
+        AnchorPane.setTopAnchor(center, 0.0);
+		AnchorPane.setLeftAnchor(center,  75.0);
+        AnchorPane.setRightAnchor(center,  0.0);
+        AnchorPane.setBottomAnchor(center, 0.0);
 
-        AnchorPane.setTopAnchor(rightSide, 0.0);
-		AnchorPane.setLeftAnchor(rightSide,  75.0);
-        AnchorPane.setRightAnchor(rightSide,  0.0);
-        AnchorPane.setBottomAnchor(rightSide, 0.0);
-
-        this.getChildren().addAll(leftSideMenu, testButton, rightSide);
+        this.getChildren().addAll(leftSideMenu, testButton, center);
     }
 
     public Label getTestLabel() {

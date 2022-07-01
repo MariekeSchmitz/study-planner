@@ -24,12 +24,12 @@
     -fx-border-style: segments(10, 15, 15, 15) line-cap round;
 }
 
-.left-side-pane {
-    -fx-background-color: rgb(146, 146, 146);
+.backgroundcenter {
+    -fx-background-color: rgb(230, 230, 230);
 }
 
-.center {
-    -fx-background-color: rgb(230, 230, 230);
+.left-side-pane {
+    -fx-background-color: rgb(146, 146, 146);
 }
 
 .topcenter {
@@ -66,6 +66,7 @@
 .numberSemester {
     -fx-font-size: 20px;
     -fx-font-weight: bold;
+    -fx-font-color: red;
 }
 
 .list-view {
@@ -84,13 +85,12 @@
 }
 
 #invalid {
-	-fx-border-color: red;
+    -fx-border-color: red;
     -fx-border-width: 1;
 }
 
 #valid {
     -fx-border: none;
-
 }
 
 .list-cell:empty {
@@ -98,7 +98,38 @@
     -fx-border: none;
 }
 
+.scroll-pane {
+    -fx-background-color: transparent;
+    -fx-background: transparent;
+}
 
+.scroll-bar:horizontal,
+.scroll-bar:vertical {
+    -fx-background-color: transparent;
+    -fx-background: transparent;
+}
 
+.increment-button,
+.decrement-button {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
 
+.scroll-pane:vertical .corner {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
 
+.scroll-bar:horizontal .track,
+.scroll-bar:vertical .track {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-background-radius: 0em;
+}
+
+.scroll-bar:horizontal .thumb,
+.scroll-bar:vertical .thumb {
+    -fx-background-radius: 0em;
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}

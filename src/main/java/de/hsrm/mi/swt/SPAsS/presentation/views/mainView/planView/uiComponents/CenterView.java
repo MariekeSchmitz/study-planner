@@ -2,8 +2,12 @@ package de.hsrm.mi.swt.SPAsS.presentation.views.mainView.planView.uiComponents;
 
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Background;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -15,17 +19,49 @@ public class CenterView extends AnchorPane{
     private VBox planPane;
     private Button addSemester;
     private Button resetPlan;
+    private Button savePlan;
     private Button removeSemester;
     private Button addExam;
+    
+    private Label header;
+    private Label pointAverage;
 
+    private VBox buttonsBox;
+
+    private Pane backgroundPane;
 
     public CenterView(){
-        this.getStyleClass().add("center");
 
-        vboxNumber = new VBox();
-        vboxNumber.setPrefWidth(60);
-        vboxNumber.setSpacing(15);
-        vboxNumber.setAlignment(Pos.BOTTOM_CENTER);
+        // TopCenterView
+        
+        backgroundPane = new Pane();
+        backgroundPane.getStyleClass().add("backgroundcenter");
+        backgroundPane.setPrefHeight(500);
+        backgroundPane.setMaxHeight(325);
+        
+        header = new Label("Dein Studienplan");
+        header.getStyleClass().add("header");
+
+        pointAverage = new Label("Aktueller Notendurchschnitt:");
+        pointAverage.getStyleClass().add("pointAverage");
+
+        buttonsBox = new VBox();
+        buttonsBox.setSpacing(10);
+
+        resetPlan = new Button("Plan zurücksetzen");
+        resetPlan.setPrefSize(200,40);
+        resetPlan.getStyleClass().add("buttons");
+
+        savePlan = new Button("Plan speichern");
+        savePlan.setPrefSize(200,40);
+        savePlan.getStyleClass().add("buttons");
+
+        buttonsBox.getChildren().addAll(savePlan, resetPlan);
+
+        this.getStyleClass().add("topcenter");
+        
+        //CenterView
+        this.getStyleClass().add("center");
 
         planPane = new VBox();
         planPane.setAlignment(Pos.BOTTOM_LEFT);
@@ -41,10 +77,6 @@ public class CenterView extends AnchorPane{
         removeSemester = new Button("Semester löschen");
         removeSemester.getStyleClass().add("addSemester");
         removeSemester.setMaxSize(1000, 40);
-
-        resetPlan = new Button("Zurücksetzen");
-        resetPlan.setPrefSize(200,40);
-        resetPlan.getStyleClass().add("buttons");
         
         addExam = new Button("Klausur hinzufügen");
         addExam.setPrefSize(200,40);
@@ -54,88 +86,153 @@ public class CenterView extends AnchorPane{
         HBox.setHgrow(resetPlan, Priority.ALWAYS);
         HBox.setHgrow(removeSemester, Priority.ALWAYS);
         HBox.setHgrow(addExam, Priority.ALWAYS);
+    
+        hBoxAdd.getChildren().addAll(addSemester,removeSemester, addExam);
 
-        hBoxAdd.getChildren().addAll(addSemester,removeSemester, resetPlan, addExam);
+        ScrollPane scrollPane = new ScrollPane();
+		scrollPane.setContent(planPane);
+		scrollPane.fitToHeightProperty().set(true);
+        scrollPane.fitToWidthProperty().set(true);
+		scrollPane.setPannable(true);
 
-        AnchorPane.setLeftAnchor(hBoxAdd, 125.0);
-        AnchorPane.setTopAnchor(hBoxAdd, 50.0);
+        planPane.getStyleClass().add("backgroundtransparent");
+
+        AnchorPane.setLeftAnchor(hBoxAdd, 130.0);
+        AnchorPane.setTopAnchor(hBoxAdd, 275.0);
         AnchorPane.setRightAnchor(hBoxAdd, 50.0);
 
-        AnchorPane.setLeftAnchor(addSemester, 125.0);
-        AnchorPane.setTopAnchor(addSemester, 50.0);
-        AnchorPane.setRightAnchor(addSemester, 50.0);
-        
-        AnchorPane.setLeftAnchor(planPane, 75.0);
-        AnchorPane.setTopAnchor(planPane, 100.0);
-        AnchorPane.setBottomAnchor(planPane, 50.0);
-        AnchorPane.setRightAnchor(planPane, 50.0);
+        AnchorPane.setLeftAnchor(scrollPane, 50.0);
+        AnchorPane.setTopAnchor(scrollPane, 325.0);
+        AnchorPane.setBottomAnchor(scrollPane, 50.0);
+        AnchorPane.setRightAnchor(scrollPane, 50.0);
 
-        AnchorPane.setLeftAnchor(vboxNumber, 50.0);
-        AnchorPane.setTopAnchor(vboxNumber, 100.0);
-        AnchorPane.setBottomAnchor(vboxNumber, 50.0);
+        AnchorPane.setLeftAnchor(backgroundPane, 0.0);
+        AnchorPane.setTopAnchor(backgroundPane, 250.0);
+        AnchorPane.setRightAnchor(backgroundPane,0.0);
+        AnchorPane.setBottomAnchor(backgroundPane, 0.0);
 
-        this.getChildren().addAll(vboxNumber, planPane, hBoxAdd);
+
+        AnchorPane.setTopAnchor(buttonsBox, 75.0);
+        AnchorPane.setRightAnchor(buttonsBox, 50.0);
+
+        AnchorPane.setTopAnchor(header, 75.0);
+        AnchorPane.setLeftAnchor(header, 130.0);
+
+        AnchorPane.setTopAnchor(pointAverage, 150.0);
+        AnchorPane.setLeftAnchor(pointAverage, 130.0);
+
+        this.getChildren().addAll(backgroundPane, scrollPane, hBoxAdd, header, pointAverage, buttonsBox);
     }
 
-	public VBox getVboxNumber() {
-		return vboxNumber;
-	}
 
-	public void setVboxNumber(VBox vboxNumber) {
-		this.vboxNumber = vboxNumber;
-	}
+    public VBox getVboxNumber() {
+        return vboxNumber;
+    }
 
-	public HBox gethBoxAdd() {
-		return hBoxAdd;
-	}
 
-	public void sethBoxAdd(HBox hBoxAdd) {
-		this.hBoxAdd = hBoxAdd;
-	}
+    public void setVboxNumber(VBox vboxNumber) {
+        this.vboxNumber = vboxNumber;
+    }
 
-	public VBox getPlanBox() {
-		return planPane;
-	}
 
-	public void setPlanPane(StackPane plan) {
-		this.planPane = planPane;
-	}
+    public HBox gethBoxAdd() {
+        return hBoxAdd;
+    }
 
-	public Button getAddSemester() {
-		return addSemester;
-	}
 
-	public void setAddSemester(Button addSemester) {
-		this.addSemester = addSemester;
-	}
+    public void sethBoxAdd(HBox hBoxAdd) {
+        this.hBoxAdd = hBoxAdd;
+    }
 
-    public Button getRemoveSemester(){
+
+    public VBox getPlanPane() {
+        return planPane;
+    }
+
+
+    public void setPlanPane(VBox planPane) {
+        this.planPane = planPane;
+    }
+
+
+    public Button getAddSemester() {
+        return addSemester;
+    }
+
+
+    public void setAddSemester(Button addSemester) {
+        this.addSemester = addSemester;
+    }
+
+
+    public Button getResetPlan() {
+        return resetPlan;
+    }
+
+
+    public void setResetPlan(Button resetPlan) {
+        this.resetPlan = resetPlan;
+    }
+
+
+    public Button getRemoveSemester() {
         return removeSemester;
     }
 
-	public Button getAddKlausur() {
-		return resetPlan;
-	}
 
-	public void setAddKlausur(Button addKlausur) {
-		this.resetPlan = addKlausur;
-	}
+    public void setRemoveSemester(Button removeSemester) {
+        this.removeSemester = removeSemester;
+    }
 
-	public VBox getPlanPane() {
-		return planPane;
-	}
 
-	public Button getResetPlan() {
-		return resetPlan;
-	}
+    public Button getAddExam() {
+        return addExam;
+    }
 
-	public Button getAddExam() {
-		return addExam;
-	}
-	
-	
-	
-	
+
+    public void setAddExam(Button addExam) {
+        this.addExam = addExam;
+    }
+
+
+    public Label getHeader() {
+        return header;
+    }
+
+
+    public void setHeader(Label header) {
+        this.header = header;
+    }
+
+
+    public Label getPointAverage() {
+        return pointAverage;
+    }
+
+
+    public void setPointAverage(Label pointAverage) {
+        this.pointAverage = pointAverage;
+    }
+
+
+    public VBox getButtonsBox() {
+        return buttonsBox;
+    }
+
+
+    public void setButtonsBox(VBox buttonsBox) {
+        this.buttonsBox = buttonsBox;
+    }
+
+
+    public Button getClear() {
+        return savePlan;
+    }
+
+
+    public void setClear(Button clear) {
+        this.savePlan = clear;
+    }
+
     
-   
 }

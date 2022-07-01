@@ -74,6 +74,10 @@ public class App extends Application {
 	public Plan getPlan() {
 		return plan;
 	}
+	
+	public void setPlan(Plan plan) {
+		this.plan = plan;
+	}
 
 	public Scene getScene() {
 		return scene;

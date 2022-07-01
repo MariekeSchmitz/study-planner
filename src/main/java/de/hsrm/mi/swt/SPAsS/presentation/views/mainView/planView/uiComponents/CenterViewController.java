@@ -47,6 +47,7 @@ import javafx.scene.input.TransferMode;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.util.Callback;
 
 public class CenterViewController extends ViewController implements PropertyChangeListener {
@@ -60,6 +61,7 @@ public class CenterViewController extends ViewController implements PropertyChan
 	private Button addSemesterButton;
 	private Button removeSemesterButton;
 	private Button addExamButton;
+	private Label gradeAverage;
 
 	private DataFormat dataFormat = new DataFormat("moduleCell");
 	private List<SemesterList> semesterListViews;
@@ -76,18 +78,21 @@ public class CenterViewController extends ViewController implements PropertyChan
 		rootView = centerView;
 
 		this.plan = plan;
+		plan.addPropertyChangeListener(this);
+
 		this.moduleMap = plan.getModuleMap();
 
 		this.semesterListViews = new LinkedList<>();
 		this.moduleViews = new LinkedList<>();
 		this.viewManager = viewManager;
 
-		planBox = centerView.getPlanBox();
+		planBox = centerView.getPlanPane();
 
-		resetButton = centerView.getAddKlausur();
+		resetButton = centerView.getResetPlan();
 		addSemesterButton = centerView.getAddSemester();
 		removeSemesterButton = centerView.getRemoveSemester();
 		addExamButton = centerView.getAddExam();
+		gradeAverage = centerView.getPointAverage();
 
 		initialise();
 
@@ -158,6 +163,12 @@ public class CenterViewController extends ViewController implements PropertyChan
 		for (ModuleView moduleView : moduleViews) {
 			moduleView.getItem().addPropertyChangeListener(this);
 		}
+
+		if (plan.getAverageGrade() == 0.0f) {
+    		gradeAverage.setText("Sobald du eine Prüfung bestanden hast, findest du hier deinen Notendurchschnitt.");
+    	} else {
+        	gradeAverage.setText("Aktueller Notendurchschnitt: " + Float.toString(plan.getAverageGrade()));
+    	}
 
 	}
 
@@ -242,6 +253,7 @@ public class CenterViewController extends ViewController implements PropertyChan
 			Label semesterLabel = new Label(Integer.toString(i));
 			semesterLabel.getStyleClass().add("numberSemester");
 			semesterLabel.setMinSize(50, 50);
+			semesterLabel.setTextFill(Color.BLACK);
 			semesterLabel.setAlignment(Pos.CENTER);
 			semesterRow = new HBox(semesterLabel, semesterListView);
 			semesterRow.setAlignment(Pos.CENTER);
@@ -303,10 +315,21 @@ public class CenterViewController extends ViewController implements PropertyChan
 //			}
 			
 		break;
+		case "average":
+			System.out.println("AverageGrade Update " + event);
+			if (plan.getAverageGrade() == 0.0f) {
+				gradeAverage.setText("Sobald du eine Prüfung bestanden hast, findest du hier deinen Notendurchschnitt.");
+			} else {
+				gradeAverage.setText("Aktueller Notendurchschnitt: " + Float.toString(plan.getAverageGrade()));
+			}
+		break;
 
 		default:
 			throw new IllegalArgumentException("UnbehandeltesEvent " + event);
 		}
+
+		
+
 
 	}
 

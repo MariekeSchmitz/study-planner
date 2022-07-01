@@ -21,12 +21,12 @@ public class TitelPlanView extends AnchorPane{
 
     private Label lastOpenLabel;
 
-    private Button studyViewButton;
+    private Button openPlanButton;
 
     public TitelPlanView(String titel, String degreeProgram, String institution) {
         
-        studyViewButton = new Button();
-        studyViewButton.getStyleClass().add("studyViewButton");
+    	openPlanButton = new Button();
+    	openPlanButton.getStyleClass().add("studyViewButton");
 
         titelLabel = new Label(titel);
         titelLabel.getStyleClass().add("campusLabel");
@@ -61,13 +61,13 @@ public class TitelPlanView extends AnchorPane{
         AnchorPane.setLeftAnchor(lastOpenLabel, 10.0);
         AnchorPane.setBottomAnchor(lastOpenLabel, 10.0);
 
-        AnchorPane.setBottomAnchor(studyViewButton, 0.0);
-        AnchorPane.setRightAnchor(studyViewButton, 0.0);
+        AnchorPane.setBottomAnchor(openPlanButton, 0.0);
+        AnchorPane.setRightAnchor(openPlanButton, 0.0);
 
-        AnchorPane.setLeftAnchor(studyViewButton, 0.0);
-        AnchorPane.setTopAnchor(studyViewButton, 0.0);
-        AnchorPane.setBottomAnchor(studyViewButton, 0.0);
-        AnchorPane.setRightAnchor(studyViewButton, 0.0);
+        AnchorPane.setLeftAnchor(openPlanButton, 0.0);
+        AnchorPane.setTopAnchor(openPlanButton, 0.0);
+        AnchorPane.setBottomAnchor(openPlanButton, 0.0);
+        AnchorPane.setRightAnchor(openPlanButton, 0.0);
 
         AnchorPane.setLeftAnchor(platzhalterPane, 0.0);
         AnchorPane.setBottomAnchor(platzhalterPane, 130.0);
@@ -75,10 +75,20 @@ public class TitelPlanView extends AnchorPane{
         AnchorPane.setTopAnchor(platzhalterPane, 0.0);
 
 
-        this.getChildren().addAll(platzhalterPane, degreeProgramLabel, titelLabel, institutionLabel, lastOpenLabel, studyViewButton);
+        this.getChildren().addAll(platzhalterPane, degreeProgramLabel, titelLabel, institutionLabel, lastOpenLabel, openPlanButton);
         this.setPrefSize(1000, 300);
         this.setMaxHeight(350);
         this.setMaxWidth(350);
     }
+
+	public Button getChooseCurriculumButton() {
+		return openPlanButton;
+	}
+
+	public void setChooseCurriculumButton(Button chooseCurriculumButton) {
+		this.openPlanButton = chooseCurriculumButton;
+	}
+    
+    
     
 }

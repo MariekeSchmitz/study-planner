@@ -18,17 +18,21 @@ import javafx.scene.layout.Pane;
 public class StartViewController extends ViewController {
 
     private StartView sv;
+    private ViewManager viewManager;
 
     private ScrollPane scrollPane;
     private Button addButton;
     private Label secondHeader;
     private FileManager fileManager;
     private Boolean plansAvailable;
+    private App app;
 
     private HBox hbox;
 
     public StartViewController(ViewManager viewManager, App app) {
+    	this.app = app;
         this.fileManager = app.getFileManager();
+        this.viewManager = viewManager;
     	sv = new StartView();
         rootView = sv;
         scrollPane = sv.getScrollPane();
@@ -54,19 +58,13 @@ public class StartViewController extends ViewController {
         if(plansAvailable) {
         	
         	for (String plan : fileNames) {
-        		 Pane tempPane = new TitelPlanViewController(plan, "Medieninformatik (B.Sc.)", "HochschuleRheinMain").getRootView();
+        		 Pane tempPane = new TitelPlanViewController(plan, "Medieninformatik (B.Sc.)", "HochschuleRheinMain", viewManager, app, fileManager).getRootView();
             	 hbox.getChildren().add(tempPane); 
         	}
         	
         }
         	
-        
-        
-    	
-//        for (int i = 0; i < 5 ; i++) {
-//            Pane test1 = new TitelPlanViewController("Test Plan" + i, "Medieninformatik (B.Sc.)").getRootView();
-//            hbox.getChildren().add(test1);
-//        }
+     
     }
     
     public void swapView(boolean plansAvailable){
