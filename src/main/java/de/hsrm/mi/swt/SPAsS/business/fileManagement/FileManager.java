@@ -5,6 +5,11 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.net.URI;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -85,8 +90,21 @@ public class FileManager {
             e.printStackTrace();
         }
     }
+    
+    public void duplicateFile(FileType type, File file, String fileName) throws IOException {
 
-    private void createMetaFile(String typePath, Plan p) throws IOException{
+        String typePath = type == FileType.PLAN ? "plans" : "curricula";
+        String outPath = path + File.separator + typePath + File.separator + fileName + ".json";
+    	 
+        Path in = Paths.get(file.getAbsolutePath());
+        Path out= Paths.get(outPath);
+       
+        Files.copy(in, out, StandardCopyOption.REPLACE_EXISTING);
+
+    }
+    
+
+    public void createMetaFile(String typePath, Plan p) throws IOException{
         FileWriter out = new FileWriter(path + File.separator + typePath + File.separator + p.getName() + ".meta");
         StringBuilder s = new StringBuilder();
         s.append(MetaEnum.NAME.toString()+":"+p.getName()+"\n");

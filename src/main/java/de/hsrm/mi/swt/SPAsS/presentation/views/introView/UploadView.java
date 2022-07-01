@@ -3,19 +3,20 @@ package de.hsrm.mi.swt.SPAsS.presentation.views.introView;
 import de.hsrm.mi.swt.SPAsS.presentation.views.introView.uiComponents.DragDropViewController;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 
 public class UploadView extends AnchorPane {
 
     private Label header;
 
-    private Pane drag_drop_field;
+    private BorderPane drag_drop_field;
 
     public UploadView() {
         header = new Label("Eigenen Plan \nhochladen");
         header.getStyleClass().add("header");
         
-//        drag_drop_field = new DragDropViewController().getRootView();
+        drag_drop_field = new BorderPane();
 
         AnchorPane.setTopAnchor(header, 100.0);
         AnchorPane.setLeftAnchor(header, 150.0);
@@ -37,6 +38,19 @@ public class UploadView extends AnchorPane {
 	public void setHeader(Label header) {
 		this.header = header;
 	}
+
+	public BorderPane getDrag_drop_field() {
+		return drag_drop_field;
+	}
+
+	public void setDrag_drop_field(Pane drag_drop_field) {
+		this.drag_drop_field.setCenter(drag_drop_field);
+	}
+    
+	
+	
+	
+	
     
     
 

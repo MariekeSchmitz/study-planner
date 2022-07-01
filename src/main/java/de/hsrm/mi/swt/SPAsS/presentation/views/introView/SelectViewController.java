@@ -32,7 +32,7 @@ public class SelectViewController extends ViewController{
         selectView = new SelectView();
         rootView = selectView;
         curriculaBox = selectView.getHbox();
-        dragDropViewController = new DragDropViewController(app);
+        dragDropViewController = new DragDropViewController(app, FileType.CURRICULA);
         dragDropPane = dragDropViewController.getRootView();
         selectView.setDrag_drop_field(dragDropPane);
         

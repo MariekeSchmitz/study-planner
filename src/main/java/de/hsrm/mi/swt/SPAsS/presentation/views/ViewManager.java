@@ -1,6 +1,7 @@
 package de.hsrm.mi.swt.SPAsS.presentation.views;
 
 import de.hsrm.mi.swt.SPAsS.application.App;
+import de.hsrm.mi.swt.SPAsS.business.fileManagement.FileType;
 import de.hsrm.mi.swt.SPAsS.presentation.views.introView.SelectView;
 import de.hsrm.mi.swt.SPAsS.presentation.views.introView.SelectViewController;
 import de.hsrm.mi.swt.SPAsS.presentation.views.introView.StartView;
@@ -47,7 +48,7 @@ public class ViewManager {
             root.getChildren().add(startView); 
             
         } else if (toScene.equals(Scenes.UPLOAD_CURRICULUM_VIEW)) {
-        	UploadView uploadView = (UploadView)new UploadViewController(this).getRootView();
+        	UploadView uploadView = (UploadView)new UploadViewController(this, app, FileType.CURRICULA).getRootView();
         	uploadView.getHeader().setText("Studiengang \nwählen");
             startView.getUploadPane().setCenter(uploadView);
             
@@ -56,7 +57,7 @@ public class ViewManager {
             startView.getUploadPane().setCenter(selectView);
         
         } else if (toScene.equals(Scenes.UPLOAD_PLAN_VIEW)) {
-        	UploadView uploadView = (UploadView)new UploadViewController(this).getRootView();
+        	UploadView uploadView = (UploadView)new UploadViewController(this, app, FileType.PLAN).getRootView();
         	uploadView.getHeader().setText("Eigenen Plan \nwählen");
             startView.getUploadPane().setCenter(uploadView);       
         }

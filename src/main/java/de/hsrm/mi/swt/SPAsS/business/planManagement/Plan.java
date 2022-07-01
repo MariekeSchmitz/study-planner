@@ -29,8 +29,7 @@ public class Plan {
 
     
     private transient PropertyChangeSupport pcs = new PropertyChangeSupport(this);
-    
-
+   
     
     
     public Plan(String name, String curriculumName, List<Module> moduleList, List<Validator> validatorList,
@@ -185,15 +184,6 @@ public class Plan {
 //        updateModuleMap();
 
     }
-
-    public List<Validator> getValidators() {
-        return validatorList;
-    }
-
-    public void setValidators(List<Validator> validators) {
-        this.validatorList = validators;
-    }
-
 
 
     public List<Validator> getValidatorList() {
