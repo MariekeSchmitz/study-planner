@@ -6,7 +6,9 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Scanner;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -69,24 +71,49 @@ public class FileManager {
         }
     }
 
-    public void fileSave(Plan p) {
+    public void fileSave(FileType type, Plan p) {
         this.jsonTestString = new Gson().toJson(p);
+        String typePath = type == FileType.PLAN ? "plans" : "curricula";
         try {
-            FileWriter out = new FileWriter(path + File.separator + "plans" + File.separator + p.getName() + ".json");
+            FileWriter out = new FileWriter(path + File.separator + typePath + File.separator + p.getName() + ".json");
             out.write(jsonTestString);
             out.flush();
             out.close();
+            createMetaFile(typePath, p);
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }
 
+    private void createMetaFile(String typePath, Plan p) throws IOException{
+        FileWriter out = new FileWriter(path + File.separator + typePath + File.separator + p.getName() + ".meta");
+        StringBuilder s = new StringBuilder();
+        s.append(MetaEnum.NAME.toString()+":"+p.getName()+"\n");
+        s.append(MetaEnum.STUDIENGANG.toString()+":"+p.getStudiengang()+"\n");
+        s.append(MetaEnum.HOCHSCHULE.toString()+":"+p.getHochschule()+"\n");
+        out.write(s.toString());
+        out.flush();
+        out.close();
+    }
+
+    public HashMap<String, String> readMeta(String typePath, String name) {
+        HashMap<String,String> map = new HashMap<>();
+        Scanner sc = new Scanner(path + File.separator + typePath + File.separator + name + ".meta");
+        while(sc.hasNext()){
+            String line = sc.nextLine();
+            String [] splitLine = line.split(":");
+            if(splitLine.length>1) map.put(splitLine[0], splitLine[1]); 
+            else map.put(splitLine[0], ""); 
+        }
+        return map;
+    }
+
     public void test(boolean syso) {
-        this.fileSave(testPlan);
+        this.fileSave(FileType.PLAN, testPlan);
         String s = jsonTestString;
         Plan p = this.fileRead(FileType.PLAN, testPlan.getName());
-        fileSave(p);
+        fileSave(FileType.PLAN, p);
         if (syso) {
             System.out.println("Plans:");
             for (String st : this.planScan())
