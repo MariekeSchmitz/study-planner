@@ -44,7 +44,7 @@ public class PlanViewController extends ViewController{
     @Override
     public void initialise() {
         testButton.addEventHandler(ActionEvent.ACTION, event -> { 
-			viewManager.switchScene(Scenes.START_VIEW_CONTROLLER);
+			viewManager.switchScene(Scenes.START_VIEW);
 		});
     }
 	public CenterViewController getCenterViewController() {

@@ -16,6 +16,7 @@ public class ViewManager {
     private StackPane root;
     private App app;
     private MainViewController mainViewController;
+    private StackPane startStack;
 
     public ViewManager(App app) {
     	this.app = app;
@@ -23,25 +24,29 @@ public class ViewManager {
         root.getStylesheets().add(getClass().getResource("/css/application.css").toExternalForm());
 
     	mainViewController = new MainViewController(this, app);
+    	startStack = new StackPane();
 
         initialise();
        
     }
 
     public void initialise() {
-    	switchScene(Scenes.START_VIEW_CONTROLLER);
+    	switchScene(Scenes.START_VIEW);
     } 
     
     public void switchScene(Scenes toScene) {
-        if (toScene.equals(Scenes.MAIN_VIEW_CONTROLLER)) {
+        if (toScene.equals(Scenes.MAIN_VIEW)) {
             root.getChildren().clear();
-            root.getChildren().add(mainViewController.getRootView()); 
-        } else if (toScene.equals(Scenes.START_VIEW_CONTROLLER)) {
+            root.getChildren().add(mainViewController.getRootView());
+            
+        } else if (toScene.equals(Scenes.START_VIEW)) {
             root.getChildren().clear();
-            root.getChildren().add(new StartViewController(this, app).getRootView()); 
-        } else if (toScene.equals(Scenes.UPLOAD_VIEW_CONTROLLER)) {
-            root.getChildren().clear();
-            root.getChildren().add(new UploadViewController(this).getRootView()); 
+            startStack.getChildren().add(new StartViewController(this, app).getRootView());
+            root.getChildren().add(startStack); 
+            
+        } else if (toScene.equals(Scenes.UPLOAD_CURRICULUM_VIEW)) {
+            startStack.getChildren().add(new UploadViewController(this).getRootView()); 
+            
         } else if (toScene.equals(Scenes.SELECT_VIEW)) {
 	        root.getChildren().clear();
 	        root.getChildren().add(new SelectViewController().getRootView()); 
