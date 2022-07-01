@@ -28,7 +28,7 @@ public class Plan {
     private String hochschule;
 
     
-    private transient final PropertyChangeSupport pcs = new PropertyChangeSupport(this);
+    private transient PropertyChangeSupport pcs = new PropertyChangeSupport(this);
     
 
     
@@ -84,6 +84,14 @@ public class Plan {
 
         CommandManager.getInstance().execAndPush(new ResetPlanCommand(this));
         this.numberSemesterCurrent = numberSemesterDefault;
+    }
+    
+    public void initialize() {
+    	
+    	
+    	pcs = new PropertyChangeSupport(this);
+    	moduleMap = new HashMap<>();
+    	this.updateModuleMap();
     }
 
     public void updateModuleMap() {
@@ -174,6 +182,8 @@ public class Plan {
 
     public void setModuleList(List<Module> moduleList) {
         this.moduleList = moduleList;
+//        updateModuleMap();
+
     }
 
     public List<Validator> getValidators() {

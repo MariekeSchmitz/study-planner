@@ -28,7 +28,7 @@ public class SelectView extends AnchorPane{
     private ListView<Pane> listView;
 
     public SelectView() {
-        header = new Label("Eigenen Plan \nhochladen");
+        header = new Label("Studiengang \nwählen");
         header.getStyleClass().add("header");
 
         Pane platzhalter = new Pane();

@@ -6,7 +6,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 
 public class StartView extends AnchorPane {
@@ -23,9 +25,15 @@ public class StartView extends AnchorPane {
 
     private HBox hbox;
     private ScrollPane scrollPane;
+    
+    private BorderPane uploadPane;
 
     public StartView() {
 
+    	uploadPane = new BorderPane();
+    	uploadPane.setStyle("-fx-background-color: rgb(255,255,255)");
+    	uploadPane.setVisible(false);
+    	
         headerVBox = new VBox(10);
 
         logo = new LogoView();
@@ -78,10 +86,15 @@ public class StartView extends AnchorPane {
         AnchorPane.setTopAnchor(scrollPane, 400.0); 
 		AnchorPane.setLeftAnchor(scrollPane, 300.0);
 		AnchorPane.setRightAnchor(scrollPane, 0.0);
-        AnchorPane.setBottomAnchor(scrollPane, 75.0);        
+        AnchorPane.setBottomAnchor(scrollPane, 75.0);  
+        
+        AnchorPane.setTopAnchor(uploadPane, 50.0); 
+		AnchorPane.setLeftAnchor(uploadPane, 50.0);
+		AnchorPane.setRightAnchor(uploadPane, 50.0);
+        AnchorPane.setBottomAnchor(uploadPane, 50.0);   
 
         this.getStylesheets().add(getClass().getResource("/css/introView.css").toExternalForm());
-        this.getChildren().addAll(headerVBox, logo, secondHeader, scrollPane, addButton, ownPlanButton);
+        this.getChildren().addAll(headerVBox, logo, secondHeader, scrollPane, addButton, ownPlanButton, uploadPane);
     }
 
     public LogoView getLogo() {
@@ -119,6 +132,10 @@ public class StartView extends AnchorPane {
     public ScrollPane getScrollPane() {
         return scrollPane;
     }
+
+	public BorderPane getUploadPane() {
+		return uploadPane;
+	}
     
 
 }

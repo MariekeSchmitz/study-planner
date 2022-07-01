@@ -1,8 +1,11 @@
 package de.hsrm.mi.swt.SPAsS.presentation.views;
 
 import de.hsrm.mi.swt.SPAsS.application.App;
+import de.hsrm.mi.swt.SPAsS.presentation.views.introView.SelectView;
 import de.hsrm.mi.swt.SPAsS.presentation.views.introView.SelectViewController;
+import de.hsrm.mi.swt.SPAsS.presentation.views.introView.StartView;
 import de.hsrm.mi.swt.SPAsS.presentation.views.introView.StartViewController;
+import de.hsrm.mi.swt.SPAsS.presentation.views.introView.UploadView;
 import de.hsrm.mi.swt.SPAsS.presentation.views.introView.UploadViewController;
 import de.hsrm.mi.swt.SPAsS.presentation.views.mainView.MainViewController;
 import de.hsrm.mi.swt.SPAsS.presentation.views.mainView.moduleInformationView.ModuleInformationView;
@@ -16,15 +19,12 @@ public class ViewManager {
     private StackPane root;
     private App app;
     private MainViewController mainViewController;
-    private StackPane startStack;
+    private StartView startView;
 
     public ViewManager(App app) {
     	this.app = app;
         root = new StackPane();
         root.getStylesheets().add(getClass().getResource("/css/application.css").toExternalForm());
-
-    	mainViewController = new MainViewController(this, app);
-    	startStack = new StackPane();
 
         initialise();
        
@@ -37,19 +37,23 @@ public class ViewManager {
     public void switchScene(Scenes toScene) {
         if (toScene.equals(Scenes.MAIN_VIEW)) {
             root.getChildren().clear();
+        	mainViewController = new MainViewController(this, app);
+
             root.getChildren().add(mainViewController.getRootView());
             
         } else if (toScene.equals(Scenes.START_VIEW)) {
             root.getChildren().clear();
-            startStack.getChildren().add(new StartViewController(this, app).getRootView());
-            root.getChildren().add(startStack); 
+            startView = (StartView)new StartViewController(this, app).getRootView();
+            root.getChildren().add(startView); 
             
         } else if (toScene.equals(Scenes.UPLOAD_CURRICULUM_VIEW)) {
-            startStack.getChildren().add(new UploadViewController(this).getRootView()); 
+        	UploadView uploadView = (UploadView)new UploadViewController(this).getRootView();
+        	uploadView.getHeader().setText("Studiengang wählen");
+            startView.getUploadPane().setCenter(uploadView);
             
         } else if (toScene.equals(Scenes.SELECT_VIEW)) {
-	        root.getChildren().clear();
-	        root.getChildren().add(new SelectViewController().getRootView()); 
+        	SelectView selectView = (SelectView)new SelectViewController().getRootView();
+            startView.getUploadPane().setCenter(selectView);
         } 
     } 
     	
