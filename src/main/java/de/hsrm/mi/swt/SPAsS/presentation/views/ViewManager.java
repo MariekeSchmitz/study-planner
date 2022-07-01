@@ -38,7 +38,6 @@ public class ViewManager {
         if (toScene.equals(Scenes.MAIN_VIEW)) {
             root.getChildren().clear();
         	mainViewController = new MainViewController(this, app);
-
             root.getChildren().add(mainViewController.getRootView());
             
         } else if (toScene.equals(Scenes.START_VIEW)) {
@@ -48,13 +47,19 @@ public class ViewManager {
             
         } else if (toScene.equals(Scenes.UPLOAD_CURRICULUM_VIEW)) {
         	UploadView uploadView = (UploadView)new UploadViewController(this).getRootView();
-        	uploadView.getHeader().setText("Studiengang wählen");
+        	uploadView.getHeader().setText("Studiengang \nwählen");
             startView.getUploadPane().setCenter(uploadView);
             
         } else if (toScene.equals(Scenes.SELECT_VIEW)) {
-        	SelectView selectView = (SelectView)new SelectViewController().getRootView();
+        	SelectView selectView = (SelectView)new SelectViewController(this,app).getRootView();
             startView.getUploadPane().setCenter(selectView);
-        } 
+        
+        } else if (toScene.equals(Scenes.UPLOAD_PLAN_VIEW)) {
+        	UploadView uploadView = (UploadView)new UploadViewController(this).getRootView();
+        	uploadView.getHeader().setText("Eigenen Plan \nwählen");
+            startView.getUploadPane().setCenter(uploadView);
+        	
+        }
     } 
     	
     public Pane getRoot(){

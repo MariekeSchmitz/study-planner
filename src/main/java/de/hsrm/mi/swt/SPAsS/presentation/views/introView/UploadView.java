@@ -15,7 +15,7 @@ public class UploadView extends AnchorPane {
         header = new Label("Eigenen Plan \nhochladen");
         header.getStyleClass().add("header");
         
-        drag_drop_field = new DragDropViewController().getRootView();
+//        drag_drop_field = new DragDropViewController().getRootView();
 
         AnchorPane.setTopAnchor(header, 100.0);
         AnchorPane.setLeftAnchor(header, 150.0);

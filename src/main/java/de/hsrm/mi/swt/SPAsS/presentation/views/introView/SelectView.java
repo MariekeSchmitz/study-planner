@@ -3,6 +3,7 @@ package de.hsrm.mi.swt.SPAsS.presentation.views.introView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.HBox;
 import de.hsrm.mi.swt.SPAsS.presentation.views.introView.uiComponents.DragDropViewController;
@@ -20,7 +21,7 @@ public class SelectView extends AnchorPane{
     private Label header;
     private Label header2;
 
-    private Pane drag_drop_field;
+    private BorderPane drag_drop_field;
 
     private ScrollPane scrollPane;
 	private HBox hbox;
@@ -46,7 +47,8 @@ public class SelectView extends AnchorPane{
         scrollPane.setPrefSize(10000, 1000);
         scrollPane.setMaxHeight(150);
         
-        drag_drop_field = new DragDropViewController().getRootView();
+        drag_drop_field = new BorderPane();
+        drag_drop_field.setStyle("-fx-background-color: red");
 
         header2 = new Label("Neue Studiengangsdatei \nhinzufügen");
         header2.getStyleClass().add("header_2");
@@ -105,5 +107,11 @@ public class SelectView extends AnchorPane{
     public ListView<Pane> getListView() {
         return listView;
     }
+
+	public void setDrag_drop_field(Pane drag_drop_field) {
+		this.drag_drop_field.setCenter(drag_drop_field);
+	}
+    
+    
     
 }
