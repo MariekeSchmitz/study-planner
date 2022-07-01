@@ -20,12 +20,12 @@ public class ModuleInformationView extends AnchorPane{
 
     private VBox warningBox;
     private Label noteWarningHeadline;
-    private Text noteWarningText;
+    private Label noteWarningText;
     
     private VBox coursesBox;
 
     private Label modulDescriptionHeadline;
-    private Text moduleDescriptionText;
+    private Label moduleDescriptionText;
     
     private Label taughtCompetencesHeadline;
 	private VBox taughtCompetencesVbox;
@@ -44,8 +44,7 @@ public class ModuleInformationView extends AnchorPane{
         
     	moduleName = new Label("Modulname");
 		moduleName.getStyleClass().add("ModuleHeader");
-//		moduleName.autosize();
-//		moduleName.setMinWidth(Region.USE_PREF_SIZE);
+		moduleName.setWrapText(true);
 
     	category = new Label("category");
 		category.getStyleClass().add("categoryLabel");
@@ -53,7 +52,8 @@ public class ModuleInformationView extends AnchorPane{
 		cp.getStyleClass().add("categoryLabel");
 
     	noteWarningHeadline = new Label("Warnhinweise");
-    	noteWarningText = new Text("warnhinweiseText");
+    	noteWarningText = new Label("warnhinweiseText");
+		noteWarningText.setWrapText(true);
     	warningBox = new VBox(noteWarningHeadline,noteWarningText);
 		warningBox.setSpacing(10);
 		warningBox.setPrefHeight(75);
@@ -66,7 +66,8 @@ public class ModuleInformationView extends AnchorPane{
     	
     	modulDescriptionHeadline = new Label("Modulbeschreibung");
 		modulDescriptionHeadline.getStyleClass().add("coursesHeadline");
-    	moduleDescriptionText = new Text("moduldescriptionTest");
+    	moduleDescriptionText = new Label("moduldescriptionTest");
+		moduleDescriptionText.setWrapText(true);
     	
     	taughtCompetencesHeadline = new Label("Vermittelte Kompetenzen");
 		taughtCompetencesHeadline.getStyleClass().add("coursesHeadline");
@@ -92,19 +93,15 @@ public class ModuleInformationView extends AnchorPane{
 		box.setAlignment(Pos.TOP_LEFT);
 		box.setPadding(new Insets(10, 10, 10, 10));
 
-		labelVBox = new VBox(category, cp);
+		labelVBox = new VBox(moduleName,category, cp);
 		labelVBox.setSpacing(5);
+		labelVBox.setMaxWidth(300);
 
-		AnchorPane.setTopAnchor(moduleName, 75.0);
-        AnchorPane.setLeftAnchor(moduleName, 60.0);
-		AnchorPane.setRightAnchor(moduleName, 150.0);
-		moduleName.setMaxWidth(300);
-
-		AnchorPane.setTopAnchor(labelVBox, 130.0);
+		AnchorPane.setTopAnchor(labelVBox, 75.0);
         AnchorPane.setLeftAnchor(labelVBox, 60.0);
 		AnchorPane.setRightAnchor(labelVBox, 150.0);
 
-		AnchorPane.setTopAnchor(warningBox, 200.0);
+		AnchorPane.setTopAnchor(warningBox, 220.0);
         AnchorPane.setLeftAnchor(warningBox, 60.0);
 		AnchorPane.setRightAnchor(warningBox, 50.0);
 
@@ -116,7 +113,7 @@ public class ModuleInformationView extends AnchorPane{
 		AnchorPane.setRightAnchor(box, 50.0);
 		AnchorPane.setBottomAnchor(box, 0.0);
 
-        this.getChildren().addAll(box, backButton, moduleName, labelVBox, warningBox);
+        this.getChildren().addAll(box, backButton, labelVBox, warningBox);
         
 		this.getStylesheets().add(getClass().getResource("/css/moduleInformationView.css").toExternalForm());
         this.setStyle( "-fx-background-color:rgb(255,255,255)");	
@@ -158,11 +155,11 @@ public class ModuleInformationView extends AnchorPane{
 		this.modulDescriptionHeadline = modulDescriptionHeadline;
 	}
 
-	public Text getModuleDescriptionText() {
+	public Label getModuleDescriptionText() {
 		return moduleDescriptionText;
 	}
 
-	public void setModuleDescriptionText(Text moduleDescriptionText) {
+	public void setModuleDescriptionText(Label moduleDescriptionText) {
 		this.moduleDescriptionText = moduleDescriptionText;
 	}
 
@@ -214,11 +211,11 @@ public class ModuleInformationView extends AnchorPane{
 		this.noteWarningHeadline = noteWarningHeadline;
 	}
 
-	public Text getNoteWarningText() {
+	public Label getNoteWarningText() {
 		return noteWarningText;
 	}
 
-	public void setNoteWarningText(Text noteWarningText) {
+	public void setNoteWarningText(Label noteWarningText) {
 		this.noteWarningText = noteWarningText;
 	}
 
@@ -269,13 +266,6 @@ public class ModuleInformationView extends AnchorPane{
 	public void setDeleteExam(Button deleteExam) {
 		this.deleteExam = deleteExam;
 	}
-	
-	
-	
-	
-	
-	
-    
-    
+
 
 }

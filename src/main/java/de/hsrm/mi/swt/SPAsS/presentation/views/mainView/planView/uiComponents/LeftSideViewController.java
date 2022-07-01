@@ -70,7 +70,12 @@ public class LeftSideViewController extends ViewController {
          });
          settingsButton.addEventHandler(ActionEvent.ACTION, e -> {
             System.out.println("Settings Button Pressed"); 
-            viewManager.getMainViewController().putSettingsViewOnStack();
+            if(!Scenes.SETTINGS_VIEW.isIn()){
+                viewManager.getMainViewController().putSettingsViewOnStack();
+            } else {
+                viewManager.getMainViewController().transitionOut(Scenes.SETTINGS_VIEW);
+                Scenes.SETTINGS_VIEW.setIn(false);
+            }
          });
     }
 

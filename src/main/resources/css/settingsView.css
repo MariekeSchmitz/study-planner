@@ -1,16 +1,25 @@
 /* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
 
 .header {
-    -fx-font-size: 50px;
+    -fx-font-size: 30px;
 }
 
-.examListHeader {
-    -fx-font-size: 15px;
+.ModuleHeader {
+    -fx-font-size: 30px;
     -fx-font-weight: bold;
 }
 
-.examListCp {
-    -fx-font-size: 10px;
+.categoryLabel {
+    -fx-font-size: 17px;
+}
+
+.border-red {
+    -fx-border-color: rgb(228, 99, 99);
+    -fx-border-width: 1;
+}
+
+.coursesHeadline {
+    -fx-font-size: 17px;
 }
 
 .scroll-pane {
