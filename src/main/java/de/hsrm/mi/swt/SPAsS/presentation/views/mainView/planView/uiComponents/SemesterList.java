@@ -1,15 +1,12 @@
 package de.hsrm.mi.swt.SPAsS.presentation.views.mainView.planView.uiComponents;
 
-import java.io.IOException;
 import java.util.List;
 import java.util.Set;
 
 import de.hsrm.mi.swt.SPAsS.business.planManagement.Module;
 import de.hsrm.mi.swt.SPAsS.business.planManagement.Plan;
-import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.scene.control.ListView;
-import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.DataFormat;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.Dragboard;

@@ -11,6 +11,7 @@ import de.hsrm.mi.swt.SPAsS.presentation.views.mainView.MainViewController;
 import de.hsrm.mi.swt.SPAsS.presentation.views.mainView.moduleInformationView.ModuleInformationView;
 import de.hsrm.mi.swt.SPAsS.presentation.views.mainView.moduleInformationView.ModuleInformationViewController;
 import de.hsrm.mi.swt.SPAsS.presentation.views.mainView.planView.PlanViewController;
+import de.hsrm.mi.swt.SPAsS.presentation.views.mainView.settingsView.SettingsViewController;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 
@@ -57,9 +58,9 @@ public class ViewManager {
         } else if (toScene.equals(Scenes.UPLOAD_PLAN_VIEW)) {
         	UploadView uploadView = (UploadView)new UploadViewController(this).getRootView();
         	uploadView.getHeader().setText("Eigenen Plan \nwählen");
-            startView.getUploadPane().setCenter(uploadView);
-        	
+            startView.getUploadPane().setCenter(uploadView);       
         }
+
     } 
     	
     public Pane getRoot(){
