@@ -1,13 +1,19 @@
 package de.hsrm.mi.swt.SPAsS.presentation.views.introView;
 
 
+import java.io.FileNotFoundException;
+import java.util.HashMap;
 import java.util.List;
 
 import de.hsrm.mi.swt.SPAsS.application.App;
 import de.hsrm.mi.swt.SPAsS.business.fileManagement.FileManager;
+import de.hsrm.mi.swt.SPAsS.business.fileManagement.FileType;
+import de.hsrm.mi.swt.SPAsS.business.fileManagement.MetaEnum;
+import de.hsrm.mi.swt.SPAsS.presentation.views.Scenes;
 import de.hsrm.mi.swt.SPAsS.presentation.views.ViewController;
 import de.hsrm.mi.swt.SPAsS.presentation.views.ViewManager;
 import de.hsrm.mi.swt.SPAsS.presentation.views.introView.uiComponents.TitelPlanViewController;
+import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
@@ -17,11 +23,12 @@ import javafx.scene.layout.Pane;
 
 public class StartViewController extends ViewController {
 
-    private StartView sv;
+    private StartView startView;
     private ViewManager viewManager;
 
     private ScrollPane scrollPane;
     private Button addButton;
+    private Button ownPlanButton;
     private Label secondHeader;
     private FileManager fileManager;
     private Boolean plansAvailable;
@@ -33,12 +40,13 @@ public class StartViewController extends ViewController {
     	this.app = app;
         this.fileManager = app.getFileManager();
         this.viewManager = viewManager;
-    	sv = new StartView();
-        rootView = sv;
-        scrollPane = sv.getScrollPane();
-        addButton = sv.getAddButton();
-        secondHeader = sv.getSecondHeader();
-        hbox = sv.getHbox();
+    	startView = new StartView();
+        rootView = startView;
+        scrollPane = startView.getScrollPane();
+        addButton = startView.getAddButton();
+        ownPlanButton = startView.getOwnPlanButton();
+        secondHeader = startView.getSecondHeader();
+        hbox = startView.getHbox();
         initialise();
     }
 
@@ -46,6 +54,7 @@ public class StartViewController extends ViewController {
     public void initialise() {
     	
     	List<String> fileNames = fileManager.planScan();
+    	HashMap<String, String> metaData;
     	
     	if (fileNames.isEmpty()) {
     		plansAvailable = false;
@@ -58,11 +67,48 @@ public class StartViewController extends ViewController {
         if(plansAvailable) {
         	
         	for (String plan : fileNames) {
-        		 Pane tempPane = new TitelPlanViewController(plan, "Medieninformatik (B.Sc.)", "HochschuleRheinMain", viewManager, app, fileManager).getRootView();
-            	 hbox.getChildren().add(tempPane); 
+        		
+        		String name;
+        		String institution;
+        		String degreeProgram;
+        		
+        		try {
+					metaData = fileManager.readMeta(FileType.PLAN, plan);
+					name = metaData.get(MetaEnum.NAME.toString());
+	        		institution = metaData.get(MetaEnum.HOCHSCHULE.toString());
+	        		degreeProgram = metaData.get(MetaEnum.STUDIENGANG.toString());
+				} catch (FileNotFoundException e1) {
+					name = plan;
+	        		institution = "";
+	        		degreeProgram = "";
+				}
+        		
+        		
+        
+	    		 Pane tempPane = new TitelPlanViewController(name, institution, degreeProgram, viewManager, app, fileManager).getRootView();
+	        	 hbox.getChildren().add(tempPane); 
         	}
         	
         }
+        
+        addButton.addEventHandler(ActionEvent.ACTION, e -> {
+
+        	List<String> curricula = fileManager.curriculumScan();
+        	
+        	if (curricula.isEmpty()) {
+        		viewManager.switchScene(Scenes.UPLOAD_CURRICULUM_VIEW);
+        	} else {
+        		viewManager.switchScene(Scenes.SELECT_VIEW);
+
+        	}
+        	
+			startView.getUploadPane().setVisible(true);
+
+        	
+			
+        	
+			
+		});
         	
      
     }
@@ -81,5 +127,9 @@ public class StartViewController extends ViewController {
             addButton.setMaxSize(150, 150);
         }
     }
+    
+    
+    
+    
 
 }

@@ -26,7 +26,7 @@ public class App extends Application {
 	@Override
 	public void start(Stage primaryStage) throws Exception{
 		testClass = new TestClassGenerator();
-		plan = testClass.plan;
+//		plan = testClass.plan;
 
 		fileManager = new FileManager("FileManagerTestFolder");
 		try {

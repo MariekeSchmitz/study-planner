@@ -26,7 +26,18 @@ public class UploadView extends AnchorPane {
         AnchorPane.setRightAnchor(drag_drop_field, 200.0);
 
         this.getStylesheets().add(getClass().getResource("/css/introView.css").toExternalForm());
+        this.setStyle("-fx-background-color: rgb(255,255,255)");
         this.getChildren().addAll(header, drag_drop_field);
     }
+
+	public Label getHeader() {
+		return header;
+	}
+
+	public void setHeader(Label header) {
+		this.header = header;
+	}
+    
+    
 
 }

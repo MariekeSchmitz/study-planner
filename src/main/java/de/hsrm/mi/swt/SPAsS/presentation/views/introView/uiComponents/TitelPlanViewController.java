@@ -40,6 +40,7 @@ public class TitelPlanViewController extends ViewController{
     	openPlanButton.addEventHandler(ActionEvent.ACTION, e -> {
 
 			plan = fileManager.fileRead(FileType.PLAN, titel);
+			plan.initialize();
 			app.setPlan(plan);
 			viewManager.switchScene(Scenes.MAIN_VIEW);
 
