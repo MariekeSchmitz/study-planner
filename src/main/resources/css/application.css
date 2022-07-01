@@ -98,11 +98,6 @@
     -fx-border: none;
 }
 
-.scroll-pane {
-    -fx-background-color: transparent;
-    -fx-background: transparent;
-}
-
 .scroll-bar:horizontal,
 .scroll-bar:vertical {
     -fx-background-color: transparent;

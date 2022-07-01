@@ -12,3 +12,8 @@
 .examListCp {
     -fx-font-size: 10px;
 }
+
+.scroll-pane {
+    -fx-background-color: transparent;
+    -fx-background: transparent;
+}

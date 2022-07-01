@@ -122,6 +122,7 @@ public class CenterView extends AnchorPane{
         AnchorPane.setLeftAnchor(pointAverage, 130.0);
 
         this.getChildren().addAll(backgroundPane, scrollPane, hBoxAdd, header, pointAverage, buttonsBox);
+        this.getStylesheets().add(getClass().getResource("/css/mainView.css").toExternalForm());
     }
 
 
