@@ -46,6 +46,14 @@ public class PlanViewController extends ViewController{
         testButton.addEventHandler(ActionEvent.ACTION, event -> { 
 			viewManager.switchScene(Scenes.START_VIEW_CONTROLLER);
 		});
-    }   
+    }
+	public CenterViewController getCenterViewController() {
+		return centerViewController;
+	}
+	public void setCenterViewController(CenterViewController centerViewController) {
+		this.centerViewController = centerViewController;
+	}   
+    
+    
 
 }

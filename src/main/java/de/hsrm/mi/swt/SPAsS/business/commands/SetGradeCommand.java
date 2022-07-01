@@ -20,9 +20,10 @@ public class SetGradeCommand implements ICommand
   public void execute() {
 	  myExam.setGrade(grade);
 	  if (grade == 0) {
-		  myExam.getPassed().set(false);
+		  myExam.setPassed(false);
+
 	  } else {
-		  myExam.getPassed().set(true);
+		  myExam.setPassed(true);
 	  }
   }
 
@@ -30,9 +31,9 @@ public class SetGradeCommand implements ICommand
   public void undo() {
 	  myExam.setGrade(oldGrade);
 	  if (oldGrade == 0) {
-		  myExam.getPassed().set(false);
+		  myExam.setPassed(false);
 	  } else {
-		  myExam.getPassed().set(true);
+		  myExam.setPassed(true);
 	  }
 	  
   }

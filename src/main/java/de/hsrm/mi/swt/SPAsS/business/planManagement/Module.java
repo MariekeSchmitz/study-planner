@@ -1,5 +1,7 @@
 package de.hsrm.mi.swt.SPAsS.business.planManagement;
 
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 import java.beans.Transient;
 import java.io.Serializable;
 import java.util.List;
@@ -16,7 +18,7 @@ public class Module {
 
 	private String name; 
 	private String description;
-	private SimpleIntegerProperty semesterCurrent;
+	private int semesterCurrent;
 	private int semesterDefault;
 	private OfferedTime offeredIn;
 	private int cp = 0;
@@ -28,12 +30,41 @@ public class Module {
 	private CategoryEnum category;
 	private boolean valid = true;
 	private String note = "";
+//	private boolean hasExtraExam;
+	private Module associatedModule = null;
 		
-	
+    private transient final PropertyChangeSupport pcs = new PropertyChangeSupport(this);
+
 	
 	public Module() {
 		
 	}
+	
+//	public Module(String name, String description, int semesterDefault, int semesterCurrent, OfferedTime offeredIn,
+//			List<Course> courses, List<Competence> neededCompetences, List <Competence> taughtCompetences, CategoryEnum category, boolean valid, String note, boolean hasExtraExam)  {
+//		this.name = name;
+//		
+//		this.description = description;
+//		this.semesterDefault = semesterDefault;
+//		this.offeredIn = offeredIn;
+//		
+//		this.courses = courses;
+//		this.neededCompetences = neededCompetences;
+//		this.taughtCompetences = taughtCompetences;
+//		this.valid = valid;
+//		this.note = note;
+//		this.category = category;
+////		this.hasExtraExam = hasExtraExam;
+//		
+//		this.semesterCurrent = semesterCurrent;
+//		this.passed = false;
+//		this.coursesPassed();
+//		
+//		for (Course course : this.courses) {
+//			this.cp += course.getCp();
+//		}
+//		
+//	}
 	
 	public Module(String name, String description, int semesterDefault, int semesterCurrent, OfferedTime offeredIn,
 			List<Course> courses, List<Competence> neededCompetences, List <Competence> taughtCompetences, CategoryEnum category, boolean valid, String note)  {
@@ -50,9 +81,35 @@ public class Module {
 		this.note = note;
 		this.category = category;
 		
-		
-		this.semesterCurrent = new SimpleIntegerProperty(semesterCurrent);
+		this.semesterCurrent = semesterCurrent;
 		this.passed = false;
+//		this.hasExtraExam = false;
+		this.coursesPassed();
+		
+		for (Course course : this.courses) {
+			this.cp += course.getCp();
+		}
+		
+	}
+	
+	public Module(String name, String description, int semesterDefault, int semesterCurrent, OfferedTime offeredIn,
+			List<Course> courses, List<Competence> neededCompetences, List <Competence> taughtCompetences, CategoryEnum category, boolean valid, String note, Module associatedModule)  {
+		this.name = name;
+		
+		this.description = description;
+		this.semesterDefault = semesterDefault;
+		this.offeredIn = offeredIn;
+		
+		this.courses = courses;
+		this.neededCompetences = neededCompetences;
+		this.taughtCompetences = taughtCompetences;
+		this.valid = valid;
+		this.note = note;
+		this.category = category;
+		
+		this.semesterCurrent = semesterCurrent;
+		this.passed = false;
+		this.associatedModule = associatedModule;
 		this.coursesPassed();
 		
 		for (Course course : this.courses) {
@@ -61,6 +118,14 @@ public class Module {
 		
 	}
 
+	public void addPropertyChangeListener(PropertyChangeListener listener) {
+        this.pcs.addPropertyChangeListener(listener);
+    }
+
+    public void removePropertyChangeListener(PropertyChangeListener listener) {
+        this.pcs.removePropertyChangeListener(listener);
+    }
+   
 
 	public void move(int newSemester) {
 		CommandManager.getInstance().execAndPush(new MoveSemesterCommand(this, newSemester));
@@ -74,7 +139,7 @@ public class Module {
 	public void coursesPassed(){
 		boolean tempPassed = true;
 		for (Course course:courses){
-			if (!course.getExam().getPassed().get()){
+			if (!course.getExam().getPassed()){
 				tempPassed = false;
 				break;
 			}
@@ -111,6 +176,16 @@ public class Module {
 	public List<Course> getCourses() {
 		return courses;
 	}
+	
+	public Course getCourse(Course c) {
+		
+		for(Course ci : this.courses) {
+			if(c.equals(ci)) {
+				return ci;
+			}
+		}
+		return null;
+	}
 
 
 	public void setCourses(List<Course> courses) {
@@ -137,13 +212,18 @@ public class Module {
 		this.semesterDefault = semesterDefault;
 	}
 	public int getSemesterCurrent() {
-		return semesterCurrent.get();
+		return semesterCurrent;
 	}
 	public void setSemesterCurrent(int semesterCurrent) {
-		this.semesterCurrent.set(semesterCurrent);
+		
+		var pre = this.semesterCurrent;
+		this.semesterCurrent = semesterCurrent;
+		this.pcs.firePropertyChange("semesterCurrent", pre, this.semesterCurrent);
+		System.out.println("semesterCurrent - set "+this.semesterCurrent);
+		
 	}
 	
-	public SimpleIntegerProperty getSemesterCurrentProperty () {
+	public int getSemesterCurrentProperty () {
 		return this.semesterCurrent;
 	}
 	
@@ -201,7 +281,12 @@ public class Module {
 
 
 	public void setValid(boolean valid) {
-		this.valid = valid;
+		
+		var pre = this.valid;
+		this.valid = valid;		
+		this.pcs.firePropertyChange("valid", pre, this.valid);
+		System.out.println("semesterCurrent - set "+this.valid);
+		
 	}
 
 
@@ -228,13 +313,6 @@ public class Module {
 	}
 
 
-
-	
-
-	public void setSemesterCurrent(SimpleIntegerProperty semesterCurrent) {
-		this.semesterCurrent = semesterCurrent;
-	}
-
 	public void setPassed(boolean passed) {
 		this.passed = passed;
 	}
@@ -251,6 +329,25 @@ public class Module {
 	public void setTaughtCompetences(List<Competence> taughtCompetences) {
 		this.taughtCompetences = taughtCompetences;
 	}
+
+//	public boolean isHasExtraExam() {
+//		return hasExtraExam;
+//	}
+//
+//	public void setHasExtraExam(boolean hasExtraExam) {
+//		this.hasExtraExam = hasExtraExam;
+//	}
+
+	public Module getAssociatedModule() {
+		return associatedModule;
+	}
+
+	public void setAssociatedModule(Module associatedModule) {
+		this.associatedModule = associatedModule;
+	}
+	
+	
+	
 	
 	
 

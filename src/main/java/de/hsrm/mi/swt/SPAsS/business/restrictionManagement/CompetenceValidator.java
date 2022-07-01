@@ -44,7 +44,6 @@ public class CompetenceValidator implements Validator {
 			for (Competence competence : module.getNeededCompetences()) { // wenn Competence nicht erkannt, dann Strings
 																			// reinpacken und über Competence-Namen
 																			// reinpacken
-
 				if (competenceMap.get(competence) > currentSemester) {
 					competencesObtained = false;
 				}
@@ -54,6 +53,12 @@ public class CompetenceValidator implements Validator {
 			if (!competencesObtained) {
 				module.setValid(false);
 				module.setNote(this.message);
+			} else{
+				if (module.isValid()) {
+					module.setValid(true);
+					module.resetNote();
+				} 
+				
 			}
 
 			competencesObtained = true;

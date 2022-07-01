@@ -1,5 +1,7 @@
 package de.hsrm.mi.swt.SPAsS.business.planManagement;
 
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -16,13 +18,19 @@ public class Plan {
 
     private String name;
     private String curriculumName;
-    private SimpleFloatProperty averageGrade;
+    private Float averageGrade;
     private List<Module> moduleList;
     private List<Validator> validatorList;
     private transient Map<Integer, List<Module>> moduleMap;
     private int numberSemesterCurrent;
     private int numberSemesterDefault;
 
+    
+    private transient final PropertyChangeSupport pcs = new PropertyChangeSupport(this);
+    
+
+    
+    
     public Plan(String name, String curriculumName, List<Module> moduleList, List<Validator> validatorList,
             int numberSemester) {
         this.name = name;
@@ -33,11 +41,20 @@ public class Plan {
         this.moduleMap = new HashMap<>();
         updateModuleMap();
         this.numberSemesterDefault = calculateNumberSemesterDefault();
-        this.averageGrade = new SimpleFloatProperty();
         
         calculateAverage();
+        validate();
         
     }
+    
+    public void addPropertyChangeListener(PropertyChangeListener listener) {
+        this.pcs.addPropertyChangeListener(listener);
+    }
+
+    public void removePropertyChangeListener(PropertyChangeListener listener) {
+        this.pcs.removePropertyChangeListener(listener);
+    }
+   
 
     private int calculateNumberSemesterDefault() {
     	
@@ -108,9 +125,9 @@ public class Plan {
             }
         }
         if (cp != 0) {
-            this.averageGrade.set(grade/cp);
+        	setAverageGrade(grade/cp);
         } else {
-            this.averageGrade.set(0);
+        	setAverageGrade(0f);
         }
     }
     
@@ -172,6 +189,22 @@ public class Plan {
     public void setValidatorList(List<Validator> validatorList) {
         this.validatorList = validatorList;
     }
+    
+    public void validate () {
+    	
+    	
+    	for (Module module : moduleList) {
+    		module.setValid(true);
+    		module.resetNote();
+    	}
+    	
+    	for (Validator validator : this.validatorList) {
+    		validator.validate(this);
+    	}
+    	
+    	
+    	
+    }
 
     public int getNumberSemester() {
         return numberSemesterCurrent;
@@ -188,15 +221,20 @@ public class Plan {
     public void setModuleMap(Map<Integer, List<Module>> moduleMap) {
         this.moduleMap = moduleMap;
     }
-
-	public SimpleFloatProperty getAverageGrade() {
-		this.calculateAverage();
-		return averageGrade;
-	}
-
-	public void setAverageGrade(SimpleFloatProperty averageGrade) {
+    
+    public void setAverageGrade(Float averageGrade) {
+    	
+    	var pre = this.averageGrade;
 		this.averageGrade = averageGrade;
-	}
+		this.pcs.firePropertyChange("average", pre, this.averageGrade);
+		System.out.println("AverageGrade - set "+this.averageGrade);
+    	
+    }
+    
+    public Float getAverageGrade() {
+    	return this.averageGrade;
+    }
+    
 
 	public int getNumberSemesterCurrent() {
 		return numberSemesterCurrent;
@@ -214,9 +252,15 @@ public class Plan {
 		this.numberSemesterDefault = numberSemesterDefault;
 	}
 	
+	public void addModule (int semester, Module module){
+		this.moduleMap.get(semester).add(module);
+		this.moduleList.add(module);
+	}
 	
+	public void removeModule (int semester, Module module){
+		this.moduleMap.get(semester).remove(module);
+		this.moduleList.remove(module);
+	}
 	
-    
-    
 
 }

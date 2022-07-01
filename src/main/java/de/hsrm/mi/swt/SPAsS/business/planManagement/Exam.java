@@ -1,5 +1,7 @@
 package de.hsrm.mi.swt.SPAsS.business.planManagement;
 
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 import java.io.Serializable;
 
 import de.hsrm.mi.swt.SPAsS.business.commands.AddSemesterCommand;
@@ -14,9 +16,11 @@ public class Exam implements Serializable {
     private ExamType examType;
     private OfferedTime offeredIn;
     private int numberAttempt;
-    private SimpleBooleanProperty passed;
+    private boolean passed;
     private boolean gradeAvailable;
+    private transient final PropertyChangeSupport pcs = new PropertyChangeSupport(this);
 
+    
     public Exam() {
     	
     }
@@ -26,7 +30,7 @@ public class Exam implements Serializable {
         this.examType = examType;
         this.offeredIn = offeredIn;
         this.numberAttempt = numberAttempt;
-        this.passed = new SimpleBooleanProperty(true);
+        this.passed = true;
         this.gradeAvailable = gradeAvailable;
     }
     
@@ -34,8 +38,16 @@ public class Exam implements Serializable {
         this.examType = examType;
         this.offeredIn = offeredIn;
         this.numberAttempt = numberAttempt;
-        this.passed = new SimpleBooleanProperty(false);
+        this.passed = false;
         this.gradeAvailable = gradeAvailable;
+    }
+    
+    public void addPropertyChangeListener(PropertyChangeListener listener) {
+        this.pcs.addPropertyChangeListener(listener);
+    }
+
+    public void removePropertyChangeListener(PropertyChangeListener listener) {
+        this.pcs.removePropertyChangeListener(listener);
     }
     
     public void changeGradeCommand(float grade) {
@@ -66,15 +78,22 @@ public class Exam implements Serializable {
     public void setNumberAttempt(int numberAttempt) {
         this.numberAttempt = numberAttempt;
     }
-   
 
-	public SimpleBooleanProperty getPassed() {
+	public boolean getPassed() {
 		return passed;
 	}
 
 	public void setPassed(Boolean passed) {
+		
 		CommandManager.getInstance().execAndPush(new PassExamCommand(this, passed));
+
 	}
+	
+	public void firePassedEvent (Boolean passed) {
+		var pre = this.passed;
+		this.passed = passed;
+		this.pcs.firePropertyChange("bestanden", pre, this.passed);
+	  	System.out.println("bestanden - set "+this.passed);	}
 
 	public boolean isGradeAvailable() {
 		return gradeAvailable;

@@ -9,6 +9,7 @@ import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import de.hsrm.mi.swt.SPAsS.business.planManagement.Course;
 import de.hsrm.mi.swt.SPAsS.business.planManagement.Module;
 
 public class ModuleView extends ListCell<Module>{
@@ -37,6 +38,8 @@ public class ModuleView extends ListCell<Module>{
         this.setMaxHeight(50);
         this.setMaxWidth(150);
 		this.setStyle("-fx-background-color: transparent;");
+		
+		
     }
     
     
@@ -45,6 +48,12 @@ public class ModuleView extends ListCell<Module>{
     	super.updateItem(item, empty);
     	
     	if (!empty) {
+    		
+    		if (this.getItem().isValid()) {
+    			this.setId("valid");
+    		} else {
+    			this.setId("invalid");
+    		}
     		
     		moduleLabel.setText(item.getName());
     		cpLabel.setText(Integer.toString(item.getCp()));
@@ -56,12 +65,14 @@ public class ModuleView extends ListCell<Module>{
     		
     		
     		// TO DO 
-    		String s = "-fx-background-color:rgba("+red+","+blue+","+green+", 0.5);";
+    		String colorPassed = "-fx-background-color:rgba("+red+","+blue+","+green+", 0.5);";
+    		String onlyExam = "-fx-background-color:rgb(200,200,200)";
     		
     		
-    		if (item.isPassed()) {
-    			labels.setStyle(s);
-        		
+    		if (item.getAssociatedModule() != null) {
+    			labels.setStyle(onlyExam);
+    		} else if (item.isPassed()) {
+    			labels.setStyle(colorPassed);
     		} else {
         		labels.setBackground(new Background(new BackgroundFill(item.getCategories().getColor(),new CornerRadii(0),new Insets(0))));
     		}
@@ -70,6 +81,8 @@ public class ModuleView extends ListCell<Module>{
     		this.setGraphic(labels);
     		
     	} else{
+    		
+    		this.setId("valid");
     		this.setGraphic(null);
     	}
     }

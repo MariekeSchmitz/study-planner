@@ -26,6 +26,7 @@ public class ModuleInformationViewController extends ViewController{
 	private App app;
 	private Module module;
 	private Button backButton;
+	private Button deleteButton;
 	private ModuleInformationView moduleInformationView;
 	private MainViewController mainViewController;
 	private VBox coursesBox;
@@ -44,6 +45,7 @@ public class ModuleInformationViewController extends ViewController{
     	moduleInformationView = new ModuleInformationView();
     	rootView = moduleInformationView;
     	backButton = moduleInformationView.getBackButton();
+    	deleteButton = moduleInformationView.getDeleteExam();
     	
     	System.out.println(moduleInformationView.getWidth());
      
@@ -56,7 +58,21 @@ public class ModuleInformationViewController extends ViewController{
     	backButton.addEventHandler(ActionEvent.ACTION, e -> {
     		mainViewController.transitionOut(Scenes.MODULE_INFORMATION_VIEW);
     		Scenes.MODULE_INFORMATION_VIEW.setIn(false);
-    	});        
+    	});  
+    	
+    	deleteButton.addEventHandler(ActionEvent.ACTION, e -> {
+    		
+    		app.getPlan().removeModule(module.getSemesterCurrent(), module);
+    		// noch zu ExamView wieder hinzufügen
+    		Module associatedModule = module.getAssociatedModule();
+    		Course examCourse = module.getCourses().get(0);
+    		associatedModule.getCourses().add(examCourse);
+    		examCourse.setHasExtraExam(false);
+    		mainViewController.getPlanViewController().getCenterViewController().generateListView();
+    		mainViewController.transitionOut(Scenes.MODULE_INFORMATION_VIEW);
+
+    	}); 
+    	
     }
     
     public void setModuleInformation(Module module) {
@@ -74,7 +90,6 @@ public class ModuleInformationViewController extends ViewController{
     		moduleInformationView.getWarningBox().setVisible(true);
     		moduleInformationView.getNoteWarningText().setText(module.getNote());
 			AnchorPane.setTopAnchor(moduleInformationView.getBox(), 300.0);
-
     	}
     	
     	coursesBox = moduleInformationView.getCoursesBox();
@@ -85,7 +100,7 @@ public class ModuleInformationViewController extends ViewController{
     	
     	for (Course course : courses) {
    
-    		courseHBox = (HBox)new CoursesRowController(course, app.getPlan()).getRootView();
+    		courseHBox = (HBox)new CoursesRowController(course, app.getPlan(), course.isHasExtraExam(), module).getRootView();
     		
     		coursesBox.getChildren().add(courseHBox);
    
@@ -108,6 +123,12 @@ public class ModuleInformationViewController extends ViewController{
 		}
     		    	
     	moduleInformationView.getModuleDescriptionText().setText(module.getDescription());
+    	
+    	if (module.getAssociatedModule() == null) {
+    		deleteButton.setVisible(false);
+    	} else {
+    		deleteButton.setVisible(true);
+    	}
     	
     }
 

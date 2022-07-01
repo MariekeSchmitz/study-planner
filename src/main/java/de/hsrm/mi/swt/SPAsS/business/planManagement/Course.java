@@ -7,6 +7,7 @@ public class Course implements Serializable{
     private String name;
     private int cp;
     private Exam exam;
+    private boolean hasExtraExam;
 
     public Course() {
     	
@@ -18,7 +19,13 @@ public class Course implements Serializable{
         this.cp = cp;
         this.exam = exam;
     }
-
+    
+    public Course(String name, int cp, Exam exam, boolean hasExtraExam) {
+        this(name,cp,exam);
+        this.hasExtraExam = hasExtraExam;
+    }
+    
+   
     public String getName() {
         return name;
     }
@@ -41,5 +48,17 @@ public class Course implements Serializable{
 
     public void setExam(Exam exam) {
         this.exam = exam;
-    }    
+    }
+
+
+	public boolean isHasExtraExam() {
+		return hasExtraExam;
+	}
+
+
+	public void setHasExtraExam(boolean hasExtraExam) {
+		this.hasExtraExam = hasExtraExam;
+	}    
+    
+    
 }

@@ -1,5 +1,7 @@
 package de.hsrm.mi.swt.SPAsS.business.commands;
 
+import java.beans.PropertyChangeSupport;
+
 import de.hsrm.mi.swt.SPAsS.business.planManagement.Exam;
 
 public class PassExamCommand implements ICommand
@@ -16,24 +18,28 @@ public class PassExamCommand implements ICommand
 
   @Override
   public void execute() {
+	  
+	  
+
 	  if (passed) {
-		  myExam.getPassed().set(true); 
+		  myExam.firePassedEvent(true);
 	  } else {
-		  myExam.getPassed().set(false);
+		  myExam.firePassedEvent(false);
 		  myExam.setGrade(0);
 	  }
+	  
+	  
+	  
   }
 
   @Override
   public void undo() {
+	  
 	  if (passed) {
-		  myExam.getPassed().set(false);
-		  myExam.setGrade(0);
-
+		  myExam.firePassedEvent(false);
 	  } else {
-		  myExam.getPassed().set(true); 
-		  myExam.setGrade(oldGrade);
-
+		  myExam.firePassedEvent(true);
+		  myExam.setGrade(0);
 	  }
   }
 }

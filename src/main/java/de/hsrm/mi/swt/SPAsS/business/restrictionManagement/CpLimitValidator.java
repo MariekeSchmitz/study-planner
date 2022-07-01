@@ -36,13 +36,22 @@ public class CpLimitValidator implements Validator {
     			tempCP += module.getCp();
     		}
     		
-    		if (tempCP > this.cpLimit) {
+    		for (Module module : tempList) {
     			
-    			for (Module module : tempList) {
-        			module.setValid(false);
+    			if (tempCP > this.cpLimit) {
+    				module.setValid(false);
         			module.setNote(this.message);
-        		}
+    			
+    			} else {
+    				
+    				if (module.isValid()) {
+    					module.setValid(true);
+    					module.resetNote();
+    				}
+    				
+    			}
     		}
+    		
     		
     		tempCP = 0;
     		
