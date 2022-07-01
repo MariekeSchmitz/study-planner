@@ -6,6 +6,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
@@ -96,6 +97,7 @@ public class CenterView extends AnchorPane{
 		scrollPane.setPannable(true);
 
         planPane.getStyleClass().add("backgroundtransparent");
+        
 
         AnchorPane.setLeftAnchor(hBoxAdd, 130.0);
         AnchorPane.setTopAnchor(hBoxAdd, 275.0);
@@ -234,6 +236,18 @@ public class CenterView extends AnchorPane{
     public void setClear(Button clear) {
         this.savePlan = clear;
     }
+
+
+	public Button getSavePlan() {
+		return savePlan;
+	}
+
+
+	public void setSavePlan(Button savePlan) {
+		this.savePlan = savePlan;
+	}
+    
+    
 
     
 }

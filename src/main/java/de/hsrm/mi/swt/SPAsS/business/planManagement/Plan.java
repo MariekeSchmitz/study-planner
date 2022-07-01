@@ -91,6 +91,10 @@ public class Plan {
     	pcs = new PropertyChangeSupport(this);
     	moduleMap = new HashMap<>();
     	this.updateModuleMap();
+        this.numberSemesterDefault = calculateNumberSemesterDefault();
+        calculateAverage();
+
+
     }
 
     public void updateModuleMap() {

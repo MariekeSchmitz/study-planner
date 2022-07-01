@@ -9,8 +9,11 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+import de.hsrm.mi.swt.SPAsS.application.App;
 import de.hsrm.mi.swt.SPAsS.business.commands.CommandManager;
 import de.hsrm.mi.swt.SPAsS.business.commands.ResetPlanCommand;
+import de.hsrm.mi.swt.SPAsS.business.fileManagement.FileManager;
+import de.hsrm.mi.swt.SPAsS.business.fileManagement.FileType;
 import de.hsrm.mi.swt.SPAsS.business.planManagement.CategoryEnum;
 import de.hsrm.mi.swt.SPAsS.business.planManagement.Competence;
 import de.hsrm.mi.swt.SPAsS.business.planManagement.Course;
@@ -61,6 +64,7 @@ public class CenterViewController extends ViewController implements PropertyChan
 	private Button addSemesterButton;
 	private Button removeSemesterButton;
 	private Button addExamButton;
+	private Button savePlanButton;
 	private Label gradeAverage;
 
 	private DataFormat dataFormat = new DataFormat("moduleCell");
@@ -71,13 +75,15 @@ public class CenterViewController extends ViewController implements PropertyChan
 	private double mouseX;
 	private double mouseY;
 	private ViewManager viewManager;
+	private App app;
 
-	public CenterViewController(Plan plan, ViewManager viewManager) {
+	public CenterViewController(Plan plan, ViewManager viewManager, App app) {
 
 		centerView = new CenterView();
 		rootView = centerView;
 
 		this.plan = plan;
+		this.app = app;
 		plan.addPropertyChangeListener(this);
 
 		this.moduleMap = plan.getModuleMap();
@@ -93,6 +99,7 @@ public class CenterViewController extends ViewController implements PropertyChan
 		removeSemesterButton = centerView.getRemoveSemester();
 		addExamButton = centerView.getAddExam();
 		gradeAverage = centerView.getPointAverage();
+		savePlanButton = centerView.getSavePlan();
 
 		initialise();
 
@@ -116,13 +123,16 @@ public class CenterViewController extends ViewController implements PropertyChan
 			viewManager.getMainViewController().putExamViewOnStack();
 
 		});
+		
+		savePlanButton.addEventHandler(ActionEvent.ACTION, e -> {
 
-//    	addSemesterButton.addEventHandler(ActionEvent.ACTION, e -> {
-//    		
-//    		moduleMap.get(1).get(2).setPassed(true);
-//    		moduleMap.get(2).get(2).setPassed(true);
-//    		
-//    	});
+			FileManager fileManager = app.getFileManager();
+			fileManager.fileSave(FileType.PLAN, plan);
+			System.out.println("Plan saved");
+
+			
+		});
+
 
 		addSemesterButton.addEventHandler(ActionEvent.ACTION, e -> {
 

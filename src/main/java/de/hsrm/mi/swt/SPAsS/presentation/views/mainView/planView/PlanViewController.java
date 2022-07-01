@@ -11,11 +11,12 @@ public class PlanViewController extends ViewController{
     private PlanView mainView;
     private CenterViewController centerViewController;
     private Plan plan;
+    
 
     public PlanViewController(ViewManager viewManager, App app) {
         this.plan = app.getPlan();
 
-        centerViewController = new CenterViewController(plan, viewManager); 
+        centerViewController = new CenterViewController(plan, viewManager, app); 
         
         mainView = new PlanView((AnchorPane)centerViewController.getRootView());
         rootView = mainView;     
