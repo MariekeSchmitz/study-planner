@@ -8,6 +8,7 @@ import de.hsrm.mi.swt.SPAsS.presentation.views.mainView.MainViewController;
 import de.hsrm.mi.swt.SPAsS.presentation.views.mainView.moduleInformationView.ModuleInformationView;
 import de.hsrm.mi.swt.SPAsS.presentation.views.mainView.moduleInformationView.ModuleInformationViewController;
 import de.hsrm.mi.swt.SPAsS.presentation.views.mainView.planView.PlanViewController;
+import de.hsrm.mi.swt.SPAsS.presentation.views.mainView.settingsView.SettingsViewController;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 
@@ -50,7 +51,10 @@ public class ViewManager {
         } else if (toScene.equals(Scenes.SELECT_VIEW)) {
 	        root.getChildren().clear();
 	        root.getChildren().add(new SelectViewController().getRootView()); 
-        } 
+        } else if (toScene.equals(Scenes.SETTINGS_VIEW)) {
+	        root.getChildren().clear();
+	        root.getChildren().add(new SettingsViewController(this, app).getRootView()); 
+        }  
     } 
     	
     public Pane getRoot(){

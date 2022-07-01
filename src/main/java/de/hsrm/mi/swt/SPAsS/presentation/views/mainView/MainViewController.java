@@ -9,6 +9,8 @@ import de.hsrm.mi.swt.SPAsS.presentation.views.mainView.examView.ExamViewControl
 import de.hsrm.mi.swt.SPAsS.presentation.views.mainView.moduleInformationView.ModuleInformationView;
 import de.hsrm.mi.swt.SPAsS.presentation.views.mainView.moduleInformationView.ModuleInformationViewController;
 import de.hsrm.mi.swt.SPAsS.presentation.views.mainView.planView.PlanViewController;
+import de.hsrm.mi.swt.SPAsS.presentation.views.mainView.planView.uiComponents.LeftSideView;
+import de.hsrm.mi.swt.SPAsS.presentation.views.mainView.planView.uiComponents.LeftSideViewController;
 import de.hsrm.mi.swt.SPAsS.presentation.views.mainView.settingsView.SettingsView;
 import de.hsrm.mi.swt.SPAsS.presentation.views.mainView.settingsView.SettingsViewController;
 import javafx.animation.Interpolator;
@@ -26,10 +28,12 @@ public class MainViewController extends ViewController{
     private ExamViewController examViewController;
     private ModuleInformationViewController moduleInformationViewController;
     private PlanViewController planViewController;
+	private LeftSideViewController leftSideViewController;
     
     private ModuleInformationView moduleInformationView;
     private ExamView examView;
     private SettingsView settingsView;
+	private LeftSideView leftSideView;
 
     
     private App app;
@@ -40,6 +44,7 @@ public class MainViewController extends ViewController{
     	this.app = app;
     	
         mainViewStack = new StackPane();
+		leftSideViewController = new LeftSideViewController(viewManager);
         settingsViewController = new SettingsViewController(viewManager, app);
         examViewController = new ExamViewController(viewManager, app);
         moduleInformationViewController = new ModuleInformationViewController(this, app);
@@ -52,7 +57,7 @@ public class MainViewController extends ViewController{
         this.moduleInformationView= (ModuleInformationView)moduleInformationViewController.getRootView(); 
         this.examView = (ExamView)examViewController.getRootView();
         this.settingsView = (SettingsView)settingsViewController.getRootView();
-        
+        this.leftSideView = (LeftSideView) leftSideViewController.getRootView();
         
         rootView = mainViewStack;
         
@@ -63,13 +68,19 @@ public class MainViewController extends ViewController{
     
     @Override
     public void initialise() {
-      
+		
     	StackPane.setAlignment(moduleInformationView, Pos.CENTER_RIGHT);
     	StackPane.setAlignment(examView, Pos.CENTER_RIGHT);
+		StackPane.setAlignment(settingsView, Pos.CENTER_LEFT);
+		StackPane.setAlignment(leftSideView, Pos.CENTER_LEFT);
+
     	moduleInformationView.setVisible(false);
     	examView.setVisible(false);
+		settingsView.setVisible(false);
     	mainViewStack.getChildren().add(moduleInformationView);
         mainViewStack.getChildren().add(examView);
+		mainViewStack.getChildren().add(settingsView);
+		mainViewStack.getChildren().add(leftSideView);
 
 
     }
@@ -86,8 +97,7 @@ public class MainViewController extends ViewController{
        	 	
     	} else if (scene == Scenes.SETTINGS_VIEW) {
        	 	mainViewStack.getChildren().add(settingsView);
-    	}
-    	
+    	} 	
     }
     
     public void removeView(Scenes scene) {
@@ -124,6 +134,14 @@ public class MainViewController extends ViewController{
     	Scenes.EXAM_VIEW.setIn(true);
     	
     }
+
+	public void putSettingsViewOnStack(){
+		if (!Scenes.SETTINGS_VIEW.isIn()) {
+			this.transitionIn(settingsViewController, true);
+			Scenes.SETTINGS_VIEW.setIn(true);
+		}
+			
+	}
     
     
 
@@ -155,18 +173,18 @@ public class MainViewController extends ViewController{
 	
 		
 		switch (scene) {
-		case MODULE_INFORMATION_VIEW:
-			transitionAnim.setNode(moduleInformationView);
-			transitionAnim.setToX(moduleInformationView.getMaxWidth());
-			break;
-//		case SETTINGS_VIEW:
-//			transitionAnim.setNode(playView);
-//			transitionAnim.setToY(playView.getPrefHeight());
-//			break;
-		case EXAM_VIEW:
-			transitionAnim.setNode(examView);
-			transitionAnim.setToX(examView.getMaxWidth());
-			break;
+			case MODULE_INFORMATION_VIEW:
+				transitionAnim.setNode(moduleInformationView);
+				transitionAnim.setToX(moduleInformationView.getMaxWidth());
+				break;
+			case SETTINGS_VIEW:
+				transitionAnim.setNode(settingsView);
+				transitionAnim.setToX(-settingsView.getMaxWidth());
+				break;
+			case EXAM_VIEW:
+				transitionAnim.setNode(examView);
+				transitionAnim.setToX(examView.getMaxWidth());
+				break;
 		}
 		
 		transitionAnim.setDuration(Duration.millis(200));
