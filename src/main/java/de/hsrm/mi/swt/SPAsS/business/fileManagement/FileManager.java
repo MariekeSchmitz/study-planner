@@ -97,9 +97,10 @@ public class FileManager {
         out.close();
     }
 
-    public HashMap<String, String> readMeta(String typePath, String name) {
+    public HashMap<String, String> readMeta(FileType type, String name) throws FileNotFoundException{
         HashMap<String,String> map = new HashMap<>();
-        Scanner sc = new Scanner(path + File.separator + typePath + File.separator + name + ".meta");
+        String typePath = type == FileType.PLAN ? "plans" : "curricula";
+        Scanner sc = new Scanner(new File(path + File.separator + typePath + File.separator + name + ".meta"));
         while(sc.hasNext()){
             String line = sc.nextLine();
             String [] splitLine = line.split(":");
@@ -114,6 +115,14 @@ public class FileManager {
         String s = jsonTestString;
         Plan p = this.fileRead(FileType.PLAN, testPlan.getName());
         fileSave(FileType.PLAN, p);
+        try{
+        System.out.println(this.readMeta(FileType.PLAN, testPlan.getName()).get(MetaEnum.NAME.toString()));
+        System.out.println(this.readMeta(FileType.PLAN, testPlan.getName()).get(MetaEnum.HOCHSCHULE.toString()));
+        System.out.println(this.readMeta(FileType.PLAN, testPlan.getName()).get(MetaEnum.STUDIENGANG.toString()));
+        }catch (Exception e) {
+            //TODO: handle exception
+        }
+
         if (syso) {
             System.out.println("Plans:");
             for (String st : this.planScan())
