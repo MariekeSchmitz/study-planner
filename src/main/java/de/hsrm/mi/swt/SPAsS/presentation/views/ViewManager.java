@@ -29,7 +29,7 @@ public class ViewManager {
     }
 
     public void initialise() {
-    	switchScene(Scenes.MAIN_VIEW_CONTROLLER);
+    	switchScene(Scenes.START_VIEW_CONTROLLER);
     } 
     
     public void switchScene(Scenes toScene) {
@@ -38,7 +38,7 @@ public class ViewManager {
             root.getChildren().add(mainViewController.getRootView()); 
         } else if (toScene.equals(Scenes.START_VIEW_CONTROLLER)) {
             root.getChildren().clear();
-            root.getChildren().add(new StartViewController(this).getRootView()); 
+            root.getChildren().add(new StartViewController(this, app).getRootView()); 
         } else if (toScene.equals(Scenes.UPLOAD_VIEW_CONTROLLER)) {
             root.getChildren().clear();
             root.getChildren().add(new UploadViewController(this).getRootView()); 
