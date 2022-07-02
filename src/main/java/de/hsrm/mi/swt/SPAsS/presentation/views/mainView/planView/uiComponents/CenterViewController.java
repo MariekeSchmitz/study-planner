@@ -72,6 +72,7 @@ public class CenterViewController extends ViewController implements PropertyChan
 	private Label gradeAverage;
 	private Button save;
 	private TextField nameInput;
+	private Label header;
 	
 	private DataFormat dataFormat = new DataFormat("moduleCell");
 	private List<SemesterList> semesterListViews;
@@ -107,6 +108,7 @@ public class CenterViewController extends ViewController implements PropertyChan
 		gradeAverage = centerView.getPointAverage();
 		savePlanButton = centerView.getSavePlan();
 		save = new Button("save");
+		header = centerView.getHeader();
 
 
 		initialise();
@@ -116,6 +118,9 @@ public class CenterViewController extends ViewController implements PropertyChan
 	@Override
 	public void initialise() {
 
+		header.setText(plan.getName());
+		
+		
 		generateListView();
 
 		resetButton.addEventHandler(ActionEvent.ACTION, e -> {

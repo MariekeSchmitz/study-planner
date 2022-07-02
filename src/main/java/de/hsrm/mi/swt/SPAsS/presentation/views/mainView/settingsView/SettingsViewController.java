@@ -4,6 +4,7 @@ import java.util.List;
 
 import de.hsrm.mi.swt.SPAsS.application.App;
 import de.hsrm.mi.swt.SPAsS.business.planManagement.Plan;
+import de.hsrm.mi.swt.SPAsS.business.restrictionManagement.CpLimitValidator;
 import de.hsrm.mi.swt.SPAsS.business.restrictionManagement.Validator;
 import de.hsrm.mi.swt.SPAsS.presentation.views.Scenes;
 import de.hsrm.mi.swt.SPAsS.presentation.views.ViewController;
@@ -58,11 +59,22 @@ public class SettingsViewController extends ViewController{
     public void setContent(){
 
         for (Validator validator : validatorList) {
-            validatorInformationViewController = new ValidatorInformationViewController();
+            validatorInformationViewController = new ValidatorInformationViewController(plan);
             validatorInformationView = (ValidatorInformationView) validatorInformationViewController.getRootView();
             validatorInformationView.getHeader().setText(validator.getName());
-            validatorInformationView.getDescripction().setText(validator.getDescription());
+            validatorInformationView.getDescription().setText(validator.getDescription());
             box.getChildren().addAll(validatorInformationView);
+            
+            if (!(validator instanceof CpLimitValidator)) {
+            	
+            	validatorInformationView.removeInputBox();
+            	
+            } else {
+            	
+            	CpLimitValidator cpValidator = (CpLimitValidator)validator;
+            	validatorInformationView.getInput().setText(String.valueOf(cpValidator.getCpLimit()));
+            	
+            }
         }
     
         
