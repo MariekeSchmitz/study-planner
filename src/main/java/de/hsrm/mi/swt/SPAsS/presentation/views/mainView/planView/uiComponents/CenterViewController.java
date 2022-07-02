@@ -1,5 +1,6 @@
 package de.hsrm.mi.swt.SPAsS.presentation.views.mainView.planView.uiComponents;
 
+
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
@@ -41,13 +42,16 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
 import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.DataFormat;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.Dragboard;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.TransferMode;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -66,7 +70,9 @@ public class CenterViewController extends ViewController implements PropertyChan
 	private Button addExamButton;
 	private Button savePlanButton;
 	private Label gradeAverage;
-
+	private Button save;
+	private TextField nameInput;
+	
 	private DataFormat dataFormat = new DataFormat("moduleCell");
 	private List<SemesterList> semesterListViews;
 	private List<ModuleView> moduleViews;
@@ -100,6 +106,8 @@ public class CenterViewController extends ViewController implements PropertyChan
 		addExamButton = centerView.getAddExam();
 		gradeAverage = centerView.getPointAverage();
 		savePlanButton = centerView.getSavePlan();
+		save = new Button("save");
+
 
 		initialise();
 
@@ -126,11 +134,34 @@ public class CenterViewController extends ViewController implements PropertyChan
 		
 		savePlanButton.addEventHandler(ActionEvent.ACTION, e -> {
 
+			
+			VBox nameBox = new VBox();
+			Label title = new Label("Wie soll dein Plan heißen?");
+			Pane savePane = new Pane();
+			HBox inputSaveBox = new HBox();
+			nameInput = new TextField(plan.getName());
+			inputSaveBox.getChildren().addAll(nameInput,save);
+
+			nameBox.getChildren().addAll(title,inputSaveBox);
+
+			savePane.getChildren().add(nameBox);
+			
+			centerView.setPlanNameInputPane(savePane);
+			
+			
+
+		});
+		
+		save.addEventHandler(ActionEvent.ACTION, e -> {
+			
+			plan.setName(nameInput.getText());
+
 			FileManager fileManager = app.getFileManager();
 			fileManager.fileSave(FileType.PLAN, plan);
 			System.out.println("Plan saved");
-
 			
+			centerView.getPlanNameInputPane().setVisible(false);
+
 		});
 
 

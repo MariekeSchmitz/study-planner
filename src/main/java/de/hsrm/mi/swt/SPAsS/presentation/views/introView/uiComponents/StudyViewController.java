@@ -42,7 +42,7 @@ public class StudyViewController extends ViewController{
         
     	goToPlanButton.addEventHandler(ActionEvent.ACTION, e -> {
 
-        	Plan plan = filemanager.fileRead(FileType.CURRICULA, name);
+        	Plan plan = filemanager.fileRead(FileType.CURRICULA, name.replace(" ", "-"));
     		
 			plan.initialize();
 			app.setPlan(plan);

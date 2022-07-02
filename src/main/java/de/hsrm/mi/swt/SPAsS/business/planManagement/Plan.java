@@ -286,6 +286,31 @@ public class Plan {
 		this.hochschule = hochschule;
 	}
 	
+	 public void planToDefaultPlan() {
+	    	
+	    	this.initialize();
+
+	    	this.setName(studiengang);
+			
+			for (Module module : moduleList) {
+				module.setSemesterCurrent(module.getSemesterDefault());
+				module.setValid(true);
+				module.setPassed(false);
+				module.setGrade(0);
+				module.setAssociatedModule(null);
+				
+				for (Course course : module.getCourses()) {
+					course.getExam().setGrade(0);
+					course.getExam().setPassed(false);
+					course.setHasExtraExam(false);
+				}
+
+			
+			}
+			this.validate();
+			this.initialize();
+	    	
+	    }
 	
 	
 
