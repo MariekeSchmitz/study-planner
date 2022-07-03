@@ -18,15 +18,18 @@ public class ValidatorTest {
         Module analysis = p.getModuleByName("Analysis");
         Module bwl = p.getModuleByName("Grundlagen der BWL");
         analysis.move(2);
-        p.validate();
-        //assertFalse(linAlg.isValid());
-        bwl.move(4);
-        p.validate();
         p.updateModuleMap();
+        p.validate();
+        assertFalse(linAlg.isValid());
+        bwl.move(4);
+        p.updateModuleMap();
+        p.validate();
+
         for(Module m : p.getModuleMap().get(4)){
+            System.out.println(m.getName());
             if(m.getSemesterDefault()>=4){
                 if(m.isValid())System.out.println();
-                //assertFalse(m.isValid());
+                assertFalse(m.isValid());
             }
         }
 
