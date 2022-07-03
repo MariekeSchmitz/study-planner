@@ -104,10 +104,14 @@ public class StartViewController extends ViewController {
         	
 			startView.getUploadPane().setVisible(true);
 
-        	
 			
-        	
-			
+		});
+        
+        ownPlanButton.addEventHandler(ActionEvent.ACTION, e -> {
+
+        	viewManager.switchScene(Scenes.UPLOAD_PLAN_VIEW);
+			startView.getUploadPane().setVisible(true);
+
 		});
         	
      

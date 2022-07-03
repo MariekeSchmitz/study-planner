@@ -29,8 +29,7 @@ public class Plan {
 
     
     private transient PropertyChangeSupport pcs = new PropertyChangeSupport(this);
-    
-
+   
     
     
     public Plan(String name, String curriculumName, List<Module> moduleList, List<Validator> validatorList,
@@ -92,6 +91,10 @@ public class Plan {
     	pcs = new PropertyChangeSupport(this);
     	moduleMap = new HashMap<>();
     	this.updateModuleMap();
+        this.numberSemesterDefault = calculateNumberSemesterDefault();
+        calculateAverage();
+
+
     }
 
     public void updateModuleMap() {
@@ -185,15 +188,6 @@ public class Plan {
 //        updateModuleMap();
 
     }
-
-    public List<Validator> getValidators() {
-        return validatorList;
-    }
-
-    public void setValidators(List<Validator> validators) {
-        this.validatorList = validators;
-    }
-
 
 
     public List<Validator> getValidatorList() {
@@ -292,6 +286,31 @@ public class Plan {
 		this.hochschule = hochschule;
 	}
 	
+	 public void planToDefaultPlan() {
+	    	
+	    	this.initialize();
+
+	    	this.setName(studiengang);
+			
+			for (Module module : moduleList) {
+				module.setSemesterCurrent(module.getSemesterDefault());
+				module.setValid(true);
+				module.setPassed(false);
+				module.setGrade(0);
+				module.setAssociatedModule(null);
+				
+				for (Course course : module.getCourses()) {
+					course.getExam().setGrade(0);
+					course.getExam().setPassed(false);
+					course.setHasExtraExam(false);
+				}
+
+			
+			}
+			this.validate();
+			this.initialize();
+	    	
+	    }
 	
 	
 

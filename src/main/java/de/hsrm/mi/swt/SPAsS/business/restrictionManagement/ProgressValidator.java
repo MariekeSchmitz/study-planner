@@ -8,13 +8,17 @@ import de.hsrm.mi.swt.SPAsS.business.planManagement.Plan;
 
 public class ProgressValidator implements Validator{
     private String className;
+	private String name;
     private int progressValue;
     private String message;
+	private String description;
     
     public ProgressValidator(int progressValue){
         this.className = getClass().getName();
+		this.name = "Fortschritts Regel";
         this.progressValue = progressValue;
         this.message = "Die Fortschrittsregelung ist verletzt.";
+		this.description = "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.";
     }
 
     @Override
@@ -89,6 +93,23 @@ public class ProgressValidator implements Validator{
     public String getClassName() {
         return className;
     }
+
+	@Override
+	public String getMessage() {
+		return message;
+	}
+
+	@Override
+	public String getDescription() {
+		return description;
+	}
+
+	@Override
+	public String getName() {
+		return name;
+	}
+
+
     
     
 }

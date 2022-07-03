@@ -2,13 +2,17 @@ package de.hsrm.mi.swt.SPAsS.presentation.views.mainView.planView.uiComponents;
 
 import de.hsrm.mi.swt.SPAsS.business.commands.CommandManager;
 import de.hsrm.mi.swt.SPAsS.business.commands.UndoRedoException;
+import de.hsrm.mi.swt.SPAsS.presentation.views.Scenes;
 import de.hsrm.mi.swt.SPAsS.presentation.views.ViewController;
+import de.hsrm.mi.swt.SPAsS.presentation.views.ViewManager;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 
 public class LeftSideViewController extends ViewController {
+
+    private ViewManager viewManager;
 
     private Button redoButton;
     private Button undoButton;
@@ -17,7 +21,9 @@ public class LeftSideViewController extends ViewController {
     private Button settingsButton;
     LeftSideView leftSideView;
 
-    public LeftSideViewController() {
+    public LeftSideViewController(ViewManager viewManager) {
+        this.viewManager = viewManager;
+
         leftSideView = new LeftSideView();
         rootView = leftSideView;
 
@@ -64,6 +70,12 @@ public class LeftSideViewController extends ViewController {
          });
          settingsButton.addEventHandler(ActionEvent.ACTION, e -> {
             System.out.println("Settings Button Pressed"); 
+            if(!Scenes.SETTINGS_VIEW.isIn()){
+                viewManager.getMainViewController().putSettingsViewOnStack();
+            } else {
+                viewManager.getMainViewController().transitionOut(Scenes.SETTINGS_VIEW);
+                Scenes.SETTINGS_VIEW.setIn(false);
+            }
          });
     }
 

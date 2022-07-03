@@ -20,17 +20,22 @@ public class App extends Application {
 	private TestClassGenerator testClass;
 	
 	private Scene scene;
+	
+	private Stage primaryStage;
 
 	
 
 	@Override
 	public void start(Stage primaryStage) throws Exception{
+		
+		this.primaryStage = primaryStage;
+		
 		testClass = new TestClassGenerator();
 //		plan = testClass.plan;
 
 		fileManager = new FileManager("FileManagerTestFolder");
 		try {
-			fileManager.test(false);
+//			fileManager.test(false);
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("you killed the parser");
@@ -102,6 +107,16 @@ public class App extends Application {
 	public void setFileManager(FileManager fileManager) {
 		this.fileManager = fileManager;
 	}
+
+	public Stage getPrimaryStage() {
+		return primaryStage;
+	}
+
+	public void setPrimaryStage(Stage primaryStage) {
+		this.primaryStage = primaryStage;
+	}
+	
+	
 
 	
 	

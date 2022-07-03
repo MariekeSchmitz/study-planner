@@ -47,5 +47,15 @@ public class StudyView extends AnchorPane{
         this.setMaxHeight(75);
         this.setMaxWidth(325);
     }
+
+	public Button getStudyViewButton() {
+		return studyViewButton;
+	}
+
+	public void setStudyViewButton(Button studyViewButton) {
+		this.studyViewButton = studyViewButton;
+	}
+    
+    
     
 }

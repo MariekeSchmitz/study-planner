@@ -34,5 +34,15 @@ public class DragDropView extends AnchorPane{
         this.getStyleClass().add("dragdropField");
         this.getChildren().add(drag_drop_vbox);
     }
+
+	public Button getFileOpen() {
+		return fileOpen;
+	}
+
+	public void setFileOpen(Button fileOpen) {
+		this.fileOpen = fileOpen;
+	}
+    
+    
     
 }

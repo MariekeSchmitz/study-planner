@@ -5,6 +5,11 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.net.URI;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -25,7 +30,7 @@ public class FileManager {
 
     public FileManager(String path) {
         this.path = path;
-        testPlan = new TestClassGenerator().plan;
+//        testPlan = new TestClassGenerator().plan;
     }
 
     public List<String> curriculumScan() {
@@ -70,24 +75,56 @@ public class FileManager {
             return null;
         }
     }
+    
+    public Plan fileReadFromDirectory(String dir) {
+    	
+    	Gson gson = new GsonBuilder()
+                .registerTypeAdapter(Validator.class, new InterfaceDeserializer<>())
+                .create();
+    	try {
+            return gson.fromJson(new FileReader(dir),
+                    Plan.class);
+        } catch (JsonSyntaxException | JsonIOException | FileNotFoundException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+            return null;
+        }
+    }
 
     public void fileSave(FileType type, Plan p) {
         this.jsonTestString = new Gson().toJson(p);
         String typePath = type == FileType.PLAN ? "plans" : "curricula";
+    	String fileName = type == FileType.PLAN ? p.getName().replace(" ", "-") : p.getStudiengang().replace(" ", "-");
+
         try {
-            FileWriter out = new FileWriter(path + File.separator + typePath + File.separator + p.getName() + ".json");
+            FileWriter out = new FileWriter(path + File.separator + typePath + File.separator + fileName + ".json");
             out.write(jsonTestString);
             out.flush();
             out.close();
-            createMetaFile(typePath, p);
+            createMetaFile(type, p);
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }
+    
+//    public void duplicateFile(FileType type, File file, String fileName) throws IOException {
+//
+//        String typePath = type == FileType.PLAN ? "plans" : "curricula";
+//        String outPath = path + File.separator + typePath + File.separator + fileName + ".json";
+//    	 
+//        Path in = Paths.get(file.getAbsolutePath());
+//        Path out= Paths.get(outPath);
+//       
+//        Files.copy(in, out, StandardCopyOption.REPLACE_EXISTING);
+//
+//    }
+    
 
-    private void createMetaFile(String typePath, Plan p) throws IOException{
-        FileWriter out = new FileWriter(path + File.separator + typePath + File.separator + p.getName() + ".meta");
+    public void createMetaFile(FileType type, Plan p) throws IOException{
+        String typePath = type == FileType.PLAN ? "plans" : "curricula";
+    	String fileName = type == FileType.PLAN ? p.getName().replace(" ", "-") : p.getStudiengang().replace(" ", "-");
+        FileWriter out = new FileWriter(path + File.separator + typePath + File.separator + fileName + ".meta");
         StringBuilder s = new StringBuilder();
         s.append(MetaEnum.NAME.toString()+":"+p.getName()+"\n");
         s.append(MetaEnum.STUDIENGANG.toString()+":"+p.getStudiengang()+"\n");

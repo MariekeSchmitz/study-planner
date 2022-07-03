@@ -12,14 +12,17 @@ public class CpLimitValidator implements Validator {
     
 	private String className;
 	
+	private String name;
     private String message;
     private int cpLimit;
+    private String description;
  
     public CpLimitValidator(int cpLimit){
         this.className = getClass().getName();
+		this.name = "CP-Limit Regel";
         this.cpLimit = cpLimit;
-        
-        this.message = "Dein CP-Limit von " + cpLimit + " pro Semester wurde missachtet.";
+		this.description = "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet."; 
+        this.message = "Dein Limit von " + cpLimit + " Creditpoints pro Semester wurde überschritten.";
     }
 
     @Override
@@ -71,6 +74,7 @@ public class CpLimitValidator implements Validator {
     }
     public void setCpLimit(int cpLimit) {
         this.cpLimit = cpLimit;
+        this.message = "Dein Limit von " + cpLimit + " Creditpoints pro Semester wurde überschritten.";
         
     }
 
@@ -79,6 +83,16 @@ public class CpLimitValidator implements Validator {
     public String getClassName() {
         return className;
     }
+	@Override
+	public String getDescription() {
+		return description;
+	}
+
+	@Override
+	public String getName() {
+		return name;
+	}
+
     
     
 }
