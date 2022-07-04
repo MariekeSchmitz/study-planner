@@ -40,7 +40,7 @@ public class ViewManager {
     
     /** 
      * @param toScene Scene to be swapped to
-     * switches Scene
+     * switches Scenes
      */
     public void switchScene(Scenes toScene) {
         if (toScene.equals(Scenes.MAIN_VIEW)) {
