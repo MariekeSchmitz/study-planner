@@ -1,5 +1,6 @@
 package de.hsrm.mi.swt.SPAsS.business.commands;
 
+
 public class UndoRedoException extends RuntimeException {
 	private String description = "";
 	

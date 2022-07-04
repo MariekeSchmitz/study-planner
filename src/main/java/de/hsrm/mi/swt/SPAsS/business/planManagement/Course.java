@@ -5,7 +5,7 @@ import java.io.Serializable;
 
 /**
  * A Course represents one part of a Module. An example course would be a lecture.
- * Each Course has an exam.
+ * Each Course has an Exam.
  */
 public class Course implements Serializable{
     private String name;

@@ -4,7 +4,7 @@ package de.hsrm.mi.swt.SPAsS.business.planManagement;
 import javafx.scene.paint.Color;
 /**
  * enumeration of categories. Represent which category a module is allocated to.
- * A fitting name and color is assigned to each entry
+ * A fitting name and color is assigned to each entry.
  */
 public enum CategoryEnum{
 

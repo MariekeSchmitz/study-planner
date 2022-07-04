@@ -2,6 +2,9 @@ package de.hsrm.mi.swt.SPAsS.business.commands;
 
 import de.hsrm.mi.swt.SPAsS.business.planManagement.Module;
 
+/**
+ * Command for moving a module into another semester.
+ */
 public class MoveSemesterCommand implements ICommand {
 
     private Module myModule;
