@@ -68,6 +68,9 @@ public class ModuleInformationViewController extends ViewController{
     		Course examCourse = module.getCourses().get(0);
     		examCourse.setHasExtraExam(false);
     		
+			app.getPlan().validate();
+
+    		
     		// update List in ExamView
     		mainViewController.getExamViewController().generateListView();
     		

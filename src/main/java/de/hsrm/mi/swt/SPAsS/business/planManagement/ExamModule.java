@@ -20,6 +20,33 @@ public class ExamModule extends Module{
 		this.associatedActualModule = associatedActualModule;
 	}
 	
+	 @Override 
+    public void coursesPassed(){
+    			 
+		 if (!associatedActualModule.isPassed()) {
+			 passed = false;
+		 } else {
+			 if (courses.get(0).getExam().isPassed()) {
+				 passed = true;
+			 } else {
+				 passed = false;
+			 }
+		 }
+		 
+    }
+	 
+	 @Override 
+
+	 public void setValid(boolean valid) {
+			
+		 
+			var pre = this.valid;
+			this.valid = valid;		
+			this.pcs.firePropertyChange("valid", pre, this.valid);
+			System.out.println("semesterCurrent - set "+this.valid);
+			
+		}
+	
 	
 	
 }

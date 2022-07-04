@@ -129,6 +129,8 @@ public class Plan {
         float grade = 0;
         for (Module module : moduleList) {
 
+        	module.coursesPassed();
+
             if (module.isPassed() && module.isGradeAvailable()) {
                 cp += module.getCp();
                 module.calcGrade();

@@ -75,15 +75,14 @@ public class ModuleView extends ListCell<Module>{
     		
     		System.out.println(item.getName() + " examModule: "+ (item instanceof ExamModule));
     		
-    		if (item instanceof ExamModule) {
-    			labels.setStyle(onlyExam);
-    		} else if (item.isPassed()) {
+    		if (item.isPassed()) {
     			labels.setStyle(colorPassed);
+    		} else if (item instanceof ExamModule) {
+    			labels.setStyle(onlyExam);
     		} else {
         		labels.setBackground(new Background(new BackgroundFill(item.getCategories().getColor(),new CornerRadii(0),new Insets(0))));
     		}
-    		
-    		
+    			
     		this.setGraphic(labels);
     		
     	} else{

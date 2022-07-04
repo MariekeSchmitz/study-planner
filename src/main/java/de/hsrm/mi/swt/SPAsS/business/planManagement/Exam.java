@@ -79,7 +79,7 @@ public class Exam implements Serializable {
         this.numberAttempt = numberAttempt;
     }
 
-	public boolean getPassed() {
+	public boolean isPassed() {
 		return passed;
 	}
 

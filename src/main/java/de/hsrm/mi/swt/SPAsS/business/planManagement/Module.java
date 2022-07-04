@@ -86,7 +86,6 @@ public class Module {
 		
 		this.semesterCurrent = semesterCurrent;
 		this.passed = false;
-		this.coursesPassed();
 		
 		for (Course course : this.courses) {
 			this.cp += course.getCp();
@@ -143,7 +142,7 @@ public class Module {
 		
 		
 		for (Course course:courses){
-			if (!course.getExam().getPassed()){
+			if (!course.getExam().isPassed()){
 				tempPassed = false;
 				break;
 			}
@@ -285,6 +284,8 @@ public class Module {
 
 
 	public void setValid(boolean valid) {
+				
+		
 		
 		var pre = this.valid;
 		this.valid = valid;		
