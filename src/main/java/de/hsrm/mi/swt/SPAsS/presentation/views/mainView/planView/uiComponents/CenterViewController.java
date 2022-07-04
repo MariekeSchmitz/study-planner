@@ -3,39 +3,23 @@ package de.hsrm.mi.swt.SPAsS.presentation.views.mainView.planView.uiComponents;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
 import de.hsrm.mi.swt.SPAsS.application.App;
-import de.hsrm.mi.swt.SPAsS.business.commands.CommandManager;
-import de.hsrm.mi.swt.SPAsS.business.commands.ResetPlanCommand;
 import de.hsrm.mi.swt.SPAsS.business.fileManagement.FileManager;
 import de.hsrm.mi.swt.SPAsS.business.fileManagement.FileType;
-import de.hsrm.mi.swt.SPAsS.business.planManagement.CategoryEnum;
-import de.hsrm.mi.swt.SPAsS.business.planManagement.Competence;
 import de.hsrm.mi.swt.SPAsS.business.planManagement.Course;
-import de.hsrm.mi.swt.SPAsS.business.planManagement.Exam;
-import de.hsrm.mi.swt.SPAsS.business.planManagement.ExamType;
 import de.hsrm.mi.swt.SPAsS.business.planManagement.Module;
-import de.hsrm.mi.swt.SPAsS.business.planManagement.OfferedTime;
 import de.hsrm.mi.swt.SPAsS.business.planManagement.Plan;
-import de.hsrm.mi.swt.SPAsS.presentation.views.Scenes;
 import de.hsrm.mi.swt.SPAsS.presentation.views.ViewController;
 import de.hsrm.mi.swt.SPAsS.presentation.views.ViewManager;
-import javafx.beans.InvalidationListener;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
-import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.event.EventType;
-import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -45,18 +29,19 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.DataFormat;
-import javafx.scene.input.DragEvent;
 import javafx.scene.input.Dragboard;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.TransferMode;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.util.Callback;
-
+/**
+ * Controller for dynamically filling Centerview
+ * Reacts to User Input and changes in Module-Object by refreshing visual components
+ */
 public class CenterViewController extends ViewController implements PropertyChangeListener {
 
 	private CenterView centerView;
@@ -218,6 +203,12 @@ public class CenterViewController extends ViewController implements PropertyChan
 
 	}
 
+
+	/**
+ * Creates ListView for each each Semester and fills each with Modules Views
+ * In the end all Modules will be correctly shown on screen
+ * Also makes all Modules drag - and - clickable
+ */
 	public void generateListView() {
 
 		SemesterList semesterListView;

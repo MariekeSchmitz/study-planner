@@ -9,13 +9,12 @@ import de.hsrm.mi.swt.SPAsS.presentation.views.introView.StartViewController;
 import de.hsrm.mi.swt.SPAsS.presentation.views.introView.UploadView;
 import de.hsrm.mi.swt.SPAsS.presentation.views.introView.UploadViewController;
 import de.hsrm.mi.swt.SPAsS.presentation.views.mainView.MainViewController;
-import de.hsrm.mi.swt.SPAsS.presentation.views.mainView.moduleInformationView.ModuleInformationView;
-import de.hsrm.mi.swt.SPAsS.presentation.views.mainView.moduleInformationView.ModuleInformationViewController;
-import de.hsrm.mi.swt.SPAsS.presentation.views.mainView.planView.PlanViewController;
-import de.hsrm.mi.swt.SPAsS.presentation.views.mainView.settingsView.SettingsViewController;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 
+/**
+ * Manages core Views by enabling a switch of scenes
+ */
 public class ViewManager {
 
     private StackPane root;
@@ -32,10 +31,17 @@ public class ViewManager {
        
     }
 
+
     public void initialise() {
     	switchScene(Scenes.START_VIEW);
     } 
     
+
+    
+    /** 
+     * @param toScene Scene to be swapped to
+     * switches Scene
+     */
     public void switchScene(Scenes toScene) {
         if (toScene.equals(Scenes.MAIN_VIEW)) {
             root.getChildren().clear();
@@ -64,10 +70,18 @@ public class ViewManager {
 
     } 
     	
+    
+    /** 
+     * @return Pane
+     */
     public Pane getRoot(){
         return root;
     }
     
+    
+    /** 
+     * @return MainViewController
+     */
     public MainViewController getMainViewController() {
     	return mainViewController;
     }

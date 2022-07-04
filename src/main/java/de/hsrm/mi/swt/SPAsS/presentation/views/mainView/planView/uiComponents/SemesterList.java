@@ -12,6 +12,9 @@ import javafx.scene.input.DragEvent;
 import javafx.scene.input.Dragboard;
 import javafx.scene.input.TransferMode;
 
+/**
+ * Contains drop-logic for ListViews representing a semester
+ */
 public class SemesterList extends ListView<Module>{
 
 	private Plan plan;

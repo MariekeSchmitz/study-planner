@@ -3,7 +3,9 @@ package de.hsrm.mi.swt.SPAsS.presentation.views.introView.uiComponents;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-
+/**
+ * Visual component for curriculum selection
+ */
 public class StudyView extends AnchorPane{
 
     private Label studyLabel;

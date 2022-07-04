@@ -5,10 +5,11 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
 
+/**
+ * View for all details of single Module - opens after selection of Module on Plan
+ */
 public class ModuleInformationView extends AnchorPane{
 
 	private VBox box;

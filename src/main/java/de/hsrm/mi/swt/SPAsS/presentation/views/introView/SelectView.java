@@ -6,14 +6,15 @@ import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.HBox;
-import de.hsrm.mi.swt.SPAsS.presentation.views.introView.uiComponents.DragDropViewController;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
-
+/**
+ * Curriculum Selection view
+ */
 public class SelectView extends AnchorPane{
     
     private Pane backgroundPane;

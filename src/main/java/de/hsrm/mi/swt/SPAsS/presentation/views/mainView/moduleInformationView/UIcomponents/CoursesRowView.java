@@ -7,6 +7,9 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 
+/**
+ * Small Visual Component for flagging Module as passed and filling in grade
+ */
 public class CoursesRowView extends HBox{
 
 	Label courseName = new Label();

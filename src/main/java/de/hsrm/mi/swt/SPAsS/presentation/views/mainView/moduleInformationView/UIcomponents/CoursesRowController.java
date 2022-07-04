@@ -8,7 +8,9 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
-
+/**
+ * Visual Component for Drag and Drop
+ */
 public class CoursesRowController extends ViewController{
 
 	private CoursesRowView coursesRowView;
@@ -19,7 +21,9 @@ public class CoursesRowController extends ViewController{
 	private boolean hasExtraExam;
 	private Module module;
 	
-	
+	/**
+ * Reacts to User Input for setting module as passed and filling in grade
+ */
 	public CoursesRowController (Course course, Plan plan, boolean hasExtraExam, Module module) {
 		
 		this.module = module;

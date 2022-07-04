@@ -6,6 +6,9 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 
+/**
+ * Visual Component for Validator - Details
+ */
 public class ValidatorInformationView extends VBox {
 
     private Label header;

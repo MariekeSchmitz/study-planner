@@ -5,7 +5,9 @@ import de.hsrm.mi.swt.SPAsS.business.fileManagement.FileType;
 import de.hsrm.mi.swt.SPAsS.presentation.views.ViewController;
 import de.hsrm.mi.swt.SPAsS.presentation.views.ViewManager;
 import de.hsrm.mi.swt.SPAsS.presentation.views.introView.uiComponents.DragDropViewController;
-
+/**
+ * Reacts to user Plan-Upload
+ */
 public class UploadViewController extends ViewController {
 
 	private App app; 

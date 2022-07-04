@@ -11,6 +11,9 @@ import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
+/**
+ * Visual Description of a single Exam-Cell
+ */
 public class ExamListCell extends ListCell<Module>{
 
     private HBox mainPane;

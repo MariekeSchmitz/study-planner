@@ -3,21 +3,20 @@ package de.hsrm.mi.swt.SPAsS.presentation.views.mainView.planView.uiComponents;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import de.hsrm.mi.swt.SPAsS.business.planManagement.Course;
 import de.hsrm.mi.swt.SPAsS.business.planManagement.Module;
-
+/**
+ * Visual Component - visualizes single Module
+ */
 public class ModuleView extends ListCell<Module>{
 
     private Label moduleLabel;
 	private Label cpLabel;
 	private VBox labels;
-	private Color color;
 
     private double startX;
     private double startY;
