@@ -8,9 +8,11 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 
+/**
+ * Visual Component for Drag and Drop
+ */
 public class StartView extends AnchorPane {
 
     private LogoView logo;
@@ -28,6 +30,9 @@ public class StartView extends AnchorPane {
     
     private BorderPane uploadPane;
 
+    /**
+ * Startscreen
+ */
     public StartView() {
 
     	uploadPane = new BorderPane();

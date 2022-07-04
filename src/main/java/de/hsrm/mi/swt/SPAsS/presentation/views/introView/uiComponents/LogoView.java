@@ -7,7 +7,9 @@ import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.paint.Color;
-
+/**
+ * Visual Component for Logo
+ */
 public class LogoView extends BorderPane{
 
     private Label logoText;

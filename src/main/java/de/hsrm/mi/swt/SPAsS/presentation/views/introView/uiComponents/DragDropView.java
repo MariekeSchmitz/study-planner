@@ -5,7 +5,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
-
+/**
+ * Visual Component for Drag and Drop
+ */
 public class DragDropView extends AnchorPane{
 
     private VBox drag_drop_vbox;
@@ -35,11 +37,19 @@ public class DragDropView extends AnchorPane{
         this.getChildren().add(drag_drop_vbox);
     }
 
-	public Button getFileOpen() {
+	
+    /** 
+     * @return Button
+     */
+    public Button getFileOpen() {
 		return fileOpen;
 	}
 
-	public void setFileOpen(Button fileOpen) {
+	
+    /** 
+     * @param fileOpen
+     */
+    public void setFileOpen(Button fileOpen) {
 		this.fileOpen = fileOpen;
 	}
     

@@ -9,7 +9,9 @@ import de.hsrm.mi.swt.SPAsS.presentation.views.ViewController;
 import de.hsrm.mi.swt.SPAsS.presentation.views.ViewManager;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
-
+/**
+ * Reacts to User Selection of curriculum
+ */
 public class StudyViewController extends ViewController{
 	
 	private Button goToPlanButton;

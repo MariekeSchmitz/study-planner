@@ -21,6 +21,10 @@ import javafx.scene.layout.StackPane;
 import javafx.util.Duration;
 import de.hsrm.mi.swt.SPAsS.business.planManagement.Module;
 
+/**
+ * Combines all Plan-related Views into single Layer
+ * Also contains transition-animations
+ */
 public class MainViewController extends ViewController{
 
     private StackPane mainViewStack;
@@ -86,7 +90,9 @@ public class MainViewController extends ViewController{
     }
     
    
-    
+    /**
+ * Adds View to Stack
+ */
     public void addView(Scenes scene) {
     	
     	if (scene == Scenes.MODULE_INFORMATION_VIEW) {
@@ -100,6 +106,9 @@ public class MainViewController extends ViewController{
     	} 	
     }
     
+	/**
+ * Removes View from Stack
+ */
     public void removeView(Scenes scene) {
     	if (scene == Scenes.MODULE_INFORMATION_VIEW) {
        	 	mainViewStack.getChildren().remove(moduleInformationViewController.getRootView());

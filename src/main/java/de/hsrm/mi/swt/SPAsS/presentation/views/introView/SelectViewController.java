@@ -15,7 +15,9 @@ import de.hsrm.mi.swt.SPAsS.presentation.views.introView.uiComponents.StudyView;
 import de.hsrm.mi.swt.SPAsS.presentation.views.introView.uiComponents.StudyViewController;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
-
+/**
+ * Creates StudyView for each Curriculum
+ */
 public class SelectViewController extends ViewController{
     private SelectView selectView;
     private HBox curriculaBox;

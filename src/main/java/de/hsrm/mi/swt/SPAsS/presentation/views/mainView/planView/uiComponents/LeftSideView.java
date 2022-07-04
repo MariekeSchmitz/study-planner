@@ -10,6 +10,9 @@ import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 
+/**
+ * Left Side of the visual representation of a plan.
+ */
 public class LeftSideView extends AnchorPane {
 
     private Button redoButton;

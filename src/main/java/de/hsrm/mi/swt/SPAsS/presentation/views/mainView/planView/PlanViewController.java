@@ -7,6 +7,9 @@ import de.hsrm.mi.swt.SPAsS.presentation.views.ViewManager;
 import de.hsrm.mi.swt.SPAsS.presentation.views.mainView.planView.uiComponents.CenterViewController;
 import javafx.scene.layout.AnchorPane;
 
+/**
+ * Controller for PlanView
+ */
 public class PlanViewController extends ViewController{
     private PlanView mainView;
     private CenterViewController centerViewController;

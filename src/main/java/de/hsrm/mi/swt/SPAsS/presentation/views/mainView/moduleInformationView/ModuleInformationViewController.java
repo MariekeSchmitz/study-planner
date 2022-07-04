@@ -7,20 +7,16 @@ import de.hsrm.mi.swt.SPAsS.business.planManagement.Competence;
 import de.hsrm.mi.swt.SPAsS.business.planManagement.Course;
 import de.hsrm.mi.swt.SPAsS.business.planManagement.Module;
 import de.hsrm.mi.swt.SPAsS.presentation.views.Scenes;
-import de.hsrm.mi.swt.SPAsS.presentation.views.ViewController;
-import de.hsrm.mi.swt.SPAsS.presentation.views.ViewManager;
-import de.hsrm.mi.swt.SPAsS.presentation.views.mainView.MainViewController;
-import de.hsrm.mi.swt.SPAsS.presentation.views.mainView.moduleInformationView.UIcomponents.CoursesRowController;
-import de.hsrm.mi.swt.SPAsS.presentation.views.mainView.planView.uiComponents.ModuleViewController;
-import javafx.event.ActionEvent;
+import de.hsrm.mi.swt.SPAsS.presentation.views.ViewController;import de.hsrm.mi.swt.SPAsS.presentation.views.mainView.MainViewController;
+import de.hsrm.mi.swt.SPAsS.presentation.views.mainView.moduleInformationView.UIcomponents.CoursesRowController;import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-
+/**
+ * Reacts to User Input on ModuleInformationView. Fills View with Module Information.
+ */
 public class ModuleInformationViewController extends ViewController{
 
 	private App app;
