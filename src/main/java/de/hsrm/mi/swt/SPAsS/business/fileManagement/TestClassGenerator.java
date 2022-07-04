@@ -13,6 +13,7 @@ import de.hsrm.mi.swt.SPAsS.business.planManagement.Module;
 import de.hsrm.mi.swt.SPAsS.business.planManagement.OfferedTime;
 import de.hsrm.mi.swt.SPAsS.business.planManagement.Plan;
 import de.hsrm.mi.swt.SPAsS.business.restrictionManagement.CompetenceValidator;
+import de.hsrm.mi.swt.SPAsS.business.restrictionManagement.CorrectSemesterValidator;
 import de.hsrm.mi.swt.SPAsS.business.restrictionManagement.CpLimitValidator;
 import de.hsrm.mi.swt.SPAsS.business.restrictionManagement.ProgressValidator;
 import de.hsrm.mi.swt.SPAsS.business.restrictionManagement.Validator;
@@ -26,9 +27,11 @@ public class TestClassGenerator {
                 CompetenceValidator v1 = new CompetenceValidator();
                 CpLimitValidator v2 = new CpLimitValidator(100);
                 ProgressValidator v3 = new ProgressValidator(3);
+                CorrectSemesterValidator v4 = new CorrectSemesterValidator();
                 valids.add(v1);
                 valids.add(v2);
                 valids.add(v3);
+                valids.add(v4);
 
                 Plan p = new Plan("Medieninformatik", "RandomCurriculumName", this.getModules(), valids, 7, "Medieninformatik (B.Sc.)", "Hochschule RheinMain");
                 this.plan = p;

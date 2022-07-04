@@ -31,11 +31,11 @@ public class App extends Application {
 		this.primaryStage = primaryStage;
 		
 		testClass = new TestClassGenerator();
-//		plan = testClass.plan;
+		// plan = testClass.plan;
 
 		fileManager = new FileManager("FileManagerTestFolder");
 		try {
-//			fileManager.test(false);
+			fileManager.test(false);
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("you killed the parser");
