@@ -35,7 +35,7 @@ public class App extends Application {
 
 		fileManager = new FileManager("FileManagerTestFolder");
 		try {
-			fileManager.test(false);
+//			fileManager.test(false);
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("you killed the parser");

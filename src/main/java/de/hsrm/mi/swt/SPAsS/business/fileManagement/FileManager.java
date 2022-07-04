@@ -30,7 +30,7 @@ public class FileManager {
 
     public FileManager(String path) {
         this.path = path;
-       testPlan = new TestClassGenerator().plan;
+//       testPlan = new TestClassGenerator().plan;
     }
 
     public List<String> curriculumScan() {

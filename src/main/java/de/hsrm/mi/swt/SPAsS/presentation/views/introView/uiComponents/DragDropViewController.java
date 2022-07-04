@@ -159,12 +159,12 @@ public class DragDropViewController extends ViewController {
 		Plan plan = fileManager.fileReadFromDirectory(file.getAbsolutePath());
 		plan.initialize();
 		app.setPlan(plan);
+		fileManager.fileSave(FileType.PLAN, plan);
 		fileManager.createMetaFile(FileType.PLAN, plan);
 
 		// Kopie anlegen, Plan zurücksetzen und daraus Curriculumsdatei machen
 		Plan planCopy = fileManager.fileReadFromDirectory(file.getAbsolutePath());
 		planCopy.planToDefaultPlan();
-
 		fileManager.fileSave(FileType.CURRICULA, planCopy);
 	}
 
