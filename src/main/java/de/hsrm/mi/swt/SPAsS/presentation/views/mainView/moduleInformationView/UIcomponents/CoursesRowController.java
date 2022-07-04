@@ -7,6 +7,7 @@ import de.hsrm.mi.swt.SPAsS.business.planManagement.Plan;
 import de.hsrm.mi.swt.SPAsS.presentation.views.ViewController;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.geometry.Insets;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 /**
@@ -45,7 +46,7 @@ public class CoursesRowController extends ViewController{
 	@Override
 	public void initialise() {
 		
-		coursesRowView.getCourseName().setText(course.getName());
+		coursesRowView.getCourseName().setText(course.getName() + " (" + course.getCp() + " CP)");
 		passedCheckbox.setSelected(course.getExam().isPassed());
 		
 		
@@ -57,12 +58,21 @@ public class CoursesRowController extends ViewController{
 			} else {
 				gradeInput.setText("");
 			}
+
 		
 		} else {
 			
 			if (hasExtraExam) {
-				gradeInput.setVisible(false);
-				passedCheckbox.setVisible(false);
+//				gradeInput.setVisible(false);
+//				passedCheckbox.setVisible(false);
+				coursesRowView.setStyle("-fx-background-color: rgb(230, 230, 230);");
+				coursesRowView.setPrefWidth(200);
+				coursesRowView.setMaxWidth(200);
+				coursesRowView.setMinWidth(200);
+				coursesRowView.getChildren().remove(gradeInput);
+				coursesRowView.getChildren().remove(passedCheckbox);
+
+
 				
 			} else {
 				if (course.getExam().isGradeAvailable()) {

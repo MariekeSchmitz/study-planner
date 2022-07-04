@@ -73,7 +73,7 @@ public class ModuleView extends ListCell<Module>{
     		String colorPassed = "-fx-background-color:rgba("+red+","+blue+","+green+", 0.5);";
     		String onlyExam = "-fx-background-color:rgb(200,0,200)";
     		
-    		System.out.println(item.getName() + " examModule: "+ (item instanceof ExamModule));
+    		System.out.println(item.getName() + " valid: "+ (item.isValid()));
     		
     		if (item.isPassed()) {
     			labels.setStyle(colorPassed);

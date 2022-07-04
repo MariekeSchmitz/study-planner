@@ -19,7 +19,7 @@ public class CorrectSemesterValidator implements Validator  {
         this.className = getClass().getName();
 		this.name = "CP-Limit Regel";
 		this.description = "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet."; 
-        this.message = "Das Modul wird nicht in diesem Semester angeboten";
+        this.message = "Das Modul wird nur jährlich angeboten. ";
     }
     @Override
     public String getClassName() {
@@ -39,7 +39,7 @@ public class CorrectSemesterValidator implements Validator  {
             if (offeredTime == OfferedTime.YEARLY){
                 if ((currentSemester + defaultSemester) % 2 != 0){
                     module.setValid(false);
-                    module.setNote(this.message);
+                    module.setNote("Das Modul wird im " + module.getSemesterCurrent() + "nicht angeboten.");
                 } else {
                     if (module.isValid()) {
                         module.setValid(true);

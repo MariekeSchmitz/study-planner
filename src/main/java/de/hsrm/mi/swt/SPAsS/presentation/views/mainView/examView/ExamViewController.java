@@ -60,8 +60,6 @@ public class ExamViewController extends ViewController{
         
         initialise();
 
-        
-
     }
     
     

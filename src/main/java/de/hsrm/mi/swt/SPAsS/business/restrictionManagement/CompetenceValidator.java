@@ -52,7 +52,7 @@ public class CompetenceValidator implements Validator {
 				} else {
 					
 					for (Competence competence : actualModule.getTaughtCompetences()) {
-						competenceMap.put(competence, module.getSemesterCurrent());
+						competenceMap.put(competence, actualModule.getSemesterCurrent());
 					}
 					
 				}
@@ -69,7 +69,6 @@ public class CompetenceValidator implements Validator {
 				
 			}
 			
-			
 		}
 
 		// für alle Module checken, ob benötige Kompetenzen nicht in höherem Semester
@@ -82,6 +81,7 @@ public class CompetenceValidator implements Validator {
 
 				if (competenceMap.get(competence) >= currentSemester) {
 					competencesObtained = false;
+					this.message = "Die benötigte Kompetenz " + competence.getName() + " wurde zum geplanten Zeitpunkt noch nicht erreicht. ";
 				}
 
 			}

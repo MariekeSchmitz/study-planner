@@ -43,7 +43,7 @@ public class CpLimitValidator implements Validator {
     			
     			if (tempCP > this.cpLimit) {
     				module.setValid(false);
-        			module.setNote(this.message);
+        			module.setNote("Dein Limit von " + cpLimit + " Creditpoints pro Semester wurde im " + module.getSemesterCurrent() + " überschritten. ");
     			
     			} else {
     				

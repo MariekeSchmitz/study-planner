@@ -60,6 +60,7 @@ public class ProgressValidator implements Validator{
     			for (Module tempModule : moduleMap.get(i)) {
     				if (tempModule.getSemesterDefault() <= neededSemester) {			
     					progressValid = false;
+    					this.message = "Die Fortschrittsregelung ist wegen des Moduls " + tempModule.getName() + " verletzt. ";
     					break;
     				}   				
     			}

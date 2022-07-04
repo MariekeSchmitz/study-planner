@@ -360,11 +360,11 @@ public class CenterViewController extends ViewController implements PropertyChan
 			
 			Module m = (Module) event.getSource();
 			
-			if (m instanceof ExamModule) {
-				m.getAssociatedExamModule().setValid((Boolean)event.getNewValue());
-			} else if (m.isHasExamModule()) {
-				m.getAssociatedExamModule().setValid((Boolean)event.getNewValue());
-			}
+//			if (m instanceof ExamModule) {
+//				m.getAssociatedExamModule().setValid((Boolean)event.getNewValue());
+//			} else if (m.isHasExamModule()) {
+//				m.getAssociatedExamModule().setValid((Boolean)event.getNewValue());
+//			}
 			
 			for (SemesterList listView: semesterListViews) {
 				listView.refresh();

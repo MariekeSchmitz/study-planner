@@ -36,7 +36,6 @@ public class ExamModule extends Module{
     }
 	 
 	 @Override 
-
 	 public void setValid(boolean valid) {
 			
 		 
@@ -45,6 +44,12 @@ public class ExamModule extends Module{
 			this.pcs.firePropertyChange("valid", pre, this.valid);
 			System.out.println("semesterCurrent - set "+this.valid);
 			
+		}
+	 
+	 @Override 
+	 public int getCp() {
+		
+			return courses.get(0).getCp();
 		}
 	
 	

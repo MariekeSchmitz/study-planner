@@ -83,9 +83,7 @@ public class Module {
 		this.semesterCurrent = semesterCurrent;
 		this.passed = false;
 		
-		for (Course course : this.courses) {
-			this.cp += course.getCp();
-		}
+		this.cp = getCp();
 		
 		this.gradeAvailable = checkGradeAvailable();
 		
@@ -130,6 +128,7 @@ public class Module {
     	
     	return false;
     }
+    
 
 	
 	/** 
@@ -317,7 +316,16 @@ public class Module {
 	 * @return int
 	 */
 	public int getCp() {
-		return cp;
+		
+		int tempCP = 0;
+		
+		
+		for (Course course : this.courses) {
+			if (!course.isHasExtraExam())
+				tempCP += course.getCp();
+		}
+		
+		return tempCP;
 	}
 	
 	/** 
