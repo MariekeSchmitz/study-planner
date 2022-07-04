@@ -5,14 +5,14 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Background;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
-import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-
+/**
+ * Middle part of the visual representation of a plan.
+ */
 public class CenterView extends AnchorPane{
     
     private VBox vboxNumber;
@@ -23,6 +23,7 @@ public class CenterView extends AnchorPane{
     private Button savePlan;
     private Button removeSemester;
     private Button addExam;
+    private Button backButton;
     
     private Label header;
     private Label pointAverage;
@@ -30,9 +31,25 @@ public class CenterView extends AnchorPane{
     private VBox buttonsBox;
 
     private Pane backgroundPane;
-    private BorderPane planNameInputPane;
+    private AnchorPane planNameInputPane;
+    private ScrollPane scrollPane;
 
     public CenterView(){
+    	
+        //NameInputPane 
+        planNameInputPane = new AnchorPane();
+        planNameInputPane.setVisible(false);
+        planNameInputPane.setStyle("-fx-background-color: transparent");
+        
+        backButton = new Button();
+        backButton.getStyleClass().add("BackgroundBackButton");
+        
+        planNameInputPane.getChildren().add(backButton);
+        
+        AnchorPane.setLeftAnchor(backButton, 0.0);
+        AnchorPane.setTopAnchor(backButton, 0.0);
+        AnchorPane.setRightAnchor(backButton,0.0);
+        AnchorPane.setBottomAnchor(backButton, 0.0);
 
         // TopCenterView
         backgroundPane = new Pane();
@@ -40,9 +57,7 @@ public class CenterView extends AnchorPane{
         backgroundPane.setPrefHeight(500);
         backgroundPane.setMaxHeight(325);
         
-        planNameInputPane = new BorderPane();
-        planNameInputPane.setVisible(false);
-        planNameInputPane.setStyle("-fx-background-color: rgb(255,255,255)");
+
         
         header = new Label("Dein Studienplan");
         header.getStyleClass().add("header");
@@ -94,7 +109,7 @@ public class CenterView extends AnchorPane{
     
         hBoxAdd.getChildren().addAll(addSemester,removeSemester, addExam);
 
-        ScrollPane scrollPane = new ScrollPane();
+        scrollPane = new ScrollPane();
 		scrollPane.setContent(planPane);
 		scrollPane.fitToHeightProperty().set(true);
         scrollPane.fitToWidthProperty().set(true);
@@ -102,7 +117,6 @@ public class CenterView extends AnchorPane{
 
         planPane.getStyleClass().add("backgroundtransparent");
         
-
         AnchorPane.setLeftAnchor(hBoxAdd, 130.0);
         AnchorPane.setTopAnchor(hBoxAdd, 275.0);
         AnchorPane.setRightAnchor(hBoxAdd, 50.0);
@@ -117,10 +131,10 @@ public class CenterView extends AnchorPane{
         AnchorPane.setRightAnchor(backgroundPane,0.0);
         AnchorPane.setBottomAnchor(backgroundPane, 0.0);
         
-        AnchorPane.setLeftAnchor(planNameInputPane, 50.0);
-        AnchorPane.setTopAnchor(planNameInputPane, 50.0);
-        AnchorPane.setRightAnchor(planNameInputPane,50.0);
-        AnchorPane.setBottomAnchor(planNameInputPane, 50.0);
+        AnchorPane.setLeftAnchor(planNameInputPane, 0.0);
+        AnchorPane.setTopAnchor(planNameInputPane, 0.0);
+        AnchorPane.setRightAnchor(planNameInputPane,0.0);
+        AnchorPane.setBottomAnchor(planNameInputPane, 0.0);
 
         AnchorPane.setTopAnchor(buttonsBox, 75.0);
         AnchorPane.setRightAnchor(buttonsBox, 50.0);
@@ -130,8 +144,6 @@ public class CenterView extends AnchorPane{
 
         AnchorPane.setTopAnchor(pointAverage, 150.0);
         AnchorPane.setLeftAnchor(pointAverage, 130.0);
-        
-        
 
         this.getChildren().addAll(backgroundPane, scrollPane, hBoxAdd, header, pointAverage, buttonsBox, planNameInputPane);
         this.getStylesheets().add(getClass().getResource("/css/mainView.css").toExternalForm());
@@ -258,19 +270,25 @@ public class CenterView extends AnchorPane{
 	}
 
 
-	public BorderPane getPlanNameInputPane() {
+	public AnchorPane getPlanNameInputPane() {
 		return planNameInputPane;
 	}
 
 
 	public void setPlanNameInputPane(Pane planNameInputPane) {
-		this.planNameInputPane.setCenter(planNameInputPane); 
+		this.planNameInputPane.getChildren().add(planNameInputPane); 
+
+        AnchorPane.setLeftAnchor(planNameInputPane, 350.0);
+        AnchorPane.setTopAnchor(planNameInputPane, 200.0);
+        AnchorPane.setRightAnchor(planNameInputPane,350.0);
+        AnchorPane.setBottomAnchor(planNameInputPane, 200.0);
+        
 		this.planNameInputPane.setVisible(true);
 	}
-	
-	
-    
-    
 
+
+	public Button getBackButton() {
+		return backButton;
+	}
     
 }

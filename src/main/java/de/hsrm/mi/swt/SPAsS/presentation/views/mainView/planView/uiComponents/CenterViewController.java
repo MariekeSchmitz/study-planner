@@ -3,39 +3,23 @@ package de.hsrm.mi.swt.SPAsS.presentation.views.mainView.planView.uiComponents;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
 import de.hsrm.mi.swt.SPAsS.application.App;
-import de.hsrm.mi.swt.SPAsS.business.commands.CommandManager;
-import de.hsrm.mi.swt.SPAsS.business.commands.ResetPlanCommand;
 import de.hsrm.mi.swt.SPAsS.business.fileManagement.FileManager;
 import de.hsrm.mi.swt.SPAsS.business.fileManagement.FileType;
-import de.hsrm.mi.swt.SPAsS.business.planManagement.CategoryEnum;
-import de.hsrm.mi.swt.SPAsS.business.planManagement.Competence;
 import de.hsrm.mi.swt.SPAsS.business.planManagement.Course;
-import de.hsrm.mi.swt.SPAsS.business.planManagement.Exam;
-import de.hsrm.mi.swt.SPAsS.business.planManagement.ExamType;
 import de.hsrm.mi.swt.SPAsS.business.planManagement.Module;
-import de.hsrm.mi.swt.SPAsS.business.planManagement.OfferedTime;
 import de.hsrm.mi.swt.SPAsS.business.planManagement.Plan;
-import de.hsrm.mi.swt.SPAsS.presentation.views.Scenes;
 import de.hsrm.mi.swt.SPAsS.presentation.views.ViewController;
 import de.hsrm.mi.swt.SPAsS.presentation.views.ViewManager;
-import javafx.beans.InvalidationListener;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
-import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.event.EventType;
-import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -45,18 +29,20 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.DataFormat;
-import javafx.scene.input.DragEvent;
 import javafx.scene.input.Dragboard;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.TransferMode;
-import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.text.TextAlignment;
 import javafx.util.Callback;
-
+/**
+ * Controller for dynamically filling Centerview
+ * Reacts to User Input and changes in Module-Object by refreshing visual components
+ */
 public class CenterViewController extends ViewController implements PropertyChangeListener {
 
 	private CenterView centerView;
@@ -69,6 +55,7 @@ public class CenterViewController extends ViewController implements PropertyChan
 	private Button removeSemesterButton;
 	private Button addExamButton;
 	private Button savePlanButton;
+	private Button backButton;
 	private Label gradeAverage;
 	private Button save;
 	private TextField nameInput;
@@ -107,6 +94,7 @@ public class CenterViewController extends ViewController implements PropertyChan
 		addExamButton = centerView.getAddExam();
 		gradeAverage = centerView.getPointAverage();
 		savePlanButton = centerView.getSavePlan();
+		backButton = centerView.getBackButton();
 		save = new Button("save");
 		header = centerView.getHeader();
 
@@ -130,6 +118,10 @@ public class CenterViewController extends ViewController implements PropertyChan
 			generateListView();
 
 		});
+		
+		backButton.addEventHandler(ActionEvent.ACTION, e -> {
+			centerView.getPlanNameInputPane().setVisible(false);
+		});
 
 		addExamButton.addEventHandler(ActionEvent.ACTION, e -> {
 
@@ -138,18 +130,36 @@ public class CenterViewController extends ViewController implements PropertyChan
 		});
 		
 		savePlanButton.addEventHandler(ActionEvent.ACTION, e -> {
-
 			
-			VBox nameBox = new VBox();
+			AnchorPane savePane = new AnchorPane();
+			savePane.setStyle("-fx-background-color: rgb(255,255,255)");
+			savePane.getStyleClass().add("test-border-red");
+			savePane.setMaxSize(200, 500);
+			savePane.setPrefSize(200, 500);
+			
+			
+			
 			Label title = new Label("Wie soll dein Plan heißen?");
-			Pane savePane = new Pane();
-			HBox inputSaveBox = new HBox();
+			title.getStyleClass().add("header");
+			title.setWrapText(true);
+			title.getStyleClass().add("test-border-red");
+			title.setAlignment(Pos.CENTER);
+			title.setTextAlignment(TextAlignment.CENTER);
+
+			HBox inputSaveBox = new HBox(20);
 			nameInput = new TextField(plan.getName());
 			inputSaveBox.getChildren().addAll(nameInput,save);
+			inputSaveBox.setAlignment(Pos.CENTER);
+			
+			AnchorPane.setTopAnchor(title, 150.0);
+			AnchorPane.setLeftAnchor(title, 100.0);
+			AnchorPane.setRightAnchor(title, 100.0);
+			
+			AnchorPane.setTopAnchor(inputSaveBox, 300.0);
+			AnchorPane.setLeftAnchor(inputSaveBox, 100.0);
+			AnchorPane.setRightAnchor(inputSaveBox, 100.0);
 
-			nameBox.getChildren().addAll(title,inputSaveBox);
-
-			savePane.getChildren().add(nameBox);
+			savePane.getChildren().addAll(title,inputSaveBox);
 			
 			centerView.setPlanNameInputPane(savePane);
 			
@@ -218,6 +228,12 @@ public class CenterViewController extends ViewController implements PropertyChan
 
 	}
 
+
+	/**
+ * Creates ListView for each each Semester and fills each with Modules Views
+ * In the end all Modules will be correctly shown on screen
+ * Also makes all Modules drag - and - clickable
+ */
 	public void generateListView() {
 
 		SemesterList semesterListView;

@@ -8,6 +8,10 @@ import de.hsrm.mi.swt.SPAsS.presentation.views.ViewController;
 import javafx.event.ActionEvent;
 import javafx.scene.control.TextField;
 
+/**
+ * Fills ValidatorInformationView with validator Details.
+ * Reacts to User Input to change validator settings
+ */
 public class ValidatorInformationViewController extends ViewController {
 
     private ValidatorInformationView validatorInformationView;

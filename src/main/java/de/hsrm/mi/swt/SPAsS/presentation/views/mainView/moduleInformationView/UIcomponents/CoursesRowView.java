@@ -7,6 +7,9 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 
+/**
+ * Small Visual Component for flagging Module as passed and filling in grade
+ */
 public class CoursesRowView extends HBox{
 
 	Label courseName = new Label();
@@ -29,7 +32,7 @@ public class CoursesRowView extends HBox{
 		this.setAlignment(Pos.CENTER_LEFT);
 		this.setPadding(new Insets(10, 10, 10, 10));
 		this.setPrefHeight(25);
-		this.setSpacing(10);
+		this.setSpacing(25);
 		this.getChildren().addAll(courseName, passedCheck, gradeInput);
 		this.setStyle("-fx-background-color: rgb(196, 196, 196);");
 	}

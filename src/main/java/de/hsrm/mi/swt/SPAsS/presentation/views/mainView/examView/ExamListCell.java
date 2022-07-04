@@ -13,6 +13,9 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 public class ExamListCell extends ListCell<ExamModule>{
+/**
+ * Visual Description of a single Exam-Cell
+ */
 
     private HBox mainPane;
     private VBox vbox;

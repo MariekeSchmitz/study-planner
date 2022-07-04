@@ -1,11 +1,15 @@
 package de.hsrm.mi.swt.SPAsS.presentation.views.mainView.settingsView.uiComponents;
 
+import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 
+/**
+ * Visual Component for Validator - Details
+ */
 public class ValidatorInformationView extends VBox {
 
     private Label header;
@@ -17,16 +21,15 @@ public class ValidatorInformationView extends VBox {
     public ValidatorInformationView() {
         header = new Label("ValidatorÜberschrift");
         header.setWrapText(true);
-        header.setTextFill(Color.BLACK);
 
         description = new Label("");
         description.setText("Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.");
         description.setWrapText(true);
-        description.setTextFill(Color.BLACK);
-        
-        inputBox = new HBox();
+                
+        inputBox = new HBox(5);
         input = new TextField();
         inputLabel = new Label("Credit Points");
+        inputBox.setAlignment(Pos.CENTER_LEFT);
         inputBox.getChildren().addAll(input,inputLabel);
 
         this.setSpacing(10);

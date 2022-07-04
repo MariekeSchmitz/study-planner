@@ -1,6 +1,9 @@
 package de.hsrm.mi.swt.SPAsS.presentation.views.mainView.planView;
 
 import javafx.scene.layout.AnchorPane;
+/**
+ * View - Combines Center, Left and Rightside views into single AnchorPane
+ */
 public class PlanView extends AnchorPane{
     
     public PlanView( AnchorPane center) {    	

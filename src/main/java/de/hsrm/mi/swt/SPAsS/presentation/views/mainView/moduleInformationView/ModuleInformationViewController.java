@@ -8,20 +8,16 @@ import de.hsrm.mi.swt.SPAsS.business.planManagement.Course;
 import de.hsrm.mi.swt.SPAsS.business.planManagement.ExamModule;
 import de.hsrm.mi.swt.SPAsS.business.planManagement.Module;
 import de.hsrm.mi.swt.SPAsS.presentation.views.Scenes;
-import de.hsrm.mi.swt.SPAsS.presentation.views.ViewController;
-import de.hsrm.mi.swt.SPAsS.presentation.views.ViewManager;
-import de.hsrm.mi.swt.SPAsS.presentation.views.mainView.MainViewController;
-import de.hsrm.mi.swt.SPAsS.presentation.views.mainView.moduleInformationView.UIcomponents.CoursesRowController;
-import de.hsrm.mi.swt.SPAsS.presentation.views.mainView.planView.uiComponents.ModuleViewController;
-import javafx.event.ActionEvent;
+import de.hsrm.mi.swt.SPAsS.presentation.views.ViewController;import de.hsrm.mi.swt.SPAsS.presentation.views.mainView.MainViewController;
+import de.hsrm.mi.swt.SPAsS.presentation.views.mainView.moduleInformationView.UIcomponents.CoursesRowController;import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-
+/**
+ * Reacts to User Input on ModuleInformationView. Fills View with Module Information.
+ */
 public class ModuleInformationViewController extends ViewController{
 
 	private App app;
@@ -95,10 +91,13 @@ public class ModuleInformationViewController extends ViewController{
     	if (module.isValid()) {
     		moduleInformationView.getWarningBox().setVisible(false);
 			AnchorPane.setTopAnchor(moduleInformationView.getBox(), 200.0);
+			AnchorPane.setTopAnchor(moduleInformationView.getLabelHbox(), 220.0);
+
     	} else {
     		moduleInformationView.getWarningBox().setVisible(true);
     		moduleInformationView.getNoteWarningText().setText(module.getNote());
 			AnchorPane.setTopAnchor(moduleInformationView.getBox(), 300.0);
+			AnchorPane.setTopAnchor(moduleInformationView.getLabelHbox(), 320.0);
     	}
     	
     	coursesBox = moduleInformationView.getCoursesBox();

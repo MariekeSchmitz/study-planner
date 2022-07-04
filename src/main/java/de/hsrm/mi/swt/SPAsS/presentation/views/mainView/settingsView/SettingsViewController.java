@@ -9,14 +9,16 @@ import de.hsrm.mi.swt.SPAsS.business.restrictionManagement.Validator;
 import de.hsrm.mi.swt.SPAsS.presentation.views.Scenes;
 import de.hsrm.mi.swt.SPAsS.presentation.views.ViewController;
 import de.hsrm.mi.swt.SPAsS.presentation.views.ViewManager;
-import de.hsrm.mi.swt.SPAsS.presentation.views.mainView.MainViewController;
 import de.hsrm.mi.swt.SPAsS.presentation.views.mainView.settingsView.uiComponents.ValidatorInformationView;
 import de.hsrm.mi.swt.SPAsS.presentation.views.mainView.settingsView.uiComponents.ValidatorInformationViewController;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 
+/**
+ * Controller for SettingsView
+ * Dynamically fills SettingsView with needed Components
+ */
 public class SettingsViewController extends ViewController{
     
     private ViewManager viewManager;

@@ -10,7 +10,9 @@ import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
-
+/**
+ * Visual Component for Plan Selection if previously saved plans are available
+ */
 public class TitelPlanView extends AnchorPane{
 
     private Pane platzhalterPane;

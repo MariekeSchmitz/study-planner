@@ -20,7 +20,9 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
-
+/**
+ * Reacts to User Input depending on plans beeing available for selection
+ */
 public class StartViewController extends ViewController {
 
     private StartView startView;

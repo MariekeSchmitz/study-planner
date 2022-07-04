@@ -1,21 +1,14 @@
 package de.hsrm.mi.swt.SPAsS.presentation.views.introView.uiComponents;
 
 import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
 import de.hsrm.mi.swt.SPAsS.application.App;
-import de.hsrm.mi.swt.SPAsS.business.commands.MoveSemesterCommand;
 import de.hsrm.mi.swt.SPAsS.business.fileManagement.FileManager;
 import de.hsrm.mi.swt.SPAsS.business.fileManagement.FileType;
-import de.hsrm.mi.swt.SPAsS.business.planManagement.Course;
-import de.hsrm.mi.swt.SPAsS.business.planManagement.Module;
 import de.hsrm.mi.swt.SPAsS.business.planManagement.Plan;
-import de.hsrm.mi.swt.SPAsS.business.restrictionManagement.Validator;
 import de.hsrm.mi.swt.SPAsS.presentation.views.Scenes;
 import de.hsrm.mi.swt.SPAsS.presentation.views.ViewController;
 import de.hsrm.mi.swt.SPAsS.presentation.views.ViewManager;
@@ -25,15 +18,15 @@ import javafx.scene.control.Button;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.Dragboard;
 import javafx.scene.input.TransferMode;
-import javafx.scene.layout.Pane;
 import javafx.stage.FileChooser;
-
+/**
+ * Reacts to import of Plan/Curriculum file via Drag and Drop
+ */
 public class DragDropViewController extends ViewController {
 
 	private Button fileOpenButton;
 	private DragDropView dragDropView;
 	private App app;
-	private Pane dragDropPane;
 	private FileManager fileManager;
 	private ViewManager viewManager;
 	private FileType fileType;
@@ -145,6 +138,13 @@ public class DragDropViewController extends ViewController {
 
 	}
 
+	
+	/** 
+	 * @param file
+	 * Takes curriculum-file and creates Plan-Object.
+	 * Then saves plan as curriculum for future use
+	 * 
+	 */
 	private void importCurriculum(File file) {
 		Plan plan = fileManager.fileReadFromDirectory(file.getAbsolutePath());
 		plan.planToDefaultPlan();
@@ -153,6 +153,14 @@ public class DragDropViewController extends ViewController {
 		fileManager.fileSave(FileType.CURRICULA, plan);
 	}
 
+	
+	/** 
+	 * @param file
+	 * @throws IOException
+	 * Takes Plan-file and creates Plan-Object.
+	 * Then saves plan for future use.
+	 * Also saves default version as curriculum.
+	 */
 	private void importPlan(File file) throws IOException {
 
 		// Plan kopieren und in View

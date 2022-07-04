@@ -25,7 +25,9 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
 import javafx.util.Callback;
-
+/**
+ * Reacts to User Selection of an Exam. Puts new Exam-Module into Plan
+ */
 public class ExamViewController extends ViewController{
 
 
@@ -33,13 +35,12 @@ public class ExamViewController extends ViewController{
     private App app;
     private ExamView examView;
     private Button backButton;
-    
-    private int numSemester;
     private Plan plan;
     private ListView<ExamModule> listView;
     private Map<Integer, List<Module>> moduleMap;
     private List<Module> allModuleList;
     private ObservableList<ExamModule> list;
+
     
     private List<ExamModule> relevantModules;
 
@@ -52,10 +53,7 @@ public class ExamViewController extends ViewController{
         this.app = app;
         this.plan = app.getPlan();
         this.moduleMap = plan.getModuleMap();
-        this.numSemester = plan.getNumberSemester();
         this.listView = examView.getListView();
-
-        allModuleList = new ArrayList<Module>();
         relevantModules = new LinkedList<>();
         backButton = examView.getBackbutton();
 

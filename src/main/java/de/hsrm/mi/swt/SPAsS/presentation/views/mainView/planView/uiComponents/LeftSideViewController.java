@@ -10,6 +10,10 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 
+/**
+ * Reacts to User Input on left side of the PlanView. 
+ * Contains Listeners to undo,redo,save,reference and settings-Buttons.
+ */
 public class LeftSideViewController extends ViewController {
 
     private ViewManager viewManager;

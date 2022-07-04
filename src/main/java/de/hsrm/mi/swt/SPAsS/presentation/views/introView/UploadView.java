@@ -1,11 +1,12 @@
 package de.hsrm.mi.swt.SPAsS.presentation.views.introView;
 
-import de.hsrm.mi.swt.SPAsS.presentation.views.introView.uiComponents.DragDropViewController;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
-
+/**
+ * View for importing Plan file
+ */
 public class UploadView extends AnchorPane {
 
     private Label header;
