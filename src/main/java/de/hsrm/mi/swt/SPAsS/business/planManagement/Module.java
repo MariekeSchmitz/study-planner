@@ -16,24 +16,27 @@ import de.hsrm.mi.swt.SPAsS.business.commands.MoveSemesterCommand;
 
 public class Module {
 
-	private String name; 
-	private String description;
-	private int semesterCurrent;
-	private int semesterDefault;
-	private OfferedTime offeredIn;
-	private int cp = 0;
-	private List <Course> courses;
-	private float grade;
-	private boolean passed;
-	private List<Competence> neededCompetences;
-	private List <Competence> taughtCompetences;
-	private CategoryEnum category;
-	private boolean valid = true;
-	private String note = "";
-//	private boolean hasExtraExam;
-	private Module associatedModule = null;
+	protected String name; 
+	protected String description;
+	protected int semesterCurrent;
+	protected int semesterDefault;
+	protected OfferedTime offeredIn;
+	protected int cp = 0;
+	protected List <Course> courses;
+	protected float grade;
+	protected boolean passed;
+	protected List<Competence> neededCompetences;
+	protected List <Competence> taughtCompetences;
+	protected CategoryEnum category;
+	protected boolean valid = true;
+	protected String note = "";
+	protected boolean gradeAvailable;
+	
+	
+	private boolean hasExamModule = false;
+	private Module associatedExamModule = null;
 		
-    private transient final PropertyChangeSupport pcs = new PropertyChangeSupport(this);
+	protected transient final PropertyChangeSupport pcs = new PropertyChangeSupport(this);
 
 	
 	public Module() {
@@ -64,7 +67,7 @@ public class Module {
 //			this.cp += course.getCp();
 //		}
 //		
-//	}
+//	}	
 	
 	public Module(String name, String description, int semesterDefault, int semesterCurrent, OfferedTime offeredIn,
 			List<Course> courses, List<Competence> neededCompetences, List <Competence> taughtCompetences, CategoryEnum category, boolean valid, String note)  {
@@ -83,41 +86,29 @@ public class Module {
 		
 		this.semesterCurrent = semesterCurrent;
 		this.passed = false;
-//		this.hasExtraExam = false;
 		this.coursesPassed();
 		
 		for (Course course : this.courses) {
 			this.cp += course.getCp();
 		}
+		
+		this.gradeAvailable = checkGradeAvailable();
 		
 	}
 	
+	
+
 	public Module(String name, String description, int semesterDefault, int semesterCurrent, OfferedTime offeredIn,
 			List<Course> courses, List<Competence> neededCompetences, List <Competence> taughtCompetences, CategoryEnum category, boolean valid, String note, Module associatedModule)  {
-		this.name = name;
 		
-		this.description = description;
-		this.semesterDefault = semesterDefault;
-		this.offeredIn = offeredIn;
-		
-		this.courses = courses;
-		this.neededCompetences = neededCompetences;
-		this.taughtCompetences = taughtCompetences;
-		this.valid = valid;
-		this.note = note;
-		this.category = category;
-		
-		this.semesterCurrent = semesterCurrent;
-		this.passed = false;
-		this.associatedModule = associatedModule;
-		this.coursesPassed();
-		
-		for (Course course : this.courses) {
-			this.cp += course.getCp();
-		}
+		this(name,description, semesterDefault, semesterCurrent,offeredIn,courses,neededCompetences,taughtCompetences,category,valid,note);
+//		this.associatedModule = associatedModule;
+
 		
 	}
 
+	
+	
 	public void addPropertyChangeListener(PropertyChangeListener listener) {
         this.pcs.addPropertyChangeListener(listener);
     }
@@ -126,6 +117,17 @@ public class Module {
         this.pcs.removePropertyChangeListener(listener);
     }
    
+    
+    public boolean checkGradeAvailable() {
+  
+    	for (Course course : courses) {
+    		if (course.getExam().isGradeAvailable()) {
+    			return true;
+    		}
+    	}
+    	
+    	return false;
+    }
 
 	public void move(int newSemester) {
 		CommandManager.getInstance().execAndPush(new MoveSemesterCommand(this, newSemester));
@@ -138,6 +140,8 @@ public class Module {
 	
 	public void coursesPassed(){
 		boolean tempPassed = true;
+		
+		
 		for (Course course:courses){
 			if (!course.getExam().getPassed()){
 				tempPassed = false;
@@ -330,21 +334,33 @@ public class Module {
 		this.taughtCompetences = taughtCompetences;
 	}
 
-//	public boolean isHasExtraExam() {
-//		return hasExtraExam;
-//	}
-//
-//	public void setHasExtraExam(boolean hasExtraExam) {
-//		this.hasExtraExam = hasExtraExam;
-//	}
 
-	public Module getAssociatedModule() {
-		return associatedModule;
+	public boolean isGradeAvailable() {
+		return gradeAvailable;
 	}
 
-	public void setAssociatedModule(Module associatedModule) {
-		this.associatedModule = associatedModule;
+	public void setGradeAvailable(boolean gradeAvailable) {
+		this.gradeAvailable = gradeAvailable;
 	}
+	
+	public boolean isHasExamModule() {
+		return hasExamModule;
+	}
+
+	public void setHasExamModule(boolean hasExamModule) {
+		this.hasExamModule = hasExamModule;
+	}
+
+	public Module getAssociatedExamModule() {
+		return associatedExamModule;
+	}
+
+	public void setAssociatedExamModule(Module associatedExamModule) {
+		this.associatedExamModule = associatedExamModule;
+	}
+
+	
+	
 	
 	
 	

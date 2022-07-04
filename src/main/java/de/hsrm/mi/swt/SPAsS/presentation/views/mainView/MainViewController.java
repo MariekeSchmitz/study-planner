@@ -50,12 +50,9 @@ public class MainViewController extends ViewController{
         moduleInformationViewController = new ModuleInformationViewController(this, app);
         planViewController = new PlanViewController(viewManager, app);
         mainViewStack.getChildren().add(planViewController.getRootView());
-//        mainViewStack.getChildren().add(settingsViewController.getRootView());
-//        mainViewStack.getChildren().add(examViewController.getRootView());
-//        mainViewStack.getChildren().add(moduleInformationViewController.getRootView());
-        
-        this.moduleInformationView= (ModuleInformationView)moduleInformationViewController.getRootView(); 
+
         this.examView = (ExamView)examViewController.getRootView();
+        this.moduleInformationView= (ModuleInformationView)moduleInformationViewController.getRootView(); 
         this.settingsView = (SettingsView)settingsViewController.getRootView();
         this.leftSideView = (LeftSideView) leftSideViewController.getRootView();
         
@@ -226,6 +223,7 @@ public class MainViewController extends ViewController{
 		this.planViewController = planViewController;
 	}
     
+	
     
     
     

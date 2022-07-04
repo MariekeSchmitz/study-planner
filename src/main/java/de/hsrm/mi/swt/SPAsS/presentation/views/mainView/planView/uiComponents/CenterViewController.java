@@ -286,7 +286,7 @@ public class CenterViewController extends ViewController implements PropertyChan
 							if (event.getX() == mouseX && event.getY() == mouseY) {
 
 								viewManager.getMainViewController().putModuleViewOnStack(moduleView.getItem());
-
+								System.out.println("Maus geklickt auf Modul");
 							}
 
 						}
@@ -333,7 +333,7 @@ public class CenterViewController extends ViewController implements PropertyChan
 
 			break;
 
-		case "bestanden":
+		case "passed":
 			plan.calculateAverage();
 			generateListView();
 

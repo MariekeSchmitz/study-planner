@@ -10,6 +10,8 @@ import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import de.hsrm.mi.swt.SPAsS.business.planManagement.Course;
+import de.hsrm.mi.swt.SPAsS.business.planManagement.Exam;
+import de.hsrm.mi.swt.SPAsS.business.planManagement.ExamModule;
 import de.hsrm.mi.swt.SPAsS.business.planManagement.Module;
 
 public class ModuleView extends ListCell<Module>{
@@ -66,10 +68,11 @@ public class ModuleView extends ListCell<Module>{
     		
     		// TO DO 
     		String colorPassed = "-fx-background-color:rgba("+red+","+blue+","+green+", 0.5);";
-    		String onlyExam = "-fx-background-color:rgb(200,200,200)";
+    		String onlyExam = "-fx-background-color:rgb(200,0,200)";
     		
+    		System.out.println(item.getName() + " examModule: "+ (item instanceof ExamModule));
     		
-    		if (item.getAssociatedModule() != null) {
+    		if (item instanceof ExamModule) {
     			labels.setStyle(onlyExam);
     		} else if (item.isPassed()) {
     			labels.setStyle(colorPassed);

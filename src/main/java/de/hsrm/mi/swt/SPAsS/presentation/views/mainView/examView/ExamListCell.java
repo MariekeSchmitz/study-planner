@@ -1,5 +1,6 @@
 package de.hsrm.mi.swt.SPAsS.presentation.views.mainView.examView;
 
+import de.hsrm.mi.swt.SPAsS.business.planManagement.ExamModule;
 import de.hsrm.mi.swt.SPAsS.business.planManagement.Module;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -11,7 +12,7 @@ import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
-public class ExamListCell extends ListCell<Module>{
+public class ExamListCell extends ListCell<ExamModule>{
 
     private HBox mainPane;
     private VBox vbox;
@@ -48,7 +49,7 @@ public class ExamListCell extends ListCell<Module>{
     }
 
     @Override
-	public void updateItem(Module item, boolean empty) {
+	public void updateItem(ExamModule item, boolean empty) {
 		super.updateItem(item, empty);
 		
 		if(!empty) {

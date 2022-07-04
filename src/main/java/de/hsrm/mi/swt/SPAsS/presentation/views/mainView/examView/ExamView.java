@@ -1,5 +1,6 @@
 package de.hsrm.mi.swt.SPAsS.presentation.views.mainView.examView;
 
+import de.hsrm.mi.swt.SPAsS.business.planManagement.ExamModule;
 import de.hsrm.mi.swt.SPAsS.business.planManagement.Module;
 
 import javafx.scene.control.Button;
@@ -10,7 +11,7 @@ import javafx.scene.layout.AnchorPane;
 public class ExamView extends AnchorPane{
 
     private Label header;
-    private ListView<Module> listView;
+    private ListView<ExamModule> listView;
 
     private Button backbutton; 
 
@@ -50,7 +51,7 @@ public class ExamView extends AnchorPane{
         return header;
     }
 
-    public ListView<Module> getListView() {
+    public ListView<ExamModule> getListView() {
         return listView;
     }
 

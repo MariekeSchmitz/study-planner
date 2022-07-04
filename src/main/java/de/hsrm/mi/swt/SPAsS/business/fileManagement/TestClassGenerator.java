@@ -165,15 +165,15 @@ public class TestClassGenerator {
                 
                 Module wp3 = new Module("Wahlpflichtliste Internationalisierung", getLorem(), 7, 7,
                                 OfferedTime.YEARLY,
-                                Arrays.asList(new Course("Sprachkurs", 4, new Exam(ExamType.SEMESTER_PROJECT, OfferedTime.YEARLY, 0, false))),
+                                Arrays.asList(new Course("Sprachkurs", 4, new Exam(ExamType.SEMESTER_PROJECT, OfferedTime.YEARLY, 0, true))),
                                 neededCompetences,
                                 Arrays.asList(new Competence("Wahlpflichtliste Internationalisierung")), fql, true, "");
                 Module port = new Module("Portfolio Medieninformatik", getLorem(), 7, 7, OfferedTime.YEARLY,
-                Arrays.asList(new Course("Portfolio-Projekt", 10, new Exam(ExamType.SEMESTER_PROJECT, OfferedTime.YEARLY, 0, false))),
+                Arrays.asList(new Course("Portfolio-Projekt", 10, new Exam(ExamType.SEMESTER_PROJECT, OfferedTime.YEARLY, 0, true))),
                                 neededCompetences, 
                                 Arrays.asList(new Competence("Portfolio Medieninformatik")), infgestl, true, "");
                 Module bach = new Module("Bachelor Thesis", getLorem(), 7, 7, OfferedTime.YEARLY, 
-                                Arrays.asList(new Course("Bachelor-Arbeit", 15, new Exam(ExamType.SEMESTER_PROJECT, OfferedTime.YEARLY, 0, false))),
+                                Arrays.asList(new Course("Bachelor-Arbeit", 15, new Exam(ExamType.SEMESTER_PROJECT, OfferedTime.YEARLY, 0, true))),
                                 neededCompetences, 
                                 Arrays.asList(new Competence("Bachelor Thesis")),fql, true, "Hier steht eine Warnung");
                 modules.addAll(Arrays.asList(wp3, port, bach));

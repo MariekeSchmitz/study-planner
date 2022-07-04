@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 import de.hsrm.mi.swt.SPAsS.business.planManagement.Course;
+import de.hsrm.mi.swt.SPAsS.business.planManagement.ExamModule;
 import de.hsrm.mi.swt.SPAsS.business.planManagement.ExamType;
 import de.hsrm.mi.swt.SPAsS.business.planManagement.Module;
 import de.hsrm.mi.swt.SPAsS.business.planManagement.OfferedTime;
@@ -35,12 +36,12 @@ public class ExamViewController extends ViewController{
     
     private int numSemester;
     private Plan plan;
-    private ListView<Module> listView;
+    private ListView<ExamModule> listView;
     private Map<Integer, List<Module>> moduleMap;
     private List<Module> allModuleList;
-    private ObservableList<Module> list;
+    private ObservableList<ExamModule> list;
     
-    private List<Module> relevantModules;
+    private List<ExamModule> relevantModules;
 
     public ExamViewController(ViewManager viewManager, App app) {
         
@@ -69,13 +70,12 @@ public class ExamViewController extends ViewController{
     public void initialise() {
     	
     	generateListView();
-    	list = FXCollections.observableList(relevantModules);
-        listView.setItems(list);
+    	
         
-        listView.setCellFactory(new Callback<ListView<Module>, ListCell<Module>>() {
+        listView.setCellFactory(new Callback<ListView<ExamModule>, ListCell<ExamModule>>() {
 
             @Override
-            public ListCell<Module> call(ListView<Module> param) {
+            public ListCell<ExamModule> call(ListView<ExamModule> param) {
                 
             	ExamListCell examListCell = new ExamListCell();
             	
@@ -83,15 +83,24 @@ public class ExamViewController extends ViewController{
 					@Override
 					public void handle(MouseEvent event) {
 
-						Module module = examListCell.getItem();
-    					module.getAssociatedModule().getCourse(module.getCourses().get(0)).setHasExtraExam(true);
-    					int semester = module.getSemesterDefault();
-    					list.remove(module);
-    					plan.addModule(semester, module);
+						// relation examModule – actualModule
+						ExamModule examModule = examListCell.getItem();
+						examModule.addPropertyChangeListener(viewManager.getMainViewController().getPlanViewController().getCenterViewController());
+						
+						Module actualModule = examModule.getAssociatedActualModule();
+						actualModule.setAssociatedExamModule(examModule);
+						actualModule.setHasExamModule(true);
+						
+						Course examCourse = examModule.getCourses().get(0);
+						examCourse.setHasExtraExam(true);
+						
+						// remove examModule from list in examView + add it to plan
+    					int semester = examModule.getSemesterDefault();
+    					list.remove(examModule);
+    					plan.addModule(semester, examModule);
+    					
     					viewManager.getMainViewController().getPlanViewController().getCenterViewController().generateListView();
     		        	viewManager.getMainViewController().transitionOut(Scenes.EXAM_VIEW);
-
-    					System.out.println("on click");
 
 					}
 				});   
@@ -104,14 +113,18 @@ public class ExamViewController extends ViewController{
         backButton.addEventHandler(ActionEvent.ACTION, e -> {
     		
         	viewManager.getMainViewController().transitionOut(Scenes.EXAM_VIEW);
-    		
 
     	});
         
     }
-    private void generateListView(){
+    
+    
+    public void generateListView(){
 
-    	Module tempModule;
+    	ExamModule tempModule;
+    	moduleMap = plan.getModuleMap();
+        relevantModules = new LinkedList<>();
+
     	
         for (List<Module> modulelist : moduleMap.values()) {
         	
@@ -121,9 +134,9 @@ public class ExamViewController extends ViewController{
         			
         			for (Course course : module.getCourses()) {
         				
-        				if (course.getExam().getExamType() == ExamType.EXAM) {
+        				if (course.getExam().isGradeAvailable()) {
         					
-        					tempModule = new Module("Klausur - "+module.getName(), module.getDescription(), module.getSemesterDefault(), module.getSemesterCurrent(), OfferedTime.BI_YEARLY, Arrays.asList(course), module.getNeededCompetences(), module.getTaughtCompetences(), module.getCategory(), true, "", module);
+        					tempModule = new ExamModule("Klausur - "+module.getName(), module.getDescription(), module.getSemesterDefault(), module.getSemesterCurrent(), OfferedTime.BI_YEARLY, Arrays.asList(course), module.getNeededCompetences(), module.getTaughtCompetences(), module.getCategory(), true, "", module);
         					relevantModules.add(tempModule);
         					
         				}
@@ -136,6 +149,9 @@ public class ExamViewController extends ViewController{
         	
         	
         }
+        
+        list = FXCollections.observableList(relevantModules);
+        listView.setItems(list);
         
     }
 }

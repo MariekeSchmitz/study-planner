@@ -5,6 +5,7 @@ import java.util.List;
 import de.hsrm.mi.swt.SPAsS.application.App;
 import de.hsrm.mi.swt.SPAsS.business.planManagement.Competence;
 import de.hsrm.mi.swt.SPAsS.business.planManagement.Course;
+import de.hsrm.mi.swt.SPAsS.business.planManagement.ExamModule;
 import de.hsrm.mi.swt.SPAsS.business.planManagement.Module;
 import de.hsrm.mi.swt.SPAsS.presentation.views.Scenes;
 import de.hsrm.mi.swt.SPAsS.presentation.views.ViewController;
@@ -63,13 +64,21 @@ public class ModuleInformationViewController extends ViewController{
     	deleteButton.addEventHandler(ActionEvent.ACTION, e -> {
     		
     		app.getPlan().removeModule(module.getSemesterCurrent(), module);
-    		// noch zu ExamView wieder hinzufügen
-    		Module associatedModule = module.getAssociatedModule();
+    		
+    		Module associatedModule = ((ExamModule)module).getAssociatedActualModule();
+    		associatedModule.setAssociatedExamModule(null);
+    		associatedModule.setHasExamModule(false);
+    		
     		Course examCourse = module.getCourses().get(0);
-    		associatedModule.getCourses().add(examCourse);
     		examCourse.setHasExtraExam(false);
+    		
+    		// update List in ExamView
+    		mainViewController.getExamViewController().generateListView();
+    		
     		mainViewController.getPlanViewController().getCenterViewController().generateListView();
     		mainViewController.transitionOut(Scenes.MODULE_INFORMATION_VIEW);
+    		Scenes.MODULE_INFORMATION_VIEW.setIn(false);
+
 
     	}); 
     	
@@ -124,10 +133,10 @@ public class ModuleInformationViewController extends ViewController{
     		    	
     	moduleInformationView.getModuleDescriptionText().setText(module.getDescription());
     	
-    	if (module.getAssociatedModule() == null) {
-    		deleteButton.setVisible(false);
-    	} else {
+    	if (module instanceof ExamModule) {
     		deleteButton.setVisible(true);
+    	} else {
+    		deleteButton.setVisible(false);
     	}
     	
     }

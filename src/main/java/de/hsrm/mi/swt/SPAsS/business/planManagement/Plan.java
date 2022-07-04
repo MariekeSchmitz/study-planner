@@ -63,16 +63,14 @@ public class Plan {
     	
     	int max = 0;
     	
-    	for(List<Module> moduleList : moduleMap.values()) {
+    	for (Module module : moduleList) {	
+			if (module.getSemesterDefault() > max) {
+				max = module.getSemesterDefault();
+			}
     		
-    		for (Module module : moduleList) {
-    			
-    			if (module.getSemesterDefault() > max) {
-    				max = module.getSemesterDefault();
-    			}
-    			
-    		}
-    	} 
+    	}
+    	
+    	
     	
     	return max;
     }
@@ -87,13 +85,11 @@ public class Plan {
     
     public void initialize() {
     	
-    	
     	pcs = new PropertyChangeSupport(this);
     	moduleMap = new HashMap<>();
-    	this.updateModuleMap();
         this.numberSemesterDefault = calculateNumberSemesterDefault();
+    	this.updateModuleMap();
         calculateAverage();
-
 
     }
 
@@ -133,7 +129,7 @@ public class Plan {
         float grade = 0;
         for (Module module : moduleList) {
 
-            if (module.isPassed()) {
+            if (module.isPassed() && module.isGradeAvailable()) {
                 cp += module.getCp();
                 module.calcGrade();
                 grade += module.getGrade() * module.getCp();
@@ -144,6 +140,33 @@ public class Plan {
         } else {
         	setAverageGrade(0f);
         }
+    }
+    
+    public void planToDefaultPlan() {
+    	
+    	this.initialize();
+
+    	this.setName(studiengang);
+		
+		for (Module module : moduleList) {
+			module.setSemesterCurrent(module.getSemesterDefault());
+			module.setValid(true);
+			module.setPassed(false);
+			module.setGrade(0);
+			module.setAssociatedExamModule(null);
+			module.checkGradeAvailable();
+			
+			for (Course course : module.getCourses()) {
+				course.getExam().setGrade(0);
+				course.getExam().setPassed(false);
+				course.setHasExtraExam(false);
+			}
+
+		
+		}
+		this.numberSemesterCurrent = numberSemesterDefault;
+		this.updateModuleMap();
+    	
     }
     
     public Module getModuleByName(String name) {
@@ -286,31 +309,7 @@ public class Plan {
 		this.hochschule = hochschule;
 	}
 	
-	 public void planToDefaultPlan() {
-	    	
-	    	this.initialize();
-
-	    	this.setName(studiengang);
-			
-			for (Module module : moduleList) {
-				module.setSemesterCurrent(module.getSemesterDefault());
-				module.setValid(true);
-				module.setPassed(false);
-				module.setGrade(0);
-				module.setAssociatedModule(null);
-				
-				for (Course course : module.getCourses()) {
-					course.getExam().setGrade(0);
-					course.getExam().setPassed(false);
-					course.setHasExtraExam(false);
-				}
-
-			
-			}
-			this.validate();
-			this.initialize();
-	    	
-	    }
+	
 	
 	
 
