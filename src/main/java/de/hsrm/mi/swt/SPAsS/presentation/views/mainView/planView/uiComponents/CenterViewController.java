@@ -12,6 +12,7 @@ import de.hsrm.mi.swt.SPAsS.application.App;
 import de.hsrm.mi.swt.SPAsS.business.fileManagement.FileManager;
 import de.hsrm.mi.swt.SPAsS.business.fileManagement.FileType;
 import de.hsrm.mi.swt.SPAsS.business.planManagement.Course;
+import de.hsrm.mi.swt.SPAsS.business.planManagement.ExamModule;
 import de.hsrm.mi.swt.SPAsS.business.planManagement.Module;
 import de.hsrm.mi.swt.SPAsS.business.planManagement.Plan;
 import de.hsrm.mi.swt.SPAsS.presentation.views.ViewController;
@@ -357,11 +358,18 @@ public class CenterViewController extends ViewController implements PropertyChan
 
 		case "valid":
 			
+			Module m = (Module) event.getSource();
+			
+			if (m instanceof ExamModule) {
+				m.getAssociatedExamModule().setValid((Boolean)event.getNewValue());
+			} else if (m.isHasExamModule()) {
+				m.getAssociatedExamModule().setValid((Boolean)event.getNewValue());
+			}
+			
 			for (SemesterList listView: semesterListViews) {
 				listView.refresh();
 			}
 //			ModuleView mView = null;
-//			Module m = (Module) event.getSource();
 //			
 //			for (ModuleView moduleView : moduleViews) {
 //				if (moduleView.getItem() == m) {

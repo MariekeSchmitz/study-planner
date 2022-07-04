@@ -137,7 +137,7 @@ public class Exam implements Serializable {
     /** 
      * @return boolean
      */
-    public boolean getPassed() {
+	public boolean isPassed() {
 		return passed;
 	}
 

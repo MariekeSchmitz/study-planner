@@ -46,12 +46,17 @@ public class CoursesRowController extends ViewController{
 	public void initialise() {
 		
 		coursesRowView.getCourseName().setText(course.getName());
-		passedCheckbox.setSelected(course.getExam().getPassed());
+		passedCheckbox.setSelected(course.getExam().isPassed());
 		
 		
 		if (module instanceof ExamModule) {
 			gradeInput.setVisible(true);
 			passedCheckbox.setVisible(false);
+			if (course.getExam().getGrade() != 0) {
+				gradeInput.setText(Float.toString(course.getExam().getGrade()));
+			} else {
+				gradeInput.setText("");
+			}
 		
 		} else {
 			

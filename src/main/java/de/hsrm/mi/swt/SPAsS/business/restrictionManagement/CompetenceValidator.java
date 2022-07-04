@@ -7,6 +7,7 @@ import java.util.Map;
 
 import de.hsrm.mi.swt.SPAsS.business.planManagement.Competence;
 import de.hsrm.mi.swt.SPAsS.business.planManagement.Course;
+import de.hsrm.mi.swt.SPAsS.business.planManagement.ExamModule;
 import de.hsrm.mi.swt.SPAsS.business.planManagement.Module;
 import de.hsrm.mi.swt.SPAsS.business.planManagement.Plan;
 
@@ -20,7 +21,7 @@ public class CompetenceValidator implements Validator {
 
 	public CompetenceValidator() {
 		this.className = getClass().getName();
-		this.name = "Kompetenzen Regel";
+		this.name = "Angebotsfrequenz";
 		this.message = "Die benötigen Kompetenzen für das Modul wurden noch nicht erreicht.";
 		this.description = "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.";
 
@@ -35,9 +36,40 @@ public class CompetenceValidator implements Validator {
 
 		// alle vermittelten Kompetenzen in Map packen
 		for (Module module : moduleList) {
-			for (Competence competence : module.getTaughtCompetences()) {
-				competenceMap.put(competence, module.getSemesterCurrent());
+			
+			if (module instanceof ExamModule) {
+				
+				ExamModule examModule = (ExamModule)module;
+				Module actualModule = examModule.getAssociatedActualModule();
+				
+			
+				if (examModule.getSemesterCurrent() > actualModule.getSemesterCurrent()){
+					
+					for (Competence competence : examModule.getTaughtCompetences()) {
+						competenceMap.put(competence, examModule.getSemesterCurrent());
+					}
+
+				} else {
+					
+					for (Competence competence : actualModule.getTaughtCompetences()) {
+						competenceMap.put(competence, module.getSemesterCurrent());
+					}
+					
+				}
+				
+			} else {
+				
+				if (!module.isHasExamModule()) {
+					
+					for (Competence competence : module.getTaughtCompetences()) {
+						competenceMap.put(competence, module.getSemesterCurrent());
+					}
+					
+				}
+				
 			}
+			
+			
 		}
 
 		// für alle Module checken, ob benötige Kompetenzen nicht in höherem Semester
@@ -46,9 +78,8 @@ public class CompetenceValidator implements Validator {
 
 			int currentSemester = module.getSemesterCurrent();
 
-			for (Competence competence : module.getNeededCompetences()) { // wenn Competence nicht erkannt, dann Strings
-																			// reinpacken und über Competence-Namen
-																			// reinpacken
+			for (Competence competence : module.getNeededCompetences()) { 
+
 				if (competenceMap.get(competence) >= currentSemester) {
 					competencesObtained = false;
 				}
@@ -72,54 +103,54 @@ public class CompetenceValidator implements Validator {
 
 	}
 
-	public void validate2(Plan plan) {
-
-		Map<Integer, List<Module>> moduleMap = plan.getModuleMap();
-		boolean competencesObtained = false;
-
-		for (int semester : moduleMap.keySet()) {
-
-			for (Module module : moduleMap.get(semester)) {
-
-				competencesObtained = false;
-
-				List<Competence> neededCompetences = module.getNeededCompetences();
-				List<Competence> taughtCompetences = new LinkedList<>();
-
-				if (neededCompetences.isEmpty()) {
-					continue;
-				}
-
-				for (int i = 1; i < semester; semester++) {
-
-					List<Module> tempList = moduleMap.get(i);
-
-					for (Module tempModule : tempList) {
-						taughtCompetences.addAll(tempModule.getTaughtCompetences());
-
-						if (taughtCompetences.containsAll(neededCompetences)) {
-							competencesObtained = true;
-							break;
-						}
-
-					}
-
-					if (competencesObtained) {
-						break;
-					}
-
-				}
-
-				if (!competencesObtained) {
-					module.setValid(false);
-					module.setNote(this.message);
-				}
-
-			}
-
-		}
-
-	}
+//	public void validate2(Plan plan) {
+//
+//		Map<Integer, List<Module>> moduleMap = plan.getModuleMap();
+//		boolean competencesObtained = false;
+//
+//		for (int semester : moduleMap.keySet()) {
+//
+//			for (Module module : moduleMap.get(semester)) {
+//
+//				competencesObtained = false;
+//
+//				List<Competence> neededCompetences = module.getNeededCompetences();
+//				List<Competence> taughtCompetences = new LinkedList<>();
+//
+//				if (neededCompetences.isEmpty()) {
+//					continue;
+//				}
+//
+//				for (int i = 1; i < semester; semester++) {
+//
+//					List<Module> tempList = moduleMap.get(i);
+//
+//					for (Module tempModule : tempList) {
+//						taughtCompetences.addAll(tempModule.getTaughtCompetences());
+//
+//						if (taughtCompetences.containsAll(neededCompetences)) {
+//							competencesObtained = true;
+//							break;
+//						}
+//
+//					}
+//
+//					if (competencesObtained) {
+//						break;
+//					}
+//
+//				}
+//
+//				if (!competencesObtained) {
+//					module.setValid(false);
+//					module.setNote(this.message);
+//				}
+//
+//			}
+//
+//		}
+//
+//	}
 
 	@Override
 	public String getClassName() {
