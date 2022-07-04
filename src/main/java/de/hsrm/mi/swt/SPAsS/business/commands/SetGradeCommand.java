@@ -2,6 +2,9 @@ package de.hsrm.mi.swt.SPAsS.business.commands;
 
 import de.hsrm.mi.swt.SPAsS.business.planManagement.Exam;
 
+/**
+ * command for setting the grade of an exam
+ */
 public class SetGradeCommand implements ICommand
 {
   private Exam myExam;

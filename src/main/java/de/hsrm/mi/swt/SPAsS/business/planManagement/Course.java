@@ -1,8 +1,12 @@
 package de.hsrm.mi.swt.SPAsS.business.planManagement;
 
 import java.io.Serializable;
-import java.util.List;
 
+
+/**
+ * A Course represents one part of a Module. An example course would be a lecture.
+ * Each Course has an exam.
+ */
 public class Course implements Serializable{
     private String name;
     private int cp;

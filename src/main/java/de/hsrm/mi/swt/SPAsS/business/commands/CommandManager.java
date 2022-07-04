@@ -3,6 +3,9 @@ package de.hsrm.mi.swt.SPAsS.business.commands;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Class that remembers executed commands and is therefore able to undo and redo multiple commands
+ */
 public class CommandManager {
 	private static CommandManager theCommandManager = null;
 	

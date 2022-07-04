@@ -1,9 +1,11 @@
 package de.hsrm.mi.swt.SPAsS.business.commands;
 
-import java.beans.PropertyChangeSupport;
 
 import de.hsrm.mi.swt.SPAsS.business.planManagement.Exam;
 
+/**
+ * Command for flagging Exam as passed
+ */
 public class PassExamCommand implements ICommand
 {
   private Exam myExam;

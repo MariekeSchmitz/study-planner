@@ -5,11 +5,6 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.net.URI;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -23,6 +18,9 @@ import com.google.gson.JsonSyntaxException;
 import de.hsrm.mi.swt.SPAsS.business.planManagement.Plan;
 import de.hsrm.mi.swt.SPAsS.business.restrictionManagement.Validator;
 
+/**
+ * Class that we use to read file and create Java Objects out of file and vice-versa.
+ */
 public class FileManager {
     private String path;
     public String jsonTestString;
@@ -33,14 +31,29 @@ public class FileManager {
 //       testPlan = new TestClassGenerator().plan;
     }
 
+    
+    /** 
+     * @return List<String>
+     */
     public List<String> curriculumScan() {
         return readFolderContent(FileType.CURRICULA);
     }
 
+    
+    /** 
+     * @return List<String>
+     */
     public List<String> planScan() {
         return readFolderContent(FileType.PLAN);
     }
 
+    
+    /** 
+     * searches all json files in either curricula or plan-folder
+     * @param type curriculum or plan
+     * @return List<String> all found files as list of Strings
+     * 
+     */
     private List<String> readFolderContent(FileType type) {
         List<String> fileNames = new ArrayList<>();
         String typePath = type == FileType.PLAN ? "plans" : "curricula";
@@ -61,6 +74,14 @@ public class FileManager {
         return fileNames;
     }
 
+    
+    /** 
+     * creates Plan out of file
+     * @param type
+     * @param name
+     * @return Plan
+     
+     */
     public Plan fileRead(FileType type, String name) {
         Gson gson = new GsonBuilder()
                 .registerTypeAdapter(Validator.class, new InterfaceDeserializer<>())
@@ -76,6 +97,12 @@ public class FileManager {
         }
     }
     
+    
+    /** 
+     * creates Plan out of directory
+     * @param dir
+     * @return Plan
+     */
     public Plan fileReadFromDirectory(String dir) {
     	
     	Gson gson = new GsonBuilder()
@@ -91,6 +118,12 @@ public class FileManager {
         }
     }
 
+    
+    /** 
+     * saves Plan into json file
+     * @param type curriclum or Plan
+     * @param p plan
+     */
     public void fileSave(FileType type, Plan p) {
         this.jsonTestString = new Gson().toJson(p);
         String typePath = type == FileType.PLAN ? "plans" : "curricula";
@@ -120,7 +153,13 @@ public class FileManager {
 //
 //    }
     
+    /** 
+     * creates Meta File out of plan (Metafile contains name, Studiengang and Hochschule of Plan/Curriculum)
+     * @param type
+     * @param p plan
 
+     * @throws IOException
+     */
     public void createMetaFile(FileType type, Plan p) throws IOException{
         String typePath = type == FileType.PLAN ? "plans" : "curricula";
     	String fileName = type == FileType.PLAN ? p.getName().replace(" ", "-") : p.getStudiengang().replace(" ", "-");
@@ -134,6 +173,14 @@ public class FileManager {
         out.close();
     }
 
+    
+    /** 
+     * Parses Metafile into usable Object
+     * @param type
+     * @param name
+     * @return HashMap<String, String>
+     * @throws FileNotFoundException
+     */
     public HashMap<String, String> readMeta(FileType type, String name) throws FileNotFoundException{
         HashMap<String,String> map = new HashMap<>();
         String typePath = type == FileType.PLAN ? "plans" : "curricula";
@@ -147,6 +194,11 @@ public class FileManager {
         return map;
     }
 
+    
+    /** 
+     * Tests the class
+     * @param syso
+     */
     public void test(boolean syso) {
         this.fileSave(FileType.PLAN, testPlan);
         String s = jsonTestString;

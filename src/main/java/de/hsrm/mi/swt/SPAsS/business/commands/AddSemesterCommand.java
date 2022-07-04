@@ -4,6 +4,9 @@ import java.util.LinkedList;
 
 import de.hsrm.mi.swt.SPAsS.business.planManagement.Plan;
 
+/**
+ * Command for adding an additional semester
+ */
 public class AddSemesterCommand implements ICommand
 {
   private Plan myPlan;

@@ -4,6 +4,9 @@ import java.util.LinkedList;
 
 import de.hsrm.mi.swt.SPAsS.business.planManagement.Plan;
 
+/**
+ * Command for removing highest Semester from Plan
+ */
 public class RemoveSemesterCommand implements ICommand
 {
   private Plan myPlan;

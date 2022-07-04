@@ -7,6 +7,10 @@ import java.util.Map;
 import de.hsrm.mi.swt.SPAsS.business.planManagement.Module;
 import de.hsrm.mi.swt.SPAsS.business.planManagement.Plan;
 
+
+/**
+ * Command for resetting Plan to default state
+ */
 public class ResetPlanCommand implements ICommand{
     private Plan myPlan;
     List<ICommand> commands = new ArrayList<ICommand>();

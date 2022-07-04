@@ -10,6 +10,10 @@ import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
+/**
+ * JavaFx - Application class. Contains Application initialisation, start and quit logic
+ * 
+ */
 public class App extends Application {
 
 	private String filepath;

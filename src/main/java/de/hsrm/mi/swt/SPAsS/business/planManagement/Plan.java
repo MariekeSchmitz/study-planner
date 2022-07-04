@@ -12,8 +12,10 @@ import de.hsrm.mi.swt.SPAsS.business.commands.CommandManager;
 import de.hsrm.mi.swt.SPAsS.business.commands.RemoveSemesterCommand;
 import de.hsrm.mi.swt.SPAsS.business.commands.ResetPlanCommand;
 import de.hsrm.mi.swt.SPAsS.business.restrictionManagement.Validator;
-import javafx.beans.property.SimpleFloatProperty;
 
+/** 
+	 * represents a users personal curriculum.
+	 */
 public class Plan {
 
     private String name;
@@ -31,7 +33,16 @@ public class Plan {
     private transient PropertyChangeSupport pcs = new PropertyChangeSupport(this);
    
     
-    
+    /** 
+	 * Constructor
+	 * @param name name of plan
+	 * @param curriculumName name of curriculum from which this plan was created
+	 * @param moduleList all modules of the plan
+	 * @param validatorList all Validator that validate if the modules in this plan are valid 
+	 * @param numberSemester the amount of semesters that are currently planned
+	 * @param studiengang name of the programm that this plan belongs to
+	 * @param hochschule  name of the University which the plan is for
+	 */
     public Plan(String name, String curriculumName, List<Module> moduleList, List<Validator> validatorList,
             int numberSemester, String studiengang, String hochschule) {
         this.name = name;
@@ -50,15 +61,28 @@ public class Plan {
         
     }
     
+    
+    /** 
+     * @param listener
+     */
     public void addPropertyChangeListener(PropertyChangeListener listener) {
         this.pcs.addPropertyChangeListener(listener);
     }
 
+    
+    /** 
+     * @param listener
+     */
     public void removePropertyChangeListener(PropertyChangeListener listener) {
         this.pcs.removePropertyChangeListener(listener);
     }
    
-
+    
+    
+    /** 
+     * calculates the needed amount of semesters.
+     * @return int
+     */
     private int calculateNumberSemesterDefault() {
     	
     	int max = 0;
@@ -78,7 +102,9 @@ public class Plan {
     }
     
     
-    
+    /** 
+     * resets all Modules back to their default semester
+     */
     public void resetPlan() {
 
         CommandManager.getInstance().execAndPush(new ResetPlanCommand(this));
@@ -96,7 +122,9 @@ public class Plan {
 
 
     }
-
+    /** 
+     * updates the Map with up-to-date values
+     */
     public void updateModuleMap() {
         for (int i = 1; i <= this.numberSemesterCurrent; i++) {
             moduleMap.put(i, new LinkedList<>());
@@ -107,6 +135,9 @@ public class Plan {
         }
     }
 
+    /** 
+     * removes the highest semester from the plan
+     */
     public void removeSemester() {
         if (checkLastSemesterEmpty()) {
             CommandManager.getInstance().execAndPush(new RemoveSemesterCommand(this));
@@ -116,18 +147,29 @@ public class Plan {
         //TODO else Throw 
     }
 
+    /** 
+     * adds a semester to the plan
+     */
     public void addSemester() {
         CommandManager.getInstance().execAndPush(new AddSemesterCommand(this));
         
         
     }
 
+    
+    /** 
+     * checks whether there are modules in the highest semester
+     * @return boolean
+     */
     public boolean checkLastSemesterEmpty() {
         
         return moduleMap.get(numberSemesterCurrent).isEmpty();
 
     }
 
+    /** 
+     * calculates the average grade of all modules
+     */
     public void calculateAverage() {
         int cp = 0;
         float grade = 0;
@@ -146,6 +188,12 @@ public class Plan {
         }
     }
     
+    
+    /** 
+     * returns a Module-Object that fits the given name 
+     * @param name
+     * @return Module
+     */
     public Module getModuleByName(String name) {
     	
     	for(List<Module> moduleList : moduleMap.values()) {
@@ -163,26 +211,50 @@ public class Plan {
     	
     }
 
+    
+    /** 
+     * @return String
+     */
     public String getName() {
         return name;
     }
 
+    
+    /** 
+     * @param name
+     */
     public void setName(String name) {
         this.name = name;
     }
 
+    
+    /** 
+     * @return String
+     */
     public String getCurriculumName() {
         return curriculumName;
     }
 
+    
+    /** 
+     * @param curriculumName
+     */
     public void setCurriculumName(String curriculumName) {
         this.curriculumName = curriculumName;
     }
 
+    
+    /** 
+     * @return List<Module>
+     */
     public List<Module> getModuleList() {
         return moduleList;
     }
 
+    
+    /** 
+     * @param moduleList
+     */
     public void setModuleList(List<Module> moduleList) {
         this.moduleList = moduleList;
 //        updateModuleMap();
@@ -190,14 +262,25 @@ public class Plan {
     }
 
 
+    
+    /** 
+     * @return List<Validator>
+     */
     public List<Validator> getValidatorList() {
         return validatorList;
     }
 
+    
+    /** 
+     * @param validatorList
+     */
     public void setValidatorList(List<Validator> validatorList) {
         this.validatorList = validatorList;
     }
-    
+
+    /** 
+     * validates the entire plan by using Validator
+     */
     public void validate () {
     	
     	
@@ -214,22 +297,42 @@ public class Plan {
     	
     }
 
+    
+    /** 
+     * @return int
+     */
     public int getNumberSemester() {
         return numberSemesterCurrent;
     }
 
+    
+    /** 
+     * @param numberSemester
+     */
     public void setNumberSemester(int numberSemester) {
         this.numberSemesterCurrent = numberSemester;
     }
 
+    
+    /** 
+     * @return Map<Integer, List<Module>>
+     */
     public Map<Integer, List<Module>> getModuleMap() {
         return moduleMap;
     }
 
+    
+    /** 
+     * @param moduleMap
+     */
     public void setModuleMap(Map<Integer, List<Module>> moduleMap) {
         this.moduleMap = moduleMap;
     }
     
+    
+    /** 
+     * @param averageGrade
+     */
     public void setAverageGrade(Float averageGrade) {
     	
     	var pre = this.averageGrade;
@@ -239,53 +342,104 @@ public class Plan {
     	
     }
     
+    
+    /** 
+     * @return Float
+     */
     public Float getAverageGrade() {
     	return this.averageGrade;
     }
     
 
-	public int getNumberSemesterCurrent() {
+	
+    /** 
+     * @return int
+     */
+    public int getNumberSemesterCurrent() {
 		return numberSemesterCurrent;
 	}
 
-	public void setNumberSemesterCurrent(int numberSemesterCurrent) {
+	
+    /** 
+     * @param numberSemesterCurrent
+     */
+    public void setNumberSemesterCurrent(int numberSemesterCurrent) {
 		this.numberSemesterCurrent = numberSemesterCurrent;
 	}
 
-	public int getNumberSemesterDefault() {
+	
+    /** 
+     * @return int
+     */
+    public int getNumberSemesterDefault() {
 		return numberSemesterDefault;
 	}
 
-	public void setNumberSemesterDefault(int numberSemesterDefault) {
+	
+    /** 
+     * @param numberSemesterDefault
+     */
+    public void setNumberSemesterDefault(int numberSemesterDefault) {
 		this.numberSemesterDefault = numberSemesterDefault;
 	}
 	
-	public void addModule (int semester, Module module){
+	
+    /** 
+     * adds Module to the Plan
+     * @param semester
+     * @param module
+     */
+    public void addModule (int semester, Module module){
 		this.moduleMap.get(semester).add(module);
 		this.moduleList.add(module);
 	}
 	
-	public void removeModule (int semester, Module module){
+	
+    /** 
+     * removes Module from Plan
+     * @param semester
+     * @param module
+     */
+    public void removeModule (int semester, Module module){
 		this.moduleMap.get(semester).remove(module);
 		this.moduleList.remove(module);
 	}
 
-	public String getStudiengang() {
+	
+    /** 
+     * @return String
+     */
+    public String getStudiengang() {
 		return studiengang;
 	}
 
-	public void setStudiengang(String studiengang) {
+	
+    /** 
+     * @param studiengang
+     */
+    public void setStudiengang(String studiengang) {
 		this.studiengang = studiengang;
 	}
 
-	public String getHochschule() {
+	
+    /** 
+     * @return String
+     */
+    public String getHochschule() {
 		return hochschule;
 	}
 
-	public void setHochschule(String hochschule) {
+	
+    /** 
+     * @param hochschule
+     */
+    public void setHochschule(String hochschule) {
 		this.hochschule = hochschule;
 	}
 	
+    /** 
+     * completely removes all user planning to create default state of plan
+     */
 	 public void planToDefaultPlan() {
 	    	
 	    	this.initialize();

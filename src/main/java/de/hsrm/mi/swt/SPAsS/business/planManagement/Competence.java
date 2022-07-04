@@ -2,7 +2,10 @@ package de.hsrm.mi.swt.SPAsS.business.planManagement;
 
 import java.io.Serializable;
 import java.util.Objects;
-
+/**
+ * Represents a single competence that a module either needs or teaches.
+ * Doesnt contain any logic.
+ */
 public class Competence implements Serializable{
 
     private String name;
