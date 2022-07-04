@@ -86,10 +86,13 @@ public class ModuleInformationViewController extends ViewController{
     	if (module.isValid()) {
     		moduleInformationView.getWarningBox().setVisible(false);
 			AnchorPane.setTopAnchor(moduleInformationView.getBox(), 200.0);
+			AnchorPane.setTopAnchor(moduleInformationView.getLabelHbox(), 220.0);
+
     	} else {
     		moduleInformationView.getWarningBox().setVisible(true);
     		moduleInformationView.getNoteWarningText().setText(module.getNote());
 			AnchorPane.setTopAnchor(moduleInformationView.getBox(), 300.0);
+			AnchorPane.setTopAnchor(moduleInformationView.getLabelHbox(), 320.0);
     	}
     	
     	coursesBox = moduleInformationView.getCoursesBox();

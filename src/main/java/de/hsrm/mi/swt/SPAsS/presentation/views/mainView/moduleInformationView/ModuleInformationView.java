@@ -5,6 +5,7 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
@@ -38,6 +39,10 @@ public class ModuleInformationView extends AnchorPane{
     private Button deleteExam;
     
     private Button backButton;
+    
+    private HBox labelHbox;
+    private Label passedLabel;
+    private Label gradeLabel;
    
 
     public ModuleInformationView() {
@@ -59,7 +64,13 @@ public class ModuleInformationView extends AnchorPane{
 		warningBox.setPrefHeight(75);
 		warningBox.setPadding(new Insets(5, 5, 5, 5));
 		warningBox.getStyleClass().add("border-red");
-    	
+		
+		passedLabel = new Label("bestanden");
+		gradeLabel = new Label("Note");
+		
+		labelHbox = new HBox(passedLabel, gradeLabel);
+		labelHbox.setSpacing(22);
+		
     	coursesHeadline = new Label("Lehrveranstaltung");
 		coursesHeadline.getStyleClass().add("coursesHeadline");
     	coursesBox = new VBox(5);
@@ -89,7 +100,7 @@ public class ModuleInformationView extends AnchorPane{
         
 		box = new VBox(coursesHeadline, coursesBox, modulDescriptionHeadline, moduleDescriptionText, taughtCompetencesHeadline, taughtCompetencesVbox, neededCompetencesHeadline, neededCompetencesVbox, deleteExam);
 		box.setMaxWidth(400);
-		box.setSpacing(10);
+		box.setSpacing(20);
 		box.setAlignment(Pos.TOP_LEFT);
 		box.setPadding(new Insets(10, 10, 10, 10));
 
@@ -100,6 +111,9 @@ public class ModuleInformationView extends AnchorPane{
 		AnchorPane.setTopAnchor(labelVBox, 75.0);
         AnchorPane.setLeftAnchor(labelVBox, 60.0);
 		AnchorPane.setRightAnchor(labelVBox, 150.0);
+		
+		AnchorPane.setTopAnchor(labelHbox, 320.0);
+		AnchorPane.setRightAnchor(labelHbox, 75.0);
 
 		AnchorPane.setTopAnchor(warningBox, 220.0);
         AnchorPane.setLeftAnchor(warningBox, 60.0);
@@ -113,11 +127,10 @@ public class ModuleInformationView extends AnchorPane{
 		AnchorPane.setRightAnchor(box, 50.0);
 		AnchorPane.setBottomAnchor(box, 0.0);
 
-        this.getChildren().addAll(box, backButton, labelVBox, warningBox);
+        this.getChildren().addAll(box, backButton, labelVBox, warningBox , labelHbox);
         
 		this.getStylesheets().add(getClass().getResource("/css/moduleInformationView.css").toExternalForm());
         this.setStyle( "-fx-background-color:rgb(255,255,255)");	
-		this.getStyleClass().add("test-border-red");
         this.setMaxWidth(600);
     }
 
@@ -265,6 +278,14 @@ public class ModuleInformationView extends AnchorPane{
 
 	public void setDeleteExam(Button deleteExam) {
 		this.deleteExam = deleteExam;
+	}
+
+	public HBox getLabelHbox() {
+		return labelHbox;
+	}
+
+	public void setLabelHbox(HBox labelHbox) {
+		this.labelHbox = labelHbox;
 	}
 
 

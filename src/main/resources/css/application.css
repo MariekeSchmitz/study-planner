@@ -128,3 +128,9 @@
     -fx-background-color: transparent;
     -fx-border-color: transparent;
 }
+.BackgroundBackButton {
+  	-fx-background-color: rgba(1,1,1,0.25);
+  	-fx-background-repeat: no-repeat no-repeat;
+ 	-fx-background-size: 25 25;
+ 	-fx-background-position:center;
+}
