@@ -1,6 +1,7 @@
 package de.hsrm.mi.swt.SPAsS.application;
 
 import de.hsrm.mi.swt.SPAsS.business.fileManagement.FileManager;
+import de.hsrm.mi.swt.SPAsS.business.fileManagement.FileType;
 import de.hsrm.mi.swt.SPAsS.business.fileManagement.TestClassGenerator;
 import de.hsrm.mi.swt.SPAsS.business.planManagement.Plan;
 import de.hsrm.mi.swt.SPAsS.presentation.views.ViewManager;
@@ -64,6 +65,9 @@ public class App extends Application {
 	}
 	
 	public void stop(){
+		
+		fileManager.fileSave(FileType.PLAN, plan);
+		
 		Platform.exit();
 		System.exit(1);
 	}

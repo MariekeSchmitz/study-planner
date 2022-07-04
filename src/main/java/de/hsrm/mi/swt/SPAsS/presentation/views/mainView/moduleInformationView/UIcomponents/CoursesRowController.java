@@ -1,6 +1,7 @@
 package de.hsrm.mi.swt.SPAsS.presentation.views.mainView.moduleInformationView.UIcomponents;
 
 import de.hsrm.mi.swt.SPAsS.business.planManagement.Course;
+import de.hsrm.mi.swt.SPAsS.business.planManagement.ExamModule;
 import de.hsrm.mi.swt.SPAsS.business.planManagement.Module;
 import de.hsrm.mi.swt.SPAsS.business.planManagement.Plan;
 import de.hsrm.mi.swt.SPAsS.presentation.views.ViewController;
@@ -48,10 +49,12 @@ public class CoursesRowController extends ViewController{
 		passedCheckbox.setSelected(course.getExam().getPassed());
 		
 		
-		if (module.getAssociatedModule() != null) {
+		if (module instanceof ExamModule) {
 			gradeInput.setVisible(true);
 			passedCheckbox.setVisible(false);
+		
 		} else {
+			
 			if (hasExtraExam) {
 				gradeInput.setVisible(false);
 				passedCheckbox.setVisible(false);
@@ -73,13 +76,6 @@ public class CoursesRowController extends ViewController{
 			}
 		}
 		
-		
-		
-		
-		
-		
-		
-		
 				
 		passedCheckbox.selectedProperty().addListener(new ChangeListener<Boolean>() {
 
@@ -88,68 +84,63 @@ public class CoursesRowController extends ViewController{
 				
 				course.getExam().setPassed(newValue);
 				
-				if (!newValue) {
-					gradeInput.setText("");
-				}
-				
 			}
 		});
 		
-		
-		
-		
-		
-		// TODO changeGradeCommand pattern einzeln und in Change Passed pattern einbauen
-//		
 		gradeInput.focusedProperty().addListener((observable, oldValue, newValue) -> {
 			
 			if (!newValue) {
 				
 				if (gradeInput.getText().isEmpty() || gradeInput.getText().equals("0")) {
-					passedCheckbox.setSelected(false);
+					
+					course.getExam().setGrade(0);
+					course.getExam().setPassed(false);
+
 				} else {
 					
 					try {
 						course.getExam().setGrade(Float.parseFloat(gradeInput.getText()));
-						passedCheckbox.setSelected(true);
-						plan.calculateAverage();
+						course.getExam().setPassed(true);
+
+//						plan.calculateAverage();
 					} catch(Exception e) {
 						gradeInput.setText("");
+						course.getExam().setPassed(false);
 					}
 					
 				}
 			}
 		});
 		
-		passedCheckbox.focusedProperty().addListener((observable, oldValue, newValue) -> {
-			
-			if (!newValue) {
-				
-				if (course.getExam().isGradeAvailable()) {
-					
-					if (gradeInput.getText().isEmpty() || gradeInput.getText().equals("0")|| !passedCheckbox.isSelected()) {
-						passedCheckbox.setSelected(false);
-						gradeInput.setText("");
-					
-					} else {
-						
-						try {
-							course.getExam().setGrade(Float.parseFloat(gradeInput.getText()));
-							passedCheckbox.setSelected(true);
-							plan.calculateAverage();
-
-							
-						} catch(Exception e) {
-							gradeInput.setText("");
-						}
-						
-					}
-				}
-				
-				
-			}
-			
-		});
+//		passedCheckbox.focusedProperty().addListener((observable, oldValue, newValue) -> {
+//			
+//			if (!newValue) {
+//				
+//				if (course.getExam().isGradeAvailable()) {
+//					
+//					if (gradeInput.getText().isEmpty() || gradeInput.getText().equals("0")|| !passedCheckbox.isSelected()) {
+//						passedCheckbox.setSelected(false);
+//						gradeInput.setText("");
+//					
+//					} else {
+//						
+//						try {
+//							course.getExam().setGrade(Float.parseFloat(gradeInput.getText()));
+//							passedCheckbox.setSelected(true);
+//							plan.calculateAverage();
+//
+//							
+//						} catch(Exception e) {
+//							gradeInput.setText("");
+//						}
+//						
+//					}
+//				}
+//				
+//				
+//			}
+//			
+//		});
 	}
 
 }

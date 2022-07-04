@@ -451,7 +451,6 @@ public class Plan {
 				module.setValid(true);
 				module.setPassed(false);
 				module.setGrade(0);
-				module.setAssociatedModule(null);
 				
 				for (Course course : module.getCourses()) {
 					course.getExam().setGrade(0);

@@ -1,6 +1,7 @@
 package de.hsrm.mi.swt.SPAsS.presentation.views.mainView.planView.uiComponents;
 
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.layout.Background;
@@ -8,6 +9,9 @@ import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import de.hsrm.mi.swt.SPAsS.business.planManagement.Course;
+import de.hsrm.mi.swt.SPAsS.business.planManagement.Exam;
+import de.hsrm.mi.swt.SPAsS.business.planManagement.ExamModule;
 import de.hsrm.mi.swt.SPAsS.business.planManagement.Module;
 /**
  * Visual Component - visualizes single Module
@@ -25,13 +29,15 @@ public class ModuleView extends ListCell<Module>{
 
         moduleLabel = new Label("");
         moduleLabel.getStyleClass().add("module");
+        moduleLabel.setStyle("-fx-font-weight: bold;");
 
         cpLabel = new Label("");
         cpLabel.getStyleClass().add("module");
         
-        labels = new VBox();
+        labels = new VBox(10);
         labels.getChildren().addAll(moduleLabel,cpLabel);
-		labels.setPadding(new Insets(0, 10, 0,10));
+		labels.setPadding(new Insets(15, 15, 15,15));
+		labels.setAlignment(Pos.TOP_LEFT);
         
         this.setGraphic(labels);
         this.setMaxHeight(50);
@@ -65,10 +71,11 @@ public class ModuleView extends ListCell<Module>{
     		
     		// TO DO 
     		String colorPassed = "-fx-background-color:rgba("+red+","+blue+","+green+", 0.5);";
-    		String onlyExam = "-fx-background-color:rgb(200,200,200)";
+    		String onlyExam = "-fx-background-color:rgb(200,0,200)";
     		
+    		System.out.println(item.getName() + " examModule: "+ (item instanceof ExamModule));
     		
-    		if (item.getAssociatedModule() != null) {
+    		if (item instanceof ExamModule) {
     			labels.setStyle(onlyExam);
     		} else if (item.isPassed()) {
     			labels.setStyle(colorPassed);

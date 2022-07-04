@@ -1,0 +1,37 @@
+/* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
+
+.test {
+    -fx-font-size: 50px;
+}
+
+
+/* HauptCSS*/
+
+.addbutton {
+    -fx-background-color: lightgrey;
+    -fx-border-color: white;
+    -fx-border-width: 0;
+    -fx-font-size: 50px;
+}
+
+
+.Button {
+  	-fx-background-color: transparent;
+  	-fx-background-repeat: no-repeat no-repeat;
+ 	-fx-background-size: 25 25;
+ 	-fx-background-position:center;
+ 	-fx-border-color: black;
+}
+.Button:hover{
+	 -fx-background-color: rgba(0.5,0.5,0.5,0.5);
+
+}
+#undoButton {
+	-fx-background-image: url("/images/redo.png");
+}
+#redoButton {
+	-fx-background-image: url("/images/undo.png");
+}
+#settingsButton{
+	-fx-background-image: url("/images/gear.png");
+}

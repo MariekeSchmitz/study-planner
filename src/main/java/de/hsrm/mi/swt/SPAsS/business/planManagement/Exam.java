@@ -158,8 +158,8 @@ public class Exam implements Serializable {
     public void firePassedEvent (Boolean passed) {
 		var pre = this.passed;
 		this.passed = passed;
-		this.pcs.firePropertyChange("bestanden", pre, this.passed);
-	  	System.out.println("bestanden - set "+this.passed);	}
+		this.pcs.firePropertyChange("passed", pre, this.passed);
+	  	System.out.println("passed - set "+this.passed);	}
 
 	
     /** 

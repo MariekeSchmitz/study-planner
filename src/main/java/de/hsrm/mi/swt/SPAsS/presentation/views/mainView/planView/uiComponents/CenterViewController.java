@@ -32,11 +32,12 @@ import javafx.scene.input.DataFormat;
 import javafx.scene.input.Dragboard;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.TransferMode;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.text.TextAlignment;
 import javafx.util.Callback;
 /**
  * Controller for dynamically filling Centerview
@@ -54,6 +55,7 @@ public class CenterViewController extends ViewController implements PropertyChan
 	private Button removeSemesterButton;
 	private Button addExamButton;
 	private Button savePlanButton;
+	private Button backButton;
 	private Label gradeAverage;
 	private Button save;
 	private TextField nameInput;
@@ -92,6 +94,7 @@ public class CenterViewController extends ViewController implements PropertyChan
 		addExamButton = centerView.getAddExam();
 		gradeAverage = centerView.getPointAverage();
 		savePlanButton = centerView.getSavePlan();
+		backButton = centerView.getBackButton();
 		save = new Button("save");
 		header = centerView.getHeader();
 
@@ -115,6 +118,10 @@ public class CenterViewController extends ViewController implements PropertyChan
 			generateListView();
 
 		});
+		
+		backButton.addEventHandler(ActionEvent.ACTION, e -> {
+			centerView.getPlanNameInputPane().setVisible(false);
+		});
 
 		addExamButton.addEventHandler(ActionEvent.ACTION, e -> {
 
@@ -123,18 +130,36 @@ public class CenterViewController extends ViewController implements PropertyChan
 		});
 		
 		savePlanButton.addEventHandler(ActionEvent.ACTION, e -> {
-
 			
-			VBox nameBox = new VBox();
+			AnchorPane savePane = new AnchorPane();
+			savePane.setStyle("-fx-background-color: rgb(255,255,255)");
+			savePane.getStyleClass().add("test-border-red");
+			savePane.setMaxSize(200, 500);
+			savePane.setPrefSize(200, 500);
+			
+			
+			
 			Label title = new Label("Wie soll dein Plan heißen?");
-			Pane savePane = new Pane();
-			HBox inputSaveBox = new HBox();
+			title.getStyleClass().add("header");
+			title.setWrapText(true);
+			title.getStyleClass().add("test-border-red");
+			title.setAlignment(Pos.CENTER);
+			title.setTextAlignment(TextAlignment.CENTER);
+
+			HBox inputSaveBox = new HBox(20);
 			nameInput = new TextField(plan.getName());
 			inputSaveBox.getChildren().addAll(nameInput,save);
+			inputSaveBox.setAlignment(Pos.CENTER);
+			
+			AnchorPane.setTopAnchor(title, 150.0);
+			AnchorPane.setLeftAnchor(title, 100.0);
+			AnchorPane.setRightAnchor(title, 100.0);
+			
+			AnchorPane.setTopAnchor(inputSaveBox, 300.0);
+			AnchorPane.setLeftAnchor(inputSaveBox, 100.0);
+			AnchorPane.setRightAnchor(inputSaveBox, 100.0);
 
-			nameBox.getChildren().addAll(title,inputSaveBox);
-
-			savePane.getChildren().add(nameBox);
+			savePane.getChildren().addAll(title,inputSaveBox);
 			
 			centerView.setPlanNameInputPane(savePane);
 			
@@ -277,7 +302,7 @@ public class CenterViewController extends ViewController implements PropertyChan
 							if (event.getX() == mouseX && event.getY() == mouseY) {
 
 								viewManager.getMainViewController().putModuleViewOnStack(moduleView.getItem());
-
+								System.out.println("Maus geklickt auf Modul");
 							}
 
 						}
@@ -324,7 +349,7 @@ public class CenterViewController extends ViewController implements PropertyChan
 
 			break;
 
-		case "bestanden":
+		case "passed":
 			plan.calculateAverage();
 			generateListView();
 
