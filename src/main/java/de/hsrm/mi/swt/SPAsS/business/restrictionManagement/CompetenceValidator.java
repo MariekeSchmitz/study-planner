@@ -23,9 +23,9 @@ public class CompetenceValidator implements Validator {
 
 	public CompetenceValidator() {
 		this.className = getClass().getName();
-		this.name = "Kompetenzabhängigkeiten ";
+		this.name = "Kompetenzabhängigkeiten";
 		this.message = "Die benötigen Kompetenzen für das Modul wurden noch nicht erreicht.";
-		this.description = "Es wird immer geprüft, ob du in deiner jetzigen Planung die inidivuellen Kompetenzen jedes Moduls in einer sinnvollen Reihenfolge erlangst.";
+		this.description = "Es wird immer geprüft, ob du in deiner jetzigen Planung die individuellen Kompetenzen jedes Moduls in einer sinnvollen Reihenfolge erlangst.";
 
 	}
 
@@ -83,7 +83,7 @@ public class CompetenceValidator implements Validator {
 
 				if (competenceMap.get(competence) >= currentSemester) {
 					competencesObtained = false;
-					this.message = "Die benötigte Kompetenz " + competence.getName() + " wurde zum geplanten Zeitpunkt noch nicht erreicht. ";
+					this.message = "Die benötigte Kompetenz '" + competence.getName() + "' wurde zum geplanten Zeitpunkt noch nicht erreicht. ";
 				}
 
 			}

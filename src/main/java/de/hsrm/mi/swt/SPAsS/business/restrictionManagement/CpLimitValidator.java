@@ -22,7 +22,7 @@ public class CpLimitValidator implements Validator {
  
     public CpLimitValidator(int cpLimit){
         this.className = getClass().getName();
-		this.name = "CP-Limit Regel";
+		this.name = "CP-Limit";
         this.cpLimit = cpLimit;
 		this.description = "Du wirst immer darauf hingewiesen, wenn du in einem Semester dein persönliches CP-Limit übersteigst. Es soll schließlich auch nicht zu stressig werden.";
         this.message = "Dein Limit von " + cpLimit + " Creditpoints pro Semester wurde überschritten.";
