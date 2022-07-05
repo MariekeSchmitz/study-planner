@@ -16,8 +16,10 @@ import de.hsrm.mi.swt.SPAsS.presentation.views.mainView.settingsView.SettingsVie
 import javafx.animation.Interpolator;
 import javafx.animation.TranslateTransition;
 import javafx.geometry.Pos;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
 import javafx.util.Duration;
 import de.hsrm.mi.swt.SPAsS.business.planManagement.Module;
 
@@ -38,6 +40,7 @@ public class MainViewController extends ViewController{
     private ExamView examView;
     private SettingsView settingsView;
 	private LeftSideView leftSideView;
+	private Pane backgroundPane;
 
     
     private App app;
@@ -59,7 +62,8 @@ public class MainViewController extends ViewController{
         this.moduleInformationView= (ModuleInformationView)moduleInformationViewController.getRootView(); 
         this.settingsView = (SettingsView)settingsViewController.getRootView();
         this.leftSideView = (LeftSideView) leftSideViewController.getRootView();
-        
+        backgroundPane = new Pane();
+        backgroundPane.getStyleClass().add("BackgroundBackButton");
         rootView = mainViewStack;
         
         
@@ -69,7 +73,6 @@ public class MainViewController extends ViewController{
     
     @Override
     public void initialise() {
-		
     	StackPane.setAlignment(moduleInformationView, Pos.CENTER_RIGHT);
     	StackPane.setAlignment(examView, Pos.CENTER_RIGHT);
 		StackPane.setAlignment(settingsView, Pos.CENTER_LEFT);
@@ -78,6 +81,8 @@ public class MainViewController extends ViewController{
     	moduleInformationView.setVisible(false);
     	examView.setVisible(false);
 		settingsView.setVisible(false);
+		backgroundPane.setVisible(false);
+		mainViewStack.getChildren().add(backgroundPane);
     	mainViewStack.getChildren().add(moduleInformationView);
         mainViewStack.getChildren().add(examView);
 		mainViewStack.getChildren().add(settingsView);
@@ -125,7 +130,10 @@ public class MainViewController extends ViewController{
     	
     	if (!Scenes.MODULE_INFORMATION_VIEW.isIn()) {
         	this.transitionIn(moduleInformationViewController, false);
+	        moduleInformationView.setEffect(new DropShadow(204,0,2, Color.rgb(49, 49, 64)));
         	Scenes.MODULE_INFORMATION_VIEW.setIn(true);
+    		setBackgroundVisible();
+
     	} 
     	
     	
@@ -137,16 +145,29 @@ public class MainViewController extends ViewController{
     public void putExamViewOnStack() {
     	
     	this.transitionIn(examViewController, false);
+        examView.setEffect(new DropShadow(204,0,2, Color.rgb(49, 49, 64)));
     	Scenes.EXAM_VIEW.setIn(true);
+		setBackgroundVisible();
     	
     }
 
 	public void putSettingsViewOnStack(){
 		if (!Scenes.SETTINGS_VIEW.isIn()) {
 			this.transitionIn(settingsViewController, true);
+	        settingsView.setEffect(new DropShadow(204,0,2, Color.rgb(49, 49, 64)));
 			Scenes.SETTINGS_VIEW.setIn(true);
+			setBackgroundVisible();
+
 		}
 			
+	}
+	
+	public void setBackgroundVisible() {
+		if(Scenes.SETTINGS_VIEW.isIn() || Scenes.EXAM_VIEW.isIn() || Scenes.MODULE_INFORMATION_VIEW.isIn()) {
+			backgroundPane.setVisible(true);
+		} else {
+			backgroundPane.setVisible(false);
+		}
 	}
     
     
@@ -177,26 +198,31 @@ public class MainViewController extends ViewController{
 		TranslateTransition transitionAnim = new TranslateTransition();
 		
 	
-		
 		switch (scene) {
 			case MODULE_INFORMATION_VIEW:
 				transitionAnim.setNode(moduleInformationView);
 				transitionAnim.setToX(moduleInformationView.getMaxWidth());
+				moduleInformationView.setEffect(null);
+				Scenes.MODULE_INFORMATION_VIEW.setIn(false);
 				break;
 			case SETTINGS_VIEW:
 				transitionAnim.setNode(settingsView);
 				transitionAnim.setToX(-settingsView.getMaxWidth());
+				settingsView.setEffect(null);
+				Scenes.SETTINGS_VIEW.setIn(false);
 				break;
 			case EXAM_VIEW:
 				transitionAnim.setNode(examView);
 				transitionAnim.setToX(examView.getMaxWidth());
+				examView.setEffect(null);
+				Scenes.EXAM_VIEW.setIn(false);
 				break;
 		}
 		
 		transitionAnim.setDuration(Duration.millis(200));
 		transitionAnim.setInterpolator(Interpolator.EASE_OUT);
 		transitionAnim.playFromStart();
-
+		setBackgroundVisible();
 
 	}
 

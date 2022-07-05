@@ -71,6 +71,12 @@
     -fx-background-color: transparent;
     -fx-border-color: grey;
     -fx-border-width: 1;
+    -fx-font-family: 'Open Sans Regular', sans-serif;
+    
+}
+.buttons:hover {
+    -fx-background-color: rgba(246, 246, 246,0.5);
+    
 }
 
 .backbutton {
@@ -84,6 +90,12 @@
     -fx-border-color: grey;
     -fx-border-width: 1;
     -fx-border-style: segments(10, 15, 15, 15) line-cap round;
+    -fx-font-family: 'Open Sans Regular', sans-serif;
+    
+}
+.addSemester:hover{
+	    -fx-background-color: rgba(246, 246, 246,0.5);
+	
 }
 
 .numberSemester {
@@ -91,6 +103,9 @@
 }
 
 .list-view {
+    -fx-background-color: transparent;
+}
+.list-view .viewport {
     -fx-background-color: transparent;
 }
 
@@ -159,8 +174,15 @@
     -fx-border-color: transparent;
 }
 .BackgroundBackButton {
-  	-fx-background-color: rgba(1,1,1,0.25);
+  	-fx-background-color: rgba(49,49,64,0.64);
   	-fx-background-repeat: no-repeat no-repeat;
  	-fx-background-size: 25 25;
  	-fx-background-position:center;
+}
+.backButton {
+	-fx-background-color: transparent;
+}
+.backButton:hover{
+	-fx-background-color: rgba(246, 246, 246,0.5);
+	
 }

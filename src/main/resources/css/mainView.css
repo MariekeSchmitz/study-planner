@@ -2,15 +2,23 @@
 
 .header {
     -fx-font-size: 50px;
+    -fx-font-family: 'Open Sans Bold', sans-serif;
 }
+
+.headerExamView {
+    -fx-font-size: 30px;
+    -fx-font-family: 'Open Sans Bold', sans-serif;
+}
+
 
 .examListHeader {
     -fx-font-size: 15px;
-    -fx-font-weight: bold;
+    -fx-font-family: 'Open Sans Bold', sans-serif;
 }
 
 .examListCp {
-    -fx-font-size: 10px;
+    -fx-font-size: 15px;
+    -fx-font-family: 'Open Sans Regular', sans-serif;
 }
 
 .scroll-pane {

@@ -29,10 +29,12 @@ public class ModuleView extends ListCell<Module>{
     public ModuleView() {
 
         moduleLabel = new Label("");
-        moduleLabel.setStyle("-fx-font-family: 'Open Sans SemiBold', sans-serif;");
+        moduleLabel.setStyle("-fx-font-family: 'Open Sans SemiBold', sans-serif;"
+        		+ "-fx-font-size:12px;");
 
         cpLabel = new Label("");
-        cpLabel.setStyle("-fx-font-family: 'Open Sans Light', sans-serif;");
+        cpLabel.setStyle("-fx-font-family: 'Open Sans Light', sans-serif;"
+        		+ "-fx-font-size: 12px;");
         
         labels = new VBox(5);
         labels.getChildren().addAll(moduleLabel,cpLabel);
@@ -75,7 +77,7 @@ public class ModuleView extends ListCell<Module>{
     		// TO DO 
     		//String colorPassed = "-fx-background-color:rgba("+red+","+blue+","+green+", 0.5);";
     		String colorPassed = "-fx-background-color:rgba(204,231,86, 1);";
-    		String onlyExam = "-fx-background-color:rgb(200,0,200)";
+    		String onlyExam = "-fx-background-color:rgb(235,235,235)";
     		String invalid = "-fx-background-color: rgb(255,165,149)";
     		
     		System.out.println(item.getName() + " valid: "+ (item.isValid()));

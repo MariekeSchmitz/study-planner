@@ -1,12 +1,18 @@
 package de.hsrm.mi.swt.SPAsS.presentation.views.mainView.examView;
 
+import java.io.File;
+
 import de.hsrm.mi.swt.SPAsS.business.planManagement.ExamModule;
 import de.hsrm.mi.swt.SPAsS.business.planManagement.Module;
 
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.effect.DropShadow;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
 /**
  * Visualizes all Exams as List
  */
@@ -19,17 +25,19 @@ public class ExamView extends AnchorPane{
 
     public ExamView() {
 
-        backbutton = new Button("->");
-        backbutton.setPrefSize(100, 100);
-        backbutton.setMaxSize(50, 50);
-        backbutton.getStyleClass().add("backbutton");
+		ImageView ivIcon = new ImageView(new Image(File.separator+"images" + File.separator +"X.png"));
+		ivIcon.setFitHeight(50);
+		ivIcon.setFitWidth(50);
+		backbutton = new Button();
+		backbutton.setGraphic(ivIcon);
+		backbutton.getStyleClass().add("backButton");
 
         header = new Label("Klausur \nhinzufügen");
-        header.getStyleClass().add("header");
+        header.getStyleClass().add("headerExamView");
 
         listView = new ListView<>();
 
-        AnchorPane.setTopAnchor(header, 50.0);
+        AnchorPane.setTopAnchor(header, 70.0);
         AnchorPane.setLeftAnchor(header, 50.0);
 
         AnchorPane.setTopAnchor(backbutton, 30.0);
@@ -42,8 +50,8 @@ public class ExamView extends AnchorPane{
 
         this.getStylesheets().add(getClass().getResource("/css/MainView.css").toExternalForm());
         this.getChildren().addAll(header, backbutton, listView);
-        this.setMaxWidth(500);
-        
+        this.setMaxWidth(600);
+        this.setEffect(new DropShadow(204,0,2, Color.rgb(49, 49, 64)));
         this.setStyle( "-fx-background-color:rgb(255,255,255)");	
     }
 

@@ -1,12 +1,18 @@
 package de.hsrm.mi.swt.SPAsS.presentation.views.mainView.moduleInformationView;
 
+import java.io.File;
+
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.effect.DropShadow;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 
 /**
  * View for all details of single Module - opens after selection of Module on Plan
@@ -89,15 +95,17 @@ public class ModuleInformationView extends AnchorPane{
 		neededCompetencesHeadline.getStyleClass().add("coursesHeadline");
 		neededCompetencesVbox = new VBox();
 
-        backButton = new Button("back");
-		backButton.getStyleClass().add("backbutton");
-		backButton.setPrefSize(100, 100);
-        backButton.setMaxSize(50, 50);
+		ImageView ivIcon = new ImageView(new Image(File.separator+"images" + File.separator +"X.png"));
+		ivIcon.setFitHeight(50);
+		ivIcon.setFitWidth(50);
+		backButton = new Button();
+		backButton.setGraphic(ivIcon);
+		backButton.getStyleClass().add("backButton");
 
         deleteExam = new Button("Klausur entfernen");
-     
         deleteExam.setPrefSize(300, 100);
-        deleteExam.setMaxSize(50, 50);
+        deleteExam.setMaxSize(300, 50);
+        deleteExam.getStyleClass().add("buttons");
         
 		box = new VBox(coursesHeadline, coursesBox, modulDescriptionHeadline, moduleDescriptionText, taughtCompetencesHeadline, taughtCompetencesVbox, neededCompetencesHeadline, neededCompetencesVbox, deleteExam);
 		box.setMaxWidth(400);
@@ -118,7 +126,7 @@ public class ModuleInformationView extends AnchorPane{
 
 		AnchorPane.setTopAnchor(warningBox, 220.0);
         AnchorPane.setLeftAnchor(warningBox, 60.0);
-		AnchorPane.setRightAnchor(warningBox, 50.0);
+		AnchorPane.setRightAnchor(warningBox, 50.0); 
 
 		AnchorPane.setTopAnchor(backButton, 30.0);
         AnchorPane.setRightAnchor(backButton, 50.0);
@@ -130,6 +138,7 @@ public class ModuleInformationView extends AnchorPane{
 
         this.getChildren().addAll(box, backButton, labelVBox, warningBox , labelHbox);
         
+        this.setEffect(new DropShadow(204,0,2, Color.rgb(49, 49, 64)));
 		this.getStylesheets().add(getClass().getResource("/css/moduleInformationView.css").toExternalForm());
         this.setStyle( "-fx-background-color:rgb(255,255,255)");	
         this.setMaxWidth(600);

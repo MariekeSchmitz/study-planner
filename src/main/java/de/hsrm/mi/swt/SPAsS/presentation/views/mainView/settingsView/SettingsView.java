@@ -5,6 +5,7 @@ import java.io.File;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -65,6 +66,7 @@ public class SettingsView extends AnchorPane {
         AnchorPane.setBottomAnchor(scrollPane, 0.0);
 
         this.getChildren().addAll(header, backButton, scrollPane);
+        this.setEffect(new DropShadow(204,0,2, Color.rgb(49, 49, 64)));
         this.getStylesheets().add(getClass().getResource("/css/settingsView.css").toExternalForm());
 		this.setId("secondColor");
         this.setMaxWidth(675);
