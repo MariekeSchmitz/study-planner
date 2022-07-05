@@ -22,7 +22,7 @@ public class CorrectSemesterValidator implements Validator  {
     public CorrectSemesterValidator(){
         this.className = getClass().getName();
 		this.name = "Angebotsfrequenz der Module";
-		this.description = "Module können auch unregelmäßig (z.B. nur alle zwei Semester) angeboten werden. Nach Verstoßen dieser Einschränkung wird dein Plan nach jeder Änderung geprüft.";
+		this.description = "Module können auch unregelmäßig (z.B. nur alle zwei Semester) angeboten werden. Auf Verstöße dieser Einschränkung wird dein Plan nach jeder Änderung geprüft.";
         this.message = "Das Modul wird nur jährlich angeboten. ";
     }
     @Override
@@ -43,7 +43,7 @@ public class CorrectSemesterValidator implements Validator  {
             if (offeredTime == OfferedTime.YEARLY){
                 if ((currentSemester + defaultSemester) % 2 != 0){
                     module.setValid(false);
-                    module.setNote("Das Modul wird im " + module.getSemesterCurrent() + ". nicht angeboten.");
+                    module.setNote("Das Modul wird im " + module.getSemesterCurrent() + ". Semester nicht angeboten.");
                 } else {
                     if (module.isValid()) {
                         module.setValid(true);

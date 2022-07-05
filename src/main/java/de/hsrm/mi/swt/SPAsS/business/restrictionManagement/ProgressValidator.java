@@ -20,7 +20,7 @@ public class ProgressValidator implements Validator{
     
     public ProgressValidator(int progressValue){
         this.className = getClass().getName();
-		this.name = "Fortschritts Regel";
+		this.name = "Fortschrittsregel";
         this.progressValue = progressValue;
         this.message = "Die Fortschrittsregelung ist verletzt.";
 		this.description = "In deinem Studiengang gibt es eine Fortschrittsregel. Um ein Modul, das im Curriculum höher liegt als im " + progressValue + ". Semester, musst du alle Module, die mindestens " + progressValue + " Semester tiefer vorgesehen sind bereits belegt haben.";
@@ -65,7 +65,7 @@ public class ProgressValidator implements Validator{
     			for (Module tempModule : moduleMap.get(i)) {
     				if (tempModule.getSemesterDefault() <= neededSemester) {			
     					progressValid = false;
-    					this.message = "Die Fortschrittsregelung ist wegen des Moduls " + tempModule.getName() + " verletzt. ";
+    					this.message = "Die Fortschrittsregelung ist wegen des Moduls '" + tempModule.getName() + "' verletzt. ";
     					break;
     				}   				
     			}
