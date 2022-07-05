@@ -184,7 +184,7 @@ public class CenterViewController extends ViewController implements PropertyChan
 		addSemesterButton.addEventHandler(ActionEvent.ACTION, e -> {
 
 			plan.addSemester();
-			generateListView();
+			//generateListView();
 
 			System.out.println(moduleMap);
 
@@ -195,7 +195,7 @@ public class CenterViewController extends ViewController implements PropertyChan
 		removeSemesterButton.addEventHandler(ActionEvent.ACTION, e -> {
 
 			plan.removeSemester();
-			generateListView();
+			//generateListView();
 
 			System.out.println(moduleMap);
 
@@ -301,7 +301,7 @@ public class CenterViewController extends ViewController implements PropertyChan
 						public void handle(MouseEvent event) {
 
 							if (event.getX() == mouseX && event.getY() == mouseY) {
-
+								if(moduleView.getItem()==null) return;
 								viewManager.getMainViewController().putModuleViewOnStack(moduleView.getItem());
 								System.out.println("Maus geklickt auf Modul");
 							}
@@ -393,10 +393,13 @@ public class CenterViewController extends ViewController implements PropertyChan
 				gradeAverage.setText("Aktueller Notendurchschnitt: " + Float.toString(plan.getAverageGrade()));
 			}
 		break;
-
+		case "semestercountChange":
+			this.generateListView();
+		break;
 		default:
 			throw new IllegalArgumentException("UnbehandeltesEvent " + event);
 		}
+		
 
 		
 

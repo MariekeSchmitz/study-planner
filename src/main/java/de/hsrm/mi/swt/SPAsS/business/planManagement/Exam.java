@@ -5,7 +5,6 @@ import java.beans.PropertyChangeSupport;
 import java.io.Serializable;
 
 import de.hsrm.mi.swt.SPAsS.business.commands.CommandManager;
-import de.hsrm.mi.swt.SPAsS.business.commands.PassExamCommand;
 import de.hsrm.mi.swt.SPAsS.business.commands.SetGradeCommand;
 
 
@@ -146,21 +145,11 @@ public class Exam implements Serializable {
      * @param passed
      */
     public void setPassed(Boolean passed) {
-		
-		CommandManager.getInstance().execAndPush(new PassExamCommand(this, passed));
-
-	}
-	
-	
-    /** 
-     * @param passed
-     */
-    public void firePassedEvent (Boolean passed) {
-		var pre = this.passed;
+        var pre = this.passed;
 		this.passed = passed;
 		this.pcs.firePropertyChange("passed", pre, this.passed);
-	  	System.out.println("passed - set "+this.passed);	}
-
+	  	System.out.println("passed - set "+this.passed);	
+	}
 	
     /** 
      * @return boolean

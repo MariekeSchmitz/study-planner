@@ -84,7 +84,6 @@ public class ModuleInformationViewController extends ViewController{
     }
     
     public void setModuleInformation(Module module) {
-    	
     	this.module = module;
     	
     	moduleInformationView.getModuleName().setText(module.getName());

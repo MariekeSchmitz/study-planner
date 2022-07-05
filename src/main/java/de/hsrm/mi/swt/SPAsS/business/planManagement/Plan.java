@@ -141,7 +141,6 @@ public class Plan {
     public void removeSemester() {
         if (checkLastSemesterEmpty()) {
             CommandManager.getInstance().execAndPush(new RemoveSemesterCommand(this));
-            
         } 
         
         //TODO else Throw 
@@ -152,8 +151,6 @@ public class Plan {
      */
     public void addSemester() {
         CommandManager.getInstance().execAndPush(new AddSemesterCommand(this));
-        
-        
     }
 
     
@@ -312,7 +309,9 @@ public class Plan {
      * @param numberSemester
      */
     public void setNumberSemester(int numberSemester) {
+        int pre = this.numberSemesterCurrent;
         this.numberSemesterCurrent = numberSemester;
+        this.pcs.firePropertyChange("semestercountChange", pre, numberSemester);
     }
 
     
@@ -442,31 +441,30 @@ public class Plan {
     /** 
      * completely removes all user planning to create default state of plan
      */
-	 public void planToDefaultPlan() {
-	    	
-	    	this.initialize();
 
-	    	this.setName(studiengang);
+    public void planToDefaultPlan() {
+    	
+    	this.initialize();
+    	this.setName(studiengang);
+		
+		for (Module module : moduleList) {
+			module.setSemesterCurrent(module.getSemesterDefault());
+			module.setValid(true);
+			module.setPassed(false);
+			module.setGrade(0);
+			module.setAssociatedExamModule(null);
+			module.checkGradeAvailable();
 			
-			for (Module module : moduleList) {
-				module.setSemesterCurrent(module.getSemesterDefault());
-				module.setValid(true);
-				module.setPassed(false);
-				module.setGrade(0);
-				
-				for (Course course : module.getCourses()) {
-					course.getExam().setGrade(0);
-					course.getExam().setPassed(false);
-					course.setHasExtraExam(false);
-				}
-
-			
+			for (Course course : module.getCourses()) {
+				course.getExam().setGrade(0);
+				course.getExam().setPassed(false);
+				course.setHasExtraExam(false);
 			}
-			this.validate();
-			this.initialize();
-	    	
-	    }
-	
-	
+		
+		}
+		this.numberSemesterCurrent = numberSemesterDefault;
+		this.updateModuleMap();
+    	
+    }
 
 }

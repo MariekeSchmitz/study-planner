@@ -1,5 +1,8 @@
 package de.hsrm.mi.swt.SPAsS.presentation.views.mainView.moduleInformationView.UIcomponents;
 
+import de.hsrm.mi.swt.SPAsS.business.commands.CommandManager;
+import de.hsrm.mi.swt.SPAsS.business.commands.SetGradeCommand;
+import de.hsrm.mi.swt.SPAsS.business.commands.SetPassedForNonExamCommand;
 import de.hsrm.mi.swt.SPAsS.business.planManagement.Course;
 import de.hsrm.mi.swt.SPAsS.business.planManagement.ExamModule;
 import de.hsrm.mi.swt.SPAsS.business.planManagement.Module;
@@ -7,7 +10,6 @@ import de.hsrm.mi.swt.SPAsS.business.planManagement.Plan;
 import de.hsrm.mi.swt.SPAsS.presentation.views.ViewController;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.geometry.Insets;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 /**
@@ -97,7 +99,7 @@ public class CoursesRowController extends ViewController{
 			@Override
 			public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
 				
-				course.getExam().setPassed(newValue);
+				CommandManager.getInstance().execAndPush(new SetPassedForNonExamCommand(course.getExam(), newValue));
 				
 			}
 		});
@@ -107,20 +109,16 @@ public class CoursesRowController extends ViewController{
 			if (!newValue) {
 				
 				if (gradeInput.getText().isEmpty() || gradeInput.getText().equals("0")) {
-					
-					course.getExam().setGrade(0);
-					course.getExam().setPassed(false);
+					CommandManager.getInstance().execAndPush(new SetGradeCommand(course.getExam(), 0));
 
 				} else {
 					
 					try {
-						course.getExam().setGrade(Float.parseFloat(gradeInput.getText()));
-						course.getExam().setPassed(true);
+						CommandManager.getInstance().execAndPush(new SetGradeCommand(course.getExam(), Float.parseFloat(gradeInput.getText())));
 
 //						plan.calculateAverage();
 					} catch(Exception e) {
-						gradeInput.setText("");
-						course.getExam().setPassed(false);
+						CommandManager.getInstance().execAndPush(new SetGradeCommand(course.getExam(), 0));
 					}
 					
 				}

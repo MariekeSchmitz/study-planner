@@ -66,7 +66,7 @@ public class App extends Application {
 	
 	public void stop(){
 		
-		fileManager.fileSave(FileType.PLAN, plan);
+		if(plan!=null)fileManager.fileSave(FileType.PLAN, plan);
 		
 		Platform.exit();
 		System.exit(1);

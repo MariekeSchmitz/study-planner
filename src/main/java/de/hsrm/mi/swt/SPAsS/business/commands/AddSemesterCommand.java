@@ -17,14 +17,20 @@ public class AddSemesterCommand implements ICommand
 
   @Override
   public void execute() {
-    myPlan.setNumberSemester(myPlan.getNumberSemester()+1);
-    myPlan.getModuleMap().put(myPlan.getNumberSemester(), new LinkedList<>());
+    int x = myPlan.getNumberSemester()+1;
+    myPlan.getModuleMap().put(x, new LinkedList<>());
+    myPlan.setNumberSemester(x);
   }
 
   @Override
   public void undo() {
-	myPlan.getModuleMap().remove(myPlan.getNumberSemester());
-    myPlan.setNumberSemester(myPlan.getNumberSemester()-1);
+    int x = myPlan.getNumberSemester()-1;
+	  myPlan.getModuleMap().remove(myPlan.getNumberSemester());
+    myPlan.setNumberSemester(x);
+  }
 
+  @Override
+  public String describe() {
+    return "Add Semester";
   }
 }

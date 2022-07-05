@@ -33,6 +33,7 @@ public class CommandManager {
 		if (index > 0) {
 			index--;
 			ICommand cmd = commands.get(index);
+			System.out.println("undo " + cmd.describe());
 			cmd.undo();
 		} else {
 			throw new UndoRedoException("Nothing to undo");
@@ -42,6 +43,7 @@ public class CommandManager {
 	public void redo() throws UndoRedoException{
 		if (index < commands.size()) {
 			ICommand cmd = commands.get(index);
+			System.out.println("redo " + cmd.describe());
 			cmd.execute();
 			index++;
 		} else {

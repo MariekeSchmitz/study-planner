@@ -21,6 +21,7 @@ public class SetGradeCommand implements ICommand
 
   @Override
   public void execute() {
+		oldGrade = myExam.getGrade();
 	  myExam.setGrade(grade);
 	  if (grade == 0) {
 		  myExam.setPassed(false);
@@ -39,5 +40,10 @@ public class SetGradeCommand implements ICommand
 		  myExam.setPassed(true);
 	  }
 	  
+  }
+
+  @Override
+  public String describe() {
+    return "Set Grade";
   }
 }

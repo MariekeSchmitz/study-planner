@@ -27,5 +27,10 @@ public class MoveSemesterCommand implements ICommand {
     public void undo() {
         myModule.setSemesterCurrent(semsterOld);
     }
+
+    @Override
+    public String describe() {
+      return "Move Semester";
+    }
     
 }

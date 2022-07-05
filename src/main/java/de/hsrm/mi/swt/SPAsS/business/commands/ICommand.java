@@ -13,5 +13,7 @@ public interface ICommand {
 	/**
  undo command
  */
-	public void undo();                  
+	public void undo(); 
+	
+	public String describe();
 }
