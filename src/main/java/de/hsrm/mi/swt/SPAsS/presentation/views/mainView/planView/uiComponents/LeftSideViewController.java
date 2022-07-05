@@ -33,8 +33,6 @@ public class LeftSideViewController extends ViewController {
 
         redoButton = leftSideView.getRedoButton();
         undoButton = leftSideView.getUndoButton();
-        saveButton = leftSideView.getSaveButton();
-        referenceButton = leftSideView.getReferenceButton();
         settingsButton = leftSideView.getSettingsButton();
 
         initialise();
@@ -65,12 +63,6 @@ public class LeftSideViewController extends ViewController {
                 
                 alert.showAndWait();
             }
-         });
-         saveButton.addEventHandler(ActionEvent.ACTION, e -> {
-            System.out.println("Save Button Pressed"); 
-         });
-         referenceButton.addEventHandler(ActionEvent.ACTION, e -> {
-            System.out.println("Reference Button Pressed"); 
          });
          settingsButton.addEventHandler(ActionEvent.ACTION, e -> {
             System.out.println("Settings Button Pressed"); 

@@ -18,20 +18,23 @@
 .Button {
   	-fx-background-color: transparent;
   	-fx-background-repeat: no-repeat no-repeat;
- 	-fx-background-size: 25 25;
  	-fx-background-position:center;
- 	-fx-border-color: black;
+ 	-fx-border-color: transparent;
+ 	
 }
 .Button:hover{
 	 -fx-background-color: rgba(0.5,0.5,0.5,0.5);
 
 }
 #undoButton {
+	-fx-background-size: 40,5 21;
 	-fx-background-image: url("/images/redo.png");
 }
 #redoButton {
+	-fx-background-size: 40,5 21;
 	-fx-background-image: url("/images/undo.png");
 }
 #settingsButton{
-	-fx-background-image: url("/images/gear.png");
+	-fx-background-size: 40 29;
+	-fx-background-image: url("/images/settings.png");
 }

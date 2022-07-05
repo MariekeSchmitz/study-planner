@@ -45,7 +45,7 @@ public class StartView extends AnchorPane {
     	
         headerVBox = new VBox(10);
         
-        logo = new LogoView(true,150);
+        logo = new LogoView(true,200);
         header1 = new Label("Willkommen zum");
         header1.getStyleClass().add("header");
         header2 = new Label("Studienverlaufplaner");
@@ -56,21 +56,25 @@ public class StartView extends AnchorPane {
 
         headerVBox.getChildren().addAll(header1, header2);
 
-        addButton = new Button("+");
+        addButton = new Button();
         addButton.getStyleClass().add("addbutton");
         addButton.setId("secondColor");
         addButton.setPrefSize(75, 75);
-        addButton.setMaxSize(75,75);
+        addButton.setMaxSize(75, 75);
+		ImageView ivIconaddButton = new ImageView(new Image(File.separator+"images" + File.separator +"plus.png"));
+		ivIconaddButton.setFitHeight(35);
+		ivIconaddButton.setFitWidth(35);
+		addButton.setGraphic(ivIconaddButton);
 
         ownPlanButton = new Button();
         ownPlanButton.getStyleClass().add("ownButton");
         ownPlanButton.setPrefSize(300, 300);
         ownPlanButton.setMaxSize(200, 50);
         
-		ImageView ivIcon = new ImageView(new Image(File.separator+"images" + File.separator +"PlanImportieren.png"));
-		ivIcon.setFitHeight(50);
-		ivIcon.setFitWidth(200);
-		ownPlanButton.setGraphic(ivIcon);
+		ImageView ivIconOwnButton = new ImageView(new Image(File.separator+"images" + File.separator +"PlanImportieren.png"));
+		ivIconOwnButton.setFitHeight(61);
+		ivIconOwnButton.setFitWidth(216);
+		ownPlanButton.setGraphic(ivIconOwnButton);
     
         hbox = new HBox(20);
 		hbox.setPadding(new Insets(30));
@@ -86,19 +90,19 @@ public class StartView extends AnchorPane {
         AnchorPane.setTopAnchor(logo, 50.0);
         AnchorPane.setLeftAnchor(logo, 50.0);
 
-        AnchorPane.setTopAnchor(headerVBox, 175.0);
+        AnchorPane.setTopAnchor(headerVBox, 200.0);
         AnchorPane.setLeftAnchor(headerVBox, 330.0);
 
-        AnchorPane.setTopAnchor(secondHeader, 375.0);
+        AnchorPane.setTopAnchor(secondHeader, 400.0);
         AnchorPane.setLeftAnchor(secondHeader, 330.0);
 
-        AnchorPane.setTopAnchor(addButton, 450.0);
+        AnchorPane.setTopAnchor(addButton, 520.0);
         AnchorPane.setLeftAnchor(addButton, 330.0);
 
-        AnchorPane.setBottomAnchor(ownPlanButton, 25.0);
-        AnchorPane.setRightAnchor(ownPlanButton, 50.0);
+        AnchorPane.setBottomAnchor(ownPlanButton, 50.0);
+        AnchorPane.setRightAnchor(ownPlanButton, 100.0);
 
-        AnchorPane.setTopAnchor(scrollPane, 400.0); 
+        AnchorPane.setTopAnchor(scrollPane, 425.0); 
 		AnchorPane.setLeftAnchor(scrollPane, 300.0);
 		AnchorPane.setRightAnchor(scrollPane, 0.0);
         AnchorPane.setBottomAnchor(scrollPane, 75.0);  
@@ -108,6 +112,7 @@ public class StartView extends AnchorPane {
 		AnchorPane.setRightAnchor(uploadPane, 0.0);
         AnchorPane.setBottomAnchor(uploadPane, 0.0);   
 
+        this.setStyle("-fx-background-color:white;");
         this.getStylesheets().add(getClass().getResource("/css/introView.css").toExternalForm());
         this.getChildren().addAll(headerVBox, logo, secondHeader, scrollPane, addButton, ownPlanButton, uploadPane);
     }

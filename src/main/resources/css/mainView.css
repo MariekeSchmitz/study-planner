@@ -21,3 +21,9 @@
     -fx-background-color: transparent;
 }
 
+.newPlanButton{
+    -fx-border-color: white;
+    -fx-border-width: 0;
+    -fx-border-radius: 80;
+    -fx-background-radius: 80;
+}

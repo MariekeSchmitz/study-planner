@@ -42,8 +42,6 @@ public class ExamView extends AnchorPane{
 
         this.getStylesheets().add(getClass().getResource("/css/MainView.css").toExternalForm());
         this.getChildren().addAll(header, backbutton, listView);
-        listView.getStyleClass().add("test-border-red");
-        this.getStyleClass().add("test-border-red");
         this.setMaxWidth(500);
         
         this.setStyle( "-fx-background-color:rgb(255,255,255)");	

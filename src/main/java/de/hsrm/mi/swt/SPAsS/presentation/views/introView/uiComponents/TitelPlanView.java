@@ -23,8 +23,6 @@ public class TitelPlanView extends AnchorPane{
     private Label titelLabel;
     private Label institutionLabel;
 
-    private Label lastOpenLabel;
-
     private Button openPlanButton;
 
     public TitelPlanView(String titel, String degreeProgram, String institution) {
@@ -34,15 +32,13 @@ public class TitelPlanView extends AnchorPane{
 
         titelLabel = new Label(titel);
         titelLabel.getStyleClass().add("campusLabel");
+        titelLabel.setId("mainColorFont");
         
         degreeProgramLabel = new Label(degreeProgram);
         degreeProgramLabel.getStyleClass().add("studyLabel");
 
         institutionLabel = new Label(institution);
-        institutionLabel.getStyleClass().add("institution");
-        
-        lastOpenLabel = new Label("zuletzt geöffnet am 12.12.2012");
-        lastOpenLabel.getStyleClass().add("campusLabel");
+        institutionLabel.getStyleClass().add("studyLabel");
 
         imagePane = new StackPane();
         image = new ImageView("/images/Kacheln.png");
@@ -56,16 +52,13 @@ public class TitelPlanView extends AnchorPane{
         imagePane.setMaxWidth(400);
 
         AnchorPane.setLeftAnchor(titelLabel, 0.0);
-        AnchorPane.setBottomAnchor(titelLabel, 90.0);
+        AnchorPane.setBottomAnchor(titelLabel, 80.0);
 
         AnchorPane.setLeftAnchor(degreeProgramLabel, 0.0);
-        AnchorPane.setBottomAnchor(degreeProgramLabel, 50.0);
+        AnchorPane.setBottomAnchor(degreeProgramLabel, 45.0);
         
         AnchorPane.setLeftAnchor(institutionLabel, 0.0);
-        AnchorPane.setBottomAnchor(institutionLabel, 35.0);
-
-        AnchorPane.setLeftAnchor(lastOpenLabel, 0.0);
-        AnchorPane.setBottomAnchor(lastOpenLabel, 0.0);
+        AnchorPane.setBottomAnchor(institutionLabel, 15.0);
 
         AnchorPane.setBottomAnchor(openPlanButton, 0.0);
         AnchorPane.setRightAnchor(openPlanButton, 0.0);
@@ -81,7 +74,7 @@ public class TitelPlanView extends AnchorPane{
         AnchorPane.setTopAnchor(imagePane, 0.0);
 
 
-        this.getChildren().addAll(imagePane, degreeProgramLabel, titelLabel, institutionLabel, lastOpenLabel, openPlanButton);
+        this.getChildren().addAll(imagePane, degreeProgramLabel, titelLabel, institutionLabel, openPlanButton);
         this.setPrefSize(1000, 300);
         this.setMaxHeight(350);
         this.setMaxWidth(350);

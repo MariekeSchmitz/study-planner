@@ -15,6 +15,7 @@ import de.hsrm.mi.swt.SPAsS.business.planManagement.Course;
 import de.hsrm.mi.swt.SPAsS.business.planManagement.ExamModule;
 import de.hsrm.mi.swt.SPAsS.business.planManagement.Module;
 import de.hsrm.mi.swt.SPAsS.business.planManagement.Plan;
+import de.hsrm.mi.swt.SPAsS.presentation.views.Scenes;
 import de.hsrm.mi.swt.SPAsS.presentation.views.ViewController;
 import de.hsrm.mi.swt.SPAsS.presentation.views.ViewManager;
 import javafx.collections.FXCollections;
@@ -57,6 +58,7 @@ public class CenterViewController extends ViewController implements PropertyChan
 	private Button addExamButton;
 	private Button savePlanButton;
 	private Button backButton;
+	private Button newPlan;
 	private Label gradeAverage;
 	private Button save;
 	private TextField nameInput;
@@ -96,6 +98,7 @@ public class CenterViewController extends ViewController implements PropertyChan
 		gradeAverage = centerView.getPointAverage();
 		savePlanButton = centerView.getSavePlan();
 		backButton = centerView.getBackButton();
+		newPlan = centerView.getNewPlanButton();
 		save = new Button("save");
 		header = centerView.getHeader();
 
@@ -111,6 +114,13 @@ public class CenterViewController extends ViewController implements PropertyChan
 		
 		
 		generateListView();
+		
+		newPlan.addEventHandler(ActionEvent.ACTION, e -> {
+
+			app.getFileManager().fileSave(FileType.PLAN, plan);
+			viewManager.switchScene(Scenes.START_VIEW);
+
+		});
 
 		resetButton.addEventHandler(ActionEvent.ACTION, e -> {
 
@@ -314,21 +324,21 @@ public class CenterViewController extends ViewController implements PropertyChan
 			});
 
 			Label semesterLabel = new Label(Integer.toString(i));
-			semesterLabel.getStyleClass().add("numberSemester");
+			semesterLabel.setStyle("-fx-font-family: 'Open Sans Bold', sans-serif");			
+		    semesterLabel.getStyleClass().add("numberSemester");
 			semesterLabel.setMinSize(50, 50);
-			semesterLabel.setTextFill(Color.BLACK);
 			semesterLabel.setAlignment(Pos.CENTER);
 			semesterRow = new HBox(semesterLabel, semesterListView);
 			semesterRow.setAlignment(Pos.CENTER);
 			semesterRow.setSpacing(20);
-			// semesterListView.getStyleClass().add("test-border-red");
-			// semesterRow.getStyleClass().add("test-border-red");
+
 
 			HBox.setHgrow(semesterListView, Priority.ALWAYS);
-
+			
 			semesterListViews.add(semesterListView);
 
 			planBox.getChildren().add(semesterRow);
+
 
 		}
 

@@ -70,7 +70,7 @@ public class SelectView extends AnchorPane{
         header2.getStyleClass().add("header_2");
 
         backgroundPane = new Pane();
-        backgroundPane.setBackground(new Background(new BackgroundFill(new Color(0.9,0.9,0.9, 0.5), new CornerRadii(0), new Insets(0))));
+        //backgroundPane.setBackground(new Background(new BackgroundFill(new Color(0.9,0.9,0.9, 0.5), new CornerRadii(0), new Insets(0))));
 
         AnchorPane.setTopAnchor(header, 100.0); 
         AnchorPane.setLeftAnchor(header, 150.0);

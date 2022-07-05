@@ -6,7 +6,18 @@
 
 .ModuleHeader {
     -fx-font-size: 30px;
-    -fx-font-weight: bold;
+    -fx-font-family: 'Open Sans Bold', sans-serif;
+    -fx-text-fill: white;
+}
+.Validatortext{
+	-fx-font-size: 15px;
+    -fx-font-family: 'Open Sans Regular', sans-serif;
+    -fx-text-fill: white;
+}
+.Validatorheader{
+	-fx-font-size: 15px;
+    -fx-font-family: 'Open Sans Bold', sans-serif;
+    -fx-text-fill: white;
 }
 
 .categoryLabel {
@@ -28,4 +39,7 @@
 
 .scroll-pane .viewport {
     -fx-background-color: transparent;
+}
+.backButton {
+	-fx-background-color: transparent;
 }

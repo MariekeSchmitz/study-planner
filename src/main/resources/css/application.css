@@ -1,4 +1,5 @@
 /* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
 
 .test-border-red {
     -fx-border-color: red;
@@ -24,32 +25,28 @@
     -fx-border-style: segments(10, 15, 15, 15) line-cap round;
 }
 
-@font-face {
-	font-family: Rubik;
-	src: url("Rubik-ExtraBold.ttf");
-}
 
 /* Global Variable  */
 #mainColor{
-	-fx-background-color: rgba(87,179,131,1); 	
+	-fx-background-color: rgba(204,231,86,1); 	
 }
 #secondColor{
-	-fx-background-color: rgba(9,90,98,1); 
+	-fx-background-color: rgba(49,49,64,1); 
 }
 #mainColorFont{
-	-fx-text-fill: rgba(87,179,131,1); 	
+	-fx-text-fill: rgba(204,231,86,1); 	
 }
 #secondColorFont{
-	-fx-text-fill:  rgba(9,90,98,1);
+	-fx-text-fill:  rgba(49,49,64,1);
 }
 .label{
-	-fx-text-fill:  rgba(9,90,98,1);
-	-fx-font-family: "Rubik";
+	-fx-text-fill:  rgba(49,49,64,1);
+	-fx-font-family: 'Open Sans Regular', sans-serif;
 }
 
 /* C S S */
 .backgroundcenter {
-    -fx-background-color: rgb(230, 230, 230);
+    -fx-background-color: rgb(246, 246, 246);
 }
 
 .left-side-pane {
@@ -90,8 +87,7 @@
 }
 
 .numberSemester {
-    -fx-font-size: 20px;
-    -fx-font-weight: bold;
+    -fx-font-size: 30px;
 }
 
 .list-view {
@@ -110,8 +106,9 @@
 }
 
 #invalid {
-    -fx-border-color: red;
-    -fx-border-width: 1;
+	-fx-background-color: rgba(255,165,149,1);
+	-fx-border-color: red;
+	-fx-border-width: 1;
 }
 
 #valid {
@@ -121,8 +118,16 @@
 .list-cell:empty {
     -fx-background-color: transparent;
     -fx-border: none;
+    -fx-border-color: transparent;
 }
 
+.moduleView:hover{
+	-fx-background-color: rgba(200, 200, 200,0.5);
+}
+
+.list-cell{
+	-fx-padding: 5px;
+}
 .scroll-bar:horizontal,
 .scroll-bar:vertical {
     -fx-background-color: transparent;

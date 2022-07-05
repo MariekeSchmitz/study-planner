@@ -1,10 +1,15 @@
 package de.hsrm.mi.swt.SPAsS.presentation.views.mainView.settingsView;
 
+import java.io.File;
+
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 
 /**
  * View for Settings
@@ -22,13 +27,19 @@ public class SettingsView extends AnchorPane {
     public SettingsView() {        
         header = new Label("Einschränkungen");
 		header.getStyleClass().add("ModuleHeader");
+		header.setTextFill(Color.WHITE);
 
         box = new VBox(30);
         textField = new Label();
         textField.setWrapText(true);
+        textField.setTextFill(Color.WHITE);
 
-        backButton = new Button("back");
-		backButton.getStyleClass().add("backbutton");
+		ImageView ivIcon = new ImageView(new Image(File.separator+"images" + File.separator +"XWeiss.png"));
+		ivIcon.setFitHeight(50);
+		ivIcon.setFitWidth(50);
+		backButton = new Button();
+		backButton.setGraphic(ivIcon);
+		backButton.getStyleClass().add("backButton");
 		backButton.setPrefSize(100, 100);
         backButton.setMaxSize(50, 50);
 
@@ -43,19 +54,19 @@ public class SettingsView extends AnchorPane {
         AnchorPane.setTopAnchor(backButton, 30.0);
         AnchorPane.setRightAnchor(backButton, 50.0);
 
-        AnchorPane.setTopAnchor(header, 75.0);
+        AnchorPane.setTopAnchor(header, 125.0);
         AnchorPane.setLeftAnchor(header, 150.0);
 		AnchorPane.setRightAnchor(header, 150.0);
 		header.setMaxWidth(300);
 
-        AnchorPane.setTopAnchor(scrollPane, 125.0);
+        AnchorPane.setTopAnchor(scrollPane, 175.0);
         AnchorPane.setLeftAnchor(scrollPane, 150.0);
-		AnchorPane.setRightAnchor(scrollPane, 50.0);
+		AnchorPane.setRightAnchor(scrollPane, 150.0);
         AnchorPane.setBottomAnchor(scrollPane, 0.0);
 
         this.getChildren().addAll(header, backButton, scrollPane);
         this.getStylesheets().add(getClass().getResource("/css/settingsView.css").toExternalForm());
-		this.getStyleClass().add("left-side-pane");
+		this.setId("secondColor");
         this.setMaxWidth(675);
     }
 

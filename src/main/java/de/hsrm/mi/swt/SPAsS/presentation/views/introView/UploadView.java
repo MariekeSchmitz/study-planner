@@ -29,8 +29,10 @@ public class UploadView extends AnchorPane {
 		backButton.setGraphic(ivIcon);
 		backButton.getStyleClass().add("backButton");
     	
-        header = new Label("Eigenen Plan \nhochladen");
+        header = new Label("Eigenen Plan hochladen");
+        header.setWrapText(true);
         header.getStyleClass().add("header");
+        header.setId("secondColorFont");
         
         drag_drop_field = new BorderPane();
 

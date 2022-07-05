@@ -24,9 +24,9 @@ public class LogoView extends BorderPane{
 
         this.setCenter(logo);
         
-        this.setPrefSize(100,100);
-        this.setMaxHeight(100);
-        this.setMaxWidth(100);        
+        this.setPrefSize(size,size);
+        this.setMaxHeight(size);
+        this.setMaxWidth(size);        
     }
     
 }

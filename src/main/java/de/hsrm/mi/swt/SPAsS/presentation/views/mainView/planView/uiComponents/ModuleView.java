@@ -4,6 +4,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
@@ -28,19 +29,21 @@ public class ModuleView extends ListCell<Module>{
     public ModuleView() {
 
         moduleLabel = new Label("");
-        moduleLabel.getStyleClass().add("module");
-        moduleLabel.setStyle("-fx-font-weight: bold;");
+        moduleLabel.setStyle("-fx-font-family: 'Open Sans SemiBold', sans-serif;");
 
         cpLabel = new Label("");
-        cpLabel.getStyleClass().add("module");
+        cpLabel.setStyle("-fx-font-family: 'Open Sans Light', sans-serif;");
         
-        labels = new VBox(10);
+        labels = new VBox(5);
         labels.getChildren().addAll(moduleLabel,cpLabel);
-		labels.setPadding(new Insets(15, 15, 15,15));
-		labels.setAlignment(Pos.TOP_LEFT);
+		labels.setPadding(new Insets(0, 15, 0,15));
+		labels.setAlignment(Pos.CENTER_LEFT);
+		labels.getStyleClass().add("moduleView");
+		labels.setEffect(new DropShadow(3, 0, 2, Color.rgb(211, 211, 211, 0.5)));
+		labels.setClip(null);
         
         this.setGraphic(labels);
-        this.setMaxHeight(50);
+        this.setMaxHeight(40);
         this.setMaxWidth(150);
 		this.setStyle("-fx-background-color: transparent;");
 		
@@ -54,14 +57,14 @@ public class ModuleView extends ListCell<Module>{
     	
     	if (!empty) {
     		
-    		if (this.getItem().isValid()) {
-    			this.setId("valid");
-    		} else {
-    			this.setId("invalid");
-    		}
-    		
+//    		if (this.getItem().isValid()) {
+//    			this.setId("valid");
+//    		} else {
+//    			this.setId("invalid");
+//    		}
+    		this.setId("valid");
     		moduleLabel.setText(item.getName());
-    		cpLabel.setText(Integer.toString(item.getCp()));
+    		cpLabel.setText(Integer.toString(item.getCp()) + " CP");
     		
     		Color color = item.getCategories().getColor();
     		double red = color.getRed();
@@ -70,8 +73,10 @@ public class ModuleView extends ListCell<Module>{
     		
     		
     		// TO DO 
-    		String colorPassed = "-fx-background-color:rgba("+red+","+blue+","+green+", 0.5);";
+    		//String colorPassed = "-fx-background-color:rgba("+red+","+blue+","+green+", 0.5);";
+    		String colorPassed = "-fx-background-color:rgba(204,231,86, 1);";
     		String onlyExam = "-fx-background-color:rgb(200,0,200)";
+    		String invalid = "-fx-background-color: rgb(255,165,149)";
     		
     		System.out.println(item.getName() + " valid: "+ (item.isValid()));
     		
@@ -79,8 +84,12 @@ public class ModuleView extends ListCell<Module>{
     			labels.setStyle(colorPassed);
     		} else if (item instanceof ExamModule) {
     			labels.setStyle(onlyExam);
+    		} else if (!this.getItem().isValid()) {
+    			labels.setStyle(invalid);
     		} else {
-        		labels.setBackground(new Background(new BackgroundFill(item.getCategories().getColor(),new CornerRadii(0),new Insets(0))));
+        		//labels.setBackground(new Background(new BackgroundFill(item.getCategories().getColor(),new CornerRadii(0),new Insets(0))));
+        		labels.setBackground(new Background(new BackgroundFill(Color.WHITE,new CornerRadii(0),new Insets(0))));
+
     		}
     			
     		this.setGraphic(labels);

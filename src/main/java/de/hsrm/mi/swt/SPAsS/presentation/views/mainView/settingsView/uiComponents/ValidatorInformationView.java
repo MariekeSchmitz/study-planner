@@ -21,16 +21,24 @@ public class ValidatorInformationView extends VBox {
     public ValidatorInformationView() {
         header = new Label("ValidatorÜberschrift");
         header.setWrapText(true);
+        header.setTextFill(Color.WHITE);		
+        header.getStyleClass().add("Validatorheader");
+
 
         description = new Label("");
         description.setText("Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.");
         description.setWrapText(true);
+        description.setTextFill(Color.WHITE);
+        description.getStyleClass().add("Validatortext");
+
                 
-        inputBox = new HBox(5);
+        inputBox = new HBox(10);
         input = new TextField();
         inputLabel = new Label("Credit Points");
         inputBox.setAlignment(Pos.CENTER_LEFT);
         inputBox.getChildren().addAll(input,inputLabel);
+        inputLabel.getStyleClass().add("Validatorheader");
+
 
         this.setSpacing(10);
         this.getChildren().addAll(header, inputBox, description);

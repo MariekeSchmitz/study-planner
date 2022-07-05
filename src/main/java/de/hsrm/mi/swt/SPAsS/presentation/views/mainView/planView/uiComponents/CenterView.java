@@ -1,9 +1,13 @@
 package de.hsrm.mi.swt.SPAsS.presentation.views.mainView.planView.uiComponents;
 
+import java.io.File;
+
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
@@ -24,6 +28,7 @@ public class CenterView extends AnchorPane{
     private Button removeSemester;
     private Button addExam;
     private Button backButton;
+    private Button newPlanButton;
     
     private Label header;
     private Label pointAverage;
@@ -40,6 +45,16 @@ public class CenterView extends AnchorPane{
         planNameInputPane = new AnchorPane();
         planNameInputPane.setVisible(false);
         planNameInputPane.setStyle("-fx-background-color: transparent");
+        
+        newPlanButton = new Button();
+        newPlanButton.getStyleClass().add("newPlanButton");
+        newPlanButton.setId("secondColor");
+        newPlanButton.setPrefSize(60,60);
+        newPlanButton.setMaxSize(60,60);
+		ImageView ivIconaddButton = new ImageView(new Image(File.separator+"images" + File.separator +"plus.png"));
+		ivIconaddButton.setFitHeight(30);
+		ivIconaddButton.setFitWidth(30);
+		newPlanButton.setGraphic(ivIconaddButton);
         
         backButton = new Button();
         backButton.getStyleClass().add("BackgroundBackButton");
@@ -61,6 +76,7 @@ public class CenterView extends AnchorPane{
         
         header = new Label("Dein Studienplan");
         header.getStyleClass().add("header");
+	    header.setStyle("-fx-font-family: 'Open Sans Bold', sans-serif");
 
         pointAverage = new Label("Aktueller Notendurchschnitt:");
         pointAverage.getStyleClass().add("pointAverage");
@@ -116,13 +132,14 @@ public class CenterView extends AnchorPane{
 		scrollPane.setPannable(true);
 
         planPane.getStyleClass().add("backgroundtransparent");
+        planPane.setSpacing(10);
         
-        AnchorPane.setLeftAnchor(hBoxAdd, 130.0);
-        AnchorPane.setTopAnchor(hBoxAdd, 275.0);
+        AnchorPane.setLeftAnchor(hBoxAdd, 155.0);
+        AnchorPane.setTopAnchor(hBoxAdd, 330.0);
         AnchorPane.setRightAnchor(hBoxAdd, 50.0);
 
-        AnchorPane.setLeftAnchor(scrollPane, 50.0);
-        AnchorPane.setTopAnchor(scrollPane, 325.0);
+        AnchorPane.setLeftAnchor(scrollPane, 75.0);
+        AnchorPane.setTopAnchor(scrollPane, 400.0);
         AnchorPane.setBottomAnchor(scrollPane, 50.0);
         AnchorPane.setRightAnchor(scrollPane, 50.0);
 
@@ -140,12 +157,15 @@ public class CenterView extends AnchorPane{
         AnchorPane.setRightAnchor(buttonsBox, 50.0);
 
         AnchorPane.setTopAnchor(header, 75.0);
-        AnchorPane.setLeftAnchor(header, 130.0);
+        AnchorPane.setLeftAnchor(header, 155.0);
 
         AnchorPane.setTopAnchor(pointAverage, 150.0);
-        AnchorPane.setLeftAnchor(pointAverage, 130.0);
+        AnchorPane.setLeftAnchor(pointAverage, 155.0);
+        
+        AnchorPane.setRightAnchor(newPlanButton, 50.0);
+        AnchorPane.setBottomAnchor(newPlanButton, 50.0);
 
-        this.getChildren().addAll(backgroundPane, scrollPane, hBoxAdd, header, pointAverage, buttonsBox, planNameInputPane);
+        this.getChildren().addAll(backgroundPane, scrollPane, hBoxAdd, header, pointAverage, buttonsBox, planNameInputPane ,newPlanButton);
         this.getStylesheets().add(getClass().getResource("/css/mainView.css").toExternalForm());
     }
 
@@ -289,6 +309,11 @@ public class CenterView extends AnchorPane{
 
 	public Button getBackButton() {
 		return backButton;
+	}
+
+
+	public Button getNewPlanButton() {
+		return newPlanButton;
 	}
     
 }
