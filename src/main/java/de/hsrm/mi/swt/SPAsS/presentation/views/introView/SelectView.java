@@ -6,16 +6,24 @@ import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.HBox;
+
+import java.io.File;
+
 import javafx.geometry.Insets;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 /**
  * Curriculum Selection view
  */
 public class SelectView extends AnchorPane{
+	
+	private Button backButton;
     
     private Pane backgroundPane;
 
@@ -30,6 +38,14 @@ public class SelectView extends AnchorPane{
     private ListView<Pane> listView;
 
     public SelectView() {
+    	
+		ImageView ivIcon = new ImageView(new Image(File.separator+"images" + File.separator +"X.png"));
+		ivIcon.setFitHeight(50);
+		ivIcon.setFitWidth(50);
+		backButton = new Button();
+		backButton.setGraphic(ivIcon);
+		backButton.getStyleClass().add("backButton");
+    	
         header = new Label("Studiengang \nwählen");
         header.getStyleClass().add("header");
 
@@ -49,7 +65,6 @@ public class SelectView extends AnchorPane{
         scrollPane.setMaxHeight(150);
         
         drag_drop_field = new BorderPane();
-        drag_drop_field.setStyle("-fx-background-color: red");
 
         header2 = new Label("Neue Studiengangsdatei \nhinzufügen");
         header2.getStyleClass().add("header_2");
@@ -71,14 +86,18 @@ public class SelectView extends AnchorPane{
         AnchorPane.setTopAnchor(scrollPane, 300.0); 
 		AnchorPane.setLeftAnchor(scrollPane, 0.0);
 		AnchorPane.setRightAnchor(scrollPane, 0.0);
+		
+        AnchorPane.setTopAnchor(backButton, 30.0);
+        AnchorPane.setRightAnchor(backButton, 30.0);
 
         AnchorPane.setTopAnchor(backgroundPane, 450.0);
         AnchorPane.setLeftAnchor(backgroundPane, 0.0);
         AnchorPane.setRightAnchor(backgroundPane, 0.0);
         AnchorPane.setBottomAnchor(backgroundPane, 0.0);
-
+        
+        this.getStyleClass().add("BackgroundWhite");
         this.getStylesheets().add(getClass().getResource("/css/introView.css").toExternalForm());
-        this.getChildren().addAll(backgroundPane, header, header2, drag_drop_field, scrollPane);
+        this.getChildren().addAll(backgroundPane, header, header2, drag_drop_field, scrollPane, backButton);
     }
 
     public HBox getHbox() {
@@ -112,6 +131,11 @@ public class SelectView extends AnchorPane{
 	public void setDrag_drop_field(Pane drag_drop_field) {
 		this.drag_drop_field.setCenter(drag_drop_field);
 	}
+
+	public Button getBackButton() {
+		return backButton;
+	}
+
     
     
     

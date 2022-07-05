@@ -123,13 +123,13 @@ public class StartViewController extends ViewController {
         if(!plansAvailable){
             scrollPane.setVisible(false);
             secondHeader.setText("Neuen Plan hinzufügen");
-            AnchorPane.setTopAnchor(addButton, 450.0);
-            AnchorPane.setLeftAnchor(addButton, 300.0);
+            AnchorPane.setTopAnchor(addButton, 500.0);
+            AnchorPane.setLeftAnchor(addButton, 350.0);
         } else {
             scrollPane.setVisible(true);
             secondHeader.setText("Deine Pläne:");
             AnchorPane.setTopAnchor(addButton, 500.0);
-            AnchorPane.setLeftAnchor(addButton, 125.0);
+            AnchorPane.setLeftAnchor(addButton, 150.0);
             addButton.setMaxSize(150, 150);
         }
     }

@@ -1,10 +1,14 @@
 package de.hsrm.mi.swt.SPAsS.presentation.views.introView;
 
+import java.io.File;
+
 import de.hsrm.mi.swt.SPAsS.presentation.views.introView.uiComponents.LogoView;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
@@ -28,20 +32,20 @@ public class StartView extends AnchorPane {
     private HBox hbox;
     private ScrollPane scrollPane;
     
-    private BorderPane uploadPane;
+    private AnchorPane uploadPane;
 
     /**
  * Startscreen
  */
     public StartView() {
 
-    	uploadPane = new BorderPane();
-    	uploadPane.setStyle("-fx-background-color: rgb(255,255,255)");
+    	uploadPane = new AnchorPane();
+    	uploadPane.setStyle("-fx-background-color: rgba(0,0,0,0.3)");
     	uploadPane.setVisible(false);
     	
         headerVBox = new VBox(10);
-
-        logo = new LogoView();
+        
+        logo = new LogoView(true,150);
         header1 = new Label("Willkommen zum");
         header1.getStyleClass().add("header");
         header2 = new Label("Studienverlaufplaner");
@@ -54,14 +58,20 @@ public class StartView extends AnchorPane {
 
         addButton = new Button("+");
         addButton.getStyleClass().add("addbutton");
-        addButton.setPrefSize(300, 300);
-        addButton.setMaxSize(300, 300);
+        addButton.setId("secondColor");
+        addButton.setPrefSize(75, 75);
+        addButton.setMaxSize(75,75);
 
-        ownPlanButton = new Button("Eigener Plan \nimportieren");
+        ownPlanButton = new Button();
         ownPlanButton.getStyleClass().add("ownButton");
         ownPlanButton.setPrefSize(300, 300);
         ownPlanButton.setMaxSize(200, 50);
-
+        
+		ImageView ivIcon = new ImageView(new Image(File.separator+"images" + File.separator +"PlanImportieren.png"));
+		ivIcon.setFitHeight(50);
+		ivIcon.setFitWidth(200);
+		ownPlanButton.setGraphic(ivIcon);
+    
         hbox = new HBox(20);
 		hbox.setPadding(new Insets(30));
 		scrollPane = new ScrollPane();
@@ -77,13 +87,13 @@ public class StartView extends AnchorPane {
         AnchorPane.setLeftAnchor(logo, 50.0);
 
         AnchorPane.setTopAnchor(headerVBox, 175.0);
-        AnchorPane.setLeftAnchor(headerVBox, 300.0);
+        AnchorPane.setLeftAnchor(headerVBox, 330.0);
 
-        AnchorPane.setTopAnchor(secondHeader, 350.0);
-        AnchorPane.setLeftAnchor(secondHeader, 300.0);
+        AnchorPane.setTopAnchor(secondHeader, 375.0);
+        AnchorPane.setLeftAnchor(secondHeader, 330.0);
 
         AnchorPane.setTopAnchor(addButton, 450.0);
-        AnchorPane.setLeftAnchor(addButton, 300.0);
+        AnchorPane.setLeftAnchor(addButton, 330.0);
 
         AnchorPane.setBottomAnchor(ownPlanButton, 25.0);
         AnchorPane.setRightAnchor(ownPlanButton, 50.0);
@@ -93,10 +103,10 @@ public class StartView extends AnchorPane {
 		AnchorPane.setRightAnchor(scrollPane, 0.0);
         AnchorPane.setBottomAnchor(scrollPane, 75.0);  
         
-        AnchorPane.setTopAnchor(uploadPane, 50.0); 
-		AnchorPane.setLeftAnchor(uploadPane, 50.0);
-		AnchorPane.setRightAnchor(uploadPane, 50.0);
-        AnchorPane.setBottomAnchor(uploadPane, 50.0);   
+        AnchorPane.setTopAnchor(uploadPane, 0.0); 
+		AnchorPane.setLeftAnchor(uploadPane, 0.0);
+		AnchorPane.setRightAnchor(uploadPane, 0.0);
+        AnchorPane.setBottomAnchor(uploadPane, 0.0);   
 
         this.getStylesheets().add(getClass().getResource("/css/introView.css").toExternalForm());
         this.getChildren().addAll(headerVBox, logo, secondHeader, scrollPane, addButton, ownPlanButton, uploadPane);
@@ -138,7 +148,7 @@ public class StartView extends AnchorPane {
         return scrollPane;
     }
 
-	public BorderPane getUploadPane() {
+	public AnchorPane getUploadPane() {
 		return uploadPane;
 	}
     

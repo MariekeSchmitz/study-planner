@@ -8,11 +8,14 @@ import de.hsrm.mi.swt.SPAsS.application.App;
 import de.hsrm.mi.swt.SPAsS.business.fileManagement.FileManager;
 import de.hsrm.mi.swt.SPAsS.business.fileManagement.FileType;
 import de.hsrm.mi.swt.SPAsS.business.fileManagement.MetaEnum;
+import de.hsrm.mi.swt.SPAsS.presentation.views.Scenes;
 import de.hsrm.mi.swt.SPAsS.presentation.views.ViewController;
 import de.hsrm.mi.swt.SPAsS.presentation.views.ViewManager;
 import de.hsrm.mi.swt.SPAsS.presentation.views.introView.uiComponents.DragDropViewController;
 import de.hsrm.mi.swt.SPAsS.presentation.views.introView.uiComponents.StudyView;
 import de.hsrm.mi.swt.SPAsS.presentation.views.introView.uiComponents.StudyViewController;
+import javafx.event.ActionEvent;
+import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 /**
@@ -27,6 +30,8 @@ public class SelectViewController extends ViewController{
     private Pane dragDropPane;
     private DragDropViewController dragDropViewController;
     
+    private Button backButton;
+    
     public SelectViewController(ViewManager viewmanager, App app) {
     	this.app = app;
     	this.viewManager = viewmanager;
@@ -36,6 +41,7 @@ public class SelectViewController extends ViewController{
         curriculaBox = selectView.getHbox();
         dragDropViewController = new DragDropViewController(app, FileType.CURRICULA);
         dragDropPane = dragDropViewController.getRootView();
+        backButton = selectView.getBackButton();
         selectView.setDrag_drop_field(dragDropPane);
         
         initialise();
@@ -72,8 +78,16 @@ public class SelectViewController extends ViewController{
         	StudyView studyView = (StudyView)new StudyViewController(name, degreeProgram, institution, fileManager, app, viewManager).getRootView();
             curriculaBox.getChildren().add(studyView);
         	
-        }	
+        }
         
+    	backButton.addEventHandler(ActionEvent.ACTION, e -> {
+
+    		viewManager.switchScene(Scenes.START_VIEW);
+
+			
+		});
+    	
+
     }
     
 }

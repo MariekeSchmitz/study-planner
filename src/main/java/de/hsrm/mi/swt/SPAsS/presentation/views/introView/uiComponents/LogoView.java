@@ -1,29 +1,32 @@
 package de.hsrm.mi.swt.SPAsS.presentation.views.introView.uiComponents;
 
-import javafx.geometry.Insets;
 import javafx.scene.control.Label;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.CornerRadii;
-import javafx.scene.paint.Color;
 /**
  * Visual Component for Logo
  */
 public class LogoView extends BorderPane{
 
-    private Label logoText;
+    private ImageView logo;
 
-    public LogoView() {
+    public LogoView(boolean flag, int size) {
+    	
+    	if(flag) {
+        	logo = new ImageView("/images/logo.png");
+    	} else {
+        	logo = new ImageView("/images/logo_ohne.png");
 
-        logoText = new Label("Logo");
+    	}
+    	
+    	logo.setFitHeight(size);
+    	logo.setFitWidth(size);
 
-        this.setCenter(logoText);
+        this.setCenter(logo);
         
         this.setPrefSize(100,100);
         this.setMaxHeight(100);
         this.setMaxWidth(100);        
-        this.setBackground(new Background(new BackgroundFill(Color.GREY, new CornerRadii(0), new Insets(0))));
     }
     
 }

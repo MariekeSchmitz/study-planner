@@ -3,6 +3,7 @@ package de.hsrm.mi.swt.SPAsS.presentation.views.introView.uiComponents;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
@@ -15,7 +16,8 @@ import javafx.scene.paint.Color;
  */
 public class TitelPlanView extends AnchorPane{
 
-    private Pane platzhalterPane;
+    private Pane imagePane;
+    private ImageView image;
 
     private Label degreeProgramLabel;
     private Label titelLabel;
@@ -42,26 +44,28 @@ public class TitelPlanView extends AnchorPane{
         lastOpenLabel = new Label("zuletzt geöffnet am 12.12.2012");
         lastOpenLabel.getStyleClass().add("campusLabel");
 
-        //platzhalter
-        platzhalterPane = new StackPane();
-        Label platzhalter = new Label("Platzhalter");
-        platzhalterPane.getChildren().add(platzhalter);
-        platzhalterPane.setBackground(new Background(new BackgroundFill(new Color(0.9,0.9,0.9, 0.5), new CornerRadii(0), new Insets(0))));
-        platzhalterPane.setPrefSize(200, 200);
-        platzhalterPane.setMaxHeight(200);
-        platzhalterPane.setMaxWidth(400);
+        imagePane = new StackPane();
+        image = new ImageView("/images/Kacheln.png");
+        image.setFitHeight(100);
+    	image.setFitWidth(200);
+    	image.setOpacity(0.5);
+        imagePane.getChildren().add(image);
+        imagePane.setId("mainColor");
+        imagePane.setPrefSize(200, 200);
+        imagePane.setMaxHeight(200);
+        imagePane.setMaxWidth(400);
 
-        AnchorPane.setLeftAnchor(titelLabel, 10.0);
+        AnchorPane.setLeftAnchor(titelLabel, 0.0);
         AnchorPane.setBottomAnchor(titelLabel, 90.0);
 
-        AnchorPane.setLeftAnchor(degreeProgramLabel, 10.0);
+        AnchorPane.setLeftAnchor(degreeProgramLabel, 0.0);
         AnchorPane.setBottomAnchor(degreeProgramLabel, 50.0);
         
-        AnchorPane.setLeftAnchor(institutionLabel, 10.0);
+        AnchorPane.setLeftAnchor(institutionLabel, 0.0);
         AnchorPane.setBottomAnchor(institutionLabel, 35.0);
 
-        AnchorPane.setLeftAnchor(lastOpenLabel, 10.0);
-        AnchorPane.setBottomAnchor(lastOpenLabel, 10.0);
+        AnchorPane.setLeftAnchor(lastOpenLabel, 0.0);
+        AnchorPane.setBottomAnchor(lastOpenLabel, 0.0);
 
         AnchorPane.setBottomAnchor(openPlanButton, 0.0);
         AnchorPane.setRightAnchor(openPlanButton, 0.0);
@@ -71,13 +75,13 @@ public class TitelPlanView extends AnchorPane{
         AnchorPane.setBottomAnchor(openPlanButton, 0.0);
         AnchorPane.setRightAnchor(openPlanButton, 0.0);
 
-        AnchorPane.setLeftAnchor(platzhalterPane, 0.0);
-        AnchorPane.setBottomAnchor(platzhalterPane, 130.0);
-        AnchorPane.setRightAnchor(platzhalterPane, 0.0);
-        AnchorPane.setTopAnchor(platzhalterPane, 0.0);
+        AnchorPane.setLeftAnchor(imagePane, 0.0);
+        AnchorPane.setBottomAnchor(imagePane, 130.0);
+        AnchorPane.setRightAnchor(imagePane, 0.0);
+        AnchorPane.setTopAnchor(imagePane, 0.0);
 
 
-        this.getChildren().addAll(platzhalterPane, degreeProgramLabel, titelLabel, institutionLabel, lastOpenLabel, openPlanButton);
+        this.getChildren().addAll(imagePane, degreeProgramLabel, titelLabel, institutionLabel, lastOpenLabel, openPlanButton);
         this.setPrefSize(1000, 300);
         this.setMaxHeight(350);
         this.setMaxWidth(350);

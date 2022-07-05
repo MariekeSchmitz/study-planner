@@ -9,6 +9,7 @@ import de.hsrm.mi.swt.SPAsS.presentation.views.introView.StartViewController;
 import de.hsrm.mi.swt.SPAsS.presentation.views.introView.UploadView;
 import de.hsrm.mi.swt.SPAsS.presentation.views.introView.UploadViewController;
 import de.hsrm.mi.swt.SPAsS.presentation.views.mainView.MainViewController;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 
@@ -56,16 +57,28 @@ public class ViewManager {
         } else if (toScene.equals(Scenes.UPLOAD_CURRICULUM_VIEW)) {
         	UploadView uploadView = (UploadView)new UploadViewController(this, app, FileType.CURRICULA).getRootView();
         	uploadView.getHeader().setText("Studiengang \nwählen");
-            startView.getUploadPane().setCenter(uploadView);
+            AnchorPane.setTopAnchor(uploadView, 50.0); 
+    		AnchorPane.setLeftAnchor(uploadView, 50.0);
+    		AnchorPane.setRightAnchor(uploadView, 50.0);
+            AnchorPane.setBottomAnchor(uploadView, 50.0);   
+            startView.getUploadPane().getChildren().add(uploadView);
             
         } else if (toScene.equals(Scenes.SELECT_VIEW)) {
         	SelectView selectView = (SelectView)new SelectViewController(this,app).getRootView();
-            startView.getUploadPane().setCenter(selectView);
+            AnchorPane.setTopAnchor(selectView, 50.0); 
+    		AnchorPane.setLeftAnchor(selectView, 50.0);
+    		AnchorPane.setRightAnchor(selectView, 50.0);
+            AnchorPane.setBottomAnchor(selectView, 50.0);   
+            startView.getUploadPane().getChildren().add(selectView);
         
         } else if (toScene.equals(Scenes.UPLOAD_PLAN_VIEW)) {
         	UploadView uploadView = (UploadView)new UploadViewController(this, app, FileType.PLAN).getRootView();
         	uploadView.getHeader().setText("Eigenen Plan \nwählen");
-            startView.getUploadPane().setCenter(uploadView);       
+            AnchorPane.setTopAnchor(uploadView, 50.0); 
+    		AnchorPane.setLeftAnchor(uploadView, 50.0);
+    		AnchorPane.setRightAnchor(uploadView, 50.0);
+            AnchorPane.setBottomAnchor(uploadView, 50.0);   
+            startView.getUploadPane().getChildren().add(uploadView);   
         }
 
     } 
