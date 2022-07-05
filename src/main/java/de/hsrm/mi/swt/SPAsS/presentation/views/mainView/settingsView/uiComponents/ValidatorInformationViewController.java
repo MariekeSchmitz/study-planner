@@ -3,9 +3,7 @@ package de.hsrm.mi.swt.SPAsS.presentation.views.mainView.settingsView.uiComponen
 import de.hsrm.mi.swt.SPAsS.business.planManagement.Plan;
 import de.hsrm.mi.swt.SPAsS.business.restrictionManagement.CpLimitValidator;
 import de.hsrm.mi.swt.SPAsS.business.restrictionManagement.Validator;
-import de.hsrm.mi.swt.SPAsS.presentation.views.Scenes;
 import de.hsrm.mi.swt.SPAsS.presentation.views.ViewController;
-import javafx.event.ActionEvent;
 import javafx.scene.control.TextField;
 
 /**

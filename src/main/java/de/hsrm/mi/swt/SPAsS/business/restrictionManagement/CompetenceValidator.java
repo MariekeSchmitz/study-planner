@@ -6,11 +6,13 @@ import java.util.List;
 import java.util.Map;
 
 import de.hsrm.mi.swt.SPAsS.business.planManagement.Competence;
-import de.hsrm.mi.swt.SPAsS.business.planManagement.Course;
 import de.hsrm.mi.swt.SPAsS.business.planManagement.ExamModule;
 import de.hsrm.mi.swt.SPAsS.business.planManagement.Module;
 import de.hsrm.mi.swt.SPAsS.business.planManagement.Plan;
 
+/**
+ * Validates each Module in relation to their needed Competences.
+ */
 public class CompetenceValidator implements Validator {
 
 	private String className;
@@ -21,9 +23,9 @@ public class CompetenceValidator implements Validator {
 
 	public CompetenceValidator() {
 		this.className = getClass().getName();
-		this.name = "Angebotsfrequenz";
+		this.name = "Kompetenzabhängigkeiten ";
 		this.message = "Die benötigen Kompetenzen für das Modul wurden noch nicht erreicht.";
-		this.description = "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.";
+		this.description = "Es wird immer geprüft, ob du in deiner jetzigen Planung die inidivuellen Kompetenzen jedes Moduls in einer sinnvollen Reihenfolge erlangst.";
 
 	}
 
