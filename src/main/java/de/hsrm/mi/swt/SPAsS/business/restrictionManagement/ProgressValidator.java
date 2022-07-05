@@ -6,6 +6,11 @@ import java.util.Map;
 import de.hsrm.mi.swt.SPAsS.business.planManagement.Module;
 import de.hsrm.mi.swt.SPAsS.business.planManagement.Plan;
 
+ /**
+     * validates each Module in relation to specific Progress Rules.
+	 * For example at the Hochschule RheinMain, to take a certain Module, a student has to complete all Modules that are planned 3 Semesters before in the Curriculum.
+	 *  
+    */
 public class ProgressValidator implements Validator{
     private String className;
 	private String name;
@@ -18,7 +23,7 @@ public class ProgressValidator implements Validator{
 		this.name = "Fortschritts Regel";
         this.progressValue = progressValue;
         this.message = "Die Fortschrittsregelung ist verletzt.";
-		this.description = "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.";
+		this.description = "In deinem Studiengang gibt es eine Fortschrittsregel. Um ein Modul, das im Curriculum höher liegt als im " + progressValue + ". Semester, musst du alle Module, die mindestens " + progressValue + " Semester tiefer vorgesehen sind bereits belegt haben.";
     }
 
     @Override

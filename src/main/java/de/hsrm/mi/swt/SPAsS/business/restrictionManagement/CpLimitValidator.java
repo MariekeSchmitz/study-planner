@@ -8,6 +8,9 @@ import java.util.Map;
 import de.hsrm.mi.swt.SPAsS.business.planManagement.Plan;
 import de.hsrm.mi.swt.SPAsS.business.planManagement.Module;
 
+ /**
+     * validates each Module in relation to a certain user chosen CP-Threshold per semester
+    */
 public class CpLimitValidator implements Validator {
     
 	private String className;
@@ -21,7 +24,7 @@ public class CpLimitValidator implements Validator {
         this.className = getClass().getName();
 		this.name = "CP-Limit Regel";
         this.cpLimit = cpLimit;
-		this.description = "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet."; 
+		this.description = "Du wirst immer darauf hingewiesen, wenn du in einem Semester dein persönliches CP-Limit übersteigst. Es soll schließlich auch nicht zu stressig werden.";
         this.message = "Dein Limit von " + cpLimit + " Creditpoints pro Semester wurde überschritten.";
     }
 
