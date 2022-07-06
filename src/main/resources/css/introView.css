@@ -8,16 +8,13 @@
 /* HauptCSS*/
 
 .addbutton {
-    -fx-border-color: white;
-    -fx-border-width: 0;
-   	
+	-fx-background-color: rgba(49,49,64,1);   	
     -fx-border-radius: 80;
     -fx-background-radius: 80;
 }
 
 .addbutton:hover {
-    -fx-border-color: black;
-    -fx-border-width: 1;
+    -fx-background-color: rgba(204,231,86,1);
 }
 
 
@@ -48,7 +45,7 @@
 }
 
 .header {
-    -fx-font-size: 50px;
+    -fx-font-size: 45px;
     -fx-font-family: 'Open Sans light', sans-serif;   
 }
 
@@ -58,8 +55,8 @@
 }
 
 .headerOne {
-    -fx-font-size: 50px;
-	-fx-font-family: 'Open Sans Bold', sans-serif;
+    -fx-font-size: 45px;
+	-fx-font-family: 'Open Sans SemiBold', sans-serif;
 }
 
 .secondHeader {
@@ -109,7 +106,7 @@
 
 }
 .ownButton:hover {
-	-fx-background-color: rgba(246, 246, 246,1);
+	-fx-background-color: rgba(246, 246, 246,0.2);
 
 }
 

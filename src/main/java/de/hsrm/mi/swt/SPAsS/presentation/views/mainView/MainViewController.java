@@ -257,6 +257,22 @@ public class MainViewController extends ViewController{
 	public void setPlanViewController(PlanViewController planViewController) {
 		this.planViewController = planViewController;
 	}
+
+	public LeftSideViewController getLeftSideViewController() {
+		return leftSideViewController;
+	}
+
+	public void setLeftSideViewController(LeftSideViewController leftSideViewController) {
+		this.leftSideViewController = leftSideViewController;
+	}
+
+	public LeftSideView getLeftSideView() {
+		return leftSideView;
+	}
+
+	public void setLeftSideView(LeftSideView leftSideView) {
+		this.leftSideView = leftSideView;
+	}
     
 	
     

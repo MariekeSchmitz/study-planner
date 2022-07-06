@@ -6,6 +6,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -18,6 +19,10 @@ import javafx.scene.paint.Color;
  * View for all details of single Module - opens after selection of Module on Plan
  */
 public class ModuleInformationView extends AnchorPane{
+	
+	private VBox mainPane;
+	private ScrollPane scrollPane;
+	private AnchorPane anchorPane;
 
 	private VBox box;
 	
@@ -48,51 +53,71 @@ public class ModuleInformationView extends AnchorPane{
     private Button backButton;
     
     private HBox labelHbox;
-    private Label passedLabel;
     private Label gradeLabel;
+    
+    private int topPadding = 30;
+    private int leftPadding = 15;
+
    
 
     public ModuleInformationView() {
+    	
+    	mainPane = new VBox();
+    	scrollPane = new ScrollPane();
+    	anchorPane = new AnchorPane();
         
     	moduleName = new Label("Modulname");
 		moduleName.getStyleClass().add("ModuleHeader");
 		moduleName.setWrapText(true);
+		moduleName.setPadding(new Insets(0, 0, 0, leftPadding));
+
 
     	category = new Label("category");
 		category.getStyleClass().add("categoryLabel");
+		category.setPadding(new Insets(10, 0, 0, leftPadding));
+
     	cp = new Label("cp");
 		cp.getStyleClass().add("categoryLabel");
+		cp.setPadding(new Insets(0, 0, 0, leftPadding));
+
 
     	noteWarningHeadline = new Label("Warnhinweise");
+    	noteWarningHeadline.setId("noteWarningHeadline");
     	noteWarningText = new Label("warnhinweiseText");
+    	noteWarningText.setId("noteWarningText");
 		noteWarningText.setWrapText(true);
     	warningBox = new VBox(noteWarningHeadline,noteWarningText);
 		warningBox.setSpacing(10);
-		warningBox.setPrefHeight(75);
-		warningBox.setPadding(new Insets(5, 5, 5, 5));
+		warningBox.setPrefHeight(90);
+		warningBox.setPadding(new Insets(15, 15, 15, 15));
 		warningBox.getStyleClass().add("border-red");
+		VBox.setMargin(warningBox, new Insets(topPadding, 0, 0, 0));
 		
-		passedLabel = new Label("bestanden");
-		gradeLabel = new Label("Note");
+		gradeLabel = new Label("bestanden/Note");
+		gradeLabel.getStyleClass().add("passedLabel");
 		
-		labelHbox = new HBox(passedLabel, gradeLabel);
-		labelHbox.setSpacing(22);
+		labelHbox = new HBox(gradeLabel);
+		labelHbox.setAlignment(Pos.CENTER);
 		
-    	coursesHeadline = new Label("Lehrveranstaltung");
+    	coursesHeadline = new Label("Modul besteht aus");
 		coursesHeadline.getStyleClass().add("coursesHeadline");
-    	coursesBox = new VBox(5);
+    	coursesBox = new VBox(10);
     	
     	modulDescriptionHeadline = new Label("Modulbeschreibung");
 		modulDescriptionHeadline.getStyleClass().add("coursesHeadline");
+		modulDescriptionHeadline.setPadding(new Insets(topPadding, 0,0,0));
     	moduleDescriptionText = new Label("moduldescriptionTest");
 		moduleDescriptionText.setWrapText(true);
     	
     	taughtCompetencesHeadline = new Label("Vermittelte Kompetenzen");
 		taughtCompetencesHeadline.getStyleClass().add("coursesHeadline");
+		taughtCompetencesHeadline.setPadding(new Insets(topPadding, 0,0,0));
+
 		taughtCompetencesVbox = new VBox();
     	
     	neededCompetencesHeadline = new Label("Benötigte Kompetenzen");
 		neededCompetencesHeadline.getStyleClass().add("coursesHeadline");
+		neededCompetencesHeadline.setPadding(new Insets(topPadding, 0,0,0));
 		neededCompetencesVbox = new VBox();
 
 		ImageView ivIcon = new ImageView(new Image(File.separator+"images" + File.separator +"X.png"));
@@ -107,41 +132,48 @@ public class ModuleInformationView extends AnchorPane{
         deleteExam.setMaxSize(300, 50);
         deleteExam.getStyleClass().add("buttons");
         
-		box = new VBox(coursesHeadline, coursesBox, modulDescriptionHeadline, moduleDescriptionText, taughtCompetencesHeadline, taughtCompetencesVbox, neededCompetencesHeadline, neededCompetencesVbox, deleteExam);
-		box.setMaxWidth(400);
-		box.setSpacing(20);
+        anchorPane.getChildren().addAll(coursesHeadline, labelHbox);
+        
+		box = new VBox(anchorPane, coursesBox, modulDescriptionHeadline, moduleDescriptionText, taughtCompetencesHeadline, taughtCompetencesVbox, neededCompetencesHeadline, neededCompetencesVbox, deleteExam);
+		box.setMaxWidth(450);
+		box.setSpacing(10);
 		box.setAlignment(Pos.TOP_LEFT);
-		box.setPadding(new Insets(10, 10, 10, 10));
+		box.setPadding(new Insets(topPadding ,0 ,0 ,leftPadding));
 
 		labelVBox = new VBox(moduleName,category, cp);
 		labelVBox.setSpacing(5);
 		labelVBox.setMaxWidth(300);
 
-		AnchorPane.setTopAnchor(labelVBox, 75.0);
-        AnchorPane.setLeftAnchor(labelVBox, 60.0);
-		AnchorPane.setRightAnchor(labelVBox, 150.0);
-		
-		AnchorPane.setTopAnchor(labelHbox, 320.0);
-		AnchorPane.setRightAnchor(labelHbox, 75.0);
+		AnchorPane.setTopAnchor(labelHbox, 10.0);
+		AnchorPane.setRightAnchor(labelHbox, 0.0);
 
-		AnchorPane.setTopAnchor(warningBox, 220.0);
-        AnchorPane.setLeftAnchor(warningBox, 60.0);
-		AnchorPane.setRightAnchor(warningBox, 50.0); 
+		AnchorPane.setTopAnchor(warningBox, 270.0);
+        AnchorPane.setLeftAnchor(warningBox, 40.0);
+		AnchorPane.setRightAnchor(warningBox, 20.0); 
 
 		AnchorPane.setTopAnchor(backButton, 30.0);
-        AnchorPane.setRightAnchor(backButton, 50.0);
+        AnchorPane.setRightAnchor(backButton, 10.0);
     
-        AnchorPane.setTopAnchor(box, 300.0);
-		AnchorPane.setLeftAnchor(box, 50.0);
-		AnchorPane.setRightAnchor(box, 50.0);
-		AnchorPane.setBottomAnchor(box, 0.0);
+		mainPane.setPadding(new Insets(100, 50, 0, 80));
+		
+        AnchorPane.setTopAnchor(scrollPane, 0.0);
+		AnchorPane.setLeftAnchor(scrollPane, 0.0);
+		AnchorPane.setRightAnchor(scrollPane, 0.0);
+		AnchorPane.setBottomAnchor(scrollPane, 0.0);
 
-        this.getChildren().addAll(box, backButton, labelVBox, warningBox , labelHbox);
+        mainPane.getChildren().addAll(labelVBox, box);
+        mainPane.setMaxWidth(680);
         
+        scrollPane.setContent(mainPane);
+		scrollPane.fitToHeightProperty().set(false);
+        scrollPane.fitToWidthProperty().set(true);
+		scrollPane.setPannable(true);
+		
+        this.getChildren().addAll(scrollPane, backButton);
         this.setEffect(new DropShadow(204,0,2, Color.rgb(49, 49, 64)));
 		this.getStylesheets().add(getClass().getResource("/css/moduleInformationView.css").toExternalForm());
-        this.setStyle( "-fx-background-color:rgb(255,255,255)");	
-        this.setMaxWidth(600);
+        this.setStyle( "-fx-background-color: white");	
+        this.setMaxWidth(680);
     }
 
 	public Label getModuleName() {
@@ -296,5 +328,12 @@ public class ModuleInformationView extends AnchorPane{
 		this.labelHbox = labelHbox;
 	}
 
+	public VBox getMainPane() {
+		return mainPane;
+	}
+
+	public void setMainPane(VBox mainPane) {
+		this.mainPane = mainPane;
+	}
 
 }

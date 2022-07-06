@@ -6,24 +6,27 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 
 /**
  * Small Visual Component for flagging Module as passed and filling in grade
  */
 public class CoursesRowView extends HBox{
 
-	Label courseName = new Label();
-	CheckBox passedCheck = new CheckBox();
-	TextField gradeInput = new TextField();
-	
+	private Label courseName = new Label();
+	private CheckBox passedCheck = new CheckBox();
+	private TextField gradeInput = new TextField();
 	
 	public CoursesRowView() {
+		
 		courseName = new Label();
-		courseName.setStyle("-fx-font-size: 15px;");
+		courseName.setStyle("-fx-font-size: 13px;"
+				+ "-fx-font-family: 'Open Sans Bold', sans-serif;");
 		
 		courseName.setPrefWidth(3000);
 
 		passedCheck = new CheckBox();
+		passedCheck.setPadding(new Insets(0, 15, 0, 15));
 		
 		gradeInput = new TextField();
 		gradeInput.setPrefWidth(50);
@@ -31,10 +34,12 @@ public class CoursesRowView extends HBox{
 		
 		this.setAlignment(Pos.CENTER_LEFT);
 		this.setPadding(new Insets(10, 10, 10, 10));
-		this.setPrefHeight(25);
+		this.setPrefHeight(50);
+		this.setMinHeight(50);
 		this.setSpacing(25);
 		this.getChildren().addAll(courseName, passedCheck, gradeInput);
-		this.setStyle("-fx-background-color: rgb(196, 196, 196);");
+		this.setStyle("-fx-background-color: rgb(235,235,235);");
+
 	}
 
 
@@ -65,8 +70,6 @@ public class CoursesRowView extends HBox{
 
 	public void setGradeInput(TextField gradeInput) {
 		this.gradeInput = gradeInput;
-	}
-	
-	
+	}	
 	
 }

@@ -46,11 +46,10 @@ public class LeftSideView extends AnchorPane {
         undoButton.setId("undoButton");
         undoButton.setTooltip(new Tooltip("Undo"));
 
-        
         settingsButton.setMinSize(50, 50);
         settingsButton.setPadding(new Insets(0, 0, 5, 0));
         settingsButton.getStyleClass().add("Button");
-        settingsButton.setId("settingsButton");
+        settingsButton.setId("settingsButtonOut");
         settingsButton.setTooltip(new Tooltip("Settings"));
 
         this.getChildren().addAll(logo, settingsButton, redoButton, undoButton);   

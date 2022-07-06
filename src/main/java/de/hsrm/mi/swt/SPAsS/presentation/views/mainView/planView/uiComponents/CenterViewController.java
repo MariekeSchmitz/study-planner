@@ -3,6 +3,7 @@ package de.hsrm.mi.swt.SPAsS.presentation.views.mainView.planView.uiComponents;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.io.File;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -28,6 +29,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.Dragboard;
 import javafx.scene.input.MouseEvent;
@@ -60,6 +63,8 @@ public class CenterViewController extends ViewController implements PropertyChan
 	private Button save;
 	private TextField nameInput;
 	private Label header;
+	private Button savePanebackButton;
+
 	
 	private List<SemesterList> semesterListViews;
 	private List<ModuleView> moduleViews;
@@ -96,6 +101,7 @@ public class CenterViewController extends ViewController implements PropertyChan
 		backButton = centerView.getBackButton();
 		newPlan = centerView.getNewPlanButton();
 		save = new Button("save");
+		savePanebackButton = new Button();
 		header = centerView.getHeader();
 
 
@@ -129,6 +135,9 @@ public class CenterViewController extends ViewController implements PropertyChan
 		backButton.addEventHandler(ActionEvent.ACTION, e -> {
 			centerView.getPlanNameInputPane().setVisible(false);
 		});
+		savePanebackButton.addEventHandler(ActionEvent.ACTION, e -> {
+			centerView.getPlanNameInputPane().setVisible(false);
+		});
 
 		addExamButton.addEventHandler(ActionEvent.ACTION, e -> {
 
@@ -140,33 +149,57 @@ public class CenterViewController extends ViewController implements PropertyChan
 			
 			AnchorPane savePane = new AnchorPane();
 			savePane.setStyle("-fx-background-color: rgb(255,255,255)");
-			savePane.setMaxSize(200, 500);
-			savePane.setPrefSize(200, 500);
+			savePane.setMaxSize(500, 300);
+			savePane.setPrefSize(500, 300);
+			savePane.setMaxSize(500, 300);
 			
+			ImageView ivIcon = new ImageView(new Image(File.separator+"images" + File.separator +"X.png"));
+			ivIcon.setFitHeight(50);
+			ivIcon.setFitWidth(50);
+			savePanebackButton.setGraphic(ivIcon);
+			savePanebackButton.getStyleClass().add("backButton");
 			
-			Label title = new Label("Wie soll dein Plan heißen?");
+			Label title = new Label("Wie soll dein");
+			Label title1 = new Label("Plan heißen?");
 			title.getStyleClass().add("header");
-			title.setStyle("-fx-font-family: 'Open Sans SemiBold', sans-serif;");
+			title.setStyle("-fx-font-family: 'Open Sans Light', sans-serif;");
 			title.setId("secondColorFont");
 
+			title1.getStyleClass().add("header");
+			title1.setStyle("-fx-font-family: 'Open Sans Bold', sans-serif;");
+			title1.setId("secondColorFont");
+
 			title.setWrapText(true);
-			title.setTextAlignment(TextAlignment.CENTER);
+			title.setTextAlignment(TextAlignment.LEFT);
 
 			HBox inputSaveBox = new HBox(20);
 			nameInput = new TextField(plan.getName());
-			save.getStyleClass().add("buttons");
-			inputSaveBox.getChildren().addAll(nameInput,save);
-			inputSaveBox.setAlignment(Pos.CENTER);
+			nameInput.setPrefSize(250, 50);
+			nameInput.setMaxSize(250, 50);
 			
-			AnchorPane.setTopAnchor(title, 100.0);
+			save.getStyleClass().add("ExamAddbuttons");
+			save.setPrefSize(200, 50);
+			save.setMaxSize(200, 50);
+
+			inputSaveBox.getChildren().addAll(nameInput,save);
+			inputSaveBox.setAlignment(Pos.CENTER_LEFT);
+			
+			AnchorPane.setTopAnchor(title, 120.0);
 			AnchorPane.setLeftAnchor(title, 100.0);
 			AnchorPane.setRightAnchor(title, 100.0);
 			
-			AnchorPane.setTopAnchor(inputSaveBox, 300.0);
+			AnchorPane.setTopAnchor(title1, 190.0);
+			AnchorPane.setLeftAnchor(title1, 100.0);
+			AnchorPane.setRightAnchor(title1, 100.0);
+			
+			AnchorPane.setTopAnchor(inputSaveBox, 330.0);
 			AnchorPane.setLeftAnchor(inputSaveBox, 100.0);
 			AnchorPane.setRightAnchor(inputSaveBox, 100.0);
-
-			savePane.getChildren().addAll(title,inputSaveBox);
+			
+			AnchorPane.setTopAnchor(savePanebackButton, 30.0);
+	        AnchorPane.setRightAnchor(savePanebackButton, 30.0);
+			
+			savePane.getChildren().addAll(title,title1,inputSaveBox, savePanebackButton);
 			
 			centerView.setPlanNameInputPane(savePane);
 			

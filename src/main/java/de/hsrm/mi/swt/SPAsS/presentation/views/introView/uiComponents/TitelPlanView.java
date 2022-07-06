@@ -1,8 +1,11 @@
 package de.hsrm.mi.swt.SPAsS.presentation.views.introView.uiComponents;
 
+import java.io.File;
+
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
@@ -41,9 +44,9 @@ public class TitelPlanView extends AnchorPane{
         institutionLabel.getStyleClass().add("studyLabel");
 
         imagePane = new StackPane();
-        image = new ImageView("/images/Kacheln.png");
-        image.setFitHeight(100);
-    	image.setFitWidth(200);
+        image = new ImageView(new Image(File.separator+"images" + File.separator +"kacheln.png"));
+        image.setFitHeight(90);
+    	image.setFitWidth(180);
     	image.setOpacity(0.5);
         imagePane.getChildren().add(image);
         imagePane.setId("mainColor");
