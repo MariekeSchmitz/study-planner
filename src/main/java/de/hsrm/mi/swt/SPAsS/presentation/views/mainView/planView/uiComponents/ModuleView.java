@@ -83,15 +83,13 @@ public class ModuleView extends ListCell<Module>{
     		System.out.println(item.getName() + " valid: "+ (item.isValid()));
     		
     		if (item.isPassed()) {
-    			labels.setStyle(colorPassed);
+    			labels.setId("passed");
     		} else if (item instanceof ExamModule) {
-    			labels.setStyle(onlyExam);
+    			labels.setId("exam");
     		} else if (!this.getItem().isValid()) {
-    			labels.setStyle(invalid);
+    			labels.setId("invalid");
     		} else {
-        		//labels.setBackground(new Background(new BackgroundFill(item.getCategories().getColor(),new CornerRadii(0),new Insets(0))));
-        		labels.setBackground(new Background(new BackgroundFill(Color.WHITE,new CornerRadii(0),new Insets(0))));
-
+    			labels.setId("moduleView");
     		}
     			
     		this.setGraphic(labels);

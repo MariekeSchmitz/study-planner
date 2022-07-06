@@ -121,9 +121,10 @@
 }
 
 #invalid {
-	-fx-background-color: rgba(255,165,149,1);
-	-fx-border-color: red;
-	-fx-border-width: 1;
+	-fx-background-color: rgb(255,165,149,1);
+}
+#invalid:hover{
+	-fx-background-color: rgba(249,143,124,1);
 }
 
 #valid {
@@ -135,9 +136,25 @@
     -fx-border: none;
     -fx-border-color: transparent;
 }
+#moduleView{
+	-fx-background-color: white;
+}
 
-.moduleView:hover{
-	-fx-background-color: rgba(200, 200, 200,0.5);
+#moduleView:hover{
+	-fx-background-color: rgb(235,235,235);
+}
+#passed{
+	-fx-background-color:rgba(204,231,86, 1);
+}
+#passed:hover{
+	-fx-background-color: rgba(190, 219, 77, 1);
+}
+#exam{
+	-fx-background-color: rgb(235,235,235);	
+}
+#exam:hover{
+	-fx-background-color: rgba(226, 226, 226, 1);
+	
 }
 
 .list-cell{
