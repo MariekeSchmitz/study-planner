@@ -114,9 +114,9 @@ public class CoursesRowController extends ViewController{
 				} else {
 					
 					try {
-						CommandManager.getInstance().execAndPush(new SetGradeCommand(course.getExam(), Float.parseFloat(gradeInput.getText())));
+						CommandManager.getInstance().execAndPush(new SetGradeCommand(course.getExam(), Float.parseFloat(gradeInput.getText().replace(',','.' ))));
 
-//						plan.calculateAverage();
+						plan.calculateAverage();
 					} catch(Exception e) {
 						CommandManager.getInstance().execAndPush(new SetGradeCommand(course.getExam(), 0));
 					}

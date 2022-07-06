@@ -19,13 +19,11 @@ public class SemesterList extends ListView<Module>{
 
 	private Plan plan;
 	private List<Module> moduleList;
-	private DataFormat dataformat;
 	private int semester;
 	
-	public SemesterList (List<Module> moduleList, int semester, DataFormat dataformat, Plan plan) {
+	public SemesterList (List<Module> moduleList, int semester, Plan plan) {
 	
 		this.moduleList = moduleList;
-		this.dataformat = dataformat;
 		this.semester = semester;
 		this.plan = plan;
 		

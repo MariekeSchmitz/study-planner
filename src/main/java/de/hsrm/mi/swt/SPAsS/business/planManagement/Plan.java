@@ -181,7 +181,7 @@ public class Plan {
             }
         }
         if (cp != 0) {
-        	setAverageGrade(grade/cp);
+        	setAverageGrade(Math.round((grade/cp)*10)/10f);
         } else {
         	setAverageGrade(0f);
         }
