@@ -203,3 +203,41 @@
 	-fx-background-color: rgba(246, 246, 246,0.5);
 	
 }
+
+.check-box .mark {
+
+	-fx-shape: "M1.73,12.91 8.1,19.28 22.79,4.59 22.79,1.59 8.1,16.28 1.73,9.91";
+
+}
+
+
+.check-box .box {
+
+	-fx-background-color: white;
+	-fx-border-radius: 0px;
+	-fx-background-radius:0px;
+	
+}
+
+.check-box .box:hover {
+
+	-fx-background-color: rgb(28,28,28);
+	
+}
+
+.check-box:selected .mark {
+	-fx-background-color: white;
+}
+
+
+.check-box:selected .box {
+
+	-fx-background-color: rgb(28, 28, 28);
+
+}
+
+.check-box:selected .box:hover {
+
+	-fx-background-color: rgb(80, 80, 80);
+
+}

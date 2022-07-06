@@ -8,6 +8,8 @@ import de.hsrm.mi.swt.SPAsS.presentation.views.introView.StartView;
 import de.hsrm.mi.swt.SPAsS.presentation.views.introView.StartViewController;
 import de.hsrm.mi.swt.SPAsS.presentation.views.introView.UploadView;
 import de.hsrm.mi.swt.SPAsS.presentation.views.introView.UploadViewController;
+import de.hsrm.mi.swt.SPAsS.presentation.views.loadingView.LoadingView;
+import de.hsrm.mi.swt.SPAsS.presentation.views.loadingView.LoadingViewController;
 import de.hsrm.mi.swt.SPAsS.presentation.views.mainView.MainViewController;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
@@ -22,10 +24,13 @@ public class ViewManager {
     private App app;
     private MainViewController mainViewController;
     private StartView startView;
+    private LoadingView loadingView;
+    private StackPane loadingStack;
 
     public ViewManager(App app) {
     	this.app = app;
         root = new StackPane();
+        loadingStack = new StackPane();
         root.getStylesheets().add(getClass().getResource("/css/application.css").toExternalForm());
 
         initialise();
@@ -34,7 +39,7 @@ public class ViewManager {
 
 
     public void initialise() {
-    	switchScene(Scenes.START_VIEW);
+    	switchScene(Scenes.LOADING_VIEW);
     } 
     
 
@@ -58,29 +63,39 @@ public class ViewManager {
         	UploadView uploadView = (UploadView)new UploadViewController(this, app, FileType.CURRICULA).getRootView();
         	uploadView.getHeader().setText("Studiengang");
         	uploadView.getHeader1().setText("wählen");
-            AnchorPane.setTopAnchor(uploadView, 50.0); 
-    		AnchorPane.setLeftAnchor(uploadView, 50.0);
-    		AnchorPane.setRightAnchor(uploadView, 50.0);
-            AnchorPane.setBottomAnchor(uploadView, 50.0);   
+            AnchorPane.setTopAnchor(uploadView, 130.0); 
+    		AnchorPane.setLeftAnchor(uploadView, 130.0);
+    		AnchorPane.setRightAnchor(uploadView, 130.0);
+            AnchorPane.setBottomAnchor(uploadView, 130.0);   
             startView.getUploadPane().getChildren().add(uploadView);
             
         } else if (toScene.equals(Scenes.SELECT_VIEW)) {
         	SelectView selectView = (SelectView)new SelectViewController(this,app).getRootView();
-            AnchorPane.setTopAnchor(selectView, 50.0); 
-    		AnchorPane.setLeftAnchor(selectView, 50.0);
-    		AnchorPane.setRightAnchor(selectView, 50.0);
-            AnchorPane.setBottomAnchor(selectView, 50.0);   
+            AnchorPane.setTopAnchor(selectView, 130.0); 
+    		AnchorPane.setLeftAnchor(selectView, 130.0);
+    		AnchorPane.setRightAnchor(selectView, 130.0);
+            AnchorPane.setBottomAnchor(selectView, 130.0);   
             startView.getUploadPane().getChildren().add(selectView);
         
         } else if (toScene.equals(Scenes.UPLOAD_PLAN_VIEW)) {
         	UploadView uploadView = (UploadView)new UploadViewController(this, app, FileType.PLAN).getRootView();
         	uploadView.getHeader().setText("Eigenen Plan");
         	uploadView.getHeader1().setText("wählen");
-            AnchorPane.setTopAnchor(uploadView, 50.0); 
-    		AnchorPane.setLeftAnchor(uploadView, 50.0);
-    		AnchorPane.setRightAnchor(uploadView, 50.0);
-            AnchorPane.setBottomAnchor(uploadView, 50.0);   
+            AnchorPane.setTopAnchor(uploadView, 130.0); 
+    		AnchorPane.setLeftAnchor(uploadView, 130.0);
+    		AnchorPane.setRightAnchor(uploadView, 130.0);
+            AnchorPane.setBottomAnchor(uploadView, 130.0);   
             startView.getUploadPane().getChildren().add(uploadView);   
+        
+        } else if (toScene.equals(Scenes.LOADING_VIEW)) {
+        	startView = (StartView)new StartViewController(this, app).getRootView();
+        	loadingView = (LoadingView)new LoadingViewController(this).getRootView();
+        	
+        	loadingStack.getChildren().addAll(startView,loadingView);
+        	root.getChildren().add(loadingStack);
+        	
+//            startView = (StartView)new StartViewController(this, app).getRootView();
+//            root.getChildren().add(startView);
         }
 
     } 
