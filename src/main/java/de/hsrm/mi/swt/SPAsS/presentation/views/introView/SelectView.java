@@ -28,6 +28,7 @@ public class SelectView extends AnchorPane{
     private Pane backgroundPane;
 
     private Label header;
+    private Label header1;
     private Label header2;
 
     private BorderPane drag_drop_field;
@@ -46,13 +47,16 @@ public class SelectView extends AnchorPane{
 		backButton.setGraphic(ivIcon);
 		backButton.getStyleClass().add("backButton");
     	
-        header = new Label("Studiengang \nwählen");
-        header.getStyleClass().add("header");
+        header = new Label("Studiengang");
+        header.getStyleClass().add("headerOne");
+        
+        header1 = new Label("wählen");
+        header1.getStyleClass().add("header");
 
         Pane platzhalter = new Pane();
         platzhalter.setPrefSize(1000, 300);
         platzhalter.setMaxHeight(0);
-        platzhalter.setMaxWidth(200);
+        platzhalter.setMaxWidth(130);
 
         hbox = new HBox(30, platzhalter);
 		hbox.setPadding(new Insets(30));
@@ -70,15 +74,18 @@ public class SelectView extends AnchorPane{
         header2.getStyleClass().add("header_2");
 
         backgroundPane = new Pane();
-        //backgroundPane.setBackground(new Background(new BackgroundFill(new Color(0.9,0.9,0.9, 0.5), new CornerRadii(0), new Insets(0))));
+        backgroundPane.setBackground(new Background(new BackgroundFill(Color.rgb(246, 246, 246,1), new CornerRadii(0), new Insets(0))));
 
         AnchorPane.setTopAnchor(header, 100.0); 
-        AnchorPane.setLeftAnchor(header, 150.0);
+        AnchorPane.setLeftAnchor(header, 130.0);
+        
+        AnchorPane.setTopAnchor(header1, 170.0);
+        AnchorPane.setLeftAnchor(header1, 130.0);
 
         AnchorPane.setTopAnchor(header2, 500.0);
         AnchorPane.setLeftAnchor(header2, 200.0);
-
-        AnchorPane.setTopAnchor(drag_drop_field, 600.0);
+        
+        AnchorPane.setTopAnchor(drag_drop_field, 590.0);
         AnchorPane.setLeftAnchor(drag_drop_field, 200.0);
         AnchorPane.setBottomAnchor(drag_drop_field, 50.0);
         AnchorPane.setRightAnchor(drag_drop_field, 200.0);
@@ -97,7 +104,7 @@ public class SelectView extends AnchorPane{
         
         this.getStyleClass().add("BackgroundWhite");
         this.getStylesheets().add(getClass().getResource("/css/introView.css").toExternalForm());
-        this.getChildren().addAll(backgroundPane, header, header2, drag_drop_field, scrollPane, backButton);
+        this.getChildren().addAll(backgroundPane, header, header1, header2, drag_drop_field, scrollPane, backButton);
     }
 
     public HBox getHbox() {
@@ -110,6 +117,9 @@ public class SelectView extends AnchorPane{
 
     public Label getHeader() {
         return header;
+    }
+    public Label getHeader1() {
+        return header1;
     }
 
     public Label getHeader2() {

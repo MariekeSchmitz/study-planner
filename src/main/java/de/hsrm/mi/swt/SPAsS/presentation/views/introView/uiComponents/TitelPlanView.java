@@ -73,10 +73,10 @@ public class TitelPlanView extends AnchorPane{
         AnchorPane.setRightAnchor(imagePane, 0.0);
         AnchorPane.setTopAnchor(imagePane, 0.0);
 
-
+        this.setId("StudyHover");
         this.getChildren().addAll(imagePane, degreeProgramLabel, titelLabel, institutionLabel, openPlanButton);
         this.setPrefSize(1000, 300);
-        this.setMaxHeight(350);
+        this.setMaxHeight(400);
         this.setMaxWidth(350);
     }
 

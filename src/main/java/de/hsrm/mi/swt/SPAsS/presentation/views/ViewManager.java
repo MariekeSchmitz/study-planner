@@ -56,7 +56,8 @@ public class ViewManager {
             
         } else if (toScene.equals(Scenes.UPLOAD_CURRICULUM_VIEW)) {
         	UploadView uploadView = (UploadView)new UploadViewController(this, app, FileType.CURRICULA).getRootView();
-        	uploadView.getHeader().setText("Studiengang \nwählen");
+        	uploadView.getHeader().setText("Studiengang");
+        	uploadView.getHeader1().setText("wählen");
             AnchorPane.setTopAnchor(uploadView, 50.0); 
     		AnchorPane.setLeftAnchor(uploadView, 50.0);
     		AnchorPane.setRightAnchor(uploadView, 50.0);
@@ -73,7 +74,8 @@ public class ViewManager {
         
         } else if (toScene.equals(Scenes.UPLOAD_PLAN_VIEW)) {
         	UploadView uploadView = (UploadView)new UploadViewController(this, app, FileType.PLAN).getRootView();
-        	uploadView.getHeader().setText("Eigenen Plan \nwählen");
+        	uploadView.getHeader().setText("Eigenen Plan");
+        	uploadView.getHeader1().setText("wählen");
             AnchorPane.setTopAnchor(uploadView, 50.0); 
     		AnchorPane.setLeftAnchor(uploadView, 50.0);
     		AnchorPane.setRightAnchor(uploadView, 50.0);

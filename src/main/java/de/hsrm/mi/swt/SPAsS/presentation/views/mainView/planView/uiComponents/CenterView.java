@@ -132,7 +132,6 @@ public class CenterView extends AnchorPane{
 		scrollPane.setPannable(true);
 
         planPane.getStyleClass().add("backgroundtransparent");
-        planPane.setSpacing(10);
         
         AnchorPane.setLeftAnchor(hBoxAdd, 155.0);
         AnchorPane.setTopAnchor(hBoxAdd, 330.0);

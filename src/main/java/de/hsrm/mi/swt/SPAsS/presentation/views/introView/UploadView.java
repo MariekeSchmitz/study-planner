@@ -17,6 +17,7 @@ public class UploadView extends AnchorPane {
 	private Button backButton;
 
     private Label header;
+    private Label header1;
 
     private BorderPane drag_drop_field;
 
@@ -29,15 +30,19 @@ public class UploadView extends AnchorPane {
 		backButton.setGraphic(ivIcon);
 		backButton.getStyleClass().add("backButton");
     	
-        header = new Label("Eigenen Plan hochladen");
-        header.setWrapText(true);
-        header.getStyleClass().add("header");
-        header.setId("secondColorFont");
+        header = new Label("Studiengang");
+        header.getStyleClass().add("headerOne");
+        
+        header1 = new Label("wählen");
+        header1.getStyleClass().add("header");
         
         drag_drop_field = new BorderPane();
 
         AnchorPane.setTopAnchor(header, 100.0);
-        AnchorPane.setLeftAnchor(header, 150.0);
+        AnchorPane.setLeftAnchor(header, 130.0);
+        
+        AnchorPane.setTopAnchor(header1, 170.0);
+        AnchorPane.setLeftAnchor(header1, 130.0);
         
         AnchorPane.setTopAnchor(backButton, 30.0);
         AnchorPane.setRightAnchor(backButton, 30.0);
@@ -49,11 +54,14 @@ public class UploadView extends AnchorPane {
 
         this.getStylesheets().add(getClass().getResource("/css/introView.css").toExternalForm());
         this.setStyle("-fx-background-color: rgb(255,255,255)");
-        this.getChildren().addAll(header, drag_drop_field, backButton);
+        this.getChildren().addAll(header,header1, drag_drop_field, backButton);
     }
 
 	public Label getHeader() {
 		return header;
+	}
+	public Label getHeader1() {
+		return header1;
 	}
 
 	public void setHeader(Label header) {

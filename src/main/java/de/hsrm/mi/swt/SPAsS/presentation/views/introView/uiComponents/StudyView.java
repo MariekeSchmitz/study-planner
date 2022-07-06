@@ -48,7 +48,8 @@ public class StudyView extends AnchorPane{
         AnchorPane.setTopAnchor(studyViewButton, 0.0);
         AnchorPane.setBottomAnchor(studyViewButton, 0.0);
         AnchorPane.setRightAnchor(studyViewButton, 0.0);
-
+        
+        this.setId("StudyHover");
         this.getChildren().addAll(studyLabel, campusLabel, ivIconaddButton, studyViewButton);
         this.setPrefSize(1000, 300);
         this.setMaxHeight(75);
