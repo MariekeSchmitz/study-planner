@@ -3,7 +3,6 @@ package de.hsrm.mi.swt.SPAsS.presentation.views.mainView.planView.uiComponents;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
-import java.io.File;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -13,7 +12,6 @@ import de.hsrm.mi.swt.SPAsS.application.App;
 import de.hsrm.mi.swt.SPAsS.business.fileManagement.FileManager;
 import de.hsrm.mi.swt.SPAsS.business.fileManagement.FileType;
 import de.hsrm.mi.swt.SPAsS.business.planManagement.Course;
-import de.hsrm.mi.swt.SPAsS.business.planManagement.ExamModule;
 import de.hsrm.mi.swt.SPAsS.business.planManagement.Module;
 import de.hsrm.mi.swt.SPAsS.business.planManagement.Plan;
 import de.hsrm.mi.swt.SPAsS.presentation.views.Scenes;
@@ -30,10 +28,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.ClipboardContent;
-import javafx.scene.input.DataFormat;
 import javafx.scene.input.Dragboard;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.TransferMode;
@@ -41,7 +36,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import javafx.scene.text.TextAlignment;
 import javafx.util.Callback;
 /**
@@ -67,7 +61,6 @@ public class CenterViewController extends ViewController implements PropertyChan
 	private TextField nameInput;
 	private Label header;
 	
-	private DataFormat dataFormat = new DataFormat("moduleCell");
 	private List<SemesterList> semesterListViews;
 	private List<ModuleView> moduleViews;
 	private Map<Integer, ObservableList<Module>> moduleMapWithObservables;
@@ -184,6 +177,7 @@ public class CenterViewController extends ViewController implements PropertyChan
 		save.addEventHandler(ActionEvent.ACTION, e -> {
 			
 			plan.setName(nameInput.getText());
+			header.setText(plan.getName());
 
 			FileManager fileManager = app.getFileManager();
 			fileManager.fileSave(FileType.PLAN, plan);
@@ -265,7 +259,7 @@ public class CenterViewController extends ViewController implements PropertyChan
 			moduleListObservable = FXCollections.observableList(moduleMap.get(i));
 			moduleMapWithObservables.put(i, moduleListObservable);
 
-			semesterListView = new SemesterList(moduleListObservable, i, dataFormat, plan);
+			semesterListView = new SemesterList(moduleListObservable, i, plan);
 			semesterListView.setItems(moduleListObservable);
 			semesterListView.setOrientation(Orientation.HORIZONTAL);
 
