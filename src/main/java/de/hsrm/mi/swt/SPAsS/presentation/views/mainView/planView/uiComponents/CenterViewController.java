@@ -3,6 +3,7 @@ package de.hsrm.mi.swt.SPAsS.presentation.views.mainView.planView.uiComponents;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.io.File;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -29,6 +30,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.DataFormat;
 import javafx.scene.input.Dragboard;
@@ -144,25 +147,25 @@ public class CenterViewController extends ViewController implements PropertyChan
 			
 			AnchorPane savePane = new AnchorPane();
 			savePane.setStyle("-fx-background-color: rgb(255,255,255)");
-			savePane.getStyleClass().add("test-border-red");
 			savePane.setMaxSize(200, 500);
 			savePane.setPrefSize(200, 500);
 			
 			
-			
 			Label title = new Label("Wie soll dein Plan heißen?");
 			title.getStyleClass().add("header");
+			title.setStyle("-fx-font-family: 'Open Sans SemiBold', sans-serif;");
+			title.setId("secondColorFont");
+
 			title.setWrapText(true);
-			title.getStyleClass().add("test-border-red");
-			title.setAlignment(Pos.CENTER);
 			title.setTextAlignment(TextAlignment.CENTER);
 
 			HBox inputSaveBox = new HBox(20);
 			nameInput = new TextField(plan.getName());
+			save.getStyleClass().add("buttons");
 			inputSaveBox.getChildren().addAll(nameInput,save);
 			inputSaveBox.setAlignment(Pos.CENTER);
 			
-			AnchorPane.setTopAnchor(title, 150.0);
+			AnchorPane.setTopAnchor(title, 100.0);
 			AnchorPane.setLeftAnchor(title, 100.0);
 			AnchorPane.setRightAnchor(title, 100.0);
 			

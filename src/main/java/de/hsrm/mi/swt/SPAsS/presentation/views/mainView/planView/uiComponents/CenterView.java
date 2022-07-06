@@ -165,7 +165,7 @@ public class CenterView extends AnchorPane{
         AnchorPane.setRightAnchor(newPlanButton, 50.0);
         AnchorPane.setBottomAnchor(newPlanButton, 50.0);
 
-        this.getChildren().addAll(backgroundPane, scrollPane, hBoxAdd, header, pointAverage, buttonsBox, planNameInputPane ,newPlanButton);
+        this.getChildren().addAll(backgroundPane, scrollPane, hBoxAdd, header, pointAverage, buttonsBox, newPlanButton, planNameInputPane);
         this.getStylesheets().add(getClass().getResource("/css/mainView.css").toExternalForm());
     }
 
