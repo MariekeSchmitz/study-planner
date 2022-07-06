@@ -7,6 +7,8 @@ import java.util.Map;
 import de.hsrm.mi.swt.SPAsS.business.planManagement.Course;
 import de.hsrm.mi.swt.SPAsS.business.planManagement.Module;
 import de.hsrm.mi.swt.SPAsS.business.planManagement.Plan;
+import de.hsrm.mi.swt.SPAsS.business.restrictionManagement.CpLimitValidator;
+import de.hsrm.mi.swt.SPAsS.business.restrictionManagement.Validator;
 
 
 /**
@@ -45,6 +47,14 @@ public class ResetPlanCommand implements ICommand{
                 commands.add(new RemoveSemesterCommand(p));
             }
         }
+        for (Validator validator : p.getValidatorList()) {
+					
+            if (validator instanceof CpLimitValidator) {
+                CpLimitValidator cpValidator = (CpLimitValidator)validator;
+                commands.add(new ChangeCPSettingsCommand(p, cpValidator, 40));
+            }
+            
+        }
     }
 
     @Override
@@ -53,6 +63,7 @@ public class ResetPlanCommand implements ICommand{
             iCommand.execute();
         }
         myPlan.setNumberSemester(myPlan.getNumberSemester());
+        myPlan.validate();
     }
 
     @Override
@@ -60,6 +71,8 @@ public class ResetPlanCommand implements ICommand{
         for (int i = commands.size()-1; i >= 0; i--) {
             commands.get(i).undo();
         }
+        myPlan.setNumberSemester(myPlan.getNumberSemester());
+        myPlan.validate();
     }
 
     @Override

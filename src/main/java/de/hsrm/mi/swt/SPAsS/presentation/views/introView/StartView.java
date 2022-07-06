@@ -3,6 +3,7 @@ package de.hsrm.mi.swt.SPAsS.presentation.views.introView;
 import java.io.File;
 
 import de.hsrm.mi.swt.SPAsS.presentation.views.introView.uiComponents.LogoView;
+import de.hsrm.mi.swt.SPAsS.presentation.views.introView.uiComponents.OwnbuttonView;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -27,7 +28,7 @@ public class StartView extends AnchorPane {
     private Label secondHeader;
 
     private Button addButton;
-    private Button ownPlanButton;
+    private OwnbuttonView ownPlanButton;
 
     private HBox hbox;
     private ScrollPane scrollPane;
@@ -40,10 +41,10 @@ public class StartView extends AnchorPane {
     public StartView() {
 
     	uploadPane = new AnchorPane();
-    	uploadPane.setStyle("-fx-background-color: rgba(0,0,0,0.3)");
+    	uploadPane.getStyleClass().add("BackgroundBackButton");
     	uploadPane.setVisible(false);
     	
-        headerVBox = new VBox(10);
+        headerVBox = new VBox(5);
         
         logo = new LogoView(true,200);
         header1 = new Label("Willkommen zum");
@@ -58,7 +59,6 @@ public class StartView extends AnchorPane {
 
         addButton = new Button();
         addButton.getStyleClass().add("addbutton");
-        addButton.setId("secondColor");
         addButton.setPrefSize(75, 75);
         addButton.setMaxSize(75, 75);
 		ImageView ivIconaddButton = new ImageView(new Image(File.separator+"images" + File.separator +"plus.png"));
@@ -66,15 +66,7 @@ public class StartView extends AnchorPane {
 		ivIconaddButton.setFitWidth(35);
 		addButton.setGraphic(ivIconaddButton);
 
-        ownPlanButton = new Button();
-        ownPlanButton.getStyleClass().add("ownButton");
-        ownPlanButton.setPrefSize(300, 300);
-        ownPlanButton.setMaxSize(200, 50);
-        
-		ImageView ivIconOwnButton = new ImageView(new Image(File.separator+"images" + File.separator +"PlanImportieren.png"));
-		ivIconOwnButton.setFitHeight(61);
-		ivIconOwnButton.setFitWidth(216);
-		ownPlanButton.setGraphic(ivIconOwnButton);
+        ownPlanButton = new OwnbuttonView();
     
         hbox = new HBox(20);
 		hbox.setPadding(new Insets(30));
@@ -99,13 +91,13 @@ public class StartView extends AnchorPane {
         AnchorPane.setTopAnchor(addButton, 520.0);
         AnchorPane.setLeftAnchor(addButton, 330.0);
 
-        AnchorPane.setBottomAnchor(ownPlanButton, 50.0);
-        AnchorPane.setRightAnchor(ownPlanButton, 100.0);
+        AnchorPane.setBottomAnchor(ownPlanButton, 30.0);
+        AnchorPane.setRightAnchor(ownPlanButton, 70.0);
 
         AnchorPane.setTopAnchor(scrollPane, 425.0); 
 		AnchorPane.setLeftAnchor(scrollPane, 300.0);
 		AnchorPane.setRightAnchor(scrollPane, 0.0);
-        AnchorPane.setBottomAnchor(scrollPane, 0.0);  
+        AnchorPane.setBottomAnchor(scrollPane, 50.0);  
         
         AnchorPane.setTopAnchor(uploadPane, 0.0); 
 		AnchorPane.setLeftAnchor(uploadPane, 0.0);
@@ -141,7 +133,7 @@ public class StartView extends AnchorPane {
         return addButton;
     }
 
-    public Button getOwnPlanButton() {
+    public OwnbuttonView getOwnPlanButton() {
         return ownPlanButton;
     }
 

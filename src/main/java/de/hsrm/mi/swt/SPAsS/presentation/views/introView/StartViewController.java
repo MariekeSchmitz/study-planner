@@ -46,7 +46,7 @@ public class StartViewController extends ViewController {
         rootView = startView;
         scrollPane = startView.getScrollPane();
         addButton = startView.getAddButton();
-        ownPlanButton = startView.getOwnPlanButton();
+        ownPlanButton = startView.getOwnPlanButton().getButton();
         secondHeader = startView.getSecondHeader();
         hbox = startView.getHbox();
         initialise();
@@ -110,7 +110,7 @@ public class StartViewController extends ViewController {
 		});
         
         ownPlanButton.addEventHandler(ActionEvent.ACTION, e -> {
-
+        	System.out.println("OwnPlanButton");
         	viewManager.switchScene(Scenes.UPLOAD_PLAN_VIEW);
 			startView.getUploadPane().setVisible(true);
 
@@ -123,12 +123,12 @@ public class StartViewController extends ViewController {
         if(!plansAvailable){
             scrollPane.setVisible(false);
             secondHeader.setText("Neuen Plan hinzufügen");
-            AnchorPane.setTopAnchor(addButton, 520.0);
-            AnchorPane.setLeftAnchor(addButton, 350.0);
+            AnchorPane.setTopAnchor(addButton, 555.0);
+            AnchorPane.setLeftAnchor(addButton, 375.0);
         } else {
             scrollPane.setVisible(true);
             secondHeader.setText("Deine Pläne");
-            AnchorPane.setTopAnchor(addButton, 520.0);
+            AnchorPane.setTopAnchor(addButton, 555.0);
             AnchorPane.setLeftAnchor(addButton, 200.0);
             addButton.setMaxSize(150, 150);
         }

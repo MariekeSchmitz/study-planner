@@ -69,15 +69,30 @@
 
 .buttons {
     -fx-background-color: transparent;
-    -fx-border-color: grey;
+    -fx-border-color: rgba(49,49,64,1);
     -fx-border-width: 1;
     -fx-font-family: 'Open Sans Regular', sans-serif;
     
 }
 .buttons:hover {
-    -fx-background-color: rgba(246, 246, 246,0.5);
+    -fx-background-color: rgba(49,49,64,1);
+	-fx-text-fill: white;	
+
     
 }
+
+.ExamAddbuttons {
+    -fx-background-color: transparent;
+    -fx-border-color: rgba(49,49,64,1);
+    -fx-border-width: 1;
+    -fx-font-family: 'Open Sans Regular', sans-serif;
+    
+}
+.ExamAddbuttons:hover {
+    -fx-text-fill: rgba(204,231,86,1)	
+    
+}
+
 
 .backbutton {
     -fx-background-color: transparent;
@@ -94,8 +109,7 @@
     
 }
 .addSemester:hover{
-	    -fx-background-color: rgba(246, 246, 246,0.5);
-	
+	-fx-text-fill: rgba(204,231,86,1)	
 }
 
 .numberSemester {
@@ -144,7 +158,7 @@
 	-fx-background-color: rgb(235,235,235);
 }
 #passed{
-	-fx-background-color:rgba(204,231,86, 1);
+	-fx-background-color: rgba(204,231,86, 1);
 }
 #passed:hover{
 	-fx-background-color: rgba(190, 219, 77, 1);
@@ -204,40 +218,6 @@
 	
 }
 
-.check-box .mark {
-
-	-fx-shape: "M1.73,12.91 8.1,19.28 22.79,4.59 22.79,1.59 8.1,16.28 1.73,9.91";
-
-}
-
-
-.check-box .box {
-
-	-fx-background-color: white;
-	-fx-border-radius: 0px;
-	-fx-background-radius:0px;
-	
-}
-
-.check-box .box:hover {
-
-	-fx-background-color: rgb(28,28,28);
-	
-}
-
-.check-box:selected .mark {
-	-fx-background-color: white;
-}
-
-
-.check-box:selected .box {
-
-	-fx-background-color: rgb(28, 28, 28);
-
-}
-
-.check-box:selected .box:hover {
-
-	-fx-background-color: rgb(80, 80, 80);
-
+.scroll-pane .viewport {
+    -fx-background-color: transparent;
 }

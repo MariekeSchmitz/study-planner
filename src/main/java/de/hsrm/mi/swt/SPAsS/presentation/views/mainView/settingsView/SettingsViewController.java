@@ -53,6 +53,7 @@ public class SettingsViewController extends ViewController{
         backButton.addEventHandler(ActionEvent.ACTION, e -> {
             System.out.println("backButton");
     		viewManager.getMainViewController().transitionOut(Scenes.SETTINGS_VIEW);
+    		viewManager.getMainViewController().getLeftSideView().getSettingsButton().setId("settingsButtonOut");
     		Scenes.SETTINGS_VIEW.setIn(false);
     	});  
         

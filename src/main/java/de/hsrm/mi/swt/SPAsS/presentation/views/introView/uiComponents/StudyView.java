@@ -31,8 +31,8 @@ public class StudyView extends AnchorPane{
         campusLabel.getStyleClass().add("campusLabel1");
 
 		ivIconaddButton = new ImageView(new Image(File.separator+"images" + File.separator +"pfeilgruen.png"));
-		ivIconaddButton.setFitHeight(21);
-		ivIconaddButton.setFitWidth(40);
+		ivIconaddButton.setFitHeight(31);
+		ivIconaddButton.setFitWidth(60);
 
         AnchorPane.setLeftAnchor(studyLabel, 10.0);
         AnchorPane.setTopAnchor(studyLabel, 10.0);
@@ -40,7 +40,7 @@ public class StudyView extends AnchorPane{
         AnchorPane.setLeftAnchor(campusLabel, 10.0);
         AnchorPane.setTopAnchor(campusLabel, 40.0);
 
-        AnchorPane.setLeftAnchor(ivIconaddButton, 270.0);
+        AnchorPane.setLeftAnchor(ivIconaddButton, 290.0);
         AnchorPane.setTopAnchor(ivIconaddButton, 27.0);
         AnchorPane.setBottomAnchor(ivIconaddButton, 27.0);
 

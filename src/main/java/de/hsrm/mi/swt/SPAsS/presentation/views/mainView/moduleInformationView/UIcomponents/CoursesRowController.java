@@ -12,6 +12,8 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 /**
  * Visual Component for Drag and Drop
  */
@@ -35,12 +37,12 @@ public class CoursesRowController extends ViewController{
 		this.plan = plan;
 		this.hasExtraExam = hasExtraExam;
 		
+		
 		coursesRowView = new CoursesRowView();
 		rootView = coursesRowView;
 		
 		passedCheckbox = coursesRowView.getPassedCheck();
 		gradeInput = coursesRowView.getGradeInput();
-		
 		initialise();
 		
 	}
@@ -68,9 +70,8 @@ public class CoursesRowController extends ViewController{
 //				gradeInput.setVisible(false);
 //				passedCheckbox.setVisible(false);
 				coursesRowView.setStyle("-fx-background-color: rgb(230, 230, 230);");
-				coursesRowView.setPrefWidth(200);
-				coursesRowView.setMaxWidth(200);
-				coursesRowView.setMinWidth(200);
+				coursesRowView.setPrefWidth(350);
+				coursesRowView.setMinWidth(350);
 				coursesRowView.getChildren().remove(gradeInput);
 				coursesRowView.getChildren().remove(passedCheckbox);
 
@@ -83,12 +84,13 @@ public class CoursesRowController extends ViewController{
 					} else {
 						gradeInput.setText("");
 					}		
-					passedCheckbox.setVisible(false);
+					coursesRowView.getChildren().remove(passedCheckbox);
 					gradeInput.setVisible(true);
 			
 				} else {
-					gradeInput.setVisible(false);
+					coursesRowView.getChildren().remove(gradeInput);
 					passedCheckbox.setVisible(true);
+
 				}
 			}
 		}

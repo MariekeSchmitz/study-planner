@@ -1,5 +1,7 @@
 package de.hsrm.mi.swt.SPAsS.presentation.views.mainView.settingsView.uiComponents;
 
+import de.hsrm.mi.swt.SPAsS.business.commands.ChangeCPSettingsCommand;
+import de.hsrm.mi.swt.SPAsS.business.commands.CommandManager;
 import de.hsrm.mi.swt.SPAsS.business.planManagement.Plan;
 import de.hsrm.mi.swt.SPAsS.business.restrictionManagement.CpLimitValidator;
 import de.hsrm.mi.swt.SPAsS.business.restrictionManagement.Validator;
@@ -36,7 +38,7 @@ public class ValidatorInformationViewController extends ViewController {
 					
 					if (validator instanceof CpLimitValidator) {
 						CpLimitValidator cpValidator = (CpLimitValidator)validator;
-						cpValidator.setCpLimit(Integer.valueOf(textInput.getText()));
+                        CommandManager.getInstance().execAndPush(new ChangeCPSettingsCommand(plan, cpValidator, Integer.valueOf(textInput.getText())));
 						plan.validate();
 					}
 					

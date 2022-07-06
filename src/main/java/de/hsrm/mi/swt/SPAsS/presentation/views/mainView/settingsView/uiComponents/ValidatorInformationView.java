@@ -39,7 +39,7 @@ public class ValidatorInformationView extends VBox {
         inputBox.getChildren().addAll(input,inputLabel);
         inputLabel.getStyleClass().add("Validatorheader");
 
-
+        this.getStylesheets().add(getClass().getResource("/css/mainView.css").toExternalForm());
         this.setSpacing(10);
         this.getChildren().addAll(header, inputBox, description);
     }

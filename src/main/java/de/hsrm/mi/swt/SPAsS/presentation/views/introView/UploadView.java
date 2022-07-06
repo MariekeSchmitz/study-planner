@@ -4,11 +4,13 @@ import java.io.File;
 
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 /**
  * View for importing Plan file
  */
@@ -38,11 +40,11 @@ public class UploadView extends AnchorPane {
         
         drag_drop_field = new BorderPane();
 
-        AnchorPane.setTopAnchor(header, 100.0);
-        AnchorPane.setLeftAnchor(header, 130.0);
+        AnchorPane.setTopAnchor(header, 80.0); 
+        AnchorPane.setLeftAnchor(header, 100.0);
         
-        AnchorPane.setTopAnchor(header1, 170.0);
-        AnchorPane.setLeftAnchor(header1, 130.0);
+        AnchorPane.setTopAnchor(header1, 140.0);
+        AnchorPane.setLeftAnchor(header1, 100.0);
         
         AnchorPane.setTopAnchor(backButton, 30.0);
         AnchorPane.setRightAnchor(backButton, 30.0);
@@ -54,6 +56,7 @@ public class UploadView extends AnchorPane {
 
         this.getStylesheets().add(getClass().getResource("/css/introView.css").toExternalForm());
         this.setStyle("-fx-background-color: rgb(255,255,255)");
+        this.setEffect(new DropShadow(204,0,2, Color.rgb(49, 49, 64)));
         this.getChildren().addAll(header,header1, drag_drop_field, backButton);
     }
 

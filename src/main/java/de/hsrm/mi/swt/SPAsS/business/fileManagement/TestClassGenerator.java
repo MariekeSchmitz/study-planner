@@ -143,7 +143,7 @@ public class TestClassGenerator {
                                                 new Competence("Softwaretechnik"),
                                                 new Competence("Webbasierte Anwendungen")),
                                                 Arrays.asList(new Competence("Softwaretechnik-Projekt")),infl, true, "");
-                Module mci = new Module("Mensch-Computer-Interaktion", getLorem(), 5, 5,
+                Module mci = new Module("Mensch-Computer Interaktion", getLorem(), 5, 5,
                                 OfferedTime.YEARLY, getCourses(3,3),
                                 Arrays.asList(new Competence("Softwaretechnik"),
                                                 new Competence("Gestaltung elektronischer Medien"),

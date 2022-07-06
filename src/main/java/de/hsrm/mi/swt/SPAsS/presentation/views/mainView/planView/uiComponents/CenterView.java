@@ -1,4 +1,4 @@
-package de.hsrm.mi.swt.SPAsS.presentation.views.mainView.planView.uiComponents;
+    package de.hsrm.mi.swt.SPAsS.presentation.views.mainView.planView.uiComponents;
 
 import java.io.File;
 
@@ -48,7 +48,6 @@ public class CenterView extends AnchorPane{
         
         newPlanButton = new Button();
         newPlanButton.getStyleClass().add("newPlanButton");
-        newPlanButton.setId("secondColor");
         newPlanButton.setPrefSize(60,60);
         newPlanButton.setMaxSize(60,60);
 		ImageView ivIconaddButton = new ImageView(new Image(File.separator+"images" + File.separator +"plus.png"));
@@ -116,7 +115,7 @@ public class CenterView extends AnchorPane{
         
         addExam = new Button("Klausur hinzufügen");
         addExam.setPrefSize(200,40);
-        addExam.getStyleClass().add("buttons");
+        addExam.getStyleClass().add("ExamAddbuttons");
 
         HBox.setHgrow(addSemester, Priority.ALWAYS);
         HBox.setHgrow(resetPlan, Priority.ALWAYS);
@@ -297,10 +296,10 @@ public class CenterView extends AnchorPane{
 	public void setPlanNameInputPane(Pane planNameInputPane) {
 		this.planNameInputPane.getChildren().add(planNameInputPane); 
 
-        AnchorPane.setLeftAnchor(planNameInputPane, 350.0);
-        AnchorPane.setTopAnchor(planNameInputPane, 200.0);
-        AnchorPane.setRightAnchor(planNameInputPane,350.0);
-        AnchorPane.setBottomAnchor(planNameInputPane, 200.0);
+        AnchorPane.setLeftAnchor(planNameInputPane, 300.0);
+        AnchorPane.setTopAnchor(planNameInputPane, 250.0);
+        AnchorPane.setRightAnchor(planNameInputPane,330.0);
+        AnchorPane.setBottomAnchor(planNameInputPane, 250.0);
         
 		this.planNameInputPane.setVisible(true);
 	}

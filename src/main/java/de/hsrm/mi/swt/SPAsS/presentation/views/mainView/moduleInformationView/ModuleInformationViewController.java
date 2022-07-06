@@ -29,9 +29,7 @@ public class ModuleInformationViewController extends ViewController{
 	private VBox coursesBox;
 	private HBox courseHBox;
 	private VBox taughtCompetencesVbox;
-	private VBox neededCompetencesVbox;
-
-	
+	private VBox neededCompetencesVbox;	
 	
 	
     public ModuleInformationViewController(MainViewController mainViewController, App app) {
@@ -92,14 +90,15 @@ public class ModuleInformationViewController extends ViewController{
     	
     	if (module.isValid()) {
     		moduleInformationView.getWarningBox().setVisible(false);
-			AnchorPane.setTopAnchor(moduleInformationView.getBox(), 200.0);
-			AnchorPane.setTopAnchor(moduleInformationView.getLabelHbox(), 220.0);
+    		moduleInformationView.getMainPane().getChildren().remove(moduleInformationView.getWarningBox());
+
 
     	} else {
+    		moduleInformationView.getMainPane().getChildren().remove(moduleInformationView.getWarningBox());
+    		moduleInformationView.getMainPane().getChildren().add(1, moduleInformationView.getWarningBox());
     		moduleInformationView.getWarningBox().setVisible(true);
     		moduleInformationView.getNoteWarningText().setText(module.getNote());
-			AnchorPane.setTopAnchor(moduleInformationView.getBox(), 300.0);
-			AnchorPane.setTopAnchor(moduleInformationView.getLabelHbox(), 320.0);
+
     	}
     	
     	coursesBox = moduleInformationView.getCoursesBox();
