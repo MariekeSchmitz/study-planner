@@ -1,5 +1,7 @@
 package de.hsrm.mi.swt.SPAsS.application;
 
+import java.io.File;
+
 import de.hsrm.mi.swt.SPAsS.business.fileManagement.FileManager;
 import de.hsrm.mi.swt.SPAsS.business.fileManagement.FileType;
 import de.hsrm.mi.swt.SPAsS.business.fileManagement.TestClassGenerator;
@@ -38,7 +40,7 @@ public class App extends Application {
 		testClass = new TestClassGenerator();
 		plan = testClass.plan;
 
-		fileManager = new FileManager("FileManagerTestFolder");
+		fileManager = new FileManager("src"+File.separator+"main"+File.separator+"resources"+File.separator+"fileManagement");
 		try {
 			fileManager.test(false);
 		} catch (Exception e) {
