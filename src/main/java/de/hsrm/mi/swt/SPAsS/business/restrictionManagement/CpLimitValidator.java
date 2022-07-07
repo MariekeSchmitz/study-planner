@@ -1,5 +1,7 @@
 package de.hsrm.mi.swt.SPAsS.business.restrictionManagement;
 
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -19,6 +21,9 @@ public class CpLimitValidator implements Validator {
     private String message;
     private int cpLimit;
     private String description;
+    
+//    private transient PropertyChangeSupport pcs = new PropertyChangeSupport(this);
+
  
     public CpLimitValidator(int cpLimit){
         this.className = getClass().getName();
@@ -26,7 +31,23 @@ public class CpLimitValidator implements Validator {
         this.cpLimit = cpLimit;
 		this.description = "Du wirst immer darauf hingewiesen, wenn du in einem Semester dein persönliches CP-Limit übersteigst. Es soll schließlich auch nicht zu stressig werden.";
         this.message = "Dein Limit von " + cpLimit + " Creditpoints pro Semester wurde überschritten.";
+
     }
+    
+    /** 
+//     * @param listener
+//     */
+//    public void addPropertyChangeListener(PropertyChangeListener listener) {
+//        this.pcs.addPropertyChangeListener(listener);
+//    }
+//
+//    
+//    /** 
+//     * @param listener
+//     */
+//    public void removePropertyChangeListener(PropertyChangeListener listener) {
+//        this.pcs.removePropertyChangeListener(listener);
+//    }
 
     @Override
 	public void validate(Plan plan) {
@@ -46,7 +67,7 @@ public class CpLimitValidator implements Validator {
     			
     			if (tempCP > this.cpLimit) {
     				module.setValid(false);
-        			module.setNote("Dein Limit von " + cpLimit + " Creditpoints pro Semester wurde im " + module.getSemesterCurrent() + " überschritten. ");
+        			module.setNote("Dein Limit von " + cpLimit + " Creditpoints pro Semester wurde im " + module.getSemesterCurrent() + ".Semester überschritten. ");
     			
     			} else {
     				
@@ -76,11 +97,11 @@ public class CpLimitValidator implements Validator {
         return cpLimit;
     }
     public void setCpLimit(int cpLimit) {
+        int pre = this.cpLimit;
         this.cpLimit = cpLimit;
         this.message = "Dein Limit von " + cpLimit + " Creditpoints pro Semester wurde überschritten.";
-        
+//        this.pcs.firePropertyChange("cpLimit", pre, cpLimit);
     }
-
 
     @Override
     public String getClassName() {

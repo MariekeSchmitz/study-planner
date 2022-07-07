@@ -52,8 +52,8 @@ public class SettingsView extends AnchorPane {
         scrollPane.fitToWidthProperty().set(true);
 		scrollPane.setPannable(true);
 
-        AnchorPane.setTopAnchor(backButton, 50.0);
-        AnchorPane.setRightAnchor(backButton, 50.0);
+        AnchorPane.setTopAnchor(backButton, 30.0);
+        AnchorPane.setRightAnchor(backButton, 30.0);
 
         AnchorPane.setTopAnchor(header, 125.0);
         AnchorPane.setLeftAnchor(header, 150.0);
