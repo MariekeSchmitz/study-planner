@@ -34,6 +34,8 @@ public class ExamView extends AnchorPane{
 
         header = new Label("Klausur \nhinzufügen");
         header.getStyleClass().add("headerExamView");
+        header.setStyle("-fx-font-size: 30px;-fx-font-family: 'Open Sans SemiBold', sans-serif;");
+
 
         listView = new ListView<>();
 

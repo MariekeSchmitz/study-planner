@@ -41,6 +41,9 @@ public class ExamListCell extends ListCell<ExamModule>{
         header = new Label("");
         header.getStyleClass().add("examListHeader");
         header.setId("secondColorFont");
+        header.setStyle("-fx-font-size: 15px; -fx-font-family: 'Open Sans bold', sans-serif;");
+
+
         cp = new Label("");
         cp.getStyleClass().add("examListCp");
         cp.setId("secondColorFont");
@@ -70,6 +73,7 @@ public class ExamListCell extends ListCell<ExamModule>{
         this.setMaxHeight(30);
         this.setStyle("-fx-background-color: transparent;");
         mainPane.getStyleClass().add("listCellExamModule");
+        
 
     }
 
