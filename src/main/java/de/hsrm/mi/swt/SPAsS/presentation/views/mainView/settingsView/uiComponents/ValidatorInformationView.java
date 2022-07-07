@@ -1,5 +1,7 @@
 package de.hsrm.mi.swt.SPAsS.presentation.views.mainView.settingsView.uiComponents;
 
+import java.io.File;
+
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -39,7 +41,7 @@ public class ValidatorInformationView extends VBox {
         inputBox.getChildren().addAll(input,inputLabel);
         inputLabel.getStyleClass().add("Validatorheader");
 
-        this.getStylesheets().add(getClass().getResource("/css/mainView.css").toExternalForm());
+        this.getStylesheets().add(File.separator+"css"+File.separator+"mainView.css");
         this.setSpacing(10);
         this.getChildren().addAll(header, inputBox, description);
     }

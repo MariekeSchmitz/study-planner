@@ -28,7 +28,7 @@ public class FileManager {
 
     public FileManager(String path) {
         this.path = path;
-//      testPlan = new TestClassGenerator().plan;
+        // testPlan = new TestClassGenerator().plan;
     }
 
     
@@ -141,17 +141,6 @@ public class FileManager {
         }
     }
     
-//    public void duplicateFile(FileType type, File file, String fileName) throws IOException {
-//
-//        String typePath = type == FileType.PLAN ? "plans" : "curricula";
-//        String outPath = path + File.separator + typePath + File.separator + fileName + ".json";
-//    	 
-//        Path in = Paths.get(file.getAbsolutePath());
-//        Path out= Paths.get(outPath);
-//       
-//        Files.copy(in, out, StandardCopyOption.REPLACE_EXISTING);
-//
-//    }
     
     /** 
      * creates Meta File out of plan (Metafile contains name, Studiengang and Hochschule of Plan/Curriculum)

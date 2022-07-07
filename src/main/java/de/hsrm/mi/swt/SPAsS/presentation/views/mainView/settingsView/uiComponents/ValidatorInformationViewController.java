@@ -1,8 +1,5 @@
 package de.hsrm.mi.swt.SPAsS.presentation.views.mainView.settingsView.uiComponents;
 
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
-
 import de.hsrm.mi.swt.SPAsS.business.commands.ChangeCPSettingsCommand;
 import de.hsrm.mi.swt.SPAsS.business.commands.CommandManager;
 import de.hsrm.mi.swt.SPAsS.business.planManagement.Plan;

@@ -1,7 +1,6 @@
 package de.hsrm.mi.swt.SPAsS.business.restrictionManagement;
 
 import java.util.List;
-import java.util.Map;
 
 import de.hsrm.mi.swt.SPAsS.business.planManagement.Module;
 import de.hsrm.mi.swt.SPAsS.business.planManagement.OfferedTime;

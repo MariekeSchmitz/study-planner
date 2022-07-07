@@ -3,21 +3,16 @@ package de.hsrm.mi.swt.SPAsS.presentation.views.mainView.examView;
 import java.io.File;
 
 import de.hsrm.mi.swt.SPAsS.business.planManagement.ExamModule;
-import de.hsrm.mi.swt.SPAsS.business.planManagement.Module;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 
 public class ExamListCell extends ListCell<ExamModule>{
 /**

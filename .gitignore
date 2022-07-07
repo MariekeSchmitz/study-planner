@@ -12,5 +12,3 @@ hs_err_pid*log
 
 .DS_Store
 src/.DS_Store
-
-*.json

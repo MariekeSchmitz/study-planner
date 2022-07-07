@@ -1,7 +1,6 @@
 package de.hsrm.mi.swt.SPAsS.business.restrictionManagement;
 
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -105,54 +104,6 @@ public class CompetenceValidator implements Validator {
 
 	}
 
-//	public void validate2(Plan plan) {
-//
-//		Map<Integer, List<Module>> moduleMap = plan.getModuleMap();
-//		boolean competencesObtained = false;
-//
-//		for (int semester : moduleMap.keySet()) {
-//
-//			for (Module module : moduleMap.get(semester)) {
-//
-//				competencesObtained = false;
-//
-//				List<Competence> neededCompetences = module.getNeededCompetences();
-//				List<Competence> taughtCompetences = new LinkedList<>();
-//
-//				if (neededCompetences.isEmpty()) {
-//					continue;
-//				}
-//
-//				for (int i = 1; i < semester; semester++) {
-//
-//					List<Module> tempList = moduleMap.get(i);
-//
-//					for (Module tempModule : tempList) {
-//						taughtCompetences.addAll(tempModule.getTaughtCompetences());
-//
-//						if (taughtCompetences.containsAll(neededCompetences)) {
-//							competencesObtained = true;
-//							break;
-//						}
-//
-//					}
-//
-//					if (competencesObtained) {
-//						break;
-//					}
-//
-//				}
-//
-//				if (!competencesObtained) {
-//					module.setValid(false);
-//					module.setNote(this.message);
-//				}
-//
-//			}
-//
-//		}
-//
-//	}
 
 	@Override
 	public String getClassName() {

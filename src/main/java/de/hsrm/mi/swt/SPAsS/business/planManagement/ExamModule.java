@@ -42,7 +42,6 @@ public class ExamModule extends Module{
 			var pre = this.valid;
 			this.valid = valid;		
 			this.pcs.firePropertyChange("valid", pre, this.valid);
-			System.out.println("semesterCurrent - set "+this.valid);
 			
 		}
 	 

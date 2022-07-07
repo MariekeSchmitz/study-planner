@@ -8,11 +8,12 @@ import de.hsrm.mi.swt.SPAsS.business.planManagement.Course;
 import de.hsrm.mi.swt.SPAsS.business.planManagement.ExamModule;
 import de.hsrm.mi.swt.SPAsS.business.planManagement.Module;
 import de.hsrm.mi.swt.SPAsS.presentation.views.Scenes;
-import de.hsrm.mi.swt.SPAsS.presentation.views.ViewController;import de.hsrm.mi.swt.SPAsS.presentation.views.mainView.MainViewController;
-import de.hsrm.mi.swt.SPAsS.presentation.views.mainView.moduleInformationView.UIcomponents.CoursesRowController;import javafx.event.ActionEvent;
+import de.hsrm.mi.swt.SPAsS.presentation.views.ViewController;
+import de.hsrm.mi.swt.SPAsS.presentation.views.mainView.MainViewController;
+import de.hsrm.mi.swt.SPAsS.presentation.views.mainView.moduleInformationView.UIcomponents.CoursesRowController;
+import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 /**
@@ -43,8 +44,6 @@ public class ModuleInformationViewController extends ViewController{
     	deleteButton = moduleInformationView.getDeleteExam();
     	
     	moduleInformationView.getStyleClass().add("moduleInformatioView");
-    	
-    	System.out.println(moduleInformationView.getWidth());
      
     	initialise();
     }

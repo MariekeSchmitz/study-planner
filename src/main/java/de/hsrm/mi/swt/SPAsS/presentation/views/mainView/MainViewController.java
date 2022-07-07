@@ -1,6 +1,7 @@
 package de.hsrm.mi.swt.SPAsS.presentation.views.mainView;
 
 import de.hsrm.mi.swt.SPAsS.application.App;
+import de.hsrm.mi.swt.SPAsS.business.planManagement.Module;
 import de.hsrm.mi.swt.SPAsS.presentation.views.Scenes;
 import de.hsrm.mi.swt.SPAsS.presentation.views.ViewController;
 import de.hsrm.mi.swt.SPAsS.presentation.views.ViewManager;
@@ -21,7 +22,6 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.util.Duration;
-import de.hsrm.mi.swt.SPAsS.business.planManagement.Module;
 
 /**
  * Combines all Plan-related Views into single Layer

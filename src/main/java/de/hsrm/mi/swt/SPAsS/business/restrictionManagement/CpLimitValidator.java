@@ -1,14 +1,10 @@
 package de.hsrm.mi.swt.SPAsS.business.restrictionManagement;
 
-import java.beans.PropertyChangeListener;
-import java.beans.PropertyChangeSupport;
-import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-import de.hsrm.mi.swt.SPAsS.business.planManagement.Plan;
 import de.hsrm.mi.swt.SPAsS.business.planManagement.Module;
+import de.hsrm.mi.swt.SPAsS.business.planManagement.Plan;
 
  /**
      * validates each Module in relation to a certain user chosen CP-Threshold per semester
@@ -22,7 +18,6 @@ public class CpLimitValidator implements Validator {
     private int cpLimit;
     private String description;
     
-//    private transient PropertyChangeSupport pcs = new PropertyChangeSupport(this);
 
  
     public CpLimitValidator(int cpLimit){
@@ -34,20 +29,7 @@ public class CpLimitValidator implements Validator {
 
     }
     
-    /** 
-//     * @param listener
-//     */
-//    public void addPropertyChangeListener(PropertyChangeListener listener) {
-//        this.pcs.addPropertyChangeListener(listener);
-//    }
-//
-//    
-//    /** 
-//     * @param listener
-//     */
-//    public void removePropertyChangeListener(PropertyChangeListener listener) {
-//        this.pcs.removePropertyChangeListener(listener);
-//    }
+
 
     @Override
 	public void validate(Plan plan) {
@@ -100,7 +82,6 @@ public class CpLimitValidator implements Validator {
         int pre = this.cpLimit;
         this.cpLimit = cpLimit;
         this.message = "Dein Limit von " + cpLimit + " Creditpoints pro Semester wurde überschritten.";
-//        this.pcs.firePropertyChange("cpLimit", pre, cpLimit);
     }
 
     @Override

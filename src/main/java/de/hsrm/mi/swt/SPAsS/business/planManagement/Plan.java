@@ -339,7 +339,6 @@ public class Plan {
     	var pre = this.averageGrade;
 		this.averageGrade = averageGrade;
 		this.pcs.firePropertyChange("average", pre, this.averageGrade);
-		System.out.println("AverageGrade - set "+this.averageGrade);
     	
     }
     

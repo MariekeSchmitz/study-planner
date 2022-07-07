@@ -39,7 +39,6 @@ public class SemesterList extends ListView<Module>{
 
 			@Override
 			public void handle(DragEvent event) {
-				System.out.println("moduleOnDragOver");
 				boolean moveSupported = true; 
 				
 				Dragboard dragboard;
@@ -67,7 +66,6 @@ public class SemesterList extends ListView<Module>{
 			@Override
 			public void handle(DragEvent event) {
 				
-				System.out.println("moduleOnDragDropped");
 
 				Dragboard dragboard = event.getDragboard();
 					

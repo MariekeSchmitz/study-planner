@@ -15,7 +15,7 @@ import javafx.stage.Stage;
 
 /**
  * JavaFx - Application class. Contains Application initialisation, start and quit logic.
- * 
+ * @author Tom Gouthier, Finn Schindel, Fabio Bertels, Marieke Schmitz 
  */
 public class App extends Application {
 
@@ -38,15 +38,15 @@ public class App extends Application {
 		this.primaryStage = primaryStage;
 		
 		testClass = new TestClassGenerator();
-//		plan = testClass.plan;
+		// plan = testClass.plan;
 
 		fileManager = new FileManager("src"+File.separator+"main"+File.separator+"resources"+File.separator+"fileManagement");
-		try {
-//			fileManager.test(false);
-		} catch (Exception e) {
-			e.printStackTrace();
-			System.out.println("you killed the parser");
-		}
+		// try {
+		// 	fileManager.test(false);
+		// } catch (Exception e) {
+		// 	e.printStackTrace();
+		// 	System.out.println("you killed the parser");
+		// }
 
 		try {
 			scene = new Scene(new Pane(), 1440, 1024);

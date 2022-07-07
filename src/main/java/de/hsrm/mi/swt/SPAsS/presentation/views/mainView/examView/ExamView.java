@@ -3,8 +3,6 @@ package de.hsrm.mi.swt.SPAsS.presentation.views.mainView.examView;
 import java.io.File;
 
 import de.hsrm.mi.swt.SPAsS.business.planManagement.ExamModule;
-import de.hsrm.mi.swt.SPAsS.business.planManagement.Module;
-
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;

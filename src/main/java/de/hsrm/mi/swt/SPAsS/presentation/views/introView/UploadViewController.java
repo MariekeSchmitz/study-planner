@@ -1,8 +1,6 @@
 package de.hsrm.mi.swt.SPAsS.presentation.views.introView;
 
 
-import java.util.List;
-
 import de.hsrm.mi.swt.SPAsS.application.App;
 import de.hsrm.mi.swt.SPAsS.business.fileManagement.FileType;
 import de.hsrm.mi.swt.SPAsS.presentation.views.Scenes;

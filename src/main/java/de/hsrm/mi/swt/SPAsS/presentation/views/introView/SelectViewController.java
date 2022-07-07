@@ -70,8 +70,6 @@ public class SelectViewController extends ViewController{
         		institution = "";
         		degreeProgram = "";
 			}
-    		
-    		System.out.println(name);
 
     		
         	

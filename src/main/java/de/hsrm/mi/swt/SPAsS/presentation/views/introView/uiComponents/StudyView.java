@@ -4,6 +4,7 @@ import javafx.scene.layout.AnchorPane;
 
 import java.io.File;
 
+import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -33,6 +34,9 @@ public class StudyView extends AnchorPane{
 		ivIconaddButton = new ImageView(new Image(File.separator+"images" + File.separator +"pfeilgruen.png"));
 		ivIconaddButton.setFitHeight(31);
 		ivIconaddButton.setFitWidth(60);
+
+        this.setPadding(new Insets(0,10,0,10));
+        
 
         AnchorPane.setLeftAnchor(studyLabel, 10.0);
         AnchorPane.setTopAnchor(studyLabel, 10.0);

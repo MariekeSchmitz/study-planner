@@ -17,7 +17,6 @@ import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -128,7 +127,6 @@ public class StartViewController extends ViewController {
 		});
         
         ownPlanButton.addEventHandler(ActionEvent.ACTION, e -> {
-        	System.out.println("OwnPlanButton");
         	viewManager.switchScene(Scenes.UPLOAD_PLAN_VIEW);
 			startView.getUploadPane().setVisible(true);
 

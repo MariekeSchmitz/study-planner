@@ -1,19 +1,14 @@
 package de.hsrm.mi.swt.SPAsS.presentation.views.mainView.planView.uiComponents;
 
+import de.hsrm.mi.swt.SPAsS.business.planManagement.ExamModule;
+import de.hsrm.mi.swt.SPAsS.business.planManagement.Module;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.effect.DropShadow;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import de.hsrm.mi.swt.SPAsS.business.planManagement.Course;
-import de.hsrm.mi.swt.SPAsS.business.planManagement.Exam;
-import de.hsrm.mi.swt.SPAsS.business.planManagement.ExamModule;
-import de.hsrm.mi.swt.SPAsS.business.planManagement.Module;
 /**
  * Visual Component - visualizes single Module
  */
@@ -59,28 +54,12 @@ public class ModuleView extends ListCell<Module>{
     	
     	if (!empty) {
     		
-//    		if (this.getItem().isValid()) {
-//    			this.setId("valid");
-//    		} else {
-//    			this.setId("invalid");
-//    		}
     		this.setId("valid");
     		moduleLabel.setText(item.getName());
     		cpLabel.setText(Integer.toString(item.getCp()) + " CP");
     		
     		Color color = item.getCategories().getColor();
-    		double red = color.getRed();
-    		double blue = color.getBlue();
-    		double green = color.getGreen();
     		
-    		
-    		// TO DO 
-    		//String colorPassed = "-fx-background-color:rgba("+red+","+blue+","+green+", 0.5);";
-    		String colorPassed = "-fx-background-color:rgba(204,231,86, 1);";
-    		String onlyExam = "-fx-background-color:rgb(235,235,235)";
-    		String invalid = "-fx-background-color: rgb(255,165,149)";
-    		
-    		System.out.println(item.getName() + " valid: "+ (item.isValid()));
     		
     		if (item.isPassed()) {
     			labels.setId("passed");

@@ -37,6 +37,7 @@ import javafx.scene.input.Dragboard;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.TransferMode;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
@@ -148,11 +149,13 @@ public class CenterViewController extends ViewController implements PropertyChan
 		
 		savePlanButton.addEventHandler(ActionEvent.ACTION, e -> {
 			
+			BorderPane borderPane = new BorderPane();
+			borderPane.setStyle("-fx-background-color: transparent;");
 			AnchorPane savePane = new AnchorPane();
 			savePane.setStyle("-fx-background-color: rgb(255,255,255)");
-			savePane.setMaxSize(500, 300);
-			savePane.setPrefSize(500, 300);
-			savePane.setMaxSize(500, 300);
+			savePane.setMinHeight(300);
+			savePane.setMaxHeight(500);
+			savePane.setPrefHeight(500);
 			
 			ImageView ivIcon = new ImageView(new Image(File.separator+"images" + File.separator +"x.png"));
 			ivIcon.setFitHeight(50);
@@ -163,11 +166,11 @@ public class CenterViewController extends ViewController implements PropertyChan
 			Label title = new Label("Wie soll dein");
 			Label title1 = new Label("Plan heißen?");
 			title.getStyleClass().add("header");
-			title.setStyle("-fx-font-family: 'Open Sans Light', sans-serif;");
+			title.setStyle("-fx-font-family: 'Open Sans Light', sans-serif; -fx-font-size: 45px;");
 			title.setId("secondColorFont");
 
 			title1.getStyleClass().add("header");
-			title1.setStyle("-fx-font-family: 'Open Sans Bold', sans-serif;");
+			title1.setStyle("-fx-font-family: 'Open Sans Bold', sans-serif; -fx-font-size: 45px;");
 			title1.setId("secondColorFont");
 
 			title.setWrapText(true);
@@ -203,8 +206,10 @@ public class CenterViewController extends ViewController implements PropertyChan
 	        AnchorPane.setRightAnchor(savePanebackButton, 30.0);
 			
 			savePane.getChildren().addAll(title,title1,inputSaveBox, savePanebackButton);
-			
-			centerView.setPlanNameInputPane(savePane);
+			borderPane.setCenter(savePane);
+			//borderPane.setMinSize(600, 300);
+
+			centerView.setPlanNameInputPane(borderPane);
 			
 			
 
@@ -217,7 +222,6 @@ public class CenterViewController extends ViewController implements PropertyChan
 
 			FileManager fileManager = app.getFileManager();
 			fileManager.fileSave(FileType.PLAN, plan);
-			System.out.println("Plan saved");
 			
 			centerView.getPlanNameInputPane().setVisible(false);
 
@@ -227,22 +231,12 @@ public class CenterViewController extends ViewController implements PropertyChan
 		addSemesterButton.addEventHandler(ActionEvent.ACTION, e -> {
 
 			plan.addSemester();
-			//generateListView();
-
-			System.out.println(moduleMap);
-
-			System.out.println("addSemester");
 
 		});
 
 		removeSemesterButton.addEventHandler(ActionEvent.ACTION, e -> {
 
 			plan.removeSemester();
-			//generateListView();
-
-			System.out.println(moduleMap);
-
-			System.out.println("removeSemester");
 
 		});
 
@@ -310,20 +304,15 @@ public class CenterViewController extends ViewController implements PropertyChan
 					
 					moduleViews.add(moduleView);
 
-//					moduleView.getItem().addPropertyChangeListener(this);
 
 					moduleView.setOnDragDetected((MouseEvent event) -> {
-						System.out.println("listcell setOnDragDetected");
 						Dragboard db = moduleView.startDragAndDrop(TransferMode.MOVE);
 						ClipboardContent content = new ClipboardContent();
-//		                moduleView.setTranslateX(moduleView.getTranslateX() + event.getX());
-//		                moduleView.setTranslateY(moduleView.getTranslateY() + event.getY());
+
 
 						Module module = moduleView.getItem();
 
 						content.putString(module.getName());
-
-						System.out.println(content);
 
 						db.setContent(content);
 						event.consume();
@@ -346,7 +335,6 @@ public class CenterViewController extends ViewController implements PropertyChan
 							if (event.getX() == mouseX && event.getY() == mouseY) {
 								if(moduleView.getItem()==null) return;
 								viewManager.getMainViewController().putModuleViewOnStack(moduleView.getItem());
-								System.out.println("Maus geklickt auf Modul");
 							}
 
 						}
@@ -384,8 +372,6 @@ public class CenterViewController extends ViewController implements PropertyChan
 		case "semesterCurrent":
 
 			Module module = (Module) event.getSource();
-
-			System.out.println("currentSemester Update " + event);
 			moduleMapWithObservables.get(event.getOldValue()).remove(module);
 			moduleMapWithObservables.get(event.getNewValue()).add(module);
 
@@ -403,33 +389,14 @@ public class CenterViewController extends ViewController implements PropertyChan
 			
 			Module m = (Module) event.getSource();
 			
-//			if (m instanceof ExamModule) {
-//				m.getAssociatedExamModule().setValid((Boolean)event.getNewValue());
-//			} else if (m.isHasExamModule()) {
-//				m.getAssociatedExamModule().setValid((Boolean)event.getNewValue());
-//			}
 			
 			for (SemesterList listView: semesterListViews) {
 				listView.refresh();
 			}
-//			ModuleView mView = null;
-//			
-//			for (ModuleView moduleView : moduleViews) {
-//				if (moduleView.getItem() == m) {
-//					mView = moduleView;
-//					break;
-//				} 
-//			}
-//			
-//			if ((Boolean)event.getNewValue()) {
-//				mView.setId("valid");
-//			} else {
-//				mView.setId("invalid");
-//			}
+
 			
 		break;
 		case "average":
-			System.out.println("AverageGrade Update " + event);
 			if (plan.getAverageGrade() == 0.0f) {
 				gradeAverage.setText("Sobald du eine Prüfung bestanden hast, findest du hier deinen Notendurchschnitt.");
 			} else {

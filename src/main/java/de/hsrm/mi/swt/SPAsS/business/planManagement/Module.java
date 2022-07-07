@@ -285,7 +285,6 @@ public class Module {
 		var pre = this.semesterCurrent;
 		this.semesterCurrent = semesterCurrent;
 		this.pcs.firePropertyChange("semesterCurrent", pre, this.semesterCurrent);
-		System.out.println("semesterCurrent - set "+this.semesterCurrent);
 		
 	}
 	
@@ -414,7 +413,6 @@ public class Module {
 		var pre = this.valid;
 		this.valid = valid;		
 		this.pcs.firePropertyChange("valid", pre, this.valid);
-		System.out.println("semesterCurrent - set "+this.valid);
 		
 	}
 
