@@ -118,8 +118,9 @@ public class ModuleInformationView extends AnchorPane{
 		neededCompetencesHeadline.getStyleClass().add("coursesHeadline");
 		neededCompetencesHeadline.setPadding(new Insets(topPadding, 0,0,0));
 		neededCompetencesVbox = new VBox();
+		
 
-		ImageView ivIcon = new ImageView(new Image(File.separator+"images" + File.separator +"X.png"));
+		ImageView ivIcon = new ImageView(new Image(File.separator+"images" + File.separator +"x.png"));
 		ivIcon.setFitHeight(50);
 		ivIcon.setFitWidth(50);
 		backButton = new Button();
@@ -131,6 +132,7 @@ public class ModuleInformationView extends AnchorPane{
         deleteExam.setMaxSize(300, 50);
         deleteExam.getStyleClass().add("buttons");
         
+        
         anchorPane.getChildren().addAll(coursesHeadline, labelHbox);
         
 		box = new VBox(anchorPane, coursesBox, modulDescriptionHeadline, moduleDescriptionText, taughtCompetencesHeadline, taughtCompetencesVbox, neededCompetencesHeadline, neededCompetencesVbox, deleteExam);
@@ -138,6 +140,7 @@ public class ModuleInformationView extends AnchorPane{
 		box.setSpacing(10);
 		box.setAlignment(Pos.TOP_LEFT);
 		box.setPadding(new Insets(topPadding ,0 ,0 ,leftPadding));
+		VBox.setMargin(deleteExam, new Insets(30,0,30,0));
 
 		labelVBox = new VBox(moduleName,category, cp);
 		labelVBox.setSpacing(5);
@@ -151,7 +154,7 @@ public class ModuleInformationView extends AnchorPane{
 		AnchorPane.setRightAnchor(warningBox, 20.0); 
 
 		AnchorPane.setTopAnchor(backButton, 30.0);
-        AnchorPane.setRightAnchor(backButton, 10.0);
+        AnchorPane.setRightAnchor(backButton, 30.0);
     
 		mainPane.setPadding(new Insets(100, 0, 0, 65));
 		

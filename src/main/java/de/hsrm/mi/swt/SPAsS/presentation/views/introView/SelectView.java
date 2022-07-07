@@ -41,7 +41,7 @@ public class SelectView extends AnchorPane{
 
     public SelectView() {
     	
-		ImageView ivIcon = new ImageView(new Image(File.separator+"images" + File.separator +"X.png"));
+		ImageView ivIcon = new ImageView(new Image(File.separator+"images" + File.separator +"x.png"));
 		ivIcon.setFitHeight(50);
 		ivIcon.setFitWidth(50);
 		backButton = new Button();

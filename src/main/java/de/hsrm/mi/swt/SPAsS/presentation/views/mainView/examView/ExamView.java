@@ -25,7 +25,7 @@ public class ExamView extends AnchorPane{
 
     public ExamView() {
 
-		ImageView ivIcon = new ImageView(new Image(File.separator+"images" + File.separator +"X.png"));
+		ImageView ivIcon = new ImageView(new Image(File.separator+"images" + File.separator +"x.png"));
 		ivIcon.setFitHeight(50);
 		ivIcon.setFitWidth(50);
 		backbutton = new Button();
@@ -34,25 +34,27 @@ public class ExamView extends AnchorPane{
 
         header = new Label("Klausur \nhinzufügen");
         header.getStyleClass().add("headerExamView");
+        header.setStyle("-fx-font-size: 30px;-fx-font-family: 'Open Sans SemiBold', sans-serif;");
+
 
         listView = new ListView<>();
 
-        AnchorPane.setTopAnchor(header, 70.0);
-        AnchorPane.setLeftAnchor(header, 50.0);
+        AnchorPane.setTopAnchor(header, 100.0);
+        AnchorPane.setLeftAnchor(header, 80.0);
 
         AnchorPane.setTopAnchor(backbutton, 30.0);
-        AnchorPane.setRightAnchor(backbutton, 50.0);
+        AnchorPane.setRightAnchor(backbutton, 30.0);
 
-        AnchorPane.setTopAnchor(listView, 200.0);
-        AnchorPane.setLeftAnchor(listView, 50.0);
+        AnchorPane.setTopAnchor(listView, 220.0);
+        AnchorPane.setLeftAnchor(listView, 80.0);
         AnchorPane.setRightAnchor(listView, 50.0);
         AnchorPane.setBottomAnchor(listView, 0.0);
 
-        this.getStylesheets().add(getClass().getResource("/css/MainView.css").toExternalForm());
+        this.getStylesheets().add("src"+File.separator+"main"+File.separator+"resources"+File.separator+"css"+File.separator+"mainView.css");
         this.getChildren().addAll(header, backbutton, listView);
         this.setMaxWidth(680);
         this.setEffect(new DropShadow(204,0,2, Color.rgb(49, 49, 64)));
-        this.setStyle( "-fx-background-color:rgb(255,255,255)");	
+        this.setStyle("-fx-background-color:rgb(255,255,255)");	
     }
 
     public Label getHeader() {

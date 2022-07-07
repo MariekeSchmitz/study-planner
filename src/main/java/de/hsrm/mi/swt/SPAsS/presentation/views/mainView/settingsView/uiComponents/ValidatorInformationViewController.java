@@ -1,5 +1,8 @@
 package de.hsrm.mi.swt.SPAsS.presentation.views.mainView.settingsView.uiComponents;
 
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+
 import de.hsrm.mi.swt.SPAsS.business.commands.ChangeCPSettingsCommand;
 import de.hsrm.mi.swt.SPAsS.business.commands.CommandManager;
 import de.hsrm.mi.swt.SPAsS.business.planManagement.Plan;
@@ -40,14 +43,17 @@ public class ValidatorInformationViewController extends ViewController {
 						CpLimitValidator cpValidator = (CpLimitValidator)validator;
                         CommandManager.getInstance().execAndPush(new ChangeCPSettingsCommand(plan, cpValidator, Integer.valueOf(textInput.getText())));
 						plan.validate();
+						
+						
 					}
-					
 				}
-				
-				
+	
 			}
 		});
+    	
+    	
         
     }
+
     
 }
