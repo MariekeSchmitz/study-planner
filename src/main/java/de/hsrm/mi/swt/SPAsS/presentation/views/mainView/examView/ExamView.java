@@ -50,7 +50,7 @@ public class ExamView extends AnchorPane{
 
         this.getStylesheets().add(getClass().getResource("/css/MainView.css").toExternalForm());
         this.getChildren().addAll(header, backbutton, listView);
-        this.setMaxWidth(600);
+        this.setMaxWidth(680);
         this.setEffect(new DropShadow(204,0,2, Color.rgb(49, 49, 64)));
         this.setStyle( "-fx-background-color:rgb(255,255,255)");	
     }

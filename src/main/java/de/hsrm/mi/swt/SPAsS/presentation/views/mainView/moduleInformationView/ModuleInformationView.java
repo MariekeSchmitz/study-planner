@@ -88,7 +88,7 @@ public class ModuleInformationView extends AnchorPane{
 		noteWarningText.setWrapText(true);
     	warningBox = new VBox(noteWarningHeadline,noteWarningText);
 		warningBox.setSpacing(10);
-		warningBox.setPrefHeight(90);
+		//warningBox.setPrefHeight(90);
 		warningBox.setPadding(new Insets(15, 15, 15, 15));
 		warningBox.getStyleClass().add("border-red");
 		VBox.setMargin(warningBox, new Insets(topPadding, 0, 0, 0));
@@ -172,7 +172,6 @@ public class ModuleInformationView extends AnchorPane{
         this.getChildren().addAll(scrollPane, backButton);
         this.setEffect(new DropShadow(204,0,2, Color.rgb(49, 49, 64)));
 		this.getStylesheets().add(getClass().getResource("/css/moduleInformationView.css").toExternalForm());
-        this.setStyle( "-fx-background-color: white");	
         this.setMaxWidth(680);
     }
 

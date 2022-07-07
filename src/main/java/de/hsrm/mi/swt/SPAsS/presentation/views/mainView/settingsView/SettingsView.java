@@ -69,7 +69,7 @@ public class SettingsView extends AnchorPane {
         this.setEffect(new DropShadow(204,0,2, Color.rgb(49, 49, 64)));
         this.getStylesheets().add(getClass().getResource("/css/settingsView.css").toExternalForm());
 		this.setId("secondColor");
-        this.setMaxWidth(675);
+        this.setMaxWidth(755);
     }
 
 

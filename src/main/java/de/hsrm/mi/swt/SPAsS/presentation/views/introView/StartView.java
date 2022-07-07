@@ -82,22 +82,22 @@ public class StartView extends AnchorPane {
         AnchorPane.setTopAnchor(logo, 50.0);
         AnchorPane.setLeftAnchor(logo, 50.0);
 
-        AnchorPane.setTopAnchor(headerVBox, 200.0);
+        AnchorPane.setTopAnchor(headerVBox, 130.0);
         AnchorPane.setLeftAnchor(headerVBox, 330.0);
 
-        AnchorPane.setTopAnchor(secondHeader, 400.0);
+        AnchorPane.setTopAnchor(secondHeader, 300.0);
         AnchorPane.setLeftAnchor(secondHeader, 330.0);
 
-        AnchorPane.setTopAnchor(addButton, 520.0);
+        AnchorPane.setTopAnchor(addButton, 450.0);
         AnchorPane.setLeftAnchor(addButton, 330.0);
 
         AnchorPane.setBottomAnchor(ownPlanButton, 30.0);
         AnchorPane.setRightAnchor(ownPlanButton, 70.0);
 
-        AnchorPane.setTopAnchor(scrollPane, 425.0); 
+        AnchorPane.setTopAnchor(scrollPane, 330.0); 
 		AnchorPane.setLeftAnchor(scrollPane, 300.0);
 		AnchorPane.setRightAnchor(scrollPane, 0.0);
-        AnchorPane.setBottomAnchor(scrollPane, 50.0);  
+        AnchorPane.setBottomAnchor(scrollPane, 100.0);  
         
         AnchorPane.setTopAnchor(uploadPane, 0.0); 
 		AnchorPane.setLeftAnchor(uploadPane, 0.0);
