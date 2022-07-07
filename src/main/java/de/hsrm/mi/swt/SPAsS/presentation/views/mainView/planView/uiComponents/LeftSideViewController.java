@@ -49,7 +49,7 @@ public class LeftSideViewController extends ViewController {
                 alert.setHeaderText("UndoRedoError");
                 alert.setContentText(ure.getMessage());
                 
-                alert.showAndWait();
+//                alert.showAndWait();
             }
     	});
         undoButton.addEventHandler(ActionEvent.ACTION, e -> {
@@ -61,7 +61,7 @@ public class LeftSideViewController extends ViewController {
                 alert.setHeaderText("UndoRedoError");
                 alert.setContentText(ure.getMessage());
                 
-                alert.showAndWait();
+//                alert.showAndWait();
             }
          });
          settingsButton.addEventHandler(ActionEvent.ACTION, e -> {

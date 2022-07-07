@@ -2,13 +2,20 @@
 
 .header {
     -fx-font-size: 50px;
-    -fx-font-family: 'Open Sans Bold', sans-serif;
+    -fx-font-family: 'Open Sans SemiBold', sans-serif;
 }
 
 .headerExamView {
     -fx-font-size: 30px;
     -fx-font-family: 'Open Sans Bold', sans-serif;
 }
+
+.pointAverage {
+    -fx-font-size: 20px;
+    -fx-font-family: 'Open Sans Light', sans-serif;
+    
+}
+
 
 
 .examListHeader {

@@ -6,16 +6,17 @@
 
 .ModuleHeader {
     -fx-font-size: 30px;
-    -fx-font-family: 'Open Sans Bold', sans-serif;
+    -fx-font-family: 'Open Sans SemiBold', sans-serif;
     -fx-text-fill: white;
 }
+
 .Validatortext{
-	-fx-font-size: 15px;
+	-fx-font-size: 13px;
     -fx-font-family: 'Open Sans Regular', sans-serif;
     -fx-text-fill: white;
 }
 .Validatorheader{
-	-fx-font-size: 15px;
+	-fx-font-size: 13px;
     -fx-font-family: 'Open Sans Bold', sans-serif;
     -fx-text-fill: white;
 }

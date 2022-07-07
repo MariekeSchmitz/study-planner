@@ -22,6 +22,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -100,7 +101,7 @@ public class CenterViewController extends ViewController implements PropertyChan
 		savePlanButton = centerView.getSavePlan();
 		backButton = centerView.getBackButton();
 		newPlan = centerView.getNewPlanButton();
-		save = new Button("save");
+		save = new Button("Plan speichern");
 		savePanebackButton = new Button();
 		header = centerView.getHeader();
 
@@ -176,6 +177,7 @@ public class CenterViewController extends ViewController implements PropertyChan
 			nameInput = new TextField(plan.getName());
 			nameInput.setPrefSize(250, 50);
 			nameInput.setMaxSize(250, 50);
+			nameInput.getStyleClass().add("nameInput");
 			
 			save.getStyleClass().add("ExamAddbuttons");
 			save.setPrefSize(200, 50);
@@ -183,6 +185,7 @@ public class CenterViewController extends ViewController implements PropertyChan
 
 			inputSaveBox.getChildren().addAll(nameInput,save);
 			inputSaveBox.setAlignment(Pos.CENTER_LEFT);
+			inputSaveBox.setPadding(new Insets(0,0,80,0));
 			
 			AnchorPane.setTopAnchor(title, 120.0);
 			AnchorPane.setLeftAnchor(title, 100.0);

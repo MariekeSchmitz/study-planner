@@ -94,8 +94,6 @@ public class ViewManager {
         	loadingStack.getChildren().addAll(startView,loadingView);
         	root.getChildren().add(loadingStack);
         	
-//            startView = (StartView)new StartViewController(this, app).getRootView();
-//            root.getChildren().add(startView);
         }
 
     } 

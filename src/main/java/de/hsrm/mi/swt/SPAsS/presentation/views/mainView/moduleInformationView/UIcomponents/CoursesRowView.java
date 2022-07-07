@@ -38,7 +38,7 @@ public class CoursesRowView extends HBox{
 		this.setMinHeight(50);
 		this.setSpacing(25);
 		this.getChildren().addAll(courseName, passedCheck, gradeInput);
-		this.setStyle("-fx-background-color: rgb(235,235,235);");
+		this.setStyle("-fx-background-color: rgb(246,246,246);");
 
 	}
 

@@ -36,13 +36,13 @@ public class SettingsView extends AnchorPane {
         textField.setTextFill(Color.WHITE);
 
 		ImageView ivIcon = new ImageView(new Image(File.separator+"images" + File.separator +"XWeiss.png"));
-		ivIcon.setFitHeight(40);
-		ivIcon.setFitWidth(40);
+		ivIcon.setFitHeight(50);
+		ivIcon.setFitWidth(50);
 		backButton = new Button();
 		backButton.setGraphic(ivIcon);
 		backButton.getStyleClass().add("backButton");
 		backButton.setPrefSize(100, 100);
-        backButton.setMaxSize(40, 40);
+        backButton.setMaxSize(50, 50);
 
         box.getChildren().add(textField);
 
@@ -60,7 +60,7 @@ public class SettingsView extends AnchorPane {
 		AnchorPane.setRightAnchor(header, 150.0);
 		header.setMaxWidth(300);
 
-        AnchorPane.setTopAnchor(scrollPane, 175.0);
+        AnchorPane.setTopAnchor(scrollPane, 155.0);
         AnchorPane.setLeftAnchor(scrollPane, 150.0);
 		AnchorPane.setRightAnchor(scrollPane, 150.0);
         AnchorPane.setBottomAnchor(scrollPane, 0.0);

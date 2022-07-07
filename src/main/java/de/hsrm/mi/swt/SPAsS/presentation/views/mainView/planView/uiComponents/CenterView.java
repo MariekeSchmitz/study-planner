@@ -75,7 +75,7 @@ public class CenterView extends AnchorPane{
         
         header = new Label("Dein Studienplan");
         header.getStyleClass().add("header");
-	    header.setStyle("-fx-font-family: 'Open Sans Bold', sans-serif");
+//	    header.setStyle("-fx-font-family: 'Open Sans Bold', sans-serif");
 
         pointAverage = new Label("Aktueller Notendurchschnitt:");
         pointAverage.getStyleClass().add("pointAverage");
@@ -133,11 +133,11 @@ public class CenterView extends AnchorPane{
         planPane.getStyleClass().add("backgroundtransparent");
         
         AnchorPane.setLeftAnchor(hBoxAdd, 155.0);
-        AnchorPane.setTopAnchor(hBoxAdd, 330.0);
+        AnchorPane.setTopAnchor(hBoxAdd, 290.0);
         AnchorPane.setRightAnchor(hBoxAdd, 50.0);
 
         AnchorPane.setLeftAnchor(scrollPane, 75.0);
-        AnchorPane.setTopAnchor(scrollPane, 400.0);
+        AnchorPane.setTopAnchor(scrollPane, 350.0);
         AnchorPane.setBottomAnchor(scrollPane, 50.0);
         AnchorPane.setRightAnchor(scrollPane, 50.0);
 
@@ -151,13 +151,13 @@ public class CenterView extends AnchorPane{
         AnchorPane.setRightAnchor(planNameInputPane,0.0);
         AnchorPane.setBottomAnchor(planNameInputPane, 0.0);
 
-        AnchorPane.setTopAnchor(buttonsBox, 75.0);
+        AnchorPane.setTopAnchor(buttonsBox, 105.0);
         AnchorPane.setRightAnchor(buttonsBox, 50.0);
 
-        AnchorPane.setTopAnchor(header, 75.0);
+        AnchorPane.setTopAnchor(header, 90.0);
         AnchorPane.setLeftAnchor(header, 155.0);
 
-        AnchorPane.setTopAnchor(pointAverage, 150.0);
+        AnchorPane.setTopAnchor(pointAverage, 165.0);
         AnchorPane.setLeftAnchor(pointAverage, 155.0);
         
         AnchorPane.setRightAnchor(newPlanButton, 50.0);

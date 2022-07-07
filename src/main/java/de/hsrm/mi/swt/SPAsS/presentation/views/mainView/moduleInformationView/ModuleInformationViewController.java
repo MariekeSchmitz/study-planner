@@ -42,6 +42,8 @@ public class ModuleInformationViewController extends ViewController{
     	backButton = moduleInformationView.getBackButton();
     	deleteButton = moduleInformationView.getDeleteExam();
     	
+    	moduleInformationView.getStyleClass().add("moduleInformatioView");
+    	
     	System.out.println(moduleInformationView.getWidth());
      
     	initialise();
@@ -127,9 +129,16 @@ public class ModuleInformationViewController extends ViewController{
 		neededCompetencesVbox = moduleInformationView.getNeededCompetencesVbox();
 		neededCompetencesVbox.getChildren().clear();
 
-		for (Competence competence : neededCompetences) {
-			neededCompetencesVbox.getChildren().add(new Label("- " + competence.getName()));
+		if (neededCompetences.isEmpty()) {
+			moduleInformationView.getNeededCompetencesHeadline().setVisible(false);
+		} else {
+			moduleInformationView.getNeededCompetencesHeadline().setVisible(true);
+			for (Competence competence : neededCompetences) {
+				neededCompetencesVbox.getChildren().add(new Label("–   " + competence.getName()));
+			}
 		}
+		
+		
     		    	
     	moduleInformationView.getModuleDescriptionText().setText(module.getDescription());
     	

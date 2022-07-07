@@ -71,7 +71,6 @@ public class ModuleInformationView extends AnchorPane{
 		moduleName.setWrapText(true);
 		moduleName.setPadding(new Insets(0, 0, 0, leftPadding));
 
-
     	category = new Label("category");
 		category.getStyleClass().add("categoryLabel");
 		category.setPadding(new Insets(10, 0, 0, leftPadding));
@@ -91,7 +90,7 @@ public class ModuleInformationView extends AnchorPane{
 		//warningBox.setPrefHeight(90);
 		warningBox.setPadding(new Insets(15, 15, 15, 15));
 		warningBox.getStyleClass().add("border-red");
-		VBox.setMargin(warningBox, new Insets(topPadding, 0, 0, 0));
+		VBox.setMargin(warningBox, new Insets(topPadding, 60, 0, 0));
 		
 		gradeLabel = new Label("bestanden/Note");
 		gradeLabel.getStyleClass().add("passedLabel");
@@ -135,14 +134,14 @@ public class ModuleInformationView extends AnchorPane{
         anchorPane.getChildren().addAll(coursesHeadline, labelHbox);
         
 		box = new VBox(anchorPane, coursesBox, modulDescriptionHeadline, moduleDescriptionText, taughtCompetencesHeadline, taughtCompetencesVbox, neededCompetencesHeadline, neededCompetencesVbox, deleteExam);
-		box.setMaxWidth(450);
+		box.setMaxWidth(520);
 		box.setSpacing(10);
 		box.setAlignment(Pos.TOP_LEFT);
 		box.setPadding(new Insets(topPadding ,0 ,0 ,leftPadding));
 
 		labelVBox = new VBox(moduleName,category, cp);
 		labelVBox.setSpacing(5);
-		labelVBox.setMaxWidth(300);
+		labelVBox.setMaxWidth(500);
 
 		AnchorPane.setTopAnchor(labelHbox, 10.0);
 		AnchorPane.setRightAnchor(labelHbox, 0.0);
@@ -154,7 +153,7 @@ public class ModuleInformationView extends AnchorPane{
 		AnchorPane.setTopAnchor(backButton, 30.0);
         AnchorPane.setRightAnchor(backButton, 10.0);
     
-		mainPane.setPadding(new Insets(100, 50, 0, 80));
+		mainPane.setPadding(new Insets(100, 0, 0, 65));
 		
         AnchorPane.setTopAnchor(scrollPane, 0.0);
 		AnchorPane.setLeftAnchor(scrollPane, 0.0);
@@ -168,13 +167,17 @@ public class ModuleInformationView extends AnchorPane{
 		scrollPane.fitToHeightProperty().set(false);
         scrollPane.fitToWidthProperty().set(true);
 		scrollPane.setPannable(true);
+		scrollPane.getStyleClass().add("scrollPane");
+
 		
         this.getChildren().addAll(scrollPane, backButton);
         this.setEffect(new DropShadow(204,0,2, Color.rgb(49, 49, 64)));
 		this.getStylesheets().add(getClass().getResource("/css/moduleInformationView.css").toExternalForm());
         this.setMaxWidth(680);
     }
-
+    
+   
+ 
 	public Label getModuleName() {
 		return moduleName;
 	}

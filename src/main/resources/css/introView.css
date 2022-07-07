@@ -51,7 +51,7 @@
 
 .header_2 {
     -fx-font-size: 20px;
-    -fx-font-family: 'Open Sans Bold', sans-serif;
+    -fx-font-family: 'Open Sans SemiBold', sans-serif;
 }
 
 .headerOne {
@@ -61,7 +61,7 @@
 
 .secondHeader {
     -fx-font-size: 30px;
-    -fx-font-family: 'Open Sans Regular', sans-serif;
+    -fx-font-family: 'Open Sans Light', sans-serif;
 }
 
 .studyLabel {
@@ -71,11 +71,11 @@
 
 .campusLabel {
     -fx-font-size: 20px;
-	-fx-font-family: 'Open Sans Bold', sans-serif;
+	-fx-font-family: 'Open Sans SemiBold', sans-serif;
 }
 .studyLabel1 {
     -fx-font-size: 20px;
-    -fx-font-family: 'Open Sans Bold', sans-serif;
+    -fx-font-family: 'Open Sans SemiBold', sans-serif;
     
 }
 

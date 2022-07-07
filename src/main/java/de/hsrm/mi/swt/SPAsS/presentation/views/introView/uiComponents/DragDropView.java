@@ -35,10 +35,9 @@ public class DragDropView extends AnchorPane{
         drag_drop_label1.setId("mainColorFont");
         drag_drop_label2 = new Label("oder");
         drag_drop_label2.getStyleClass().add("drapdropLabel2");
-        drag_drop_label2.setPadding(new Insets(0, 0, 5, 0));
+        drag_drop_label2.setPadding(new Insets(5, 0, 5, 0));
 
-
-        drag_drop_vbox = new VBox(10, drag_drop_label1, drag_drop_label2, fileOpen);
+        drag_drop_vbox = new VBox(1, drag_drop_label1, drag_drop_label2, fileOpen);
         drag_drop_vbox.setAlignment(Pos.CENTER);
 
         AnchorPane.setTopAnchor(drag_drop_vbox, 0.0);
@@ -47,6 +46,7 @@ public class DragDropView extends AnchorPane{
         AnchorPane.setRightAnchor(drag_drop_vbox, 0.0);
 
         this.getStyleClass().add("dragdropField");
+        this.setPadding(new Insets(20));
         this.getChildren().addAll(drag_drop_vbox);
     }
 

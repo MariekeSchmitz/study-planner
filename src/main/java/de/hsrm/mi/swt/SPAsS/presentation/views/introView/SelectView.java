@@ -83,22 +83,22 @@ public class SelectView extends AnchorPane{
         AnchorPane.setTopAnchor(header1, 140.0);
         AnchorPane.setLeftAnchor(header1, 100.0);
 
-        AnchorPane.setTopAnchor(header2, 430.0);
+        AnchorPane.setTopAnchor(header2, 370.0);
         AnchorPane.setLeftAnchor(header2, 200.0);
         
-        AnchorPane.setTopAnchor(drag_drop_field, 520.0);
+        AnchorPane.setTopAnchor(drag_drop_field, 450.0);
         AnchorPane.setLeftAnchor(drag_drop_field, 200.0);
         AnchorPane.setBottomAnchor(drag_drop_field, 50.0);
         AnchorPane.setRightAnchor(drag_drop_field, 200.0);
 
-        AnchorPane.setTopAnchor(scrollPane, 230.0); 
+        AnchorPane.setTopAnchor(scrollPane, 210.0); 
 		AnchorPane.setLeftAnchor(scrollPane, 0.0);
 		AnchorPane.setRightAnchor(scrollPane, 0.0);
 		
         AnchorPane.setTopAnchor(backButton, 30.0);
         AnchorPane.setRightAnchor(backButton, 30.0);
 
-        AnchorPane.setTopAnchor(backgroundPane, 380.0);
+        AnchorPane.setTopAnchor(backgroundPane, 340.0);
         AnchorPane.setLeftAnchor(backgroundPane, 0.0);
         AnchorPane.setRightAnchor(backgroundPane, 0.0);
         AnchorPane.setBottomAnchor(backgroundPane, 0.0);

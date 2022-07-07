@@ -1,17 +1,23 @@
 /* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
 
+.scrollPane {
+
+	-fx-background-color: white;
+}
+
 .header {
     -fx-font-size: 30px;
 }
 
 .ModuleHeader {
     -fx-font-size: 30px;
-	-fx-font-family: 'Open Sans Bold', sans-serif;
+	-fx-font-family: 'Open Sans SemiBold', sans-serif;
 }
 
+
 .categoryLabel {
-    -fx-font-size: 17px;
-    -fx-font-family: 'Open Sans Regular', sans-serif;
+    -fx-font-size: 20px;
+    -fx-font-family: 'Open Sans Light', sans-serif;
     
 }
 .passedLabel{
@@ -68,6 +74,12 @@
     -fx-background-color: rgba(49,49,64,1);
         -fx-background-radius: 0;
     -fx-border-radius: 0;
+}
+
+.check-box .mark {
+
+	-fx-shape: "M1.73,12.91 8.1,19.28 22.79,4.59 22.79,1.59 8.1,16.28 1.73,9.91";
+
 }
 
 .scroll-bar:horizontal,
