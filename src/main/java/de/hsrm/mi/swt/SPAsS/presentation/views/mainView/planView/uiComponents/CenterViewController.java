@@ -154,7 +154,7 @@ public class CenterViewController extends ViewController implements PropertyChan
 			savePane.setPrefSize(500, 300);
 			savePane.setMaxSize(500, 300);
 			
-			ImageView ivIcon = new ImageView(new Image(File.separator+"images" + File.separator +"X.png"));
+			ImageView ivIcon = new ImageView(new Image(File.separator+"images" + File.separator +"x.png"));
 			ivIcon.setFitHeight(50);
 			ivIcon.setFitWidth(50);
 			savePanebackButton.setGraphic(ivIcon);

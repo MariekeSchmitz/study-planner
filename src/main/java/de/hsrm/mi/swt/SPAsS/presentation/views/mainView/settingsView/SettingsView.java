@@ -35,7 +35,7 @@ public class SettingsView extends AnchorPane {
         textField.setWrapText(true);
         textField.setTextFill(Color.WHITE);
 
-		ImageView ivIcon = new ImageView(new Image(File.separator+"images" + File.separator +"XWeiss.png"));
+		ImageView ivIcon = new ImageView(new Image(File.separator+"images" + File.separator +"xWeiss.png"));
 		ivIcon.setFitHeight(50);
 		ivIcon.setFitWidth(50);
 		backButton = new Button();

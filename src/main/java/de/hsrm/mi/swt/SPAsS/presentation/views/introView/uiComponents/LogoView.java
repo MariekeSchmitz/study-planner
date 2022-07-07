@@ -1,5 +1,7 @@
 package de.hsrm.mi.swt.SPAsS.presentation.views.introView.uiComponents;
 
+import java.io.File;
+
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
@@ -13,9 +15,9 @@ public class LogoView extends BorderPane{
     public LogoView(boolean flag, int size) {
     	
     	if(flag) {
-        	logo = new ImageView("/images/logo.png");
+        	logo = new ImageView(File.separator+"images"+File.separator+"logo.png");
     	} else {
-        	logo = new ImageView("/images/logo_ohne.png");
+        	logo = new ImageView(File.separator+"images"+File.separator+"logo_ohne.png");
 
     	}
     	

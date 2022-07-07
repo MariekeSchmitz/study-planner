@@ -25,7 +25,7 @@ public class ExamView extends AnchorPane{
 
     public ExamView() {
 
-		ImageView ivIcon = new ImageView(new Image(File.separator+"images" + File.separator +"X.png"));
+		ImageView ivIcon = new ImageView(new Image(File.separator+"images" + File.separator +"x.png"));
 		ivIcon.setFitHeight(50);
 		ivIcon.setFitWidth(50);
 		backbutton = new Button();
@@ -48,7 +48,7 @@ public class ExamView extends AnchorPane{
         AnchorPane.setRightAnchor(listView, 50.0);
         AnchorPane.setBottomAnchor(listView, 0.0);
 
-        this.getStylesheets().add(getClass().getResource("/css/MainView.css").toExternalForm());
+        this.getStylesheets().add("src"+File.separator+"main"+File.separator+"resources"+File.separator+"css"+File.separator+"mainView.css");
         this.getChildren().addAll(header, backbutton, listView);
         this.setMaxWidth(680);
         this.setEffect(new DropShadow(204,0,2, Color.rgb(49, 49, 64)));

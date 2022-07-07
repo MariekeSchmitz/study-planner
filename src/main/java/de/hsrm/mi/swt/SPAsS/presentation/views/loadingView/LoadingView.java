@@ -16,11 +16,11 @@ public class LoadingView extends BorderPane{
 		StackPane logoStack = new StackPane();
 		this.setCenter(logoStack);
 		
-		logoText = new ImageView(File.separator + "images" + File.separator + "LogoSchrift.png");
+		logoText = new ImageView(File.separator + "images" + File.separator + "logoSchrift.png");
 		logoText.setPreserveRatio(true);
 		logoText.setFitWidth(300);
 		
-		logoPic = new ImageView(File.separator + "images" + File.separator + "LogoNurBild.png");
+		logoPic = new ImageView(File.separator + "images" + File.separator + "logoNurBild.png");
 		logoPic.setPreserveRatio(true);
 		logoPic.setFitWidth(300);
 		

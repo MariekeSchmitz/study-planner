@@ -119,7 +119,7 @@ public class ModuleInformationView extends AnchorPane{
 		neededCompetencesHeadline.setPadding(new Insets(topPadding, 0,0,0));
 		neededCompetencesVbox = new VBox();
 
-		ImageView ivIcon = new ImageView(new Image(File.separator+"images" + File.separator +"X.png"));
+		ImageView ivIcon = new ImageView(new Image(File.separator+"images" + File.separator +"x.png"));
 		ivIcon.setFitHeight(50);
 		ivIcon.setFitWidth(50);
 		backButton = new Button();
