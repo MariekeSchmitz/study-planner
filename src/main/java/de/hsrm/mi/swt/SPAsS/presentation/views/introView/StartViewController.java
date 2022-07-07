@@ -17,6 +17,7 @@ import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -30,6 +31,7 @@ public class StartViewController extends ViewController {
 
     private ScrollPane scrollPane;
     private Button addButton;
+    private Button addButtonLabel;
     private Button ownPlanButton;
     private Label secondHeader;
     private FileManager fileManager;
@@ -46,6 +48,7 @@ public class StartViewController extends ViewController {
         rootView = startView;
         scrollPane = startView.getScrollPane();
         addButton = startView.getAddButton();
+        addButtonLabel = startView.getAddButtonLabel();
         ownPlanButton = startView.getOwnPlanButton().getButton();
         secondHeader = startView.getSecondHeader();
         hbox = startView.getHbox();
@@ -108,6 +111,21 @@ public class StartViewController extends ViewController {
 
 			
 		});
+        addButtonLabel.addEventHandler(ActionEvent.ACTION, e -> {
+
+        	List<String> curricula = fileManager.curriculumScan();
+        	
+        	if (curricula.isEmpty()) {
+        		viewManager.switchScene(Scenes.UPLOAD_CURRICULUM_VIEW);
+        	} else {
+        		viewManager.switchScene(Scenes.SELECT_VIEW);
+
+        	}
+        	
+			startView.getUploadPane().setVisible(true);
+
+			
+		});
         
         ownPlanButton.addEventHandler(ActionEvent.ACTION, e -> {
         	System.out.println("OwnPlanButton");
@@ -122,15 +140,20 @@ public class StartViewController extends ViewController {
     public void swapView(boolean plansAvailable){
         if(!plansAvailable){
             scrollPane.setVisible(false);
-            secondHeader.setText("Neuen Plan hinzufügen");
-            AnchorPane.setTopAnchor(addButton, 460.0);
-            AnchorPane.setLeftAnchor(addButton, 375.0);
+            secondHeader.setVisible(false);
+            addButtonLabel.setVisible(true);
+            AnchorPane.setTopAnchor(addButton, 345.0);
+            AnchorPane.setLeftAnchor(addButton, 335.0);
+            addButton.setPrefSize(75,75);
+            addButton.setMaxSize(75, 75);
         } else {
             scrollPane.setVisible(true);
-            secondHeader.setText("Deine Pläne");
+            secondHeader.setVisible(true);
+            addButtonLabel.setVisible(false);
             AnchorPane.setTopAnchor(addButton, 460.0);
             AnchorPane.setLeftAnchor(addButton, 200.0);
-            addButton.setMaxSize(150, 150);
+            addButton.setPrefSize(75,75);
+            addButton.setMaxSize(75, 75);
         }
     }
     
