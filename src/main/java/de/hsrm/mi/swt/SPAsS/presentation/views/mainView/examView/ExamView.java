@@ -37,14 +37,14 @@ public class ExamView extends AnchorPane{
 
         listView = new ListView<>();
 
-        AnchorPane.setTopAnchor(header, 70.0);
-        AnchorPane.setLeftAnchor(header, 50.0);
+        AnchorPane.setTopAnchor(header, 100.0);
+        AnchorPane.setLeftAnchor(header, 80.0);
 
         AnchorPane.setTopAnchor(backbutton, 30.0);
-        AnchorPane.setRightAnchor(backbutton, 50.0);
+        AnchorPane.setRightAnchor(backbutton, 30.0);
 
-        AnchorPane.setTopAnchor(listView, 200.0);
-        AnchorPane.setLeftAnchor(listView, 50.0);
+        AnchorPane.setTopAnchor(listView, 220.0);
+        AnchorPane.setLeftAnchor(listView, 80.0);
         AnchorPane.setRightAnchor(listView, 50.0);
         AnchorPane.setBottomAnchor(listView, 0.0);
 
@@ -52,7 +52,7 @@ public class ExamView extends AnchorPane{
         this.getChildren().addAll(header, backbutton, listView);
         this.setMaxWidth(680);
         this.setEffect(new DropShadow(204,0,2, Color.rgb(49, 49, 64)));
-        this.setStyle( "-fx-background-color:rgb(255,255,255)");	
+        this.setStyle("-fx-background-color:rgb(255,255,255)");	
     }
 
     public Label getHeader() {

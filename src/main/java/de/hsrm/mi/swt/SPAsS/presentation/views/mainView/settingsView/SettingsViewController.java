@@ -1,8 +1,11 @@
 package de.hsrm.mi.swt.SPAsS.presentation.views.mainView.settingsView;
 
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.util.List;
 
 import de.hsrm.mi.swt.SPAsS.application.App;
+import de.hsrm.mi.swt.SPAsS.business.planManagement.Module;
 import de.hsrm.mi.swt.SPAsS.business.planManagement.Plan;
 import de.hsrm.mi.swt.SPAsS.business.restrictionManagement.CpLimitValidator;
 import de.hsrm.mi.swt.SPAsS.business.restrictionManagement.Validator;
@@ -19,7 +22,7 @@ import javafx.scene.layout.VBox;
  * Controller for SettingsView
  * Dynamically fills SettingsView with needed Components
  */
-public class SettingsViewController extends ViewController{
+public class SettingsViewController extends ViewController implements PropertyChangeListener {
     
     private ViewManager viewManager;
     private SettingsView settingsView;
@@ -77,10 +80,26 @@ public class SettingsViewController extends ViewController{
             	CpLimitValidator cpValidator = (CpLimitValidator)validator;
             	validatorInformationView.getInput().setText(String.valueOf(cpValidator.getCpLimit()));
             	
+//            	cpValidator.addPropertyChangeListener(this);
+
+            	
             }
         }
-    
-        
     }
+
+	@Override
+	public void propertyChange(PropertyChangeEvent evt) {
+		
+		switch (evt.getPropertyName()) {
+		
+//		case "cpLimit":
+//		
+//			System.out.println("Cp Limit geändert");
+//
+//			break;
+//			
+		}
+		
+	}
 
 }

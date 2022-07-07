@@ -35,7 +35,7 @@ public class ExamListCell extends ListCell<ExamModule>{
 
     public ExamListCell() {
         mainPane = new HBox();
-        mainPane.setPrefHeight(40);
+        mainPane.setPrefHeight(30);
         mainPane.setSpacing(10);
 
         header = new Label("");
@@ -47,14 +47,13 @@ public class ExamListCell extends ListCell<ExamModule>{
  
         vbox = new VBox(header, cp);
         vbox.setAlignment(Pos.CENTER_LEFT);
-        vbox.setPadding(new Insets(30, 10, 10, 10));
+        vbox.setPadding(new Insets(10, 10, 10, 20));
         
         HBox.setHgrow(vbox, Priority.ALWAYS);
         
-        
         ivIcon = new ImageView(new Image(File.separator+"images" + File.separator +"plusBlack.png"));
-        ivIcon.setFitHeight(30);
-        ivIcon.setFitWidth(30);
+        ivIcon.setFitHeight(25);
+        ivIcon.setFitWidth(25);
        
         imagePane = new StackPane(ivIcon);
         imagePane.setPadding(new Insets(0,30,0,0));
@@ -62,14 +61,15 @@ public class ExamListCell extends ListCell<ExamModule>{
         mainPane.getChildren().addAll(vbox, imagePane);
         mainPane.setAlignment(Pos.CENTER_LEFT);
         mainPane.setSpacing(20);
-        mainPane.setPrefWidth(400);
-        mainPane.setMaxWidth(400);
+        mainPane.setPrefWidth(500);
+        mainPane.setMaxWidth(500);
 
         this.getChildren().addAll(mainPane);
-        this.setPrefSize(50, 100);
-        this.setMaxWidth(200);
-        this.setMaxHeight(50);
+        this.setPrefSize(30, 100);
+        this.setMaxWidth(500);
+        this.setMaxHeight(30);
         this.setStyle("-fx-background-color: transparent;");
+        mainPane.getStyleClass().add("listCellExamModule");
 
     }
 
