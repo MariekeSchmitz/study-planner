@@ -297,9 +297,9 @@ public class CenterView extends AnchorPane{
 		this.planNameInputPane.getChildren().add(planNameInputPane); 
 
         AnchorPane.setLeftAnchor(planNameInputPane, 300.0);
-        AnchorPane.setTopAnchor(planNameInputPane, 250.0);
-        AnchorPane.setRightAnchor(planNameInputPane,330.0);
-        AnchorPane.setBottomAnchor(planNameInputPane, 250.0);
+        AnchorPane.setTopAnchor(planNameInputPane, 150.0);
+        AnchorPane.setRightAnchor(planNameInputPane, 330.0);
+        AnchorPane.setBottomAnchor(planNameInputPane, 150.0);
         
 		this.planNameInputPane.setVisible(true);
 	}
