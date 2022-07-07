@@ -179,13 +179,13 @@ public class CenterViewController extends ViewController implements PropertyChan
 			nameInput.setMaxSize(250, 50);
 			nameInput.getStyleClass().add("nameInput");
 			
-			save.getStyleClass().add("ExamAddbuttons");
+			save.getStyleClass().add("SaveButton");
 			save.setPrefSize(200, 50);
 			save.setMaxSize(200, 50);
 
 			inputSaveBox.getChildren().addAll(nameInput,save);
 			inputSaveBox.setAlignment(Pos.CENTER_LEFT);
-			inputSaveBox.setPadding(new Insets(0,0,80,0));
+//			inputSaveBox.setPadding(new Insets(0,0,80,0));
 			
 			AnchorPane.setTopAnchor(title, 120.0);
 			AnchorPane.setLeftAnchor(title, 100.0);
@@ -198,6 +198,7 @@ public class CenterViewController extends ViewController implements PropertyChan
 			AnchorPane.setTopAnchor(inputSaveBox, 330.0);
 			AnchorPane.setLeftAnchor(inputSaveBox, 100.0);
 			AnchorPane.setRightAnchor(inputSaveBox, 100.0);
+			AnchorPane.setBottomAnchor(inputSaveBox, 100.0);
 			
 			AnchorPane.setTopAnchor(savePanebackButton, 30.0);
 	        AnchorPane.setRightAnchor(savePanebackButton, 30.0);
