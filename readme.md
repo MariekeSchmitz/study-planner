@@ -19,5 +19,5 @@ Application to plan the course of your studies
 ./gradlew run
 ```
 
-## Impressionsx
+## Impressions
 ![alt](./docs/Studyplanner.jpg)
