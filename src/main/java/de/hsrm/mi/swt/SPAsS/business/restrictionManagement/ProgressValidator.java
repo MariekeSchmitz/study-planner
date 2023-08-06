@@ -82,7 +82,6 @@ public class ProgressValidator implements Validator{
     		} else {
     			
     			if (module.isValid()) {
-    				module.setValid(true);
         			module.resetNote();
     			}
 			

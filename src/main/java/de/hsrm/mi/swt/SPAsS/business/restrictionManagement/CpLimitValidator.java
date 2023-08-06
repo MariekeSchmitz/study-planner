@@ -54,7 +54,6 @@ public class CpLimitValidator implements Validator {
     			} else {
     				
     				if (module.isValid()) {
-    					module.setValid(true);
     					module.resetNote();
     				}
     				
