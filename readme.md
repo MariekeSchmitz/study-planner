@@ -6,7 +6,8 @@ Application to plan the course of your studies
 
 **Features:**
 - Drag and drop courses and exams into semesters
-- Get info about courses and enter grades 
+- Get info about courses and enter grades
+- Validation of plan based on restrictions of degree program
 - Undo/Redo actions
 - Save plan and import plans
 
